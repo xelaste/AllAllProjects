@@ -15,7 +15,7 @@ export default class Routes extends React.Component {
     return (
       <Provider store={store}>
         <Router>
-          <div>
+          <div className="h-100">
             <PrivateRoute exact path="/" component={App} />
             <PrivateRoute exact path="/highscore" component={App} />
             <Route path="/login" component={LoginPage} />

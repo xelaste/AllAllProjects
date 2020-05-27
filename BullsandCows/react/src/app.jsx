@@ -11,9 +11,9 @@ export default class App extends React.Component {
     console.log(match.url);
     console.log("###################");
     return (
-      <div style={{height:"80%"}} className="panel m-2">
+      <div className="px-2">
         <div><h1>Bulls and Cows</h1></div>
-        <div className="panel-body h-100">
+        <div>
           <nav className="mb-1 nav nav-pills">
             <Link to="/" exact={true} className="nav-link" activeClassName="active">Home</Link>
             <Link to="/highscore" className="nav-link" activeClassName="active">Highscore</Link>

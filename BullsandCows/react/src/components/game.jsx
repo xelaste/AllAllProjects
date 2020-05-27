@@ -148,8 +148,8 @@ class Game extends React.Component {
      </div> 
       {this.isWin() && <div className="alert alert-success w-25">Winner</div>}
       {this.isLost() && <div className="alert alert-danger w-25">Game is lost</div>}
-      <div className="row w-50">
-      <div style={{backgroundColor: 'yellow'}} className="col-sm-6 ml-2">
+      <div className="ml-2 row w-50">
+      <div style={{backgroundColor: 'yellow'}} className="col-sm-6">
         <table   className="table table-sm table-striped" >
             <thead>
               <tr>
@@ -180,7 +180,7 @@ class Game extends React.Component {
         </div>
       </div>
       {!this.isWin() && !this.isLost() &&
-        <div className="w-25 mt-3 pr-3">
+        <div className="mt-3 col-sm-3">
           <Clock subscribe={this.subscribeToTimer} ticks={0} period={this.vsComputer()?2:30}/>
         </div>
       }
