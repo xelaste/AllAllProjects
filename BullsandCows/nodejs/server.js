@@ -1,3 +1,5 @@
+console.log("Set working directory to:    ", __dirname); 
+process.chdir(__dirname);
 var express = require('express');
 var bodyParser = require('body-parser')
 const jwt = require('./jwt');
