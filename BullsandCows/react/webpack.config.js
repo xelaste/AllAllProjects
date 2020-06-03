@@ -1,10 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
-const devBuild = process.env.NODE_ENV !== 'production';
-const nodeEnv = devBuild ? 'development' : 'production';
-const apiUrl = 'production' == process.env.NODE_ENV ? 'https://bullandcow.herokuapp.com' :  'http://localhost:3000';
+const devMode = process.argv.indexOf('-p')===-1;
+const nodeEnv = devMode ? 'development' : 'production';
+console.log("####################")
+console.log(process.argv.indexOf('-p'));
+console.log(devMode)
+console.log(nodeEnv)
+console.log("###################")
 
 let conf = {
   mode:nodeEnv,
@@ -21,7 +26,7 @@ let conf = {
   },
   output: {
     filename: '[name]-bundle.js',
-    path: path.join(__dirname, '/dist'),
+    path: path.resolve(__dirname, '../nodejs/dist'),
     publicPath: '/'
   },
   resolve: {
@@ -45,8 +50,15 @@ let conf = {
         NODE_ENV: JSON.stringify(nodeEnv),
       },
     }),
-    
-    new ExtractTextPlugin('styles.css')
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      // Options similar to the same options in webpackOptions.output
+      // both options are optional
+      //filename: devMode ? '[name].css' : '[name].[hash].css',
+      //chunkFilename: devMode ? '[name][id].css' : '[id].[hash].css',      
+      filename: '[name]-bundle.css',
+      //chunkFilename: '[id].css',
+    })
   ],
   module: {
     rules: [
@@ -62,7 +74,16 @@ let conf = {
       },
       {
         test:/\.css$/,
-        use:['style-loader','css-loader']
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: path.resolve(__dirname, '../nodejs/dist'),
+              //path.join(__dirname, '/dist')
+            },
+          },
+          'css-loader'
+        ]
       },
       {
         test: /.jsx?$/,
@@ -93,8 +114,9 @@ let conf = {
   externals: {
     // global app config object
     config: JSON.stringify({
-        apiUrl: apiUrl 
+        apiUrl: devMode ? 'http://localhost:3000' : 'https://bullandcow.herokuapp.com'
     })
 }
 };
-module.exports = (env, argv) => conf;
+module.exports = (env, argv) =>  conf
+
