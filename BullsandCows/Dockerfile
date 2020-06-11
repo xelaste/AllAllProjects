@@ -4,21 +4,21 @@ FROM node:12
 # Set working directory. Paths will be relative this WORKDIR.
 WORKDIR /usr/src/app
 
-ENV http_proxy http://genproxy:8080
-ENV https_proxy http://genproxy:8080
-
-
 # Copy source files from host computer to the container
 COPY . .
 
-RUN rm -fr nodejs/node_modules/* coverage/* dist/* .git .vscode
-RUN rm -fr react/node_modules/* coverage/* dist/* .git .vscode
+RUN rm -fr nodejs/node_modules/* react/coverage/* nodejs/dist/* .git .vscode
+RUN rm -fr react/node_modules/* react/coverage/* nodejs/dist/* .git .vscode
 
 WORKDIR /usr/src/app/react
+RUN pwd
+RUN npm config set https-proxy http://10.232.233.70:8080
+RUN npm config set proxy http://10.232.233.70:8080
 RUN npm install
 # Build the app
-RUN npm run-script heroku-postbuild
+RUN npm run-script docker-build
 WORKDIR /usr/src/app/nodejs
+RUN pwd
 RUN npm install
 # Specify port app runs on
 EXPOSE 3000

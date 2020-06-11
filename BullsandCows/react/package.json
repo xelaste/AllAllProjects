@@ -8,6 +8,7 @@
   },
   "scripts": {
     "heroku-postbuild": "webpack -p",
+    "docker-build": "webpack -d",
     "test": "node node_modules/karma/bin/karma start",
     "karma": "node node_modules/karma/bin/karma start",
     "webpack": "webpack -d -w",
