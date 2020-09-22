@@ -13,7 +13,7 @@ import com.xsites.candidate.alexans.exam.application.ExamApplication;
 import com.xsites.candidate.alexans.exam.entities.AstroResponse;
 
 
-@SpringBootTest(classes=ExamApplication.class)
+@SpringBootTest(classes = ExamApplication.class)
 public class AstroServiceTest {
     private Logger logger = LoggerFactory.getLogger(AstroServiceTest.class);
 
