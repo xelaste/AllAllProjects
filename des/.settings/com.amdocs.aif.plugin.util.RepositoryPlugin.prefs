@@ -1,0 +1,11 @@
+#AIF Configurations. Stored : Sun Mar 09 17:39:53 IST 2014
+#Sun Mar 09 17:39:53 IST 2014
+AscRootNode=/
+OutputPath=
+Categories=rO0ABXVyABNbTGphdmEubGFuZy5TdHJpbmc7rdJW5+kde0cCAAB4cAAAAAF0AAA\=
+RepositoryRoot=/DES
+ValidTypes=char;char;long;long;float;float;short;short;int;int;Date;java.util.Date;String;java.lang.String;double;double;boolean;boolean;byte;byte;
+eclipse.preferences.version=1
+CustomizationLevel=0
+AscRootPath=
+AllowArbitraryJavaClassForBaseType=false
