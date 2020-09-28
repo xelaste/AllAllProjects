@@ -1,0 +1,695 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuite failures="1" time="3.073" errors="0" skipped="0" tests="1" name="modules.ProcessInputFileModuleTest">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="C:\Java\jdk1.7.0_79\jre\bin"/>
+    <property name="java.vm.version" value="24.79-b02"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=";"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.script" value=""/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="Service Pack 1"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="C:\Java\AllAllProjects\Cortica"/>
+    <property name="java.runtime.version" value="1.7.0_79-b15"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="C:\Java\jdk1.7.0_79\jre\lib\endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="C:\Users\alexans\AppData\Local\Temp\"/>
+    <property name="line.separator" value="
+"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.variant" value=""/>
+    <property name="os.name" value="Windows 7"/>
+    <property name="classworlds.conf" value="C:\apache-maven-3.2.5\bin\..\bin\m2.conf"/>
+    <property name="sun.jnu.encoding" value="Cp1252"/>
+    <property name="java.library.path" value="C:\Java\jdk1.7.0_79\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\ProgramData\Oracle\Java\javapath;C:\cygwin\bin;C:\app\ALEXANS\product\11.2.0\client_1\bin;C:\app\ALEXANS\product\11.2.0\client;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\msys\1.0\bin;C:\AmdocsCRM9.3.0\Server\dll;C:\nodejs\;C:\Program Files\Perforce;;C:\Python27;C:\Python27\Scripts;C:\Python27\GnuWin32\bin;C:\Program Files\Perforce\DVCS\;C:\Strawberry\c\bin;C:\Strawberry\perl\site\bin;C:\Strawberry\perl\bin;C:\Program Files (x86)\QuickTime\QTSystem\;C:\Java\jdk1.8.0_74; C:\AmdocsCRM8.1\Clarify\bin;C:\Users\alexans\AppData\Roaming\LaunchCRM\Persistent\Applications\MSVC_DLLs;."/>
+    <property name="http.proxyPort" value="8080"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="51.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="maven.repo.local" value="C:\ATT\.m2-mex\repository"/>
+    <property name="os.version" value="6.1"/>
+    <property name="user.home" value="C:\Users\alexans"/>
+    <property name="user.timezone" value="Asia/Jerusalem"/>
+    <property name="java.awt.printerjob" value="sun.awt.windows.WPrinterJob"/>
+    <property name="java.specification.version" value="1.7"/>
+    <property name="file.encoding" value="Cp1252"/>
+    <property name="user.name" value="alexans"/>
+    <property name="java.class.path" value="C:\apache-maven-3.2.5\bin\..\boot\plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.7"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="C:\Java\jdk1.7.0_79\jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -U install -Dmaven.repo.local=C:\ATT\.m2-mex\repository -Dhttp.proxyHost=genproxy -Dhttp.proxyPort=8080"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.7.0_79"/>
+    <property name="java.ext.dirs" value="C:\Java\jdk1.7.0_79\jre\lib\ext;C:\Windows\Sun\Java\lib\ext"/>
+    <property name="sun.boot.class.path" value="C:\Java\jdk1.7.0_79\jre\lib\resources.jar;C:\Java\jdk1.7.0_79\jre\lib\rt.jar;C:\Java\jdk1.7.0_79\jre\lib\sunrsasign.jar;C:\Java\jdk1.7.0_79\jre\lib\jsse.jar;C:\Java\jdk1.7.0_79\jre\lib\jce.jar;C:\Java\jdk1.7.0_79\jre\lib\charsets.jar;C:\Java\jdk1.7.0_79\jre\lib\jfr.jar;C:\Java\jdk1.7.0_79\jre\classes"/>
+    <property name="http.proxyHost" value="genproxy"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="C:\apache-maven-3.2.5\bin\.."/>
+    <property name="file.separator" value="\"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="windows"/>
+    <property name="sun.cpu.isalist" value="amd64"/>
+  </properties>
+  <testcase time="3.073" classname="modules.ProcessInputFileModuleTest" name="testExecute">
+    <failure type="java.lang.AssertionError">java.lang.AssertionError
+	at org.junit.Assert.fail(Assert.java:86)
+	at org.junit.Assert.assertTrue(Assert.java:41)
+	at org.junit.Assert.assertFalse(Assert.java:64)
+	at org.junit.Assert.assertFalse(Assert.java:74)
+	at modules.ProcessInputFileModuleTest.testExecute(ProcessInputFileModuleTest.java:12)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.execute(JUnit4Provider.java:252)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.executeTestSet(JUnit4Provider.java:141)
+	at org.apache.maven.surefire.junit4.JUnit4Provider.invoke(JUnit4Provider.java:112)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:606)
+	at org.apache.maven.surefire.util.ReflectionUtils.invokeMethodWithArray(ReflectionUtils.java:189)
+	at org.apache.maven.surefire.booter.ProviderFactory$ProviderProxy.invoke(ProviderFactory.java:165)
+	at org.apache.maven.surefire.booter.ProviderFactory.invokeProvider(ProviderFactory.java:85)
+	at org.apache.maven.surefire.booter.ForkedBooter.runSuitesInProcess(ForkedBooter.java:115)
+	at org.apache.maven.surefire.booter.ForkedBooter.main(ForkedBooter.java:75)
+</failure>
+    <system-out>2016-05-19 14:41:50.310	INFO 	Put http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+2016-05-19 14:41:50.310	INFO 	Put http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+2016-05-19 14:41:50.310	INFO 	Take http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+2016-05-19 14:41:50.311	INFO 	Take http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+2016-05-19 14:41:50.311	INFO 	Start process image http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+2016-05-19 14:41:50.311	INFO 	Put http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg
+2016-05-19 14:41:50.311	INFO 	Start process image http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+2016-05-19 14:41:50.311	INFO 	Take http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg
+2016-05-19 14:41:50.312	INFO 	Start process image http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg
+2016-05-19 14:41:50.311	INFO 	Put http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+2016-05-19 14:41:50.312	INFO 	Put http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+2016-05-19 14:41:50.312	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+2016-05-19 14:41:50.312	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+2016-05-19 14:41:50.312	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.313	INFO 	Put http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+2016-05-19 14:41:50.314	INFO 	Start process image http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+2016-05-19 14:41:50.314	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.314	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+2016-05-19 14:41:50.315	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+2016-05-19 14:41:50.315	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+2016-05-19 14:41:50.315	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+2016-05-19 14:41:50.315	INFO 	domain.ImageData@145462bc
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+md5=null
+2016-05-19 14:41:50.315	INFO 	Download image ...
+2016-05-19 14:41:50.316	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+2016-05-19 14:41:50.316	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+2016-05-19 14:41:50.316	INFO 	domain.ImageData@22dcc72d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+md5=null
+2016-05-19 14:41:50.316	INFO 	Download image ...
+2016-05-19 14:41:50.316	INFO 	From url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+2016-05-19 14:41:50.314	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+2016-05-19 14:41:50.316	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+2016-05-19 14:41:50.316	INFO 	domain.ImageData@71a4e6f3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+md5=null
+2016-05-19 14:41:50.317	INFO 	Download image ...
+2016-05-19 14:41:50.317	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+2016-05-19 14:41:50.316	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+2016-05-19 14:41:50.317	INFO 	domain.ImageData@6bcfbe7f
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=null
+2016-05-19 14:41:50.317	INFO 	Download image ...
+2016-05-19 14:41:50.317	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+2016-05-19 14:41:50.315	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110224.jpg
+2016-05-19 14:41:50.317	INFO 	domain.ImageData@13e3bb25
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110224.jpg
+url=http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg
+md5=null
+2016-05-19 14:41:50.317	INFO 	Download image ...
+2016-05-19 14:41:50.317	INFO 	From url=http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110224.jpg
+2016-05-19 14:41:50.315	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+2016-05-19 14:41:50.317	INFO 	domain.ImageData@23979119
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+md5=null
+2016-05-19 14:41:50.318	INFO 	Download image ...
+2016-05-19 14:41:50.318	INFO 	From url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+2016-05-19 14:41:50.315	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+2016-05-19 14:41:50.318	INFO 	domain.ImageData@2707f992
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+md5=null
+2016-05-19 14:41:50.318	INFO 	Download image ...
+2016-05-19 14:41:50.318	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+2016-05-19 14:41:50.315	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+2016-05-19 14:41:50.318	INFO 	domain.ImageData@7bb8597a
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+md5=null
+2016-05-19 14:41:50.319	INFO 	Download image ...
+2016-05-19 14:41:50.319	INFO 	From url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+2016-05-19 14:41:50.314	INFO 	Start process image http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+2016-05-19 14:41:50.319	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+2016-05-19 14:41:50.319	INFO 	domain.ImageData@162d4ea3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+md5=null
+2016-05-19 14:41:50.319	INFO 	Download image ...
+2016-05-19 14:41:50.319	INFO 	From url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+2016-05-19 14:41:50.316	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+2016-05-19 14:41:50.320	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+2016-05-19 14:41:50.320	INFO 	domain.ImageData@25a885c3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+md5=null
+2016-05-19 14:41:50.320	INFO 	Download image ...
+2016-05-19 14:41:50.320	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+2016-05-19 14:41:50.404	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg from url http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+2016-05-19 14:41:50.410	INFO 	domain.ImageData@23979119
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+md5=null
+2016-05-19 14:41:50.410	INFO 	Calculate MD5 ...
+2016-05-19 14:41:50.411	INFO 	domain.ImageData@23979119
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+md5= 	j&amp;#31;…8:&amp;#28;&amp;#27;ìF{‰Û±-
+2016-05-19 14:41:50.411	INFO 	Resize image ...
+2016-05-19 14:41:50.411	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+2016-05-19 14:41:50.413	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg from url http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+2016-05-19 14:41:50.413	INFO 	domain.ImageData@7bb8597a
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+md5=null
+2016-05-19 14:41:50.413	INFO 	Calculate MD5 ...
+2016-05-19 14:41:50.413	INFO 	domain.ImageData@7bb8597a
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+md5=+YŸ¢&amp;#5;*°Ýè7¼E&amp;#1;Ó&amp;#29;³
+2016-05-19 14:41:50.413	INFO 	Resize image ...
+2016-05-19 14:41:50.413	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+2016-05-19 14:41:50.430	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg from url http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+2016-05-19 14:41:50.430	INFO 	domain.ImageData@22dcc72d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+md5=null
+2016-05-19 14:41:50.430	INFO 	Calculate MD5 ...
+2016-05-19 14:41:50.430	INFO 	domain.ImageData@22dcc72d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+md5=&amp;#28;&lt;&amp;#18;‡Èg!y¡/&amp;#26;+vÑ*
+2016-05-19 14:41:50.430	INFO 	Resize image ...
+2016-05-19 14:41:50.430	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+2016-05-19 14:41:50.524	INFO 	domain.ImageData@23979119
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+md5= 	j&amp;#31;…8:&amp;#28;&amp;#27;ìF{‰Û±-
+2016-05-19 14:41:50.524	INFO 	Redraw image ...
+2016-05-19 14:41:50.524	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+2016-05-19 14:41:50.525	INFO 	domain.ImageData@22dcc72d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+md5=&amp;#28;&lt;&amp;#18;‡Èg!y¡/&amp;#26;+vÑ*
+2016-05-19 14:41:50.525	INFO 	Redraw image ...
+2016-05-19 14:41:50.525	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+2016-05-19 14:41:50.525	INFO 	domain.ImageData@7bb8597a
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+md5=+YŸ¢&amp;#5;*°Ýè7¼E&amp;#1;Ó&amp;#29;³
+2016-05-19 14:41:50.525	INFO 	Redraw image ...
+2016-05-19 14:41:50.525	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+2016-05-19 14:41:50.534	INFO 	domain.ImageData@7bb8597a
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110221.jpg
+url=http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+md5=+YŸ¢&amp;#5;*°Ýè7¼E&amp;#1;Ó&amp;#29;³
+2016-05-19 14:41:50.534	INFO 	Persists image ...
+2016-05-19 14:41:50.534	INFO 	Starting query... 
+2016-05-19 14:41:50.535	INFO 	Finished query
+2016-05-19 14:41:50.535	INFO 	Completed process image http://carbl.com/im/2013/06/Chevrolet-Camaro-600x324.jpg
+2016-05-19 14:41:50.535	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+2016-05-19 14:41:50.535	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+2016-05-19 14:41:50.536	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+2016-05-19 14:41:50.536	INFO 	domain.ImageData@1ac5eeaf
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+md5=null
+2016-05-19 14:41:50.536	INFO 	Download image ...
+2016-05-19 14:41:50.536	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+2016-05-19 14:41:50.536	INFO 	domain.ImageData@23979119
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110225.jpg
+url=http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+md5= 	j&amp;#31;…8:&amp;#28;&amp;#27;ìF{‰Û±-
+2016-05-19 14:41:50.536	INFO 	Persists image ...
+2016-05-19 14:41:50.536	INFO 	Starting query... 
+2016-05-19 14:41:50.537	INFO 	Finished query
+2016-05-19 14:41:50.537	INFO 	domain.ImageData@22dcc72d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110226.jpg
+url=http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+md5=&amp;#28;&lt;&amp;#18;‡Èg!y¡/&amp;#26;+vÑ*
+2016-05-19 14:41:50.537	INFO 	Persists image ...
+2016-05-19 14:41:50.537	INFO 	Starting query... 
+2016-05-19 14:41:50.537	INFO 	Completed process image http://carbl.com/im/2013/06/Cadilalc-CTS-2014-600x324.jpg
+2016-05-19 14:41:50.537	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+2016-05-19 14:41:50.537	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+2016-05-19 14:41:50.537	INFO 	Finished query
+2016-05-19 14:41:50.538	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+2016-05-19 14:41:50.538	INFO 	domain.ImageData@178c47d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+md5=null
+2016-05-19 14:41:50.538	INFO 	Download image ...
+2016-05-19 14:41:50.538	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+2016-05-19 14:41:50.538	INFO 	Completed process image http://carbl.com/im/2013/07/Suzuki-Swift-5d-600x324.jpg
+2016-05-19 14:41:50.538	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.538	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:50.538	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+2016-05-19 14:41:50.538	INFO 	domain.ImageData@1fabeb4c
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=null
+2016-05-19 14:41:50.538	INFO 	Download image ...
+2016-05-19 14:41:50.538	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+2016-05-19 14:41:51.270	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg from url http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+2016-05-19 14:41:51.270	INFO 	domain.ImageData@162d4ea3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+md5=null
+2016-05-19 14:41:51.270	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.271	INFO 	domain.ImageData@162d4ea3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+md5=¼w,N—&amp;#1;OT·GË¤¨Íð&amp;#20;
+2016-05-19 14:41:51.271	INFO 	Resize image ...
+2016-05-19 14:41:51.271	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+2016-05-19 14:41:51.452	INFO 	domain.ImageData@162d4ea3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+md5=¼w,N—&amp;#1;OT·GË¤¨Íð&amp;#20;
+2016-05-19 14:41:51.452	INFO 	Redraw image ...
+2016-05-19 14:41:51.452	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+2016-05-19 14:41:51.458	INFO 	domain.ImageData@162d4ea3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110229.jpg
+url=http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+md5=¼w,N—&amp;#1;OT·GË¤¨Íð&amp;#20;
+2016-05-19 14:41:51.459	INFO 	Persists image ...
+2016-05-19 14:41:51.459	INFO 	Starting query... 
+2016-05-19 14:41:51.459	INFO 	Finished query
+2016-05-19 14:41:51.460	INFO 	Completed process image http://media.zenfs.com/en-US/blogs/omgcelebnews/30566e0a-26e1-4bfc-b2ee-b0dd3bc1ee35_620_TomCruise_072213.jpg
+2016-05-19 14:41:51.460	INFO 	Take http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+2016-05-19 14:41:51.460	INFO 	Start process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+2016-05-19 14:41:51.460	INFO 	* filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+2016-05-19 14:41:51.460	INFO 	domain.ImageData@6efeb87
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+md5=null
+2016-05-19 14:41:51.460	INFO 	Download image ...
+2016-05-19 14:41:51.460	INFO 	From url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg to C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+2016-05-19 14:41:51.492	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+2016-05-19 14:41:51.493	INFO 	domain.ImageData@178c47d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+md5=null
+2016-05-19 14:41:51.493	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.493	INFO 	domain.ImageData@178c47d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+md5=)Ä©É:·^JøÁúMØ &amp;#27;¿
+2016-05-19 14:41:51.493	INFO 	Resize image ...
+2016-05-19 14:41:51.493	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+2016-05-19 14:41:51.515	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+2016-05-19 14:41:51.515	INFO 	domain.ImageData@2707f992
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+md5=null
+2016-05-19 14:41:51.515	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.516	INFO 	domain.ImageData@2707f992
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+md5=\¹”²&quot;ÀÌ®ë;¤S˜W ÷
+2016-05-19 14:41:51.516	INFO 	Resize image ...
+2016-05-19 14:41:51.516	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+2016-05-19 14:41:51.524	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+2016-05-19 14:41:51.524	INFO 	domain.ImageData@25a885c3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+md5=null
+2016-05-19 14:41:51.524	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.524	INFO 	domain.ImageData@25a885c3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+md5=®’BR´§Î	¦&amp;É[ð®&quot;Ï
+2016-05-19 14:41:51.525	INFO 	Resize image ...
+2016-05-19 14:41:51.525	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+2016-05-19 14:41:51.525	INFO 	domain.ImageData@2707f992
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+md5=\¹”²&quot;ÀÌ®ë;¤S˜W ÷
+2016-05-19 14:41:51.525	INFO 	Redraw image ...
+2016-05-19 14:41:51.525	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+2016-05-19 14:41:51.532	INFO 	domain.ImageData@2707f992
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110223.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+md5=\¹”²&quot;ÀÌ®ë;¤S˜W ÷
+2016-05-19 14:41:51.532	INFO 	Persists image ...
+2016-05-19 14:41:51.532	INFO 	Starting query... 
+2016-05-19 14:41:51.532	INFO 	Finished query
+2016-05-19 14:41:51.533	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19394-fig1_labels-spirit_of_st_louis_l257f.jpg
+2016-05-19 14:41:51.533	INFO 	domain.ImageData@25a885c3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+md5=®’BR´§Î	¦&amp;É[ð®&quot;Ï
+2016-05-19 14:41:51.533	INFO 	Redraw image ...
+2016-05-19 14:41:51.534	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+2016-05-19 14:41:51.535	INFO 	domain.ImageData@178c47d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+md5=)Ä©É:·^JøÁúMØ &amp;#27;¿
+2016-05-19 14:41:51.536	INFO 	Redraw image ...
+2016-05-19 14:41:51.536	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+2016-05-19 14:41:51.539	INFO 	domain.ImageData@25a885c3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110230.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+md5=®’BR´§Î	¦&amp;É[ð®&quot;Ï
+2016-05-19 14:41:51.539	INFO 	Persists image ...
+2016-05-19 14:41:51.539	INFO 	Starting query... 
+2016-05-19 14:41:51.540	INFO 	Finished query
+2016-05-19 14:41:51.540	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19393-main_sol3973_spirit_of_st_louis_l257atc.jpg
+2016-05-19 14:41:51.542	INFO 	domain.ImageData@178c47d
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110232.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+md5=)Ä©É:·^JøÁúMØ &amp;#27;¿
+2016-05-19 14:41:51.542	INFO 	Persists image ...
+2016-05-19 14:41:51.543	INFO 	Starting query... 
+2016-05-19 14:41:51.543	INFO 	Finished query
+2016-05-19 14:41:51.544	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19667_20150429_insight_cruise_stg_install2.jpg
+2016-05-19 14:41:51.597	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:51.597	INFO 	domain.ImageData@1fabeb4c
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=null
+2016-05-19 14:41:51.597	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.597	INFO 	domain.ImageData@1fabeb4c
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.598	INFO 	Resize image ...
+2016-05-19 14:41:51.598	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+2016-05-19 14:41:51.612	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+2016-05-19 14:41:51.612	INFO 	domain.ImageData@145462bc
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+md5=null
+2016-05-19 14:41:51.612	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.613	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+2016-05-19 14:41:51.613	INFO 	domain.ImageData@145462bc
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+md5=)[
+ç&amp;#1;&apos;uï&amp;ùø¦R¶š¬
+2016-05-19 14:41:51.613	INFO 	Resize image ...
+2016-05-19 14:41:51.613	INFO 	domain.ImageData@71a4e6f3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+md5=null
+2016-05-19 14:41:51.613	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.613	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+2016-05-19 14:41:51.613	INFO 	domain.ImageData@71a4e6f3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+md5=Lá¤êÌ¬nÝ¬gÇ?ì´Å\
+2016-05-19 14:41:51.613	INFO 	Resize image ...
+2016-05-19 14:41:51.613	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+2016-05-19 14:41:51.622	INFO 	domain.ImageData@71a4e6f3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+md5=Lá¤êÌ¬nÝ¬gÇ?ì´Å\
+2016-05-19 14:41:51.622	INFO 	Redraw image ...
+2016-05-19 14:41:51.622	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+2016-05-19 14:41:51.627	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+2016-05-19 14:41:51.627	INFO 	domain.ImageData@1ac5eeaf
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+md5=null
+2016-05-19 14:41:51.627	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.627	INFO 	domain.ImageData@1ac5eeaf
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+md5=4ƒ&gt;Íø0?¯&amp;#17;Ì˜4:*Ê&amp;#18;
+2016-05-19 14:41:51.627	INFO 	Resize image ...
+2016-05-19 14:41:51.627	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+2016-05-19 14:41:51.628	INFO 	domain.ImageData@71a4e6f3
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110228.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+md5=Lá¤êÌ¬nÝ¬gÇ?ì´Å\
+2016-05-19 14:41:51.628	INFO 	Persists image ...
+2016-05-19 14:41:51.628	INFO 	Starting query... 
+2016-05-19 14:41:51.629	INFO 	Finished query
+2016-05-19 14:41:51.629	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/dss35c.jpg
+2016-05-19 14:41:51.650	INFO 	domain.ImageData@1fabeb4c
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.650	INFO 	Redraw image ...
+2016-05-19 14:41:51.651	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+2016-05-19 14:41:51.661	INFO 	domain.ImageData@1fabeb4c
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110233.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.661	INFO 	Persists image ...
+2016-05-19 14:41:51.661	INFO 	domain.ImageData@1ac5eeaf
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+md5=4ƒ&gt;Íø0?¯&amp;#17;Ì˜4:*Ê&amp;#18;
+2016-05-19 14:41:51.662	INFO 	Starting query... 
+2016-05-19 14:41:51.662	INFO 	domain.ImageData@145462bc
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+md5=)[
+ç&amp;#1;&apos;uï&amp;ùø¦R¶š¬
+2016-05-19 14:41:51.662	INFO 	Redraw image ...
+2016-05-19 14:41:51.662	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+2016-05-19 14:41:51.662	INFO 	Redraw image ...
+2016-05-19 14:41:51.662	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+2016-05-19 14:41:51.662	INFO 	Finished query
+2016-05-19 14:41:51.663	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:51.667	INFO 	domain.ImageData@1ac5eeaf
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110231.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+md5=4ƒ&gt;Íø0?¯&amp;#17;Ì˜4:*Ê&amp;#18;
+2016-05-19 14:41:51.667	INFO 	Persists image ...
+2016-05-19 14:41:51.667	INFO 	Starting query... 
+2016-05-19 14:41:51.668	INFO 	Finished query
+2016-05-19 14:41:51.668	INFO 	domain.ImageData@145462bc
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110222.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+md5=)[
+ç&amp;#1;&apos;uï&amp;ùø¦R¶š¬
+2016-05-19 14:41:51.668	INFO 	Persists image ...
+2016-05-19 14:41:51.668	INFO 	Starting query... 
+2016-05-19 14:41:51.668	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/18213870326_7043e0b38e_o.jpg
+2016-05-19 14:41:51.669	INFO 	Finished query
+2016-05-19 14:41:51.669	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/m16-055a.jpg
+2016-05-19 14:41:51.703	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:51.703	INFO 	domain.ImageData@6bcfbe7f
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=null
+2016-05-19 14:41:51.704	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.704	INFO 	domain.ImageData@6bcfbe7f
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.704	INFO 	Resize image ...
+2016-05-19 14:41:51.704	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+2016-05-19 14:41:51.736	INFO 	domain.ImageData@6bcfbe7f
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.736	INFO 	Redraw image ...
+2016-05-19 14:41:51.736	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+2016-05-19 14:41:51.741	INFO 	domain.ImageData@6bcfbe7f
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110227.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+md5=sHqLLÙ3Ü×¤®`¬&amp;#22;Pð
+2016-05-19 14:41:51.741	INFO 	Persists image ...
+2016-05-19 14:41:51.741	INFO 	Starting query... 
+2016-05-19 14:41:51.742	INFO 	Finished query
+2016-05-19 14:41:51.744	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19669_20150429_insight_para_cone_install1.jpg
+2016-05-19 14:41:51.841	INFO 	# saved file C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg from url http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+2016-05-19 14:41:51.841	INFO 	domain.ImageData@6efeb87
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+md5=null
+2016-05-19 14:41:51.841	INFO 	Calculate MD5 ...
+2016-05-19 14:41:51.841	INFO 	domain.ImageData@6efeb87
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+md5=‹Õ]&amp;#22;Pùèñ;&amp;#26;ù3@Rw°
+2016-05-19 14:41:51.842	INFO 	Resize image ...
+2016-05-19 14:41:51.842	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+2016-05-19 14:41:51.878	INFO 	domain.ImageData@6efeb87
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+md5=‹Õ]&amp;#22;Pùèñ;&amp;#26;ù3@Rw°
+2016-05-19 14:41:51.878	INFO 	Redraw image ...
+2016-05-19 14:41:51.878	INFO 	path=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+2016-05-19 14:41:51.883	INFO 	domain.ImageData@6efeb87
+Date=null
+filepath=C:\Java\AllAllProjects\Cortica/images/1463658110234.jpg
+url=http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+md5=‹Õ]&amp;#22;Pùèñ;&amp;#26;ù3@Rw°
+2016-05-19 14:41:51.883	INFO 	Persists image ...
+2016-05-19 14:41:51.883	INFO 	Starting query... 
+2016-05-19 14:41:51.884	INFO 	Finished query
+2016-05-19 14:41:51.885	INFO 	Completed process image http://www.nasa.gov/sites/default/files/styles/image_card_4x3_ratio/public/thumbnails/image/pia19402_insight_lander_in_assembly_1-15-15a.jpg
+2016-05-19 14:41:53.338	FATAL	Fail to save C:\Java\AllAllProjects\Cortica/images/1463658110224.jpg
+2016-05-19 14:41:53.339	FATAL	java.net.SocketTimeoutException: Read timed out
+java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689)
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324)
+	at services.ImageDownloadService.execute(ImageDownloadService.java:17)
+	at modules.ImageProcessModule.processImage(ImageProcessModule.java:41)
+	at modules.ProcessInputFileModule$2.call(ProcessInputFileModule.java:89)
+	at modules.ProcessInputFileModule$2.call(ProcessInputFileModule.java:75)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+2016-05-19 14:41:53.359	FATAL	java.lang.RuntimeException: java.net.SocketTimeoutException: Read timed out
+java.lang.RuntimeException: java.net.SocketTimeoutException: Read timed out
+	at services.ImageDownloadService.execute(ImageDownloadService.java:27)
+	at modules.ImageProcessModule.processImage(ImageProcessModule.java:41)
+	at modules.ProcessInputFileModule$2.call(ProcessInputFileModule.java:89)
+	at modules.ProcessInputFileModule$2.call(ProcessInputFileModule.java:75)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:262)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.SocketTimeoutException: Read timed out
+	at java.net.SocketInputStream.socketRead0(Native Method)
+	at java.net.SocketInputStream.read(SocketInputStream.java:152)
+	at java.net.SocketInputStream.read(SocketInputStream.java:122)
+	at java.io.BufferedInputStream.fill(BufferedInputStream.java:235)
+	at java.io.BufferedInputStream.read1(BufferedInputStream.java:275)
+	at java.io.BufferedInputStream.read(BufferedInputStream.java:334)
+	at sun.net.www.http.HttpClient.parseHTTPHeader(HttpClient.java:689)
+	at sun.net.www.http.HttpClient.parseHTTP(HttpClient.java:633)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1324)
+	at services.ImageDownloadService.execute(ImageDownloadService.java:17)
+	... 7 more
+2016-05-19 14:41:53.360	INFO 	Fail to process image http://content4.catalog.photos.msn.com/ds/d80a8271-fcee-457f-ac66-facd2336803c.jpg
+</system-out>
+  </testcase>
+</testsuite>

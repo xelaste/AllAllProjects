@@ -1,0 +1,8 @@
+services\ImagePersistsServiceTest.class
+services\ImageResizeServiceTest.class
+services\ImageDownloadServiceTest.class
+dao\ImageDAOTest.class
+dao\ImageDAOFactoryTest.class
+services\ImageMD5CalulatorServiceTest.class
+services\ImageToGreyScaleServiceTest.class
+modules\ProcessInputFileModuleTest.class

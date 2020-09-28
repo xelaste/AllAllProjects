@@ -29,6 +29,3 @@ RUN npm install
 EXPOSE 3000
 # Run the app
 CMD [ "npm", "start" ]
-
-
-

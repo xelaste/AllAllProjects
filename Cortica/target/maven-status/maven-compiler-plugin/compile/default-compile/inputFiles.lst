@@ -1,0 +1,17 @@
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ImageDownloadService.java
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ImageMD5CalulatorService.java
+C:\Java\AllAllProjects\Cortica\src\main\java\modules\ProcessImageListModule.java
+C:\Java\AllAllProjects\Cortica\src\main\java\modules\ImageProcessModuleImpl.java
+C:\Java\AllAllProjects\Cortica\src\main\java\dao\HSQLDBImageDAO.java
+C:\Java\AllAllProjects\Cortica\src\main\java\modules\ProcessInputFileModule.java
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ImageToGreyScaleService.java
+C:\Java\AllAllProjects\Cortica\src\main\java\db\ConfigDBUsageSample.java
+C:\Java\AllAllProjects\Cortica\src\main\java\common\AlbomBuilder.java
+C:\Java\AllAllProjects\Cortica\src\main\java\db\ConfigDB.java
+C:\Java\AllAllProjects\Cortica\src\main\java\dao\ImageDAO.java
+C:\Java\AllAllProjects\Cortica\src\main\java\domain\ImageData.java
+C:\Java\AllAllProjects\Cortica\src\main\java\modules\ImageProcessModule.java
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ImageResizeService.java
+C:\Java\AllAllProjects\Cortica\src\main\java\dao\ImageDAOFactory.java
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ServiceBase.java
+C:\Java\AllAllProjects\Cortica\src\main\java\services\ImagePersistsService.java
