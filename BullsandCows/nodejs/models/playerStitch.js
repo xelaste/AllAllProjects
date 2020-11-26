@@ -56,7 +56,7 @@ module.exports.createPlayer = async function (data)
         body: newPlayer,
         json: true // Automatically stringifies the body to JSON
     };
-    return await httpService (options)
+    let result= await httpService (options)
     .then(function (player) 
     {
         logger.debug(player);
@@ -69,6 +69,7 @@ module.exports.createPlayer = async function (data)
     }).catch(e=>{logger.error(e);
         throw e.error.error;
     })
+    return result;
 };
 
 module.exports.updatePlayer = async function (data) 

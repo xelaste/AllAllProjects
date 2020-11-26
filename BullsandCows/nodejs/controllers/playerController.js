@@ -60,8 +60,8 @@ router.post('/authenticate/:username', function (req, res,next)
     });
 });
 
-router.post('/register', function (req, res,next) {
-    logger.debug(req.body);
+router.post('/register', function (req, res,next) 
+{
     res.set({ 'content-type': 'application/json;charset=utf-8' });
     var newPlayer = {
         name: req.body.name,

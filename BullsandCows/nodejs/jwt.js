@@ -3,7 +3,10 @@ const config = require('config');
 
 function jwt() {
     const secret = config.jwt.secret;
-    return expressJwt({ secret, isRevoked }).unless({
+    const algorithms=config.jwt.algorithms;
+    return expressJwt({ secret:secret,
+                        algorithms:algorithms, 
+                        isRevoked:isRevoked }).unless({
         path: [
             // public routes that don't require authentication
             /\/login/,
