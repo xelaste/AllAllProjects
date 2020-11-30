@@ -1,21 +1,18 @@
-const request = require('request-promise');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Logger = require('../logger');
 const config = require('config');
-
+const  httpService = require('got');
 const logger = Logger.createLogger("playerStitch");
 const secret = config.dbConfig.stitch.secret;
-
 const bullsandcowsURL=config.dbConfig.stitch.url;
-let httpService = null;
-if (process.env.HTTP_PROXY) {
-    httpService =  request.defaults({ proxy: "http://" + process.env.HTTPS_PROXY });
-}
-else
+
+if (process.env.HTTP_PROXY) 
 {
-    httpService = request;
+    process.env["GLOBAL_AGENT_HTTP_PROXY"]="http://" + process.env.HTTPS_PROXY;
+    require('global-agent/bootstrap');
 }
+
 module.exports = new Object();
 module.exports.getPlayers = async function (limit) 
 {
@@ -23,8 +20,8 @@ module.exports.getPlayers = async function (limit)
     let url = playerListURL + "?secret=" + secret + "&limit=" + limit;
     logger.debug(url);
     return await httpService.get(url).then((response)=> {
-         logger.debug(response);
-         let players=JSON.parse(response);
+         logger.debug(response.body);
+         let players=JSON.parse(response.body);
          if (Array.isArray(players))
          {
             players=players.map(e=>{
@@ -50,14 +47,12 @@ module.exports.createPlayer = async function (data)
         newPlayer.hash = bcrypt.hashSync(data.password, 10);   
     }
     console.debug(data);
-    var options = {
-        method: 'POST',
-        uri: url,
-        body: newPlayer,
-        json: true // Automatically stringifies the body to JSON
-    };
-    let result= await httpService (options)
-    .then(function (player) 
+    let result=await httpService.post(url, 
+    {
+        json: newPlayer,
+        responseType: 'json',
+        resolveBodyOnly: true
+    }).then((player)=> 
     {
         logger.debug(player);
         return {
@@ -66,8 +61,13 @@ module.exports.createPlayer = async function (data)
             "username":player.username,
             "score":parseInt(player.score.$numberDouble)
             };
-    }).catch(e=>{logger.error(e);
-        throw e.error.error;
+    }).catch(e=>{
+        if (e.response && e.response.body)
+        {
+            logger.error(e.response.body);
+            throw e.response.body.error;
+        }
+        throw e;
     })
     return result;
 };
@@ -77,14 +77,12 @@ module.exports.updatePlayer = async function (data)
     logger.debug("updatePlayer in -->");
     logger.debug(data);
     let url=bullsandcowsURL + "/BullsAndCows_updatePlayer?secret=" + secret;
-    var options = {
-        method: 'POST',
-        uri: url,
-        body: data,
-        json: true
-    };
-    return await httpService (options)
-    .then(function (player) 
+    return await httpService.post(url, 
+        {
+            json: data,
+            responseType: 'json',
+            resolveBodyOnly: true
+        }).then(function (player) 
     {
         logger.debug(player);
         if (!player.username)
@@ -110,7 +108,7 @@ module.exports.getWinners = async function (limit)
     logger.debug(url);
     return await httpService.get(url).then((response)=> {
          logger.debug(response);
-         let players=JSON.parse(response);
+         let players=JSON.parse(response.body);
          if (Array.isArray(players))
          {
             players=players.map(e=>{
@@ -132,8 +130,8 @@ module.exports.login = async function (username,password)
     let url = playerListURL + "?secret=" + secret + "&username=" + username;
     logger.debug(url);
     let player =  await httpService.get(url).then((response)=> {
-         logger.debug(response);
-         let responsePlayer=JSON.parse(response);
+         logger.debug(response.body);
+         let responsePlayer=JSON.parse(response.body);
          if (responsePlayer)
          return  {
                 "_id":responsePlayer._id.$oid,

@@ -14,7 +14,7 @@
     "karma": "node node_modules/karma/bin/karma start",
     "webpack": "webpack -d -w",
     "jest": "node node_modules/jest/bin/jest.js  --watch",
-    "start_dev": "webpack-dev-server --open --color",
+    "start_dev": "webpack-dev-server --open --color"
   },
   "author": "",
   "license": "ISC",
