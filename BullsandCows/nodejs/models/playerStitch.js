@@ -96,9 +96,15 @@ module.exports.updatePlayer = async function (data)
             "username":player.username,
             "score":parseInt(player.score.$numberDouble)
             };
-    }).catch(e=>{logger.error(e);
-        throw e.error.error;
-    })
+    }).catch(e=>
+        {
+            if (e.response && e.response.body)
+            {
+            logger.error(e.response.body);
+            throw e.response.body.error;
+            }
+            throw e;
+        });
 };
 
 module.exports.getWinners = async function (limit) 
