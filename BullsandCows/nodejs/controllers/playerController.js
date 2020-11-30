@@ -67,7 +67,7 @@ router.post('/register', function (req, res,next)
         name: req.body.name,
         score: 0,
         email: "",
-        username: req.body.name,
+        username: req.body.username,
         password:req.body.password,
         hash: '',
         profileImage: 'noimage.png'
