@@ -55,7 +55,7 @@ var tunnelingAgent = tunnel.httpsOverHttp({
 
 
     
-/*
+
    (async () => {
     try {
         const response = await got.get('https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook/BullsAndCows_getPlayers?secret=[qwerty123456]&limit=10');
@@ -68,6 +68,7 @@ var tunnelingAgent = tunnel.httpsOverHttp({
     }
 })();
 */
+
 (async () => {
     const response = await got.post('https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook/BullsAndCows_createPlayer?secret=[qwerty123456]', 
     {
@@ -88,4 +89,17 @@ var tunnelingAgent = tunnel.httpsOverHttp({
     console.log(response);
 })();
  
+(async () => {
+    const response = await got.get('https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook/BullsAndCows_getPlayers?secret=[qwerty123456]&limit=1000', 
+    {
+        responseType: 'json',
+        resolveBodyOnly: true
+    }).catch((e)=>console.log(e.response.body));
+    console.log("**********************************");
+    console.log(response);
+})();
+console.log("----------------------------------------");
+const playersDAO=require ("./models/playerStitch");
+
+(async  ()=> await playersDAO.getPlayers(10))();
 
