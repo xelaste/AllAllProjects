@@ -9,7 +9,7 @@ const bullsandcowsURL=config.dbConfig.stitch.url;
 
 if (process.env.HTTP_PROXY) 
 {
-    process.env["GLOBAL_AGENT_HTTP_PROXY"]="http://" + process.env.HTTPS_PROXY;
+    process.env["GLOBAL_AGENT_HTTP_PROXY"]=process.env.HTTP_PROXY;
     require('global-agent/bootstrap');
 }
 
@@ -77,18 +77,15 @@ module.exports.updatePlayer = async function (data)
     logger.debug("updatePlayer in -->");
     logger.debug(data);
     let url=bullsandcowsURL + "/BullsAndCows_updatePlayer?secret=" + secret;
-    return await httpService.post(url, 
+    logger.debug(url);
+    return httpService.post(url, 
         {
             json: data,
             responseType: 'json',
             resolveBodyOnly: true
-        }).then(function (player) 
+        }).then((player)=>
     {
         logger.debug(player);
-        if (!player.username)
-        {
-            player.username=palyer.name;
-        }
         logger.debug("updatePlayer out <--");
         return {
             "_id":player._id.$oid,
@@ -112,7 +109,7 @@ module.exports.getWinners = async function (limit)
     let playerListURL = bullsandcowsURL + "/BullsAndCows_getWinners";
     let url = playerListURL + "?secret=" + secret + "&limit=" + limit;
     logger.debug(url);
-    return await httpService.get(url).then((response)=> {
+    return httpService.get(url).then((response)=> {
          logger.debug(response);
          let players=JSON.parse(response.body);
          if (Array.isArray(players))
