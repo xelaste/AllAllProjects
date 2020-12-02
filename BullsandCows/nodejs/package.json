@@ -10,9 +10,9 @@
     "start": "node server.js",
     "debug": "node --inspect server.js",
     "mongo": "C:/\"Program Files\"/MongoDB/Server/4.0.9/bin/mongod.exe",
-    "jest": "node node_modules/jest/bin/jest.js  --watch"
+    "jest": "node node_modules/jest/bin/jest.js  --watch --detectOpenHandles"
   },
-    "author": "",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "jest": "^26.6.3",
