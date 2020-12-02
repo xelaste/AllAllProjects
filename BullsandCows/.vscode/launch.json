@@ -58,7 +58,9 @@
             "name": "vscode-jest-tests",
             "request": "launch",
             "args": [
-                "--runInBand"
+                "--runInBand",
+                "--detectOpenHandles",
+                "--forceExit"
             ],
             "cwd": "${workspaceFolder}/nodejs",
             "runtimeExecutable": "C:\\nodejs\\node-v12.18.0-win-x64\\node.exe",
