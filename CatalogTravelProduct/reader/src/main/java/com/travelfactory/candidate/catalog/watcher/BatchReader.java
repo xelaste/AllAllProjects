@@ -22,6 +22,7 @@ import com.travelfactory.candidate.catalog.entities.Batch;
 import com.travelfactory.candidate.catalog.entities.Room;
 
 @Component
+@ConditionalOnNotWebApplication
 public class BatchReader implements CommandLineRunner 
 {
 
