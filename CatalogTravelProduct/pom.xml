@@ -4,70 +4,24 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.travelfactory.candidate</groupId>
-	<artifactId>Catalog</artifactId>
+	<artifactId>CatalogParent</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
+	<packaging>pom</packaging>
 	<name>Catalog</name>
 	<description>travelfactory candidate project</description>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.0.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<version>2.3.3.RELEASE</version>
 	</parent>
-
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
 	</properties>
-
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>de.flapdoodle.embed</groupId>
-			<artifactId>de.flapdoodle.embed.mongo</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>
-				spring-boot-starter-data-mongodb-reactive
-			</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>javax.inject</groupId>
-			<artifactId>javax.inject</artifactId>
-			<version>1</version>
-		</dependency>		
-	</dependencies>
-
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-surefire-plugin</artifactId>
-			<configuration>
-				<argLine>-Dhttp.proxyHost=genproxy -Dhttp.proxyPort=8080 -Dhttps.proxyHost=genproxy -Dhttps.proxyPort=8080</argLine>
-				<redirectTestOutputToFile>true</redirectTestOutputToFile>
-			</configuration>
-		</plugin>
-		</plugins>
-	</build>
-
-
+	<modules>
+		<module>catalogtest</module>
+		<module>controller</module>
+		<module>reader</module>
+	</modules>
 </project>
