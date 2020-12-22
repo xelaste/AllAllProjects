@@ -29,7 +29,6 @@ public class CatalogReaderTests {
 	@Before
 	public void beforeReader()
 	{
-		System.out.println("********** before ***********");
 		String folder=System.getProperty("user.home") + "/catalog";
 		repository.deleteAll();
 		try {
@@ -44,7 +43,6 @@ public class CatalogReaderTests {
 	@After
 	public void stopReader()
 	{
-		System.out.println("********** after ***********");
 		reader.setStopFlag(true);
 	}
 	@Test
@@ -56,7 +54,6 @@ public class CatalogReaderTests {
 				+ "3,Béatrice Impérial Hotel,164\n"
 				+ "4,Dan Boutique,88";
 		Files.write(Paths.get(folder + "/booking-22-12-2020.csv"), content.getBytes(StandardCharsets.UTF_8));
-		System.out.println(content);
 		Thread.sleep(1500);
 		Assert.assertTrue(repository.count()==1 );
 	}
