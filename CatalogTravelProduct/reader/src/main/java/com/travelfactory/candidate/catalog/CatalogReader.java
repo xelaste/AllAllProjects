@@ -12,7 +12,7 @@ public class CatalogReader
 	
 	public static void main(String[] args) 
 	{
-		SpringApplication app = new SpringApplication(CatalogReader.class);
+		 SpringApplication app = new SpringApplication(CatalogReader.class);
 		 app.setWebApplicationType(WebApplicationType.NONE);
 		 app.run(args);
 	}
