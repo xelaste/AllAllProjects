@@ -802,6 +802,13 @@ public class AVLTreeST<Key extends Comparable<Key>, Value> {
         AVLTreeST<String, Integer> st = new AVLTreeST<String, Integer>();
         for (int i = 0; !StdIn.isEmpty(); i++) {
             String key = StdIn.readString();
+            if (key.equals("x"))
+            {
+                break;
+            }    
+            System.out.println("***********************");
+            System.out.println(key);
+            System.out.println("*******************");
             st.put(key, i);
         }
         for (String s : st.keys())
