@@ -27,17 +27,25 @@ public class CatalogReaderTests {
 	@Autowired
 	private BatchReader reader;
 	@Before
-	public void beforeReader()
+	public void beforeReader() 
 	{
 		String folder=System.getProperty("user.home") + "/catalog";
-		repository.deleteAll();
-		try {
-			Files.delete(Paths.get(folder + "/booking-22-12-2020.csv"));
+		try 
+		{
+			if (!Files.exists(Paths.get(folder)))
+			{
+				Files.createDirectory(Paths.get(folder));
+			}
+			if (Files.exists(Paths.get(folder + "/booking-22-12-2020.csv")))
+			{
+				Files.delete(Paths.get(folder + "/booking-22-12-2020.csv"));
+			}
 		} 
 		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
+		repository.deleteAll();
 	}
 
 	@After
