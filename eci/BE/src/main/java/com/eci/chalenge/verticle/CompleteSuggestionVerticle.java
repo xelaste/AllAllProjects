@@ -57,9 +57,7 @@ public class CompleteSuggestionVerticle extends AbstractVerticle {
             writer.write(answer.toString());
             writer.flush();
             writer.close();
-            System.out.println(answer);
-            vertx.eventBus().publish("CompleteSuggestionDone",answer);
-
+            vertx.eventBus().send("CompleteSuggestionDone",answer.toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

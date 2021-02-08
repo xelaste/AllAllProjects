@@ -81,6 +81,7 @@ public class FileProcessService {
                     vertx.deployVerticle(verticles[i], ar -> {
                         if (ar.succeeded()) {
                             TaskPublisherVerticle publisher = new TaskPublisherVerticle("publisher",files,outputDirectory);
+                            vertx.deployVerticle(publisher);
                         }
                         else
                             System.out.println(ar.cause());

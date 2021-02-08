@@ -28,8 +28,9 @@ public class TaskPublisherVerticle extends AbstractVerticle {
                 vertx.eventBus().send("CompleteSuggestion","Names");
             }
         });
+
         vertx.eventBus().consumer("CompleteSuggestionDone", message -> {
-            System.out.println("All done");
+            System.out.println("All done " + message.body());
             vertx.close();
         });
 
