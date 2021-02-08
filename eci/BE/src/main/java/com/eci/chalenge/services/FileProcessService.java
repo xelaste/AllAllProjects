@@ -1,5 +1,7 @@
 package com.eci.chalenge.services;
 
+import com.eci.chalenge.verticle.FileProcessVerticle;
+import com.eci.chalenge.verticle.TaskPublisherVerticle;
 import io.vertx.core.Vertx;
 import io.vertx.core.file.AsyncFile;
 import io.vertx.core.file.OpenOptions;
@@ -11,11 +13,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
-import java.util.Scanner;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.stream.Stream;
 
@@ -59,32 +58,27 @@ public class FileProcessService {
     public void setTimeout(int timeout) {
         this.timeout = timeout;
     }
-
     public void execute() {
-        Task.init(numberOfTasks);
-        File files[] = new File[0];
         try {
-            files = Files.walk(new File(inputDirectory).toPath()).map(Path::toFile).toArray(File[]::new);
+
+            File[] files = Files.walk(new File(inputDirectory).toPath()).map(Path::toFile).toArray(File[]::new);
+            createOutputDirectory();
+            FileProcessVerticle verticles[] = new FileProcessVerticle[numberOfTasks];
+            Vertx vertx = Vertx.vertx();
+            for (int i=0;i<verticles.length;i++)
+            {
+                verticles[i] = new FileProcessVerticle("task_" + (i+1) );
+                vertx.deployVerticle( verticles[i],ar->{if (ar.succeeded() )
+                    System.out.println("succeeded"); else
+                    System.out.println(ar.cause());});
+            }
+            TaskPublisherVerticle publisher = new TaskPublisherVerticle("publisher",files,outputDirectory);
+            vertx.deployVerticle(publisher);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        createOutputDirectory();
-        for (File file : files) {
-            if (file.isDirectory()) {
-                continue;
-            }
-            Task t = Task.getTaskFromPool();
-            System.out.println("****************************");
-            System.out.println(file.toPath().toString());
-            System.out.println("****************************");
-            try {
-                t.execute(file.toPath().toString(), outputDirectory + "/" + file.getName());
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
 
+    }
     private void createOutputDirectory() {
         File dir = new File(outputDirectory);
         try {
