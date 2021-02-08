@@ -1,5 +1,6 @@
 package com.eci.chalenge.starter;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
@@ -26,15 +27,18 @@ public class InputGenerator implements ApplicationRunner{
     public static final String FILE_NAME_PREFIX="NAMES_%d";
     @Resource (name="files")
     private List<String> lstFiles;
+    @Value("${user.home}/eci/IN/")
+    private String inputDirectory;
+    @Value("${input.file.name}")
+    private String inputFileName;
     @Override
     public void run(ApplicationArguments args) throws Exception {
         try {
-            Scanner read = new Scanner(this.getClass().getResourceAsStream("/DavidCopperField.txt"),
-                    Charset.defaultCharset().name());
+            Scanner read = new Scanner(new File(inputFileName),Charset.defaultCharset().name());
             read.useDelimiter("\\s");
             Random random = new Random();
             int numberOfFiles= NUMBER_OF_FILES + random.nextInt(NUMBER_OF_FILES);
-            File dir = new File ( System.getProperty("user.home") + "/eci/IN/");
+            File dir = new File ( inputDirectory );
             if (dir.exists())
             {
                 Stream<Path> files = Files.walk(dir.toPath());

@@ -9,7 +9,7 @@
 	</parent>
 	<groupId>com.eci.chalenge</groupId>
 	<artifactId>UI</artifactId>
-	<name>UI</name>
+	<name>${project.groupId}-${project.artifactId}-${project.packaging}</name>
 	<description>Java Home Project UI</description>
 	<properties>
 		<java.version>11</java.version>

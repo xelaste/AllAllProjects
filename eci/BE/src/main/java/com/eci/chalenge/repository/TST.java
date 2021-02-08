@@ -12,6 +12,9 @@
 
 package com.eci.chalenge.repository;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -21,7 +24,7 @@ import java.util.LinkedList;
 import java.util.Locale;
 import java.util.Queue;
 import java.util.Scanner;
-import java.util.stream.Stream;
+
 
 /**
  *  The {@code TST} class represents an symbol table of key-value
@@ -45,6 +48,8 @@ import java.util.stream.Stream;
  *  For additional documentation, see <a href="https://algs4.cs.princeton.edu/52trie">Section 5.2</a> of
  *  <i>Algorithms, 4th Edition</i> by Robert Sedgewick and Kevin Wayne.
  */
+@Component
+@Scope("prototype")
 public class TST<Value> {
     private int n;              // size
     private Node<Value> root;   // root of TST
