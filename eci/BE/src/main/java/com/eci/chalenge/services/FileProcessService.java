@@ -1,5 +1,6 @@
 package com.eci.chalenge.services;
 
+import com.eci.chalenge.verticle.CompleteSuggestionVerticle;
 import com.eci.chalenge.verticle.FileProcessVerticle;
 import com.eci.chalenge.verticle.TaskPublisherVerticle;
 import io.vertx.core.Vertx;
@@ -26,9 +27,17 @@ public class FileProcessService {
     private String outputDirectory;
     private int numberOfTasks = 2;
     private int timeout = 10;
-
+    private String prefix;
     public int getNumberOfTasks() {
         return numberOfTasks;
+    }
+
+    public String getPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(String prefix) {
+        this.prefix = prefix;
     }
 
     public void setNumberOfTasks(int numberOfTasks) {
@@ -68,12 +77,22 @@ public class FileProcessService {
             for (int i=0;i<verticles.length;i++)
             {
                 verticles[i] = new FileProcessVerticle("task_" + (i+1) );
-                vertx.deployVerticle( verticles[i],ar->{if (ar.succeeded() )
-                    System.out.println("succeeded"); else
-                    System.out.println(ar.cause());});
+                if (i==0) {
+                    vertx.deployVerticle(verticles[i], ar -> {
+                        if (ar.succeeded()) {
+                            TaskPublisherVerticle publisher = new TaskPublisherVerticle("publisher",files,outputDirectory);
+                        }
+                        else
+                            System.out.println(ar.cause());
+                    });
+                }
+                else
+                {
+                    vertx.deployVerticle(verticles[i]);
+                }
             }
-            TaskPublisherVerticle publisher = new TaskPublisherVerticle("publisher",files,outputDirectory);
-            vertx.deployVerticle(publisher);
+            CompleteSuggestionVerticle completeSuggestionVerticle = new CompleteSuggestionVerticle("CompleteSuggestion",prefix,outputDirectory);
+            vertx.deployVerticle(completeSuggestionVerticle);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,68 +111,13 @@ public class FileProcessService {
             e.printStackTrace();
         }
     }
-
-    private static class Task {
-        private int id;
-        private static LinkedBlockingQueue<Task> tasks = new LinkedBlockingQueue<>();
-
-        public static Task getTaskFromPool() {
-            try {
-                return tasks.take();
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
-        }
-
-        public static void init(int size) {
-            tasks.clear();
-            for (int i = 0; i < size; i++) {
-                Task t = new Task();
-                t.id = i + 1;
-                tasks.offer(t);
-            }
-        }
-
-        public void execute(String inputFileName, String outputFileName) throws Exception {
-            Vertx vertx = Vertx.vertx();
-            BufferedWriter fw = new BufferedWriter(new FileWriter(new File(outputFileName)));
-            RecordParser recordParser = RecordParser.newDelimited("\n", bufferedLine -> {
-                try {
-                    fw.write(bufferedLine.toString() + "\n");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
-
-            OpenOptions opts = new OpenOptions().setRead(true);
-            vertx.fileSystem().open(inputFileName, opts, ar -> {
-                if (ar.succeeded()) {
-                    AsyncFile file = ar.result();
-                    file.handler(recordParser)
-                            .exceptionHandler(Throwable::printStackTrace)
-                            .endHandler(done -> {
-                                tasks.offer(this);
-                                file.close();
-                                (new File(inputFileName)).deleteOnExit();
-                                try {
-                                    fw.close();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
-                                vertx.close();
-                            });
-                } else {
-                    ar.cause().printStackTrace();
-                }
-            });
-        }
-    }
     public static void main(String[] args) {
         FileProcessService service = new FileProcessService();
         service.setInputDirectory("C:\\Users\\alexans\\eci\\IN");
         service.setOutputDirectory("C:\\Users\\alexans\\eci\\OUT");
         service.setTimeout(10);
         service.setNumberOfTasks(3);
+        service.setPrefix("all");
         service.execute();
     }
 }

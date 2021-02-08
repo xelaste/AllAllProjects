@@ -39,6 +39,7 @@ public class FileProcessVerticle extends AbstractVerticle {
             new File(inputFileName).delete();
             writer.flush();
             writer.close();
+            vertx.eventBus().publish("completed",inputFileName);
         } catch (IOException e) {
             e.printStackTrace();
         }
