@@ -99,15 +99,6 @@ public class FileProcessService {
         }
     }
 
-    public static void main(String[] args) {
-        FileProcessService service = new FileProcessService();
-        service.setInputDirectory("C:\\Users\\alexans\\eci\\IN");
-        service.setOutputDirectory("C:\\Users\\alexans\\eci\\OUT");
-        service.setTimeout(10);
-        service.setNumberOfTasks(3);
-        service.execute();
-    }
-
     private static class Task {
         private int id;
         private static LinkedBlockingQueue<Task> tasks = new LinkedBlockingQueue<>();
@@ -148,6 +139,8 @@ public class FileProcessService {
                             .exceptionHandler(Throwable::printStackTrace)
                             .endHandler(done -> {
                                 tasks.offer(this);
+                                file.close();
+                                (new File(inputFileName)).deleteOnExit();
                                 try {
                                     fw.close();
                                 } catch (IOException e) {
@@ -160,5 +153,13 @@ public class FileProcessService {
                 }
             });
         }
+    }
+    public static void main(String[] args) {
+        FileProcessService service = new FileProcessService();
+        service.setInputDirectory("C:\\Users\\alexans\\eci\\IN");
+        service.setOutputDirectory("C:\\Users\\alexans\\eci\\OUT");
+        service.setTimeout(10);
+        service.setNumberOfTasks(3);
+        service.execute();
     }
 }
