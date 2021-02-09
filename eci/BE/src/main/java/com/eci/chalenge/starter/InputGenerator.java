@@ -46,6 +46,7 @@ public class InputGenerator implements ApplicationRunner{
                 dir.delete();
             }
             dir.mkdirs();
+            lstFiles.clear();
             while(lstFiles.size()<numberOfFiles && read.hasNext())
             {
                 int currentFileSize = FILE_SIZE + random.nextInt(FILE_SIZE);
