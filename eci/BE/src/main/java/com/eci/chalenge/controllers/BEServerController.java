@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.util.Locale;
 
 @RestController
 public class BEServerController
@@ -30,6 +31,7 @@ public class BEServerController
         try {
             service.setTimeout(Integer.parseInt(time));
             service.setNumberOfTasks(Integer.parseInt(threads));
+            service.setPrefix(prefix.toLowerCase(Locale.ROOT));
             service.execute();
         }
         catch (Exception e)

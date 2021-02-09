@@ -1,8 +1,6 @@
 package com.eci.chalenge.controller;
 
 import com.eci.chalenge.rsclient.BERsClient;
-import io.reactivex.Single;
-import io.reactivex.disposables.Disposable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

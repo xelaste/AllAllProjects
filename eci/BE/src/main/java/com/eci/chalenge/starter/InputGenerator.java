@@ -35,6 +35,7 @@ public class InputGenerator implements ApplicationRunner{
     public void run(ApplicationArguments args) throws Exception {
         try {
             Scanner read = new Scanner(new File(inputFileName),Charset.defaultCharset().name());
+            System.out.println(inputFileName);
             read.useDelimiter("\\s");
             Random random = new Random();
             int numberOfFiles= NUMBER_OF_FILES + random.nextInt(NUMBER_OF_FILES);
@@ -47,7 +48,7 @@ public class InputGenerator implements ApplicationRunner{
             }
             dir.mkdirs();
             lstFiles.clear();
-            while(lstFiles.size()<numberOfFiles && read.hasNext())
+            while(lstFiles.size()<numberOfFiles)
             {
                 int currentFileSize = FILE_SIZE + random.nextInt(FILE_SIZE);
                 String currentFileName = dir.getAbsolutePath() + "/" + String.format(FILE_NAME_PREFIX,lstFiles.size() + 1 ) + ".txt";
@@ -60,11 +61,12 @@ public class InputGenerator implements ApplicationRunner{
                     for (int j=0;j<currentLineLength && read.hasNext();) {
                         String word = read.next();
                         if (word.matches("\\w+")) {
-                            lstLine.add(word);
+                            lstLine.add(word.toLowerCase(Locale.ROOT));
                             j++;
                         }
                     }
-                    writer.write(String.join(",",lstLine) + "\n");
+                    if (lstLine.size() > 0 )
+                        writer.write(String.join(",",lstLine) + "\n");
                 }
                 writer.flush();
                 writer.close();
