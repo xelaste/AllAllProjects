@@ -27,7 +27,7 @@ public class InputGenerator implements ApplicationRunner{
     public static final String FILE_NAME_PREFIX="NAMES_%d";
     @Resource (name="files")
     private List<String> lstFiles;
-    @Value("${user.home}/eci/IN/")
+    @Value("${input.dir}")
     private String inputDirectory;
     @Value("${input.file.name}")
     private String inputFileName;
@@ -46,6 +46,7 @@ public class InputGenerator implements ApplicationRunner{
                 dir.delete();
             }
             dir.mkdirs();
+            lstFiles.clear();
             while(lstFiles.size()<numberOfFiles && read.hasNext())
             {
                 int currentFileSize = FILE_SIZE + random.nextInt(FILE_SIZE);
