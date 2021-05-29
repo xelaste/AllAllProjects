@@ -1,33 +1,21 @@
 package operative;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Solution1 {
-
-	
-	
 	public int solution(int[] A) {
 		if ( A==null || A.length == 0)
 		{
 			return 0;
 		}
 		int sum = 0;
-		Set <Integer> lampsOnSet = new HashSet<>();
+		int maxLamp = -1;
         for (int i=0 ; i < A.length; i++ )
         {
         	int lamp = A[i];
-        	lampsOnSet.add(lamp);
-        	if (lamp > i+1)
+        	if (lamp > maxLamp )
         	{
-        		continue;
+        		maxLamp = lamp;
         	}
-        	boolean allShine = true;
-        	for (int j=1;j<lamp && allShine;j++)
-        	{
-        		allShine = lampsOnSet.contains(j);
-        	}
-        	if (allShine)
+        	if (i+1 == maxLamp)
         	{
         		sum++;
         	}
@@ -37,7 +25,7 @@ public class Solution1 {
 	
 	public static void main(String[] args) 
 	{
-		int A[] = {20,300,4,10,5};
+		int A[] = {2,3,4,1,5};
 		Solution1 sol  = new Solution1();
 		System.out.println(sol.solution(A));
 	}

@@ -10,18 +10,18 @@ public class Solution3 {
 		if(A.length <= 2 ) {
 			return A.length;
 		}
-		int even = A[0],odd = A[1];
+		int first = A[0],second = A[1];
 		int start = 0,maxLen = 0;
-		for(int i=2;i<A.length;++i){
-			if(i%2 == 0 && A[i] != even || i%2 == 1 && A[i] != odd){
+		for(int i=2;i<A.length;i++){
+			if(i%2 == 0 && A[i] != first || i%2 == 1 && A[i] != second){
 				maxLen = Math.max(maxLen,i - start);
 				start = i-1;
 				if(i%2 == 0){
-					even = A[i];
-					odd = A[i-1];
+					first = A[i];
+					second = A[i-1];
 				}else{
-					even = A[i-1];
-					odd = A[i];
+					first = A[i-1];
+					second = A[i];
 				}
 			}
 		}     
