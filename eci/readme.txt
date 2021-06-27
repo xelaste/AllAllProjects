@@ -2,6 +2,7 @@ In order to build / run application
 1) make sure JAVA_HOME env var - location of a JDK home dir exists 
 2) The maven central repository is accessible in case it runs behind the proxy apply maven options e.g 
 set MAVEN_OPTS=-Dhttp.proxyHost=${proxyname} -Dhttp.proxyPort=${proxyport} -Dhttps.proxyHost=${proxyname} -Dhttps.proxyPort=${proxyport}
+Java version > 11
 
 Build application 
 	run mvnw clean install
@@ -12,7 +13,7 @@ These instructions are for windows
 For the Linux shell 
 make sure JAVA_HOME env var exists
 make mvnw executable
-run build  - run mvnw clean install
+run build  - run mvnw.cmd clean install
 run applications
 ${JAVA_HOME}/bin/java -Dfile.encoding=UTF8 -jar .\BE\target\BE-1.0-SNAPSHOT.jar 
 ${JAVA_HOME}/bin/java -Dfile.encoding=UTF8 -jar .\UI\target\UI-1.0-SNAPSHOT.jar
