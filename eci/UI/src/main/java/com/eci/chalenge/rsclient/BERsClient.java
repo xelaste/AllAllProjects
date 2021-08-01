@@ -23,7 +23,7 @@ public class BERsClient
     {
         RestTemplate template = templateBuilder.build();
         String url = providerURL +"/names/?threads={threads}&time={time}&prefix={prefix}";
-        return Single.create( subsriber -> template.getForEntity(url,String.class,threads,time,prefix));
+        return Single.create( subscriber -> {template.getForEntity(url,String.class,threads,time,prefix);});
     }
     public ResponseEntity<String> reset ()
     {

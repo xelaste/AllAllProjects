@@ -1,7 +1,6 @@
 package com.eci.chalenge.verticle;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.Future;
 
 import java.io.File;
 
