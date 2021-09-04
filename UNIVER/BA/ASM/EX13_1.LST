@@ -1,0 +1,211 @@
+Turbo Assembler	 Version 3.1	    07/21/96 18:16:25	    Page 1
+ex13_1.ASM
+
+
+
+      1				     ;--------------------------------------------------------
+      2	0000			     dseg segment
+      3	0000  0003			N dw 3
+      4	0002  09*(01)			array1 db 9 dup	(1)
+      5	000B  01 02 03 04 05 06	07+	array2 db 1,2,3,4,5,6,7,8,9
+      6	      08 09
+      7	0014  0D 0A 24			new_line  db 0dh,0ah,'$' ;cr+lf	ascii codes
+      8	0017  0000			SUM1  dw 0
+      9	0019  0000			SUM2  dw 0
+     10	001B  0000			LENTH dw 0
+     11	001D  4B 45 53 45 4D 3D	31+	msg_KESEM	   db 'KESEM=1$'
+     12	      24
+     13	0025  4B 45 53 45 4D 3D	30+	msg_NOT_KESEM	   db 'KESEM=0$'
+     14	      24
+     15	002D  54 68 65 20 66 69	72+	msg_FIRST_MATRIXE  db 'The first matrixe$'
+     16	      73 74 20 6D 61 74	72+
+     17	      69 78 65 24
+     18	003F  54 68 65 20 73 65	63+	msg_SECOND_MATRIXE db 'The second matrixe$'
+     19	      6F 6E 64 20 6D 61	74+
+     20	      72 69 78 65 24
+     21	0052			     dseg ends
+     22				     ;------------------------------------------------------
+     23	0000			     sseg segment stack
+     24	0000  64*(????)			  dw 100 dup(?)
+     25	00C8			     sseg ends
+     26				     ;------------------------------------------------------
+     27	0000			     cseg segment
+     28					  assume cs:cseg,ds:dseg,ss:sseg
+     29				     ;---------	ROUTINE	TO PRINT A NEW LINE -------------------
+     30	0000			     writeln proc
+     31	0000  BA 0014r			     mov dx, offset new_line
+     32	0003  B4 09			     mov ah,9
+     33	0005  CD 21			     int 21h
+     34	0007  C3			     ret
+     35	0008			     writeln endp
+     36				     ;------------ROUTINE TO PRINT A STRING -------------------------
+     37	0008			     write proc
+     38	0008  B4 09			   mov ah,9
+     39	000A  CD 21			   int 21h
+     40	000C  E8 FFF1			   call	writeln
+     41	000F  C3			   ret
+     42	0010			     write endp
+     43				     ;------------------------------------------------------------------
+     44	0010			     check_matrixe proc
+     45	0010  8B EC		     mov bp,sp
+     46	0012  8B 5E 02		     mov bx,[bp+2] ;pointer to matrixe
+     47	0015  8B 4E 04		     mov cx,[bp+4] ;value of N
+     48	0018  89 0E 001Br	     mov LENTH,cx
+     49	001C  C7 06 0017r 0000	     mov SUM1,0
+     50	0022			     LOOPD1:  ;compute sum of the main diagonal
+     51	0022  32 E4		     xor ah,ah
+     52	0024  8A 07		     mov al,[bx]
+     53	0026  01 06 0017r	     add SUM1,ax
+     54	002A  03 1E 001Br	     add bx,LENTH
+     55	002E  43		     inc bx
+     56	002F  E2 F1		     loop LOOPD1
+     57				     ;---------------------------------------------------
+Turbo Assembler	 Version 3.1	    07/21/96 18:16:25	    Page 2
+ex13_1.ASM
+
+
+
+     58	0031  8B EC		     mov bp,sp
+     59	0033  8B 5E 02		     mov bx,[bp+2] ;pointer to matrixe
+     60	0036  8B 0E 001Br	     mov cx,LENTH  ;value of N
+     61	003A			     LOOPD2:  ;compute sum of the second diagonal
+     62	003A  03 1E 001Br	     add bx,LENTH
+     63	003E  83 EB 01		     sub bx,1
+     64	0041  32 E4		     xor ah,ah
+     65	0043  8A 07		     mov al,[bx]
+     66	0045  01 06 0019r	     add SUM2,ax
+     67	0049  E2 EF		     loop LOOPD2
+     68	004B  A1 0017r		     mov ax,SUM1
+     69	004E  3B 06 0019r	     cmp ax,SUM2
+     70	0052  75 64		     jne NOT_KESEM
+     71				     ;-------------- LINES: ;checking lines of matrixe
+     72	0054  8B EC		     mov bp,sp
+     73	0056  8B 5E 02		     mov bx,[bp+2] ;pointer to matrixe
+     74	0059  8B 0E 001Br	     mov cx,LENTH  ;value of N
+     75	005D  8B 36 001Br	     mov si,LENTH
+     76	0061			     NEXT_LINE:
+     77	0061  C7 06 0019r 0000	     mov SUM2,0
+     78	0067  8B 0E 001Br	     mov cx,LENTH  ;value of N
+     79	006B			     NEXT_ITEM:
+     80	006B  32 E4		     xor ah,ah
+     81	006D  8A 07		     mov al,[bx]
+     82	006F  01 06 0019r	     add SUM2,ax
+     83	0073  43		     inc bx
+     84	0074  E2 F5		     loop NEXT_ITEM
+     85	0076  A1 0017r		     mov ax,SUM1
+     86	0079  3B 06 0019r	     cmp ax,SUM2
+     87	007D  75 39		     jne NOT_KESEM
+     88	007F  4E		     dec si
+     89	0080  75 DF		     jnz NEXT_LINE
+     90				     ;-------------- COLUMNS: checking the columns of the matrixe
+     91	0082  8B EC		     mov bp,sp
+     92	0084  8B 36 001Br	     mov si,LENTH
+     93	0088			     NEXT_COL:
+     94	0088  C7 06 0019r 0000	     mov SUM2,0
+     95	008E  8B 0E 001Br	     mov cx,LENTH  ;value of N
+     96	0092  8B 5E 02		     mov bx,[bp+2] ;pointer to matrixe
+     97	0095			     NEXT_ROW:
+     98	0095  32 E4		     xor ah,ah
+     99	0097  8A 00		     mov al,[bx+si]
+    100	0099  01 06 0019r	     add SUM2,ax
+    101	009D  03 1E 001Br	     add bx,LENTH
+    102	00A1  E2 F2		     loop NEXT_ROW
+    103	00A3  A1 0017r		     mov ax,SUM1
+    104	00A6  3B 06 0019r	     cmp ax,SUM2
+    105	00AA  75 0C		     jne NOT_KESEM
+    106	00AC  4E		     dec si
+    107	00AD  75 D9		     jnz NEXT_COL
+    108	00AF			     KESEM:
+    109	00AF  BA 001Dr		     mov dx,offset msg_KESEM
+    110	00B2  E8 FF53		     call write
+    111	00B5  EB 07 90		     jmp STOP_SHECK
+    112	00B8			     NOT_KESEM:
+    113	00B8  BA 0025r		     mov dx,offset msg_NOT_KESEM
+    114	00BB  E8 FF4A		     call write
+Turbo Assembler	 Version 3.1	    07/21/96 18:16:25	    Page 3
+ex13_1.ASM
+
+
+
+    115	00BE			     STOP_SHECK:
+    116	00BE  C3		     ret
+    117	00BF			     check_matrixe endp
+    118				     ;-----------------------------------------------------------------
+    119	00BF			     main proc far
+    120	00BF  1E			  push ds     ;	/---------------------------\
+    121	00C0  33 C0			  xor  ax,ax  ;	| Save return address to Dos|
+    122	00C2  50			  push ax     ;	\---------------------------/
+    123	00C3  B8 0000s			  mov ax,dseg ;points the ds register to the
+    124	00C6  8E D8			  mov ds,ax   ;data segment of this program
+    125				     ;=========================================================
+    126	00C8  BA 002Dr		     mov dx,offset msg_FIRST_MATRIXE
+    127	00CB  E8 FF3A		     call write
+    128	00CE  FF 36 0000r	     push N
+    129	00D2  50 55 8B EC C7 46	02+  push offset array1
+    130	      0002r 5D
+    131	00DC  E8 FF31		     call check_matrixe
+    132	00DF  8F 06 0000r	     pop N
+    133	00E3  58		     pop ax
+    134				     ;--------------------------------------------------
+    135	00E4  BA 003Fr		     mov dx,offset msg_SECOND_MATRIXE
+    136	00E7  E8 FF1E		     call write
+    137	00EA  FF 36 0000r	     push N
+    138	00EE  50 55 8B EC C7 46	02+  push offset array2
+    139	      000Br 5D
+    140	00F8  E8 FF15		     call check_matrixe
+    141	00FB  8F 06 0000r	     pop N
+    142	00FF  58		     pop ax
+    143				     ;*******************************************************************
+    144	0100  CB		     finish: ret ;return from procedure	"main"
+    145				     ;-------------------------------------------------------------------
+    146	0101			     main endp
+    147	0101			     cseg ends
+    148				     end main ;do not forget the starting address
+Turbo Assembler	 Version 3.1	    07/21/96 18:16:25	    Page 4
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "07/21/96"
+??FILENAME			  Text	 "ex13_1  "
+??TIME				  Text	 "18:16:25"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX13_1
+@WORDSIZE			  Text	 2
+ARRAY1				  Byte	 DSEG:0002
+ARRAY2				  Byte	 DSEG:000B
+CHECK_MATRIXE			  Near	 CSEG:0010
+FINISH				  Near	 CSEG:0100
+KESEM				  Near	 CSEG:00AF
+LENTH				  Word	 DSEG:001B
+LOOPD1				  Near	 CSEG:0022
+LOOPD2				  Near	 CSEG:003A
+MAIN				  Far	 CSEG:00BF
+MSG_FIRST_MATRIXE		  Byte	 DSEG:002D
+MSG_KESEM			  Byte	 DSEG:001D
+MSG_NOT_KESEM			  Byte	 DSEG:0025
+MSG_SECOND_MATRIXE		  Byte	 DSEG:003F
+N				  Word	 DSEG:0000
+NEW_LINE			  Byte	 DSEG:0014
+NEXT_COL			  Near	 CSEG:0088
+NEXT_ITEM			  Near	 CSEG:006B
+NEXT_LINE			  Near	 CSEG:0061
+NEXT_ROW			  Near	 CSEG:0095
+NOT_KESEM			  Near	 CSEG:00B8
+STOP_SHECK			  Near	 CSEG:00BE
+SUM1				  Word	 DSEG:0017
+SUM2				  Word	 DSEG:0019
+WRITE				  Near	 CSEG:0008
+WRITELN				  Near	 CSEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0101 Para	  none
+DSEG				  16  0052 Para	  none
+SSEG				  16  00C8 Para	  Stack
+

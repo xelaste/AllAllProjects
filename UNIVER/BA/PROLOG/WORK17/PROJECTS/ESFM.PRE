@@ -1,0 +1,42 @@
+              PROLOG EXPERT SYSTEM FOR FORESTRY MANAGEMENT
+             Contributed by Steve Jones, Reading University
+                    Received on the 3rd of March 1988
+                    Shelved on the 15th of March 1988
+
+
+This entry comes  as two files. ESFM.PRE is this  file; ESFM.PL contains
+the program.
+
+
+To use the  program, consult ESFM.PL, and then call  the predicate 'go'.
+It will ask you various questions  about your forest, and then recommend
+action. Type  answers to  the questions as  Prolog atoms,  followed by a
+full stop (i.e.  as input to 'read').  If you answer with  a wrong term,
+the system will display a list of the allowed answers.
+
+
+The main  predicate is 'go'.  This empties  the knowledge base  of stuff
+from any  previous consultation,  and then calls  'recommendation(X)' to
+establish the answers to questions and give advice.
+
+'recommendation' calls 'fact'.  All but the last two  clauses for 'fact'
+contain the rules.  The final two clauses obtain data  from the user, by
+calling 'ask' if the answer to a question isn't already known.
+
+
+ESFM  does not  explain  why it  asks  questions, or  how  it came  to a
+conclusion.
+
+
+
+CHECKED ON EDINBURGH-COMPATIBLE (POPLOG) PROLOG : yes.
+
+
+PORTABILITY :
+
+    Easy, no known problems.
+
+
+INTERNAL DOCUMENTATION :
+
+    Very little.          

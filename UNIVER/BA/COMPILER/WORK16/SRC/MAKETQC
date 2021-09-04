@@ -1,0 +1,32 @@
+#=========================
+# tcc maketqc makefile for tiny language compiler
+#=========================
+TCROOT = c:\TC2.0
+APPNAME = TQC
+
+INCPATH = $(TCROOT)\include
+LIBPATH = $(TCROOT)\lib
+CC = $(TCROOT)\tcc.exe
+FLAGS = -ml -I$(INCPATH) -L$(LIBPATH)
+OBJ = tqc.obj tla.obj ptb.obj prs.obj hash.obj gst.obj stke.obj smtc.obj
+# building
+$(APPNAME).exe: $(OBJ)
+  $(CC) $(FLAGS) -e$(APPNAME).exe -o $(OBJ)
+
+tla.obj: tla.c
+         $(CC) -c  $(FLAGS) tla.c
+hash.obj: hash.c
+          $(CC) -c $(FLAGS) hash.c
+ptb.obj : pars_tab.c
+          $(CC) -c -optb.obj $(FLAGS)  pars_tab.c
+prs.obj : parser.c
+          $(CC) -c -oprs.obj $(FLAGS) parser.c
+gst.obj : gstack.c
+          $(CC) -c -ogst.obj $(FLAGS) gstack.c
+stke.obj: stkentry.c
+          $(CC) -c -ostke.obj $(FLAGS) stkentry.c
+smtc.obj: semantic.c
+          $(CC) -c -osmtc.obj $(FLAGS) semantic.c
+tqc.obj: tqc.c
+         $(CC) -c  $(FLAGS) tqc.c
+

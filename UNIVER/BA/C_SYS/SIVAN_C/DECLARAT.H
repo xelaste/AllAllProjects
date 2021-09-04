@@ -1,0 +1,40 @@
+/***************************************************************************/
+void units_manager(int Tim, int Date);
+int  acceprunitentry(struct unit *punit);
+void addunitentry(int Time, int Date);
+void delunitentry(int Time, int Date);
+int  code_unit_exists(int Time, int Date ,int Code);
+void show_unit(int Time, int Day, int i_start);
+void clean_units(void);
+void list_manager(struct entry *list, int *listlen,int update);
+void dellistentry(struct entry *pentry);
+void addlistentry(int Code,struct entry *pentry, int *listlen);
+int  acceptcode(void);
+struct entry *code_exists(int Code, struct entry *pentry, int listlen);
+int acceptlistentryl(struct entry *pentry);
+void show_list(struct entry *list,int listlen,int i);
+void listing(struct entry *pentry,int listlen);
+void help_line(char *str);
+void  frame (int x1, int x2, int y1, int y2);
+void fcls(void);
+char *keep_area(int top_lin,int top_col, int bot_lin,int bot_col);
+void restore_area(int top_col,int top_lin,int bot_col,int bot_lin,char *area);
+void  fprint_msg(int col,int lin,char *msg,char atribute);
+void fmatrice(int x1,int y1);
+void  ferror_msg(char *msg);
+void putmarker(int x,int y,char mark);
+int fchoise(int str_col,int str_lin,int lst_col,int lst_lin,int *row,int *col);
+int time_table(int *time,int *day,char **buffer);
+void  fwindow (int x1, int x2, int y1, int y2, char *title, char *Line);
+void courses_list(void);
+void teachers_list(void);
+void groups_list(void);
+void main_menu(void);
+void list_menu(void);
+void list(void);
+void unit(void);
+void report(void);
+void loadfiles(void);
+void savefiles(void);
+/*------------------------------------------------------------------------*/
+

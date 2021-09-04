@@ -1,0 +1,64 @@
+/*
+    Program to list files sorted according to a supplied parameter
+    (c) Brian D Steel - 04 Nov 86
+
+    Run the command ls with one or two arguments.
+
+    First argument is a file specification, eg:
+
+	*.*			all files
+	"*.log"			prolog source files only etc
+
+    Second argument is optional, but can be one of:
+
+	name_and_extension	sort files by whole name
+	name_only		sort files by name (not extension)
+	extension_only		sort files by extension only
+	date_and_time		sort files by date and time
+	time_only		sort files by time (not date)
+	date_only		sort files by date (not time)
+	size			sort files by size
+
+    Example calls:
+
+	ls('*.exe').		lists all .exe files sorted
+	ls('*.exe',size).	lists all .exe files sorted by size
+
+*/
+
+/* list all files matching _filespec in current directory */
+
+ls(Filespec) :-
+  list_file(Filespec,[]).
+ls(Filespec,Item) :-
+  convert_param(Item,Param),
+  list_file(Filespec,Param).
+
+/* this bit does the listing */
+
+list_file(Filespec,Param) :-
+  dir(Filespec,Directory),
+  findall([[Name,Extension],[[Year,Month,Day],Time],Size],(on(File,Directory) , \+ on(File,['.',..]) , fldata(File,Name,Extension,Time,Date,Size,Attributes) , [Day,Month,Year] = Date),List),
+  'SORT'(List,Sorted,Param),
+  forall(on([Name,[[Year,Month,Day],Time],Size],Sorted),(fw('WND:',[['U',-10],['U',-5]],Name) , fw('WND:',[r(2,10),:],Time) , fw('WND:',['  ',r(2,10),-,r(2,10),-,r(4,10)],[Day,Month,Year]) , fw('WND:',[['U',7],['U',2]],[Size,'~M~J']))).
+
+/* convert a named parameter into a path for SORT if possible */
+
+convert_param(Input,Param) :-  
+  param(Input,Param).
+
+convert_param(Input,none) :-  
+  write('unknown parameter - try one of:'),
+  nl,
+  forall(param(Name,Any),('P'('    ') , write(Name),nl)),
+  abort.
+
+/* named parameters relate to search paths for SORT */
+
+param(size,[3]). 
+param(extension_only,[1,2]). 
+param(name_only,[1,1]). 
+param(name_and_extension,[1]). 
+param(time_only,[2,2]). 
+param(date_only,[2,1]). 
+param(date_and_time,[2]). 

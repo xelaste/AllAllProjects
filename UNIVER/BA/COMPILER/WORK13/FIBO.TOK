@@ -1,0 +1,54 @@
+Compiler project. Developed by Alexander Stekolchik.1997
+
+TOKEN           LEXEME                         ATTRIBUTE
+-----           ------                         ---------
+Prog            prog                           Keyword   
+Id              fibo                                     
+Semicolon       ;                                        
+Var             var                            Keyword   
+Id              a                                        
+Colon           :                                        
+Int             int                            Keyword   
+Comma           ,                                        
+Id              b                                        
+Colon           :                                        
+Int             int                            Keyword   
+Comma           ,                                        
+Id              c                                        
+Colon           :                                        
+Int             int                            Keyword   
+Semicolon       ;                                        
+Id              begin                                    
+Id              a                                        
+Assignop        :=                                       
+Num             0                              Integer   
+Semicolon       ;                                        
+Id              b                                        
+Assignop        :=                                       
+Num             1                              Integer   
+Semicolon       ;                                        
+While           while                          Keyword   
+Id              a                                        
+Relop           <                                        
+Num             1000                           Integer   
+Do              do                             Keyword   
+Print           print                          Keyword   
+Id              a                                        
+Semicolon       ;                                        
+Id              c                                        
+Assignop        :=                                       
+Id              a                                        
+Plus            +                                        
+Id              b                                        
+Semicolon       ;                                        
+Id              a                                        
+Assignop        :=                                       
+Id              b                                        
+Semicolon       ;                                        
+Id              b                                        
+Assignop        :=                                       
+Id              c                                        
+Semicolon       ;                                        
+Od              od                             Keyword   
+Semicolon       ;                                        
+End             end                            Keyword   

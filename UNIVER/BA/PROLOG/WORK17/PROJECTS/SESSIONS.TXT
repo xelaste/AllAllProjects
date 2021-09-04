@@ -1,0 +1,750 @@
+
+SAMPLE SESSION USING AUTOC.PRO
+
+C>prolog
+CP/M Prolog-1 Version 2.0 pre-release
+                       
+Copyright 1983 Expert Systems Ltd., Oxford U.K.
+Serial Number: 211
+
+
+?- consult(autoc).
+
+AUTO-C Compiler Options  Version 1.0
+------------------------------------
+NEW:     Create a new grammar for AUTO-C.
+OLD:     Load AUTO-C grammar from file.
+EDIT:    Enter a new AUTO-C program.
+PARSE:   Parse the AUTO-C program.
+CODE:    Generate code for program.
+HALT:    Exit to CP/M.
+
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): new.
+
+Enter name of file containing grammar rules
+( Terminate with a '.' ) : tinydef.
+
+Translating grammar from file: tinydef
+
+program(_210)-->block(_210)
+block(_215)-->[begin],actions(_215),[end]
+actions([_213|_215])-->action(_213),more_actions(_215)
+more_actions(_214)-->[;],actions(_214)
+more_actions([])--> {true}
+action(if(_218,_225,_231))-->[if],cond(_218),[then],block(_225),[else],block(_231)
+action(while(_217,_223))-->[while],cond(_217),[do],block(_223)
+action(assign(_214,_221))-->[id(_214)],[=],expr(_221)
+expr(_214)-->term(_213),exprtail(_213,_214)
+exprtail(_210,_210+_221)-->[+],term(_220),exprtail(_220,_221)
+exprtail(_210,_210-_221)-->[-],term(_220),exprtail(_220,_221)
+exprtail(_210,_210*_221)-->[*],term(_220),exprtail(_220,_221)
+exprtail(_210,_210/_221)-->[/],term(_220),exprtail(_220,_221)
+exprtail(_209,_209)--> {true}
+term(id(_212))-->[id(_212)]
+term(const(_212))-->[const(_212)]
+cond(_216)-->[id(_215)],ctail(_215,_216)
+ctail(_210,eq(_210,_217))-->[=],expr(_217)
+ctail(_210,ne(_210,_217))-->[#],expr(_217)
+ctail(_210,idtest(_210))--> {true}
+keyword(if)
+keyword(then)
+keyword(else)
+keyword(while)
+keyword(do)
+keyword(begin)
+keyword(end)
+symbol_char([59])
+symbol_char([43])
+symbol_char([45])
+symbol_char([42])
+symbol_char([47])
+symbol_char([61])
+symbol_char([35])
+statement_delimiter(;)
+statement_delimiter(end)
+[]--} ?true
+[_212|_214]--} @_212& @_214
+if(_219,_222,_229)--} @_219~_227& @_222&LABEL(_231)&JUMP&_227: & @_229&_231:
+while(_219,_222)--}_224: & @_219~_227& @_222&LABEL(_224)&JUMP&_227:
+assign(_213,_215)--}ID(_213)& @_215&STORE
+_213+_215--} @_213& @_215&ADD
+_213-_215--} @_213& @_215&SUB
+_213*_215--} @_213& @_215&MUL
+_213/_215--} @_213& @_215&DIV
+eq(_216,_218)~_220--}ID(_216)& @_218&LABEL(_220)&JNE
+ne(_216,_218)~_220--}ID(_216)& @_218&LABEL(_220)&JEQ
+idtest(_214)~_216--}IDTEST(_214)&LABEL(_216)&JFALSE
+id(_210)--}ID(_210)
+const(_210)--}CONST(_210)
+end_of_file
+
+Done.
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): edit.
+
+Enter a source program and terminate with CTL/Z <CR>
+
+begin
+  if i=3+5 then
+  begin
+    b = a/c
+  end
+  else
+  begin
+  i=2
+  end
+end
+^Z
+OK
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): parse.
+
+
+1       begin 
+2       if i = 3 + 5 then 
+3       begin 
+4       b = a / c 
+5       end 
+6       else 
+7       begin 
+8       i = 2
+9       end 
+10      end 
+
+Parsing Successful - NO ERRORS.
+
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): cose.
+cose is not a valid option !
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): code.
+
+
+    ID(i)
+    CONST(3)
+    CONST(5)
+    ADD
+    LABEL(1)
+    JNE
+    ID(b)
+    ID(a)
+    ID(c)
+    DIV
+    STORE
+    LABEL(2)
+    JUMP
+1:
+    ID(i)
+    CONST(2)
+    STORE
+2:
+
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): edit.
+
+Enter a source program and terminate with CTL/Z <CR>
+
+begin
+if i=a+b then
+  begin
+  a=b/c
+  end
+else
+  begin
+  i=
+  end
+end
+^Z
+OK
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): parse.
+
+
+1       begin 
+2       if i = a + b then 
+3       begin
+4       a = b / c 
+5       end 
+6       else 
+7       begin 
+8       i =  <HERE>
+
+SYNTAX ERROR at point marked <HERE>
+
+
+Enter AUTO-C Option or 'h' for help ( terminate with '.' ): halt.
+C>
+
+===================================================================
+
+
+SAMPLE SESSION USING CLASSY.PRO
+
+
+?- consult(classy).
+
+CLASSY Expert System Shell.  Version 1.0
+----------------------------------------
+
+Knowledge base ( Type filename or "new" ): animals
+
+PRE-CONSULTATION OPTIONS
+------------------------
+Start a consultation (c)
+See the rules (r)
+Manipulate rulebase (m)
+Copy the rulebase to file (f)
+Exit from the program (e)
+
+Option? c
+State the most definitive known category: animal
+
+Is it true that it has hair ? y
+Is it true that it is warm blooded ? i
+INFORM mode turned ON
+Is it true that it is warm blooded ? y
+
+    Sub-Classification:
+    "mammal" is the sub_category of "animal" using rule 1
+
+Is it true that it eats flesh ? why
+
+I am trying to establish  ( Rule 2 ) that the category 
+"mammal" has the sub-category "carnivore" .
+
+AND:
+
+I  have  established ( Rule 1 ) that
+category "animal" has the sub-category "mammal"
+because:-
+    it has hair 
+and it is warm blooded .
+
+AND:
+
+I know that "animal" was the starting catagory of this
+consultation.
+
+Is it true that it eats flesh ? n
+Is it true that it chews the cud ? n
+Is it true that it has hooves ? n
+I cannot identify the sub-category of "mammal". 
+Do you want to add a new rule to identify it? y
+What sub-category of "mammal" are you considering?
+    bat
+Enter the conditions which must be true for "bat" to be a
+sub-category of "mammal" ( terminate with a '.' ) :
+    it has leathery wings and it has a sonar detection system.
+Can the sub-category "bat" be sub-categorised? no
+Fact recorded:     it has leathery wings 
+Fact recorded:     it has a sonar detection system 
+
+Rule added:
+Rule 21:
+        The category     "mammal"
+        has sub-category "bat"
+        provided that:
+                         it has leathery wings 
+                     and it has a sonar detection system .
+
+
+Conclusion:
+-----------
+I deduce from the facts described to me
+that the final sub-category of "animal" is "bat".
+
+
+END OF CONSULTATION OPTIONS
+---------------------------
+See categories established (c)
+See facts established (f)
+See line of reasoning (r)
+Display this list of options (h)
+End this consultation (e)
+
+Option? f
+The facts established are: 
+    it has hair 
+    it is warm blooded 
+    it is not true that it eats flesh 
+    it is not true that it chews the cud 
+    it is not true that it has hooves 
+    it has leathery wings 
+    it has a sonar detection system 
+
+
+Option? e
+
+PRE-CONSULTATION OPTIONS
+------------------------
+Start a consultation (c)
+See the rules (r)
+Manipulate rulebase (m)
+Copy the rulebase to file (f)
+Exit from the program (e)
+
+Option? c
+
+State the most definitive known category: animal
+Is it true that it has hair ? unknown
+Is it true that it suckles its young from milk glands ? unknown
+Is it true that it has feathers ? yes
+Is it true that it flies ? y
+Is it true that it is a good flyer ? n
+
+I cannot identify the sub-category of "flighted_birds". 
+
+However, this may not be due to a deficiency
+in the rule base because: 
+    it is not known whether it has hair 
+    it is not known whether it suckles its young from milk glands 
+
+Do you want to add a new rule to identify it? y
+
+What sub-category of "flighted_birds" are you considering?
+    robin
+Enter the conditions which must be true for "robin" to be a
+sub-category of "flighted_birds" ( terminate with a '.' ) :
+    it has hair.
+Can the sub-category "robin" be sub-categorised? n
+The condition    it has hair 
+is inconsistent with the fact already established that
+    it is not known whether it has hair 
+
+Rule not accepted.
+Do you want to try again? y
+
+sub-category of "flighted_birds" are you considering?
+    robin
+Enter the conditions which must be true for "robin" to be a
+sub-category of "flighted_birds" ( terminate with a '.' ) :
+    it has a red breast.
+Can the sub-category "robin" be sub-categorised? n
+Fact recorded:     it has a red breast 
+
+Rule added:
+Rule 22:
+        The category     "flighted_birds"
+        has sub-category "robin"
+        provided that:
+                         it has a red breast .
+
+Conclusion:
+-----------
+I deduce from the facts described to me
+that the final sub-category of "animal" is "robin".
+
+
+END OF CONSULTATION OPTIONS
+---------------------------
+See categories established (c)
+See facts established (f)
+See line of reasoning (r)
+Display this list of options (h)
+End this consultation (e)
+
+
+Option? e
+
+PRE-CONSULTATION OPTIONS
+------------------------
+Start a consultation (c)
+See the rules (r)
+Manipulate rulebase (m)
+Copy the rulebase to file (f)
+Exit from the program (e)
+
+Option? m
+
+RULEBASE MANIPULATION OPTIONS
+-----------------------------
+Show rule (s)
+Delete rule (d)
+Replace rule (r)
+Add new rule (a)
+End rulebase manipulation (e)
+
+Choose rulebase option (h for help) :s
+Type rule number (0 for no action) :22
+
+Rule 22:
+        The category     "flighted_birds"
+        has sub-category "robin"
+        provided that:
+                         it has a red breast .
+
+Show more rules? n
+
+RULEBASE MANIPULATION OPTIONS
+-----------------------------
+Show rule (s)
+Delete rule (d)
+Replace rule (r)
+Add new rule (a)
+End rulebase manipulation (e)
+
+Choose rulebase option (h for help) :a
+For which catagory do you wish to enter a rule ? flighted_birds
+For which sub-category of "flighted_birds"
+do you wish to enter a rule ? robin
+
+Enter the conditions which must be true for "robin" to be a
+sub-category of "flighted_birds" ( terminate with a '.' ) :
+    it appears on Xmas cards.
+
+Rule added:
+Rule 23:
+        The category     "flighted_birds"
+        has sub-category "robin"
+        provided that:
+                         it appears on xmas cards .
+
+Rule 23 added
+
+
+RULEBASE MANIPULATION OPTIONS
+-----------------------------
+Show rule (s)
+Delete rule (d)
+Replace rule (r)
+Add new rule (a)
+End rulebase manipulation (e)
+
+Choose rulebase option (h for help) :e
+
+PRE-CONSULTATION OPTIONS
+------------------------
+Start a consultation (c)
+See the rules (r)
+Manipulate rulebase (m)
+Copy the rulebase to file (f)
+Exit from the program (e)
+
+Option? c
+
+State the most definitive known category: animal
+Is it true that it has hair ? n
+Is it true that it suckles its young from milk glands ? n
+Is it true that it has feathers ? y
+Is it true that it flies ? y
+Is it true that it is a good flyer ? n
+Is it true that it appears on xmas cards ? y
+
+Conclusion:
+-----------
+I deduce from the facts described to me
+that the final sub-category of "animal" is "robin".
+
+
+END OF CONSULTATION OPTIONS
+---------------------------
+See categories established (c)
+See facts established (f)
+See line of reasoning (r)
+Display this list of options (h)
+End this consultation (e)
+
+Option? e
+
+PRE-CONSULTATION OPTIONS
+------------------------
+Start a consultation (c)
+See the rules (r)
+Manipulate rulebase (m)
+Copy the rulebase to file (f)
+Exit from the program (e)
+
+Option? e
+
+?- ^C
+
+=========================================================================
+
+
+
+SAMPLE SESSION USING DBAQL.PRO
+
+
+?- consult(dbaql).
+
+DBAQL  DataBase And Query Language demonstration.   Version 1.0
+---------------------------------------------------------------
+
+File containing database : mlist.
+
+Compiling DATABASE: mlist
+
+   Search Key: title
+   Search Key: initials
+   Search Key: surname
+   Search Key: age
+   Search Key: company
+   Search Key: road
+   Search Key: town
+   Search Key: county
+   Search Key: interest
+
+   Verb: having
+
+   Verb: with
+
+   Constructor: - : Age: 
+
+   Constructor: + : 
+Address: 
+
+   Constructor: works_for : is employed by: 
+
+   Constructor: lives_at : Has a house at: 
+
+   Constructor: \ : 
+
+OK.
+
+
+DBAQL> all surname works_for company\ having age 25 or town 'London'.
+
+Roberts is employed by: B.B.C. Radio 
+  
+Rawlinson is employed by: Newcastle Logic Systems 
+  
+
+
+DBAQL> add verb(given_that).
+
+
+DBAQL> add constructor(int,'is interested in ').
+
+
+DBAQL> all title surname int interest\ lives_at road\ given_that title 'Dr' or title 'Sir'.
+
+Dr Peterson is interested in Medical Diagnosis 
+Has a house at: 39-85 Westway Estate 
+  
+Dr Quisling is interested in Medical Diagnosis 
+Has a house at: Catherine Street 
+  
+Sir Crighton-Smith is interested in Prolog programming techniques 
+Has a house at: The Manor House 
+  
+
+DBAQL> all title initials surname \ lives_at town\ given _that interest 'AI'.
+Mrs U.J Roberts 
+Has a house at: London 
+  
+Mr M.U Rawlinson 
+Has a house at: Newcastle 
+  
+
+DBAQL> all initials surname\int interest\ given_that age X and X>30.
+I.J. Harrison 
+is interested in Logic Programming 
+  
+H.L.K Smithway 
+is interested in Expert Systems 
+  
+T.F. Peterson 
+is interested in Medical Diagnosis 
+  
+T.E. Wilkinson 
+is interested in Expert Systems
+  
+T.K. Quisling 
+is interested in Medical Diagnosis 
+  
+James Crighton-Smith 
+is interested in Prolog programming techniques 
+  
+
+DBAQL> all initials surname\ int interest\ given_that age X and X<31.
+U.J Roberts 
+is interested in AI 
+  
+M.U Rawlinson 
+is interested in AI 
+  
+
+DBAQL> ^C
+
+========================================================================
+
+
+
+SAMPLE SESSION USING ROADMAP.PRO
+
+C>prolog
+CP/M Prolog-1 Version 2.0 pre-release
+                       
+Copyright 1983 Expert Systems Ltd., Oxford U.K.
+Serial Number: 211
+
+?- consult(roadmap).
+
+yes
+?- route(a,h,P),write(P),nl,nl,fail.
+[a-high_street,(e-oxford_road(1)),(f-oxford_road(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-oxford_road(2)),(g-blue_street(2)),(i-acacia_avenue(2)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-oxford_road(2)),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-oxford_road(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-blue_street(2)),(i-acacia_avenue(2)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-boars_hill),(g-blue_street(2)),(i-acacia_avenue(2)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-boars_hill),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(2)),(i-blue_street(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(2)),(i-blue_street(2)),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(2)),(i-blue_street(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-oxford_road(1)),(f-pigeon_lane(2)),(i-acacia_avenue(2)),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-oxford_road(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-oxford_road(2)),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-oxford_road(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-boars_hill),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+Interrupt option (h for HELP): a
+Evaluation Aborted
+
+?- directions(a,h,),fail.
+Start at junction 'a' and travel along 'high_street' to get to 
+junction 'e' and travel along 'oxford_road(1)' to get to 
+junction 'f' and travel along 'oxford_road(2)' to get to 
+junction 'g' and travel along 'blue_street(1)' to get to 
+junction 'c' and travel along 'mill_road' to get to 
+junction 'd' and travel along 'north_lane' to get to 
+junction 'h' which is the destination.
+
+Start at junction 'a' and travel along 'high_street' to get to 
+junction 'e' and travel along 'oxford_road(1)' to get to 
+junction 'f' and travel along 'oxford_road(2)' to get to 
+junction 'g' and travel along 'blue_street(2)' to get to 
+junction 'i' and travel along 'acacia_avenue(2)' to get to 
+junction 'h' which is the destination.
+
+Start at junction 'a' and travel along 'high_street' to get to 
+junction 'e' and travel along 'oxford_road(1)' to get to 
+junction 'f' and travel along 'oxford_road(2)' to get to 
+junction 'g' and travel along 'oxford_road(3)' to get to 
+junction 'h' which is the destination.
+
+Start at junction 'a' and travel along 'high_street' to get to 
+junction 'e' and travel along 'oxford_road(1)' to get to 
+junction 'f' and travel along 'oxford_road(2)' to get to 
+junction 'g' and travel along 'boars_hill' to get to 
+junction 'd' and travel along 'north_lane' to get to 
+junction 'h' which is the destination.
+ 
+Interrupt option (h for HELP): a
+Evaluation Aborted
+
+?- route(a,h,P),member(d-_,P),member(g-_,P),member(j-_,P),write(P),nl,nl,fail.
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-oxford_road(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-oxford_road(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-blue_street(1)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-pigeon_lane(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-boars_hill),(g-oxford_road(3)),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-oxford_road(2)),(f-pigeon_lane(1)),(b-albion_street(2)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-high_street,(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+[a-albion_street(1),(b-albion_street(2)),(c-mill_road),(d-boars_hill),(g-oxford_road(2)),(f-oxford_road(1)),(e-lovers_lane),(j-acacia_avenue(1)),(i-acacia_avenue(2)),(h-end)]
+
+[a-albion_street(1),(b-pigeon_lane(1)),(f-oxford_road(1)),(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-blue_street(1)),(c-mill_road),(d-north_lane),(h-end)]
+
+[a-albion_street(1),(b-pigeon_lane(1)),(f-oxford_road(1)),(e-lovers_lane),(j-acacia_avenue(1)),(i-blue_street(2)),(g-boars_hill),(d-north_lane),(h-end)]
+
+no
+?- ^C
+
+==========================================================================
+
+
+SAMPLE SESSION USING SYMDIFF.PRO
+
+C>prolog
+CP/M Prolog-1 Version 2.0 pre-release
+                       
+Copyright 1983 Expert Systems Ltd., Oxford U.K.
+Serial Number: 211
+
+
+?- consult(symdiff).
+
+SYMDIFF : Symbolic Differentiation and Algebraic Simplification. Version 1.0
+
+Enter a symbolic expression:    240*(sin(v*t)).
+Differentiate w.r.t. :          t.
+
+Differential w.r.t t is:        240*(v*cos((v*t)))
+
+Any more expressions ? y
+Enter a symbolic expression:    240*(sin(v*t+2*pi/3)).
+Differentiate w.r.t. :          t.
+Differential w.r.t t is:        240*(v*cos((v*t+2*pi/3)))
+
+Any more expressions ? y
+
+Enter a symbolic expression:    log(x).
+Differentiate w.r.t. :          x.
+Differential w.r.t x is:        1/x
+
+Any more expressions ? y
+Enter a symbolic expression:    2*sin(x)*0.
+Differentiate w.r.t. :          x.
+
+Differential w.r.t x is:        0
+
+Any more expressions ? y
+Enter a symbolic expression:    x - x.
+Differentiate w.r.t. :          x.
+Differential w.r.t x is:        0
+
+Any more expressions ? n
+
+Enter a symbolic expression:    x^5 + b*x^3 + c*x + d.
+Differentiate w.r.t. :          x.
+
+Differential w.r.t x is:        5*x^4+b*(3*x^2)+c
+
+Any more expressions ? y
+
+Enter a symbolic expression:    x^5 + b*x^3 + c*x + d.
+Differentiate w.r.t. :          b.
+
+Differential w.r.t b  is:       x^3
+
+Any more expressions ? n
+
+?- ^C
+
+========================================================================
+

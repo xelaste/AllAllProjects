@@ -1,0 +1,32 @@
+%-----------------------------------------------------------
+flatten_d1(L1,L2-Z2):-
+           flatten_d(L1,L3-Z2),
+           quicksort(L3,L2-[]).
+%-----------------------------------------------------------
+flatten_d([X|Xs],A1-Z2):-
+        flatten_d(X,A1-A2),
+        flatten_d(Xs,A2-Z2).
+
+flatten_d(X,[X|Z]-Z):-atomic(X).
+flatten_d([],Z-Z).
+%-----------------------------------------------------------
+different(X,Y):-X\=Y.
+%-----------------------------------------------------------
+quicksort([],Z-Z).
+quicksort([X|Tail],A1-Z2):-
+        split(X,Tail,Small,Big),
+        quicksort(Small,A1-[X|A2]),
+        quicksort(Big,A2-Z2).
+%-----------------------------------------------------------
+gt(X,Y):-   X @> Y.
+less(X,Y):- X @=< Y.
+%-----------------------------------------------------------
+split(X,[],[],[]).
+split(X,[Y|Tail],[Y|Small],Big):-
+      gt(X,Y),
+      split(X,Tail,Small,Big).
+
+split(X,[Y|Tail],Small,[Y|Big]):-
+      less(X,Y),
+      split(X,Tail,Small,Big).
+%-----------------------------------------------------------

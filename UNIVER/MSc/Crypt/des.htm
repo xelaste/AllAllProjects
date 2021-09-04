@@ -1,0 +1,3306 @@
+<html><head>
+
+
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+<meta name="GENERATOR" content="Microsoft FrontPage 6.0">
+
+<meta name="ProgId" content="FrontPage.Editor.Document"><title>DES Encryption</title>
+
+
+
+<link rel="stylesheet" type="text/css" href="des_files/style.css"></head><body leftmargin="0" topmargin="1" bgcolor="#000000" link="#000080">
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody><tr>
+
+ <!-- begin nave bar -->  
+
+    <td align="center" bgcolor="#000000" valign="top" width="150">
+    <a href="http://www.tropsoft.com/"><img src="des_files/troplogo.jpg" alt="Tropical Software" border="0" height="85" width="126"></a>
+      <img src="des_files/siderulesmall.gif" border="0" height="10" width="150">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td align="center" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0" width="90%">
+        <tbody><tr>
+          <td align="left" width="100%">
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/pcsecurity">PC Security&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/privdesk">Private Desktop&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/privpix">Private Pix&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/privateencryptor">Private Encryptor&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/secbrowser">Secure Browser&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/strongenc">Strong Encryption&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/winvestigator">Winvestigator&nbsp;</a><br>
+            &nbsp; <a class="sideprods" href="http://www.tropsoft.com/ergotimer">Ergotimer&nbsp;</a>
+          </td>
+        </tr>
+      </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      <img src="des_files/siderulesmall.gif" align="middle" border="0" height="10" width="150">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody><tr>
+          <td align="center" width="100%">
+      <table border="0" cellpadding="0" cellspacing="0" width="90%">
+        <tbody><tr>
+          <td align="left" width="100%">
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/downlnks.htm">Download&nbsp;</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/order/troporder.htm" target="_top"><img src="des_files/lock.gif" border="0" height="15" width="12">&nbsp;Buy Now&nbsp;</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/techsprt.htm">Technical Support</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/prices.htm">Prices&nbsp;</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/newsreg.htm">Join Mailing List</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/contact.htm">About Us&nbsp;</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/hotlinks.htm">Links&nbsp;</a><br>
+            &nbsp; <a class="sidemisc" href="http://www.tropsoft.com/sitemap.htm">Site Map</a>
+          </td>
+        </tr>
+      </tbody></table>
+          </td>
+        </tr>
+      </tbody></table>
+      <img src="des_files/siderulesmall.gif" align="middle" border="0" height="10" width="150">
+    </td>
+
+<!-- end nave bar -->
+
+    <td bgcolor="#ffffff" valign="top" width="100%">
+
+      <table border="0" cellpadding="0" cellspacing="5" width="100%">
+
+        <tbody><tr>
+
+          <td width="100%">
+
+          
+
+<!-- Begin page contents // -->
+
+
+
+	<center><h1>DES Encryption</h1></center>
+
+
+
+<center><h2><b><i> Overview </i></b></h2></center>
+
+<p>
+In 1972, the National Institute of Standards and Technology (called the
+National Bureau of Standards at the time) decided that a strong
+cryptographic algorithm was needed to protect non-classified
+information. The algorithm was required to be cheap, widely available,
+and very secure. NIST envisioned something that would be available to
+the general public and could be used in a wide variety of applications.
+So they asked for public proposals for such an algorithm. In 1974 IBM
+submitted the Lucifer algorithm, which appeared to meet most of NIST's
+design requirements.
+</p>
+
+<p>NIST enlisted the help of the National Security Agency to evaluate
+the security of Lucifer. At the time many people distrusted the NSA due
+to their extremely secretive activities, so there was initially a
+certain degree of
+skepticism regarding the analysis of Lucifer. One of the greatest
+worries was that the key length, originally 128 bits, was reduced to
+just 56 bits, weakening it significantly. The NSA was also accused of
+changing the algorithm to plant a "back door" in it that would allow
+agents to decrypt any information without having to know the encryption
+key. But these fears proved unjustified and no such back door has ever
+been found.
+</p>
+
+<p>The modified Lucifer algorithm was adopted by NIST as a federal
+standard on November 23, 1976. Its name was changed to the Data
+Encryption Standard (DES). The algorithm specification was published in
+January 1977, and with the official backing of the government it became
+a very widely employed algorithm in a short amount of time.
+</p>
+
+<p>Unfortunately, over time various shortcut attacks were found that
+could significantly reduce the amount of time needed to find a DES key
+by brute force. And as computers became progressively faster and more
+powerful, it was recognized that a 56-bit key was simply not large
+enough for high security applications. As a result of these serious
+flaws, NIST abandoned their official endorsement of DES in 1997 and
+began work on a replacement, to be called the Advanced Encryption
+Standard (AES). Despite the growing concerns about its vulnerability,
+DES is still widely used by financial services and other industries
+worldwide to protect sensitive on-line applications. </p>
+
+<p>
+To highlight the need for stronger security than a 56-bit key can
+offer, RSA Data Security has been sponsoring a series of DES cracking
+contests since early 1997. In 1998 the Electronic Frontier Foundation
+won the RSA DES Challenge II-2 contest by breaking DES in less than 3
+days. EFF used a specially developed computer called the DES Cracker,
+which was developed for under $250,000. The encryption chip that
+powered the DES Cracker was capable of processing 88 billion keys per
+second. More recently, in early 1999,
+Distributed. Net used the DES Cracker and a worldwide network of nearly
+100,000 PCs to win the RSA DES Challenge III in a record breaking 22
+hours and 15 minutes. The DES Cracker and PCs combined were testing 245
+billion keys per second when the correct key was found. In addition, it
+has been shown that for a cost of one million dollars a dedicated
+hardware device can be built that can search all possible DES keys in
+about 3.5 hours. This just serves to illustrate that any organization
+with moderate resources can break through DES with very little effort
+these days. </p>
+
+<center><h2><b><i> In Depth </i></b></h2></center>
+
+<p>
+DES encrypts and decrypts data in 64-bit blocks, using a 64-bit key
+(although the effective key strength is only 56 bits, as explained
+below). It takes a 64-bit block of plaintext as input and outputs a
+64-bit block of ciphertext. Since it always operates on blocks of equal
+size and it uses both permutations and substitutions in the algorithm,
+DES is both a block cipher and a product cipher.
+</p>
+
+<p>DES has 16 rounds, meaning the main algorithm is repeated 16 times
+to produce the ciphertext. It has been found that the number of rounds
+is exponentially proportional to the amount of time required to find a
+key using a brute-force attack. So as the number of rounds increases,
+the security of the algorithm increases exponentially.
+</p>
+
+<center><h3><b> Key Scheduling </b></h3></center>
+
+<p>Although the input key for DES is 64 bits long, the actual key used
+by DES is only 56 bits in length. The least significant (right-most)
+bit in each byte is a parity bit, and should be set so that there are
+always an odd number of 1s in every byte. These parity bits are
+ignored, so only the seven most significant bits of each byte are used,
+resulting in a key length of 56 bits.
+</p>
+
+<p>The first step is to pass the 64-bit key through a permutation
+called Permuted Choice 1, or PC-1 for short. The table for this is
+given below. Note that in all subsequent descriptions of bit numbers, 1
+is the left-most bit in the number, and n is the rightmost bit.
+</p>
+
+<p>
+
+</p><center>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>PC-1: Permuted Choice 1</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>57</td>
+
+       <td>49</td>
+
+       <td>41</td>
+
+       <td>33</td>
+
+       <td>25</td>
+
+       <td>17</td>
+
+       <td>9</td>
+
+</tr>
+
+<tr>
+
+       <td><b>8</b></td>
+
+       <td>1</td>
+
+       <td>58</td>
+
+       <td>50</td>
+
+       <td>42</td>
+
+       <td>34</td>
+
+       <td>26</td>
+
+       <td>18</td>
+
+</tr>
+
+<tr>
+
+       <td><b>15</b></td>
+
+       <td>10</td>
+
+       <td>2</td>
+
+       <td>59</td>
+
+       <td>51</td>
+
+       <td>43</td>
+
+       <td>35</td>
+
+       <td>27</td>
+
+</tr>
+
+<tr>
+
+       <td><b>22</b></td>
+
+       <td>19</td>
+
+       <td>11</td>
+
+       <td>3</td>
+
+       <td>60</td>
+
+       <td>52</td>
+
+       <td>44</td>
+
+       <td>36</td>
+
+</tr>
+
+<tr>
+
+       <td><b>29</b></td>
+
+       <td>63</td>
+
+       <td>55</td>
+
+       <td>47</td>
+
+       <td>39</td>
+
+       <td>31</td>
+
+       <td>23</td>
+
+       <td>15</td>
+
+</tr>
+
+<tr>
+
+       <td><b>36</b></td>
+
+       <td>7</td>
+
+       <td>62</td>
+
+       <td>54</td>
+
+       <td>46</td>
+
+       <td>38</td>
+
+       <td>30</td>
+
+       <td>22</td>
+
+</tr>
+
+<tr>
+
+       <td><b>43</b></td>
+
+       <td>14</td>
+
+       <td>6</td>
+
+       <td>61</td>
+
+       <td>53</td>
+
+       <td>45</td>
+
+       <td>37</td>
+
+       <td>29</td>
+
+</tr>
+
+<tr>
+
+       <td><b>50</b></td>
+
+       <td>21</td>
+
+       <td>13</td>
+
+       <td>5</td>
+
+       <td>28</td>
+
+       <td>20</td>
+
+       <td>12</td>
+
+       <td>4</td>
+
+</tr>
+
+</tbody></table>
+
+</center>
+
+<p>For example, we can use the PC-1 table to figure out how bit 30 of
+the original 64-bit key transforms to a bit in the new 56-bit key. Find
+the number 30 in the table, and notice that it belongs to the column
+labeled 5 and the row labeled 36. Add up the value of the row and
+column to find the new position of the bit within the key. For bit 30,
+36 + 5 = 41, so bit 30 becomes bit 41 of the new 56-bit key. Note that
+bits 8, 16, 24, 32, 40, 48, 56 and 64 of the original key are not in
+the table. These are the unused parity bits that are discarded when the
+final 56-bit key is created.
+</p>
+
+<p> Now that we have the 56-bit key, the next step is to use this key
+to generate 16 48-bit subkeys, called K[1]-K[16], which are used in the
+16 rounds of DES for encryption and decryption. The procedure for
+generating the subkeys - known as key scheduling - is fairly simple:
+</p>
+
+<p>
+
+1. Set the round number R to 1.
+
+</p>
+
+<p>
+
+2. Split the current 56-bit key, K, up into two 28-bit blocks, L (the left-hand half) and R (the right-hand half).
+
+</p>
+
+<p>
+
+3. Rotate L left by the number of bits specified in the table below, and rotate R left by the same number of bits as well.
+
+</p>
+
+<p>
+
+4. Join L and R together to get the new K.
+
+</p>
+
+<p>
+
+5. Apply Permuted Choice 2 (PC-2) to K to get the final K[R], where R is the round number we are on.
+
+</p>
+
+<p>
+
+6. Increment R by 1 and repeat the procedure until we have all 16 subkeys K[1]-K[16].
+
+</p>
+
+<p>
+
+Here are the tables involved in these operations:
+
+</p>
+
+<center>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>Subkey Rotation Table</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Round Number</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+	   <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+       <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+       <td><b>16</b></td>
+
+</tr>
+
+<tr>
+
+	   <td><b>Number of bits to rotate</b></td>
+
+	   <td>1</td>
+
+	   <td>1</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>1</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>2</td>
+
+	   <td>1</td>	
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>PC-2: Permuted Choice 2</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>14</td>
+
+       <td>17</td>
+
+       <td>11</td>
+
+       <td>24</td>
+
+       <td>1</td>
+
+       <td>5</td>
+
+</tr>
+
+<tr>
+
+       <td><b>7</b></td>
+
+       <td>3</td>
+
+       <td>28</td>
+
+       <td>15</td>
+
+       <td>6</td>
+
+       <td>21</td>
+
+       <td>10</td>
+
+</tr>
+
+<tr>
+
+       <td><b>13</b></td>
+
+       <td>23</td>
+
+       <td>19</td>
+
+       <td>12</td>
+
+       <td>4</td>
+
+       <td>26</td>
+
+       <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>19</b></td>
+
+       <td>16</td>
+
+       <td>7</td>
+
+       <td>27</td>
+
+       <td>20</td>
+
+       <td>13</td>
+
+       <td>2</td>
+
+</tr>
+
+<tr>
+
+       <td><b>25</b></td>
+
+       <td>41</td>
+
+       <td>52</td>
+
+       <td>31</td>
+
+       <td>37</td>
+
+       <td>47</td>
+
+       <td>55</td>
+
+</tr>
+
+<tr>
+
+       <td><b>31</b></td>
+
+       <td>30</td>
+
+       <td>40</td>
+
+       <td>51</td>
+
+       <td>45</td>
+
+       <td>33</td>
+
+       <td>48</td>
+
+</tr>
+
+<tr>
+
+       <td><b>37</b></td>
+
+       <td>44</td>
+
+       <td>49</td>
+
+       <td>39</td>
+
+       <td>56</td>
+
+       <td>34</td>
+
+       <td>53</td>
+
+</tr>
+
+<tr>
+
+       <td><b>43</b></td>
+
+       <td>46</td>
+
+       <td>42</td>
+
+       <td>50</td>
+
+       <td>36</td>
+
+       <td>29</td>
+
+       <td>32</td>
+
+</tr>
+
+</tbody></table>
+
+</center>
+
+<center><h3><b> Plaintext Preparation </b></h3></center>
+
+<p>Once the key scheduling has been performed, the next step is to
+prepare the plaintext for the actual encryption. This is done by
+passing the plaintext through a permutation called the Initial
+Permutation, or IP for short. This table also has an inverse, called
+the Inverse Initial Permutation, or IP^(-1). Sometimes IP^(-1) is also
+called the Final Permutation. Both of these tables are shown below.
+</p>
+
+<center>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>IP: Initial Permutation</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+	   <td><b>7</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>58</td>
+
+       <td>50</td>
+
+       <td>42</td>
+
+       <td>34</td>
+
+       <td>26</td>
+
+       <td>18</td>
+
+       <td>10</td>
+
+	   <td>2</td>
+
+</tr>
+
+<tr>
+
+       <td><b>9</b></td>
+
+       <td>60</td>
+
+       <td>52</td>
+
+       <td>44</td>
+
+       <td>36</td>
+
+       <td>28</td>
+
+       <td>20</td>
+
+       <td>12</td>
+
+	   <td>4</td>
+
+</tr>
+
+<tr>
+
+       <td><b>17</b></td>
+
+       <td>62</td>
+
+       <td>54</td>
+
+       <td>46</td>
+
+       <td>38</td>
+
+       <td>30</td>
+
+       <td>22</td>
+
+       <td>14</td>
+
+	   <td>6</td>
+
+</tr>
+
+<tr>
+
+       <td><b>25</b></td>
+
+       <td>64</td>
+
+       <td>56</td>
+
+       <td>48</td>
+
+       <td>40</td>
+
+       <td>32</td>
+
+       <td>24</td>
+
+       <td>16</td>
+
+	   <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>33</b></td>
+
+       <td>57</td>
+
+       <td>49</td>
+
+       <td>41</td>
+
+       <td>33</td>
+
+       <td>25</td>
+
+       <td>17</td>
+
+       <td>9</td>
+
+	   <td>1</td>
+
+</tr>
+
+<tr>
+
+       <td><b>41</b></td>
+
+       <td>59</td>
+
+       <td>51</td>
+
+       <td>43</td>
+
+       <td>35</td>
+
+       <td>27</td>
+
+       <td>19</td>
+
+       <td>11</td>
+
+	   <td>3</td>
+
+</tr>
+
+<tr>
+
+       <td><b>49</b></td>
+
+       <td>61</td>
+
+       <td>53</td>
+
+       <td>45</td>
+
+       <td>37</td>
+
+       <td>29</td>
+
+       <td>21</td>
+
+       <td>13</td>
+
+	   <td>5</td>
+
+</tr>
+
+<tr>
+
+       <td><b>57</b></td>
+
+       <td>63</td>
+
+       <td>55</td>
+
+       <td>47</td>
+
+       <td>39</td>
+
+       <td>31</td>
+
+       <td>23</td>
+
+       <td>15</td>
+
+	   <td>7</td>
+
+</tr>
+
+</tbody></table>
+
+<p>
+
+</p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>IP^(-1): Inverse Initial Permutation</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+	   <td><b>7</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>40</td>
+
+       <td>8</td>
+
+       <td>48</td>
+
+       <td>16</td>
+
+       <td>56</td>
+
+       <td>24</td>
+
+       <td>64</td>
+
+	   <td>32</td>
+
+</tr>
+
+<tr>
+
+       <td><b>9</b></td>
+
+       <td>39</td>
+
+       <td>7</td>
+
+       <td>47</td>
+
+       <td>15</td>
+
+       <td>55</td>
+
+       <td>23</td>
+
+       <td>63</td>
+
+	   <td>31</td>
+
+</tr>
+
+<tr>
+
+       <td><b>17</b></td>
+
+       <td>38</td>
+
+       <td>6</td>
+
+       <td>46</td>
+
+       <td>14</td>
+
+       <td>54</td>
+
+       <td>22</td>
+
+       <td>62</td>
+
+	   <td>30</td>
+
+</tr>
+
+<tr>
+
+       <td><b>25</b></td>
+
+       <td>37</td>
+
+       <td>5</td>
+
+       <td>45</td>
+
+       <td>13</td>
+
+       <td>53</td>
+
+       <td>21</td>
+
+       <td>61</td>
+
+	   <td>29</td>
+
+</tr>
+
+<tr>
+
+       <td><b>33</b></td>
+
+       <td>36</td>
+
+       <td>4</td>
+
+       <td>44</td>
+
+       <td>12</td>
+
+       <td>52</td>
+
+       <td>20</td>
+
+       <td>60</td>
+
+	   <td>28</td>
+
+</tr>
+
+<tr>
+
+       <td><b>41</b></td>
+
+       <td>35</td>
+
+       <td>3</td>
+
+       <td>43</td>
+
+       <td>11</td>
+
+       <td>51</td>
+
+       <td>19</td>
+
+       <td>59</td>
+
+	   <td>27</td>
+
+</tr>
+
+<tr>
+
+       <td><b>49</b></td>
+
+       <td>34</td>
+
+       <td>2</td>
+
+       <td>42</td>
+
+       <td>10</td>
+
+       <td>50</td>
+
+       <td>18</td>
+
+       <td>58</td>
+
+	   <td>26</td>
+
+</tr>
+
+<tr>
+
+       <td><b>57</b></td>
+
+       <td>33</td>
+
+       <td>1</td>
+
+       <td>41</td>
+
+       <td>9</td>
+
+       <td>49</td>
+
+       <td>17</td>
+
+       <td>57</td>
+
+	   <td>25</td>
+
+</tr>
+
+</tbody></table>
+
+</center>
+
+<p>These tables are used just like PC-1 and PC-2 were for the key
+scheduling. By looking at the table is becomes apparent why one
+permutation is called the inverse of the other. For example, let's
+examine how bit 32 is transformed under IP. In the table, bit 32 is
+located at the intersection of the column labeled 4 and the row labeled
+25. So this bit becomes bit 29 of the 64-bit block after the
+permutation. Now let's apply IP^(-1). In IP^(-1), bit 29 is located at
+the intersection of the column labeled 7 and the row labeled 25. So
+this bit becomes bit 32 after the permutation. And this is the bit
+position that we started with before the first permutation. So IP^(-1)
+really is the inverse of IP. It does the exact opposite of IP. If you
+run a block of plaintext through IP and then pass the resulting block
+through IP^(-1), you'll end up with the original block.
+</p>
+
+<center><h3><b> DES Core Function </b></h3></center>
+
+<p>Once the key scheduling and plaintext preparation have been
+completed, the actual encryption or decryption is performed by the main
+DES algorithm. The 64-bit block of input data is first split into two
+halves, L and R. L is the left-most 32 bits, and R is the right-most 32
+bits. The following process is repeated 16 times, making up the 16
+rounds of standard DES. We call the 16 sets of halves L[0]-L[15] and
+R[0]-R[15].
+</p>
+
+<p>1. R[I-1] - where I is the round number, starting at 1 - is taken
+and fed into the E-Bit Selection Table, which is like a permutation,
+except that some of the bits are used more than once. This expands the
+number R[I-1] from 32 to 48 bits to prepare for the next step.
+</p>
+
+<p>
+
+2. The 48-bit R[I-1] is XORed with K[I] and stored in a temporary buffer so that R[I-1] is not modified.
+
+</p>
+
+<p>3. The result from the previous step is now split into 8 segments of
+6 bits each. The left-most 6 bits are B[1], and the right-most 6 bits
+are B[8]. These blocks form the index into the S-boxes, which are used
+in the next step. The Substitution boxes, known as S-boxes, are a set
+of 8 two-dimensional arrays, each with 4 rows and 16 columns. The
+numbers in the boxes are always 4 bits in length, so their values range
+from 0-15. The S-boxes are numbered S[1]-S[8].
+</p>
+
+<p>4. Starting with B[1], the first and last bits of the 6-bit block
+are taken and used as an index into the row number of S[1], which can
+range from 0 to 3, and the middle four bits are used as an index into
+the column number, which can range from 0 to 15. The number from this
+position in the S-box is retrieved and stored away. This is repeated
+with B[2] and S[2], B[3] and S[3], and the others up to B[8] and S[8].
+At this point, you now have 8 4-bit numbers, which when strung together
+one after the other in the order of retrieval, give a 32-bit result.
+</p>
+
+<p>
+
+5. The result from the previous stage is now passed into the P Permutation.
+
+</p>
+
+<p>
+
+6. This number is now XORed with L[I-1], and moved into R[I]. R[I-1] is moved into L[I].
+
+</p>
+
+<p>7. At this point we have a new L[I] and R[I]. Here, we increment I
+and repeat the core function until I = 17, which means that 16 rounds
+have been executed and keys K[1]-K[16] have all been used.
+</p>
+
+<p>When L[16] and R[16] have been obtained, they are joined back
+together in the same fashion they were split apart (L[16] is the
+left-hand half, R[16] is the right-hand half), then the two halves are
+swapped, R[16] becomes the left-most 32 bits and L[16] becomes the
+right-most 32 bits of the pre-output block and the resultant 64-bit
+number is called the pre-output.</p>
+
+<center><h3><b> Tables used in the DES Core Function </b></h3>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>E-Bit Selection Table</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>32</td>
+
+       <td>1</td>
+
+       <td>2</td>
+
+       <td>3</td>
+
+       <td>4</td>
+
+       <td>5</td>
+
+</tr>
+
+<tr>
+
+       <td><b>7</b></td>
+
+       <td>4</td>
+
+       <td>5</td>
+
+       <td>6</td>
+
+       <td>7</td>
+
+       <td>8</td>
+
+       <td>9</td>
+
+</tr>
+
+<tr>
+
+       <td><b>13</b></td>
+
+       <td>8</td>
+
+       <td>9</td>
+
+       <td>10</td>
+
+       <td>11</td>
+
+       <td>12</td>
+
+       <td>13</td>
+
+</tr>
+
+<tr>
+
+       <td><b>19</b></td>
+
+       <td>12</td>
+
+       <td>13</td>
+
+       <td>14</td>
+
+       <td>15</td>
+
+       <td>16</td>
+
+       <td>17</td>
+
+</tr>
+
+<tr>
+
+       <td><b>25</b></td>
+
+       <td>16</td>
+
+       <td>17</td>
+
+       <td>18</td>
+
+       <td>19</td>
+
+       <td>20</td>
+
+       <td>21</td>
+
+</tr>
+
+<tr>
+
+       <td><b>31</b></td>
+
+       <td>20</td>
+
+       <td>21</td>
+
+       <td>22</td>
+
+       <td>23</td>
+
+       <td>24</td>
+
+       <td>25</td>
+
+</tr>
+
+<tr>
+
+       <td><b>37</b></td>
+
+       <td>24</td>
+
+       <td>25</td>
+
+       <td>26</td>
+
+       <td>27</td>
+
+       <td>28</td>
+
+       <td>29</td>
+
+</tr>
+
+<tr>
+
+       <td><b>43</b></td>
+
+       <td>28</td>
+
+       <td>29</td>
+
+       <td>30</td>
+
+       <td>31</td>
+
+       <td>32</td>
+
+       <td>1</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>P Permutation</b></caption>
+
+<tbody><tr>
+
+	   <td><b>Bit</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>16</td>
+
+       <td>7</td>
+
+       <td>20</td>
+
+       <td>21</td>
+
+</tr>
+
+<tr>
+
+       <td><b>5</b></td>
+
+       <td>29</td>
+
+       <td>12</td>
+
+       <td>28</td>
+
+       <td>17</td>
+
+</tr>
+
+<tr>
+
+       <td><b>9</b></td>
+
+       <td>1</td>
+
+       <td>15</td>
+
+       <td>23</td>
+
+       <td>26</td>
+
+</tr>
+
+<tr>
+
+       <td><b>13</b></td>
+
+       <td>5</td>
+
+       <td>18</td>
+
+       <td>31</td>
+
+       <td>10</td>
+
+</tr>
+
+<tr>
+
+       <td><b>17</b></td>
+
+       <td>2</td>
+
+       <td>8</td>
+
+       <td>24</td>
+
+       <td>14</td>
+
+</tr>
+
+<tr>
+
+       <td><b>21</b></td>
+
+       <td>32</td>
+
+       <td>27</td>
+
+       <td>3</td>
+
+       <td>9</td>
+
+</tr>
+
+<tr>
+
+       <td><b>25</b></td>
+
+       <td>19</td>
+
+       <td>13</td>
+
+       <td>30</td>
+
+       <td>6</td>
+
+</tr>
+
+<tr>
+
+       <td><b>29</b></td>
+
+       <td>22</td>
+
+       <td>11</td>
+
+       <td>4</td>
+
+       <td>25</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<a name="S-Box"></a>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 1: Substitution Box 1</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>14</td>
+
+       <td>4</td>
+
+       <td>13</td>
+
+       <td>1</td>
+
+       <td>2</td>
+
+       <td>15</td>
+
+       <td>11</td>
+
+       <td>8</td>
+
+       <td>3</td>
+
+       <td>10</td>
+
+       <td>6</td>
+
+       <td>12</td>
+
+       <td>5</td>
+
+       <td>9</td>
+
+	   <td>0</td>
+
+	   <td>7</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>0</td>
+
+       <td>15</td>
+
+       <td>7</td>
+
+       <td>4</td>
+
+       <td>14</td>
+
+       <td>2</td>
+
+       <td>13</td>
+
+       <td>1</td>
+
+       <td>10</td>
+
+       <td>6</td>
+
+       <td>12</td>
+
+       <td>11</td>
+
+       <td>9</td>
+
+       <td>5</td>
+
+	   <td>3</td>
+
+	   <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>4</td>
+
+       <td>1</td>
+
+       <td>14</td>
+
+       <td>8</td>
+
+       <td>13</td>
+
+       <td>6</td>
+
+       <td>2</td>
+
+       <td>11</td>
+
+       <td>15</td>
+
+       <td>12</td>
+
+       <td>9</td>
+
+       <td>7</td>
+
+       <td>3</td>
+
+       <td>10</td>
+
+	   <td>5</td>
+
+	   <td>0</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>15</td>
+
+       <td>12</td>
+
+       <td>8</td>
+
+       <td>2</td>
+
+       <td>4</td>
+
+       <td>9</td>
+
+       <td>1</td>
+
+       <td>7</td>
+
+       <td>5</td>
+
+       <td>11</td>
+
+       <td>3</td>
+
+       <td>14</td>
+
+       <td>10</td>
+
+       <td>0</td>
+
+	   <td>6</td>
+
+	   <td>13</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 2: Substitution Box 2</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>15</td>
+
+       <td>1</td>
+
+       <td>8</td>
+
+       <td>14</td>
+
+       <td>6</td>
+
+       <td>11</td>
+
+       <td>3</td>
+
+       <td>4</td>
+
+       <td>9</td>
+
+       <td>7</td>
+
+       <td>2</td>
+
+       <td>13</td>
+
+       <td>12</td>
+
+       <td>0</td>
+
+	   <td>5</td>
+
+	   <td>10</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>3</td>
+
+       <td>13</td>
+
+       <td>4</td>
+
+       <td>7</td>
+
+       <td>15</td>
+
+       <td>2</td>
+
+       <td>8</td>
+
+       <td>14</td>
+
+       <td>12</td>
+
+       <td>0</td>
+
+       <td>1</td>
+
+       <td>10</td>
+
+       <td>6</td>
+
+       <td>9</td>
+
+	   <td>11</td>
+
+	   <td>5</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>0</td>
+
+       <td>14</td>
+
+       <td>7</td>
+
+       <td>11</td>
+
+       <td>10</td>
+
+       <td>4</td>
+
+       <td>13</td>
+
+       <td>1</td>
+
+       <td>5</td>
+
+       <td>8</td>
+
+       <td>12</td>
+
+       <td>6</td>
+
+       <td>9</td>
+
+       <td>3</td>
+
+	   <td>2</td>
+
+	   <td>15</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>13</td>
+
+       <td>8</td>
+
+       <td>10</td>
+
+       <td>1</td>
+
+       <td>3</td>
+
+       <td>15</td>
+
+       <td>4</td>
+
+       <td>2</td>
+
+       <td>11</td>
+
+       <td>6</td>
+
+       <td>7</td>
+
+       <td>12</td>
+
+       <td>0</td>
+
+       <td>5</td>
+
+	   <td>14</td>
+
+	   <td>9</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 3: Substitution Box 3</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>10</td>
+
+       <td>0</td>
+
+       <td>9</td>
+
+       <td>14</td>
+
+       <td>6</td>
+
+       <td>3</td>
+
+       <td>15</td>
+
+       <td>5</td>
+
+       <td>1</td>
+
+       <td>13</td>
+
+       <td>12</td>
+
+       <td>7</td>
+
+       <td>11</td>
+
+       <td>4</td>
+
+	   <td>2</td>
+
+	   <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+       <td>13</td>
+
+       <td>7</td>
+
+       <td>0</td>
+
+       <td>9</td>
+
+       <td>3</td>
+
+       <td>4</td>
+
+       <td>6</td>
+
+       <td>10</td>
+
+       <td>2</td>
+
+       <td>8</td>
+
+       <td>5</td>
+
+       <td>14</td>
+
+       <td>12</td>
+
+       <td>11</td>
+
+	   <td>15</td>
+
+	   <td>1</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>13</td>
+
+       <td>6</td>
+
+       <td>4</td>
+
+       <td>9</td>
+
+       <td>8</td>
+
+       <td>15</td>
+
+       <td>3</td>
+
+       <td>0</td>
+
+       <td>11</td>
+
+       <td>1</td>
+
+       <td>2</td>
+
+       <td>12</td>
+
+       <td>5</td>
+
+       <td>10</td>
+
+	   <td>14</td>
+
+	   <td>7</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>1</td>
+
+       <td>10</td>
+
+       <td>13</td>
+
+       <td>0</td>
+
+       <td>6</td>
+
+       <td>9</td>
+
+       <td>8</td>
+
+       <td>7</td>
+
+       <td>4</td>
+
+       <td>15</td>
+
+       <td>14</td>
+
+       <td>3</td>
+
+       <td>11</td>
+
+       <td>5</td>
+
+	   <td>2</td>
+
+	   <td>12</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 4: Substitution Box 4</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>7</td>
+
+ 	   <td>13</td>
+
+ 	   <td>14</td>
+
+ 	   <td>3</td>
+
+ 	   <td>0</td>
+
+ 	   <td>6</td>
+
+ 	   <td>9</td>
+
+ 	   <td>10</td>
+
+ 	   <td>1</td>
+
+	   <td>2</td>
+
+	   <td>8</td>
+
+ 	   <td>5</td>
+
+ 	   <td>11</td>
+
+ 	   <td>12</td>
+
+ 	   <td>4</td>
+
+ 	   <td>15</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+	   <td>13</td>
+
+ 	   <td>8</td>
+
+       <td>11</td>
+
+       <td>5</td>
+
+       <td>6</td>
+
+       <td>15</td>
+
+       <td>0</td>
+
+       <td>3</td>
+
+       <td>4</td>
+
+       <td>7</td>
+
+       <td>2</td>
+
+       <td>12</td>
+
+       <td>1</td>
+
+       <td>10</td>
+
+       <td>14</td>
+
+       <td>9</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>10</td>
+
+ 	   <td>6</td>
+
+ 	   <td>9</td>
+
+ 	   <td>0</td>
+
+ 	   <td>12</td>
+
+ 	   <td>11</td>
+
+       <td>7</td>
+
+ 	   <td>13</td>
+
+ 	   <td>15</td>
+
+ 	   <td>1</td>
+
+ 	   <td>3</td>
+
+ 	   <td>14</td>
+
+ 	   <td>5</td>
+
+ 	   <td>2</td>
+
+ 	   <td>8</td>
+
+ 	   <td>4</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>3</td>
+
+       <td>15</td>
+
+       <td>0</td>
+
+       <td>6</td>
+
+       <td>10</td>
+
+       <td>1</td>
+
+       <td>13</td>
+
+       <td>8</td>
+
+       <td>9</td>
+
+       <td>4</td>
+
+       <td>5</td>
+
+       <td>11</td>
+
+       <td>12</td>
+
+       <td>7</td>
+
+	   <td>2</td>
+
+	   <td>14</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 5: Substitution Box 5</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>2</td>
+
+ 	   <td>12</td>
+
+ 	   <td>4</td>
+
+ 	   <td>1</td>
+
+ 	   <td>7</td>
+
+ 	   <td>10</td>
+
+ 	   <td>11</td>
+
+ 	   <td>6</td>
+
+ 	   <td>8</td>
+
+	   <td>5</td>
+
+	   <td>3</td>
+
+ 	   <td>15</td>
+
+ 	   <td>13</td>
+
+ 	   <td>0</td>
+
+ 	   <td>14</td>
+
+ 	   <td>9</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+	   <td>14</td>
+
+ 	   <td>11</td>
+
+       <td>2</td>
+
+       <td>12</td>
+
+       <td>4</td>
+
+       <td>7</td>
+
+       <td>13</td>
+
+       <td>1</td>
+
+       <td>5</td>
+
+       <td>0</td>
+
+       <td>15</td>
+
+       <td>10</td>
+
+       <td>3</td>
+
+       <td>9</td>
+
+       <td>8</td>
+
+       <td>6</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>4</td>
+
+ 	   <td>2</td>
+
+ 	   <td>1</td>
+
+ 	   <td>11</td>
+
+ 	   <td>10</td>
+
+ 	   <td>13</td>
+
+       <td>7</td>
+
+ 	   <td>8</td>
+
+ 	   <td>15</td>
+
+ 	   <td>9</td>
+
+ 	   <td>12</td>
+
+ 	   <td>5</td>
+
+ 	   <td>6</td>
+
+ 	   <td>3</td>
+
+ 	   <td>0</td>
+
+ 	   <td>14</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>11</td>
+
+       <td>8</td>
+
+       <td>12</td>
+
+       <td>7</td>
+
+       <td>1</td>
+
+       <td>14</td>
+
+       <td>2</td>
+
+       <td>13</td>
+
+       <td>6</td>
+
+       <td>15</td>
+
+       <td>0</td>
+
+       <td>9</td>
+
+       <td>10</td>
+
+       <td>4</td>
+
+	   <td>5</td>
+
+	   <td>3</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 6: Substitution Box 6</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>12</td>
+
+ 	   <td>1</td>
+
+ 	   <td>10</td>
+
+ 	   <td>15</td>
+
+ 	   <td>9</td>
+
+ 	   <td>2</td>
+
+ 	   <td>6</td>
+
+ 	   <td>8</td>
+
+ 	   <td>0</td>
+
+	   <td>13</td>
+
+	   <td>3</td>
+
+ 	   <td>4</td>
+
+ 	   <td>14</td>
+
+ 	   <td>7</td>
+
+ 	   <td>5</td>
+
+ 	   <td>11</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+	   <td>10</td>
+
+ 	   <td>15</td>
+
+       <td>4</td>
+
+       <td>2</td>
+
+       <td>7</td>
+
+       <td>12</td>
+
+       <td>9</td>
+
+       <td>5</td>
+
+       <td>6</td>
+
+       <td>1</td>
+
+       <td>13</td>
+
+       <td>14</td>
+
+       <td>0</td>
+
+       <td>11</td>
+
+       <td>3</td>
+
+       <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>9</td>
+
+ 	   <td>14</td>
+
+ 	   <td>15</td>
+
+ 	   <td>5</td>
+
+ 	   <td>2</td>
+
+ 	   <td>8</td>
+
+       <td>12</td>
+
+ 	   <td>3</td>
+
+ 	   <td>7</td>
+
+ 	   <td>0</td>
+
+ 	   <td>4</td>
+
+ 	   <td>10</td>
+
+ 	   <td>1</td>
+
+ 	   <td>13</td>
+
+ 	   <td>11</td>
+
+ 	   <td>6</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>4</td>
+
+       <td>3</td>
+
+       <td>2</td>
+
+       <td>12</td>
+
+       <td>9</td>
+
+       <td>5</td>
+
+       <td>15</td>
+
+       <td>10</td>
+
+       <td>11</td>
+
+       <td>14</td>
+
+       <td>1</td>
+
+       <td>7</td>
+
+       <td>6</td>
+
+       <td>0</td>
+
+	   <td>8</td>
+
+	   <td>13</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 7: Substitution Box 7</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>4</td>
+
+ 	   <td>11</td>
+
+ 	   <td>2</td>
+
+ 	   <td>14</td>
+
+ 	   <td>15</td>
+
+ 	   <td>0</td>
+
+ 	   <td>8</td>
+
+ 	   <td>13</td>
+
+ 	   <td>3</td>
+
+	   <td>12</td>
+
+	   <td>9</td>
+
+ 	   <td>7</td>
+
+ 	   <td>5</td>
+
+ 	   <td>10</td>
+
+ 	   <td>6</td>
+
+ 	   <td>1</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+	   <td>13</td>
+
+ 	   <td>0</td>
+
+       <td>11</td>
+
+       <td>7</td>
+
+       <td>4</td>
+
+       <td>9</td>
+
+       <td>1</td>
+
+       <td>10</td>
+
+       <td>14</td>
+
+       <td>3</td>
+
+       <td>5</td>
+
+       <td>12</td>
+
+       <td>2</td>
+
+       <td>15</td>
+
+       <td>8</td>
+
+       <td>6</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>1</td>
+
+ 	   <td>4</td>
+
+ 	   <td>11</td>
+
+ 	   <td>13</td>
+
+ 	   <td>12</td>
+
+ 	   <td>3</td>
+
+       <td>7</td>
+
+ 	   <td>14</td>
+
+ 	   <td>10</td>
+
+ 	   <td>15</td>
+
+ 	   <td>6</td>
+
+ 	   <td>8</td>
+
+ 	   <td>0</td>
+
+ 	   <td>5</td>
+
+ 	   <td>9</td>
+
+ 	   <td>2</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>6</td>
+
+       <td>11</td>
+
+       <td>13</td>
+
+       <td>8</td>
+
+       <td>1</td>
+
+       <td>4</td>
+
+       <td>10</td>
+
+       <td>7</td>
+
+       <td>9</td>
+
+       <td>5</td>
+
+       <td>0</td>
+
+       <td>15</td>
+
+       <td>14</td>
+
+       <td>2</td>
+
+	   <td>3</td>
+
+	   <td>12</td>
+
+</tr>
+
+</tbody></table>
+
+<p></p>
+
+<table border="3" cellpadding="5" cellspacing="3">
+
+<caption align="center"><b>S-Box 8: Substitution Box 8</b></caption>
+
+<tbody><tr>
+
+       <td><b>Row / Column</b></td>
+
+       <td><b>0</b></td>
+
+       <td><b>1</b></td>
+
+       <td><b>2</b></td>
+
+       <td><b>3</b></td>
+
+       <td><b>4</b></td>
+
+       <td><b>5</b></td>
+
+       <td><b>6</b></td>
+
+       <td><b>7</b></td>
+
+       <td><b>8</b></td>
+
+       <td><b>9</b></td>
+
+       <td><b>10</b></td>
+
+       <td><b>11</b></td>
+
+       <td><b>12</b></td>
+
+       <td><b>13</b></td>
+
+	   <td><b>14</b></td>
+
+	   <td><b>15</b></td>
+
+</tr>
+
+<tr>
+
+       <td><b>0</b></td>
+
+       <td>13</td>
+
+ 	   <td>2</td>
+
+ 	   <td>8</td>
+
+ 	   <td>4</td>
+
+ 	   <td>6</td>
+
+ 	   <td>15</td>
+
+ 	   <td>11</td>
+
+ 	   <td>1</td>
+
+ 	   <td>10</td>
+
+	   <td>9</td>
+
+	   <td>3</td>
+
+ 	   <td>14</td>
+
+ 	   <td>5</td>
+
+ 	   <td>0</td>
+
+ 	   <td>12</td>
+
+ 	   <td>7</td>
+
+</tr>
+
+<tr>
+
+       <td><b>1</b></td>
+
+	   <td>1</td>
+
+ 	   <td>15</td>
+
+       <td>13</td>
+
+       <td>8</td>
+
+       <td>10</td>
+
+       <td>3</td>
+
+       <td>7</td>
+
+       <td>4</td>
+
+       <td>12</td>
+
+       <td>5</td>
+
+       <td>6</td>
+
+       <td>11</td>
+
+       <td>0</td>
+
+       <td>14</td>
+
+       <td>9</td>
+
+       <td>2</td>
+
+</tr>
+
+<tr>
+
+       <td><b>2</b></td>
+
+       <td>7</td>
+
+ 	   <td>11</td>
+
+ 	   <td>4</td>
+
+ 	   <td>1</td>
+
+ 	   <td>9</td>
+
+ 	   <td>12</td>
+
+       <td>14</td>
+
+ 	   <td>2</td>
+
+ 	   <td>0</td>
+
+ 	   <td>6</td>
+
+ 	   <td>10</td>
+
+ 	   <td>13</td>
+
+ 	   <td>15</td>
+
+ 	   <td>3</td>
+
+ 	   <td>5</td>
+
+ 	   <td>8</td>
+
+</tr>
+
+<tr>
+
+       <td><b>3</b></td>
+
+       <td>2</td>
+
+       <td>1</td>
+
+       <td>14</td>
+
+       <td>7</td>
+
+       <td>4</td>
+
+       <td>10</td>
+
+       <td>8</td>
+
+       <td>13</td>
+
+       <td>15</td>
+
+       <td>12</td>
+
+       <td>9</td>
+
+       <td>0</td>
+
+       <td>3</td>
+
+       <td>5</td>
+
+	   <td>6</td>
+
+	   <td>11</td>
+
+</tr>
+
+</tbody></table>
+
+<h3><b> How to use the S-Boxes </b></h3></center>
+
+<p>
+
+The purpose of this example is to clarify how the S-boxes work. Suppose we have the following 48-bit binary number:
+
+</p>
+
+<p>
+
+011101000101110101000111101000011100101101011101
+
+</p>
+
+<p>
+In order to pass this through steps 3 and 4 of the Core Function as
+outlined above, the number is split up into 8 6-bit blocks, labeled
+B[1] to B[8] from left to right:
+</p>
+
+<p>
+
+011101 000101 110101 000111 101000 011100 101101 011101
+
+</p>
+
+<p>
+
+Now, eight numbers are extracted from the S-boxes - one from each box:
+
+</p>
+
+<p><font color="#000000" face="Courier New,Courier">B[1] = 
+
+      S[1](01, 1110) = S[1][1][14] = 3&nbsp; = 0011<br>B[2] = S[2](01, 0010) 
+
+      = S[2][1][2 ] = 4&nbsp; = 0100<br>B[3] = S[3](11, 1010) = S[3][3][10] = 
+
+      14 = 1110<br>B[4] = S[4](01, 0011) = S[4][1][3 ] = 5&nbsp; = 
+
+      0101<br>B[5] = S[5](10, 0100) = S[5][2][4 ] = 10 = 1010<br>B[6] = 
+
+      S[6](00, 1110) = S[6][0][14] = 5&nbsp; = 0101<br>B[7] = S[7](11, 0110) 
+
+      = S[7][3][6 ] = 10 = 1010<br>B[8] = S[8](01, 1110) = S[8][1][14] = 
+
+      9&nbsp; = 1001</font></p>
+
+<p>In each case of S[n][row][column], the first and last bits of the
+current B[n] are used as the row index, and the middle four bits as the
+column index.
+</p>
+
+<p>The results are now joined together to form a 32-bit number which
+serves as the input to stage 5 of the Core Function (the P
+Permutation):
+</p>
+
+<p>
+
+00110100111001011010010110101001
+
+</p>
+
+<center><h3><b> Ciphertext Preparation </b></h3></center>
+
+<p>
+
+The final step is to apply the permutation IP^(-1) to the pre-output. The result is the completely encrypted ciphertext.
+
+</p>
+
+<center><h3><b> Encryption and Decryption </b></h3></center>
+
+<p>The same algorithm can be used for encryption or decryption. The
+method described above will encrypt a block of plaintext and return a
+block of ciphertext. In order to decrypt the ciphertext and get the
+original plaintext again, the procedure is simply repeated but the
+subkeys are applied in reverse order, from K[16]-K[1]. That is, stage 2
+of the Core Function as outlined above changes from R[I-1] XOR K[I] to
+R[I-1] XOR K[17-I]. Other than that, decryption is performed exactly
+the same as encryption.
+</p>
+
+<center><h3><b> Modes of Operation </b></h3></center>
+
+<a name="ECB"></a><h3><b> ECB (Electronic Code Book) </b></h3>
+
+<p>This is the regular DES algorithm, exactly as described above. Data
+is divided into 64-bit blocks and each block is encrypted one at a
+time. Separate encryptions with different blocks are totally
+independent of each other. This means that if data is transmitted over
+a network or phone line, transmission errors will only affect the block
+containing the error. It also means, however, that the blocks can be
+rearranged, thus scrambling a file beyond recognition, and this action
+would go undetected. ECB is the weakest of the various modes because no
+additional security measures are implemented besides the basic DES
+algorithm. However, ECB is the fastest and easiest to implement, making
+it the most common mode of DES seen in commercial applications. This is
+the mode of operation used by Private Encryptor.
+</p>
+
+<a name="CBC"></a><h3><b> CBC (Cipher Block Chaining) </b></h3>
+
+<p>In this mode of operation, each block of ECB encrypted ciphertext is
+XORed with the next plaintext block to be encrypted, thus making all
+the blocks dependent on all the previous blocks. This means that in
+order to find the plaintext of a particular block, you need to know the
+ciphertext, the key, and the ciphertext for the previous block. The
+first block to be encrypted has no previous ciphertext, so the
+plaintext is XORed with a 64-bit number called the Initialization
+Vector, or IV for short. So if data is transmitted over a network or
+phone line and there is a transmission error (adding or deleting bits),
+the error will be carried forward to all subsequent blocks since each
+block is dependent upon the last. If the bits are just modified in
+transit (as is the more common case) the error will only affect all of
+the bits in the changed block, and the corresponding bits in the
+following block. The error doesn't propagate any further.<br>
+This mode of operation is more secure than ECB because the extra XOR step adds one more layer to the encryption process.
+
+</p>
+
+<h3><b> CFB (Cipher Feedback) </b></h3>
+
+<p>
+In this mode, blocks of plaintext that are less than 64 bits long can
+be encrypted. Normally, special processing has to be used to handle
+files whose size is not a perfect multiple of 8 bytes, but this mode
+removes that necessity (Private Encryptor handles this case by adding
+several dummy bytes to the end of a file before encrypting it). The
+plaintext itself is not actually passed through the DES algorithm, but
+merely XORed with an output block from it, in the following manner: A
+64-bit block called the Shift Register is used as the input plaintext
+to DES. This is initially set to some arbitrary value, and encrypted
+with the DES algorithm. The ciphertext is then passed through an extra
+component called the M-box, which simply selects the left-most M bits
+of the ciphertext, where M is the number of bits in the block we wish
+to encrypt. This value is XORed with the real plaintext, and the output
+of that is the final ciphertext. Finally, the ciphertext is fed back
+into the Shift Register, and used as the plaintext seed for the next
+block to be encrypted. As with CBC mode, an error in one block affects
+all subsequent blocks during data transmission. This mode of operation
+is similar to CBC and is very secure, but it is slower than ECB due to
+the added complexity.
+</p>
+
+<h3><b> OFB (Output Feedback) </b></h3>
+
+<p>This is similar to CFB mode, except that the ciphertext output of
+DES is fed back into the Shift Register, rather than the actual final
+ciphertext. The Shift Register is set to an arbitrary initial value,
+and passed through the DES algorithm. The output from DES is passed
+through the M-box and then fed back into the Shift Register to prepare
+for the next block. This value is then XORed with the real plaintext
+(which may be less than 64 bits in length, like CFB mode), and the
+result is the final ciphertext. Note that unlike CFB and CBC, a
+transmission error in one block will not affect subsequent blocks
+because once the recipient has the initial Shift Register value, it
+will continue to generate new Shift Register plaintext inputs without
+any further data input. However, this mode of operation is less secure
+than CFB mode because only the real ciphertext and DES ciphertext
+output is needed to find the plaintext of the most recent block.
+Knowledge of the key is not required.
+</p>
+
+<div align="center">
+
+  <center>
+
+<!-- init bottom navigation links -->
+			   <table border="0" cellpadding="1" cellspacing="1">
+    <tbody><tr>
+      <td><small>| <a href="http://www.tropsoft.com/pcsecurity">PC Security</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/privateencryptor">Private Encryptor</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/strongenc">Strong Encryption Package</a></small></td>
+      <td><small>| </small><small> <a href="http://www.tropsoft.com/winvestigator">Winvestigator</a> </small><small>
+        </small><small>|</small></td>
+    </tr>
+  </tbody></table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="1" cellspacing="1">
+    <tbody><tr>
+      <td><small>| <a href="http://www.tropsoft.com/privpix">Private Pix</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/privdesk">Private Desktop</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/ergotimer">Ergotimer</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/secbrowser">Secure Browser</a> |</small></td>
+      
+    </tr>
+  </tbody></table>
+  </center>
+</div>
+<div align="center">
+  <center>
+  <table border="0" cellpadding="1" cellspacing="1">
+    <tbody><tr>
+      <td><small>| <a href="http://www.tropsoft.com/">Home</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/downlnks.htm">Download</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/order/troporder.htm">Order</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/techsprt.htm">Tech Support</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/prices.htm">Prices</a></small></td>
+      <td><small>| <a href="http://www.tropsoft.com/contact.htm">About Us</a> |</small></td>
+    </tr>
+  </tbody></table>
+  </center>
+</div>
+<p align="center"><img src="des_files/rule.gif" height="6" width="530">
+</p>
+<p align="center"><img src="des_files/copyright_TimesRoman.gif" border="0" height="29" width="372">
+<!-- end bottom navigation links -->
+</p></td></tr></tbody></table></td></tr></tbody></table></body></html>

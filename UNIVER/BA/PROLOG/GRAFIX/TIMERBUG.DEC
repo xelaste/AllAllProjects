@@ -1,0 +1,38 @@
+/*
+
+Simple Time-based Debugger - Brian D Steel - 19 Jul 88
+Copyright (c) - Logic Programming Associates Ltd, 1988
+
+This program uses the timer hook '?TIME?' to display goals at chosen intervals
+during the running of a program. These are displayed in a window at the top
+1/3rd of the screen, while standard output is sent to the bottom 2/3rds of the
+screen.
+
+*/
+
+/* timebug/0 - use to set up the timer with default interval of 1 second */
+
+timebug :-
+  timebug(18).
+
+/* timebug/1 - specify number of ticks per interval (18.2 ticks = 1 second) */
+
+timebug(Ticks) :-
+  notimebug,
+  assert(('?TIME?'(Goal) :-
+            fw(dbg,['~M~J',q(0)],[Goal]),
+            time(Ticks),
+            Goal)),
+  crwind(dbg,-1,-1,8,80,0,0,2),
+  cursor(dbg,7,0),
+  crwind(cns,8,-1,16,80,0,0,16),
+  time(Ticks).
+
+/* notimebug/0 - turn off the time based debugger */
+
+notimebug :-
+  time(0),
+  kill('?TIME?'),
+  cuwind(&:),
+  close(dbg),
+  close(cns).

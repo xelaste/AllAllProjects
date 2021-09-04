@@ -1,0 +1,55 @@
+Turbo Assembler	 Version 3.1	    07/16/96 00:41:21	    Page 1
+printaj.ASM
+
+
+
+      1	0000			     .MODEL SMALL
+      2	0000			     .CODE
+      3	0000			     PRINT_A_J	proc
+      4	0000  B2 41			 mov DL,'A'
+      5	0002  B9 000A			 mov CX,10
+      6	0005			     PRINT_LOOP:
+      7	0005  E8 0004			 call WRITE_CHAR
+      8	0008  FE C2			 inc DL
+      9	000A  E2 F9			 loop PRINT_LOOP
+     10	000C			     PRINT_A_J endp
+     11	000C			     WRITE_CHAR	 proc
+     12	000C  B4 02			   mov AH,2
+     13	000E  CD 21			   int 21h
+     14	0010  C3			   ret
+     15	0011			     WRITE_CHAR	endp
+     16				     end PRINT_A_J
+Turbo Assembler	 Version 3.1	    07/16/96 00:41:21	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "07/16/96"
+??FILENAME			  Text	 "printaj "
+??TIME				  Text	 "00:41:21"
+??VERSION			  Number 030A
+@32BIT				  Text	 0
+@CODE				  Text	 _TEXT
+@CODESIZE			  Text	 0
+@CPU				  Text	 0101H
+@CURSEG				  Text	 _TEXT
+@DATA				  Text	 DGROUP
+@DATASIZE			  Text	 0
+@FILENAME			  Text	 PRINTAJ
+@INTERFACE			  Text	 00H
+@MODEL				  Text	 2
+@STACK				  Text	 DGROUP
+@WORDSIZE			  Text	 2
+PRINT_A_J			  Near	 _TEXT:0000
+PRINT_LOOP			  Near	 _TEXT:0005
+WRITE_CHAR			  Near	 _TEXT:000C
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+DGROUP				  Group
+  _DATA				  16  0000 Word	  Public  DATA
+_TEXT				  16  0011 Word	  Public  CODE
+

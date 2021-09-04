@@ -1,0 +1,8 @@
+equal(X,Y):-X==Y.
+counter([],X,0).
+counter([X|List],X,Num):-
+        counter(List,X,Num1),
+        Num is Num1+1.
+counter([Y|List],X,Num):-
+        not equal(X,Y),
+        counter(List,X,Num).

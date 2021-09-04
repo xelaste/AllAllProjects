@@ -1,0 +1,225 @@
+	ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ¿
+	³  LPA PROLOG Professional 3.8 - Release Notes  ³
+	ÀÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ
+
+Welcome to LPA PROLOG Professional version 3.8, the latest in a long line
+of Prolog compilers from LPA. A completely revised reference manual means
+that this file can be fairly short!
+
+F9 and F10 Function Keys
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+We have omitted to mention the command history feature which allows up to
+ten of your previous commands to be recalled. Use the F9 and F10 function
+keys to move backwards and forwards through your most recent commands. To
+enter a command recalled like this, just type <ENTER>; alternatively, you
+can edit the command as normal before entering it.
+
+Additional mouse support
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+A small amount of additional mouse support has been added to version 3.01
+of LPA PROLOG Professional. The cursor/1 predicate allows you to turn the
+mouse cursor on or off. When used in conjunction with cursor/0 (reset and
+test mouse) and cursor/3 (return mouse data), this enables control of the
+Microsoft mouse. The argument to cursor/1 is an integer, which either may
+be 0 for off or 1 for on. For example:
+
+	?- cursor(1).
+
+turns the mouse cursor on. Note that because of LPA PROLOG Professional's
+normal method of performing screen output by directly storing data in the
+screen memory buffer, if you update the part of the screen which contains
+the mouse cursor and then move the mouse, some incorrect data can be left
+on the screen. If you run Prolog in the BIOS level output mode (which can
+be set using video/1), the mouse should behave properly. If you prefer to
+use the normal fast screen output, the simple way to avoid the problem is
+to turn the mouse cursor off before any screen update, and then switch on
+again immediately afterwards.
+
+New window modes
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Version 3.02 of LPA PROLOG Professional includes two new window operation
+modes. These modes are stored as bits 5 and 6 in the window record, which
+and can be set using the 7th argument of crwind/7, or set/tested with the
+3rd argument of video/3. The first mode (value 32) creates a window whose
+contents cannot be overwritten by Prolog. While this facility was present
+in version 3.00, it only functioned when using BIOS level output. Now you
+can create "protected" windows in the fast hardware output modes too. For
+example:
+
+	?- crwind(fred,10,10,10,40,0,0,32), crwind(mary,0,0,5,78).
+
+creates a protected window called fred whose contents will not be updated
+by Prolog, and then a window called mary. Any blank portion of the window
+fred will remain untouched by Prolog so long as it is in view, and so can
+safely be used by external process which update the screen and which want
+their output to remain intact.
+
+Nameless windows
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+The second mode allows windows to be created, framed but with their names
+hidden. Because the name is not shown, the window border forms a complete
+box. Until now, the only way in which to create such a window has been to
+name it with the empty atom ('') or an atom made only of special graphics
+characters which are the same as those used in the window border. The new
+mode bit has a value 64, and this can be added to any other modes wanted.
+For example:
+
+	?- crwind(box,10,10,10,40,0,0,64).
+
+creates a window called box with a solid, unnamed frame.
+
+Accurate execution timer
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+A special timer has been added to version 3.03 of LPA PROLOG Professional
+which allows microsecond resolution timing of goals. This tool provides a
+means for finely tuning the performance of programs, allowing goals to be
+accurately timed over just a single execution. The timer is available via
+a new predicate, ms/2, whose first argument is the goal to be benchmarked
+and whose second argument is a variable to return the elapsed time of the
+goal in milliseconds (ms) to three decimal places. For example:
+
+	?- ms(true,X).
+
+will measure the time taken to evaluate the goal: 'true', and will return
+an answer something like:
+
+	X = 0.012
+
+depending upon the speed of your computer. This feature does not function
+properly on Olivetti computers, owing to minor system incompatibility.
+
+Drop shadows
+ÄÄÄÄÄÄÄÄÄÄÄÄ
+A new window feature in version 3.30 is support for drop shadows. Shadows
+take the form of borders below and to the right of a window, in which the
+text colour attributes are suppressed, and data is displayed in a default
+colour shadow. Drop shadows are enabled by specifying the top-most bit of
+the window mode, integer value 128, and can be used either with framed or
+frameless windows. For example:
+
+	?- crwind(shadow,10,10,10,40,41,49,128).
+
+creates a coloured window with a drop shadow. As with other window modes,
+you can combine drop shadows with any other feature by adding the integer
+value 128 to the other mode data.
+
+New command line switches
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Two new command line switches have been added to version 3.30. They allow
+you to specify the colour attributes of drop shadows (see above), as well
+as modifying some of PROLOG's memory allocation behaviour.
+
+A drop shadow is normally coloured white-on-black, but the default can be
+changed with the /Dnnn switch. The value nnn is the video attribute which
+PROLOG will use for any drop shadows. The command line:
+
+	C> PROLOG /D4
+
+will set drop shadows to be dark blue characters on black background.
+
+The other new switch changes the PROLOG's handing of memory allocation in
+in two special cases, namely when saving or loading EMS files, and during
+the evaluation of setof, bagof and findall. Both these operations require
+that given contiguous chunk of DOS memory is available to be allocated to
+store temporary data. In the case of the EMS predicates this amounts to a
+fixed 16kb; in the case of findall and its relations the amount is set on
+the PROLOG command, but defaults to 48kb. In both these cases, the memory
+is allocated when needed, and returned to DOS upon completion.
+
+Because of DOS memory fragmentation, situations can arise in which memory
+cannot be allocated as a contiguous when needed, although there is enough
+memory in total to satisfy the call. The /K switch has been added to 3.30
+to tell PROLOG to keep its EMS or findall buffers are their first use, to
+prevent eventual system failure due to memory fragmentation. You can tell
+PROLOG to keep either or both memory buffers between operations by giving
+a numerical argument to the /K flag. The arguments are:
+
+	0 - do not keep either buffer (default behaviour)
+	1 - keep EMS buffer after first asave/aload
+	2 - keep findall buffer after first set operation
+	3 - keep both buffers after their first respective opertations
+
+For example, the command line:
+
+	C> PROLOG /L24 /K2
+
+will tell PROLOG to use 24Kb for the findall buffer, and to keep it after
+the first call to setof, bagof or findall, so that further calls to these
+predicates can be guarantied to work despite DOS memory fragmentation.
+
+Modified optimising compiler
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+The optimising compiler has been modified for version 3.30, and makes use
+of a number of minor internal improvements in LPA PROLOG. There should be
+no change of behaviour in programs since 3.03, except in that the support
+for metaprogramming has been improved, which will result in some programs
+running more quickly, and in less space than before. These changes are of
+help to the incremental compiler also, which is now more efficient in its
+handling of nested conjunctions, disjunctions and implications.
+
+New Powerful Debugger
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+As well as the "box" debugger provided in previous versions of PROLOG, an
+entirely new "source" level debugger is now included. The source debugger
+is loaded by default the first time you trace or spy a program in any one
+session, unless you first specify the debugger you want. A new predicate,
+debugger/1, allows you to choose the debugger you want:
+
+	?- debugger(source).	% specifies the new source level debugger
+	?- debugger(box).	% specifies the original box debugger
+
+You can change debuggers in this way as often as you want to. Your choice
+is only for the current session, and when you next run PROLOG, the source
+debugger will once again be used by default.
+
+New Pseudo Random Number Generator
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Version 3.51 includes a new 64-bit pseudo random number generator (PRANG)
+which is compatible with that in LPA 386-PROLOG. The one used in previous
+versions was a 32-bit linear congruential generator, implemented with the
+built-in floating point package, and using the formula:
+
+	rn+1 = (rn * 1664525 + 2468091) mod 2 ^ 32
+
+This has been replaced by an integer implementation, which is both faster
+and has a vastly longer cycle. The new formula is:
+
+	rn+1 = (rn * 6364136223846793005 + 8110242468091) mod 2 ^ 64
+
+Although the implementation uses integer arithmetic, the function returns
+a floating point value, and has been renamed 'rand' to reflect this. Your
+existing uses of 'irand' can be replaced, to all intents and purposes, by
+calls to 'ip(rand)'. If, for the purposes of a simulation, you need to be
+able to reproduce a sequence of numbers as from the old 'irand' function,
+simply make use of the first formula above.
+
+Improved DOS Memory Allocation
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Version 3.60 includes a new algorithm for managing external memory during
+the compilation and asserting of program clauses. The purpose of this new
+algorithm is to avoid the excessive memory fragmentation which previously
+occurred while running programs which manipulated the clause database.
+
+Example programs
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+ASCII.DEC	simple program to display table of ascii characters
+BENCHMRK.DEC	Prolog benchmark suite
+BIKES.DEC	example program used in the User Guide
+COLOURS.DEC	program to select colours interactively
+DBASE.DEC	DBASE III and IV data file interface
+DERBY.DEC	simple horse race game to show screen programming
+DIRLIST.DEC	program to list files in a directory sorted in various ways
+GRAPHICS.DEC	interface predicates for the GraFiX kernel
+GSXPRIMS.DEC	interface predicates for GSX graphics
+MEALS.DEC	example program used in the User Guide
+MEMORY.DEC	program to return the amount of free main memory
+PHONES.DEC	brain-teasing meta-program to simulate a phone ringing
+TIMER.DEC	timing utility for benchmarking programs
+TIMERBUG.DEC	simple timer-based debugger
+TUBEMAP.DEC	London Underground route-finding program
+VIRTUAL.DEC	example EMS application to run code from expanded memory
+WINDOWS.DEC	windows programming example
+
+Thats it! We hope you enjoy using LPA PROLOG Professional 3.8 ...
+
+Brian D Steel, 16 Jan 96

@@ -1,0 +1,5 @@
+avraham(chana,tamar,zvia,ruth,sara).
+binyamin(zvia,chana,ruth,sara,tamar).
+chaim(chana,ruth,tamar,sara,zvia).
+david(zvia,ruth,chana,sara,tamar).
+elazar(tamar,ruth,chana,zvia,sara).

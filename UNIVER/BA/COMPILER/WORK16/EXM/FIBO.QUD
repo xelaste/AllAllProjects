@@ -1,0 +1,13 @@
+IASN a 0 
+IASN b 1 
+ILSS _t3 a 1000
+JMPZ 12 _t3 
+JUMP 6  
+IPRT a  
+IADD _t4 a b
+IASN c _t4 
+IASN a b 
+IASN b c 
+JUMP 3  
+HALT   
+Compiler project. Developed by Alexander Stekolchik.1998

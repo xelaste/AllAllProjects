@@ -1,0 +1,3229 @@
+<?xml version="1.0" ?>
+<SAVED_DATA>
+	<bookmarks>
+		<jdbcDriver className="org.apache.derby.jdbc.EmbeddedDriver" name="org.apache.derby.jdbc.EmbeddedDriver" type="DERBY" version="">
+			<jar fileName="C:/eclipse/file::/C::/eclipse/plugins/com.quantum.derby_3.3.9.jar!/lib/derby.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="sun.jdbc.odbc.JdbcOdbcDriver" name="sun.jdbc.odbc.JdbcOdbcDriver" type="JDBC_ODBC_BRIDGE" version="" />
+		<jdbcDriver className="sun.jdbc.odbc.JdbcOdbcDriver" name="sun.jdbc.odbc.JdbcOdbcDriver" type="MS_ACCESS" version="" />
+		<jdbcDriver className="oracle.jdbc.driver.OracleDriver" name="Oracle JDBC driver" type="ORACLE" version="11.1.0.7.0-Production">
+			<jar fileName="C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar" />
+			<jar fileName="C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar" />
+		</jdbcDriver>
+		<jdbcDriver className="oracle.jdbc.OracleDriver" name="oracle.jdbc.OracleDriver" type="ORACLE" version="">
+			<jar fileName="C:\app\ALEXANS\product\11.2.0\client_1\jdbc\lib\ojdbc6.jar" />
+		</jdbcDriver>
+		<bookmark>
+			<name>(Internal) Derby</name>
+			<username>QUANTUM</username>
+			<password />
+			<prompt>false</prompt>
+			<connect>jdbc:derby:C:/eclipse/file::/C::/eclipse/plugins/com.quantum.derby_3.3.9.jar!/data/quantum</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>true</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>org.apache.derby.jdbc.EmbeddedDriver</driver>
+			<type>DERBY</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:/eclipse/file::/C::/eclipse/plugins/com.quantum.derby_3.3.9.jar!/lib/derby.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>crmcoc12</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc12</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_security_conf where x_element_name='chkBoxZIVResidentialConf'</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set x_ziv_relevant=1 where objid='268435988'</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set x_ziv_relevant=1 where objid='268435990'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter where name='contact_accounts_direct_xFilter'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_country</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_rol_itm</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set str_value= 'de,DE,FR' where name ='x_9_fuzzy_post_default_country'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name ='x_9_fuzzy_post_default_country'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T2.objid FROM table_contact T1,table_contact_role T2 WHERE T1.objid = T2.contact_role2contact and (T1.objid = 10169)</queryString>
+				</query>
+				<query>
+					<queryString>SELECT * FROM table_contact T1,table_contact_role T2 WHERE T1.objid = T2.contact_role2contact and (T1.objid = 10169)</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact=10169</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact=10172</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_header</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc11</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc11</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_flex_defn where lower(default_value) like '%KRED%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_flex_defn</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where upper(str_value) like '%KREDITKARTE%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_flex_tmpl where upper(tmpl_name) like '%KRED%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from mtm_flex_DEFN0_FLEX_TMPL0</queryString>
+				</query>
+				<query>
+					<queryString>select * from mtm_flex_DEFN0_FLEX_TMPL0 where flex_defn2flex_tmpl=10329</queryString>
+				</query>
+				<query>
+					<queryString>select * from mtm_flex_DEFN0_FLEX_TMPL0 where flex_tmpl2flex_defn=10329</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fa_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fa_site_part where fa_site_part2site_part=268435529</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fa_site_part where fa_site_part2site_part=268435529 and fa_site_part2flex_defn in (10257,10258)</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_employee</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc77</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc77</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_config_itm where name='x_9_contact_role_first'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_part_num</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_part_num where description like '%konto%'</queryString>
+				</query>
+				<query>
+					<queryString>select description,family,line from table_part_num where description like '%konto%'</queryString>
+				</query>
+				<query>
+					<queryString>select domain,description,family,line from table_part_num where description like '%konto%'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc61</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc61</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_contact where first_name like '9873%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact='10343'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_country</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address where objid=268435692</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact where first_name like '9873%' or first_name like 'anup%'</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set State='Germany' , s_state = 'GERMANY',address2state_prov=10101 where objid=268435692</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address where objid=268435692 or objid ='268435594'</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set State='Germany' , s_state = 'GERMANY',address2state_prov=10101 , address2time_zone=1003 where objid=268435692</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set State='Germany' , s_state = 'GERMANY',address2state_prov=10101 , address2time_zone=1003 where objid=268435692 or objid=268435693</queryString>
+				</query>
+				<query>
+					<queryString>update table_address set State='Germany' , s_state = 'GERMANY',address2state_prov=10101 , address2time_zone=10003 where objid=268435692 or objid=268435693</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_address where objid=268435692 or  objid=268435693 or objid ='268435594'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact in ('10343','10246')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid =10616</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid =10618</queryString>
+				</query>
+				<query>
+					<queryString>update table_contact_role set crole2hgbst_elm=10618 where objid=10342</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact where first_name like '9873%' or lower(first_name) like 'anup%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact in ('10741','10343','10246')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role where contact_role2contact in ('10341','10741','10343','10246')</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc68</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc68</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where serial_no='930711500'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fa_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fa_site_part where attribute_value='930711500'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter where name='x_9_subs_cnct_cust_view_xFilter'</queryString>
+				</query>
+				<query>
+					<queryString>select acc_objid from table_SUBS_CNCT_CUST_VIEW</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_SUBS_CNCT_CUST_VIEW</queryString>
+				</query>
+				<query>
+					<queryString>select cnt_objid,acc_objid from table_SUBS_CNCT_CUST_VIEW</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_account_list_view</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc65</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc65</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_country</queryString>
+				</query>
+				<query>
+					<queryString>update table_state_prov set ref_id='bayren',s_ref_id='BAYREN' where ref_id='Germany'</queryString>
+				</query>
+				<query>
+					<queryString>update table_state_prov set name='bayren',s_name='BAYREN' where name='Germany'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_state_prov</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_account_list_view</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoc40</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:crmcoc40</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>update table_state_prov set ref_id='bayren',s_ref_id='BAYREN' where ref_id='Germany'</queryString>
+				</query>
+				<query>
+					<queryString>update table_state_prov set name='bayren',s_name='BAYREN' where name='Germany'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_state_prov</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_list_struct</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_bus_role</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set title='OWN_OWN' where objid=11452</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID)='BUS_CON_ROLE'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_bus_role order by objid desc</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcoccc</name>
+			<username>saoob5</username>
+			<password>saoob5</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin390:1521:cococc</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_con_rol_itm</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_boh_rol_itm</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_boh_be</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_rol_itm</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_rollup</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 281, , 'x_9_fuzdbl_addr_trigger_fields', 0, 0, 0, 'street,zipcode,city', 5, , , , 'street,zipcode,city' )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 281, null, 'x_9_fuzdbl_addr_trigger_fields', 0, 0, 0, 'street,zipcode,city', 5, null, null, null, 'street,zipcode,city' )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 282, null, 'x_9_fuzdbl_cnt_trigger_fields', 0, 0, 0, 'first_name,last_name,birth_date,status', 5, null, null, null, 'first_name,last_name,birth_date,status' )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 283, null, 'x_9_fuzdbl_cnt_role_trigger_flds', 0, 0, 0, 'is_active', 5, '''''', null, null, is_active )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 283, null, 'x_9_fuzdbl_cnt_role_trigger_flds', 0, 0, 0, 'is_active', 5, null, null, null, is_active )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_CONFIG_ITM&quot; (OBJID, LAST_MOD_TIME, NAME, VALUE_TYPE, I_VALUE, F_VALUE, STR_VALUE, SCOPE, DESCRIPTION, DEV, ASC_UPDATE, GUID ) VALUES  ( 283, null, 'x_9_fuzdbl_cnt_role_trigger_flds', 0, 0, 0, 'is_active', 5, null, null, null, 'is_active' )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where objid &lt; 300</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where objid &lt; 300 order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact_role</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=14252</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM5</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM5</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select objid,status_code from table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select objid from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_quick_action</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_intrxn</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_intrxn</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact where first_name like '5096%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact where objid=5597</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_userprofile_segment</queryString>
+				</query>
+				<query>
+					<queryString>update table_x_userprofile_segment set user_segment_ref_id='Virgin' where user_profile_id='ALL'</queryString>
+				</query>
+				<query>
+					<queryString>update table_x_userprofile_segment set user_segment_ref_id='Consumer' where user_profile_id='ALL'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter where name='search_intrxn_xfilter'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_intrxn order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=14252</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where str_value like '%14252%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where i_value = 14252</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM4</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM4</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>delete from table_x_sp_equip_info</queryString>
+				</query>
+				<query>
+					<queryString>commit</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_sp_equip_info</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_field where type_id=2028</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_join</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_join where obj_type_id=2028</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_object where type_name='locale'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid where type_id='5376'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid_unused</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid_unused where type_id='5376'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_object where type_name='string_db'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_locale</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_medium</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid_unused where type_id='5376' or type_id='326'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>update adp_tbl_oid set obj_num=1 + (select max(objid) from table_string_db ) where type_id='326'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid where type_id='5376' or type_id='326'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_medium order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_object where type_name='locale' or type_name='medium'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_tbl_oid where type_id='5376' or type_id='326' or type_id='5206'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM7</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM7</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select objid,action_type,service_name,status_code from table_bg_action where routing_id like '%5096%703%'order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select objid,action_type,service_name,status_code,routing_id from table_bg_action where routing_id like '%5096%703%'order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from csm2crm_trx_log</queryString>
+				</query>
+				<query>
+					<queryString>select sequence_key, count(sequence_key) from table_bg_action group by sequence_key having (count(sequence_key) &gt; 1 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bg_action where sequence_key='POLLER:000000043993'</queryString>
+				</query>
+				<query>
+					<queryString>select sequence_key, count(sequence_key) from table_bg_action where routing_id is null group by sequence_key having (count(sequence_key) &gt; 1 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_da_pub_log where da_pub_log2bg_action='37145'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_da_pub_log where da_pub_log2bg_action='14762'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter where name='fc_so_contact_account_xFilter'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fc_so_cont_acct_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id)='primary'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(title)='contact'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_object where type_name='con_bus_role'</queryString>
+				</query>
+				<query>
+					<queryString>select field_name from table_choice_fld where referring_type=6177</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_choice_fld where referring_type=6177</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='BUS_CON_ROLE'</queryString>
+				</query>
+				<query>
+					<queryString>select sequence_key, count(sequence_key) from table_bg_action where dependent_id is null group by sequence_key having (count(sequence_key) &gt; 1 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bg_action where sequence_key='POLLER:000000043992'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_userprofile_segment</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM32</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM32</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where lower(T4.REF_ID)='x_memo_type'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where t1.ref_id='CSMO'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where t1.title='CSMO'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='X_Memo_Type'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_search_intrxn</queryString>
+				</query>
+				<query>
+					<queryString>select x_ml_memo_type from table_search_intrxn</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where t1.objid=17425</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_HGBST_SHOW where objid=17425</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where 
+
+T4.REF_ID='X_Memo_Type'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_HGBST_lst where HGBST_LST2HGBST_SHOW=5445</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_HGBST_SHOW where objid=5445</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_HGBST_SHOW where chld_prnt2hgbst_show=5445</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=17425</queryString>
+				</query>
+				<query>
+					<queryString>select * from MTM_HGBST_ELM0_HGBST_SHOW1 where HGBST_ELM2HGBST_SHOW=17425</queryString>
+				</query>
+				<query>
+					<queryString>select * from MTM_HGBST_ELM0_HGBST_SHOW1 where HGBST_SHOW2HGBST_ELM=5445</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where 
+t1.objid=17403</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=14252</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>crmcc798</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:crmcc798</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>truncate table table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>select * from sec1_session</queryString>
+				</query>
+				<query>
+					<queryString>truncate table sec1_session</queryString>
+				</query>
+				<query>
+					<queryString>truncate table sec1_log</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_quick_action</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where lower(T4.REF_ID)='x_memo_type'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=14252</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM30</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM30</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+T1.create_on &gt;= to_date('2012-03-01','YYYY-MM-DD')</queryString>
+				</query>
+				<query>
+					<queryString>select sysdate from dual</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+T1.create_on = '01-MAR-2012'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+T1.create_on &gt;= '01-MAR-2012'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+order by  T1.create_on desc</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+order by  T1.create_on asc</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+T1.create_on =to_date( '2012-03-01 11:23:00','YYYY-MM-DD HH24:MI:SS' )</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+T1.create_on &gt;= to_date( '2012-03-01 11:23:00','YYYY-MM-DD HH24:MI:SS' )</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+
+T1.create_on =to_date( '2012-03-01 12:42:00','YYYY-MM-DD HH24:MI:SS' )</queryString>
+				</query>
+				<query>
+					<queryString>SELECT T1.topic_objid, T1.create_on &quot;T1.create_on&quot; FROM table_search_intrxn T1 
+WHERE  
+T1.bus_org_objid = 4835 
+AND  
+
+T1.create_on =to_date( '2012-03-01 12:42:02','YYYY-MM-DD HH24:MI:SS' )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_intrxn order by objid desc</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm121</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm121</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>update table_hgbst_elm set ref_id='webapp_smartSolve_noContext' where objid='34015'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like '%smartso%'</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name from adp_relation group by rel_name having count(rel_name) &gt; 1</queryString>
+				</query>
+				<query>
+					<queryString>DELETE FROM TABLE_EXPR</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(title) like 'smarts%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like 'smarts%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like 'w%smarts%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like '%bits%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_user_info</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_employee</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_lst set ref_id='x_promo_acc_list_' where ref_id='x_promo_acc_list'</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_lst set ref_id='x_promo_acc_list' where ref_id='x_promo_acc_list_'</queryString>
+				</query>
+				<query>
+					<queryString>select ref_id,title  from table_hgbst_lst where ref_id='x_promo_acc_list'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where objid=32622</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where objid=32622 or site_part2hgbst_elm=32622</queryString>
+				</query>
+				<query>
+					<queryString>select org_id from table_x_fc_bundled_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>CRMRF801</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin1052:1521:CRMRF801</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_values_map where x_source_level1 like '%041%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name='x_billing_contact_role'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID like '%aggr%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_values_map</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_omf_fc_OCPE0035'</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_config_itm where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>select e_mail from table_contact</queryString>
+				</query>
+				<query>
+					<queryString>insert into table_config_itm values (1137,sysdate,512,0,0,0,null,5,'Config item used to switch on call for OMF Web service getCustomerProfile. Used in Find Caller Tier 2 search.',null,0,'90000000(m_000000)deflt~0000310')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where guid='90000000(m_000000)deflt~0000310'</queryString>
+				</query>
+				<query>
+					<queryString>delete  from table_config_itm where guid='90000000(m_000000)deflt~0000310'</queryString>
+				</query>
+				<query>
+					<queryString>insert into table_config_itm values (1137,sysdate,'x_search_OMF_enabled',512,0,0,null,5,'Config item used to switch on call for OMF Web service getCustomerProfile. Used in Find Caller Tier 2 search.',null,0,'90000000(m_000000)deflt~0000310')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where i_value &gt; 0</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from aif_operation</queryString>
+				</query>
+				<query>
+					<queryString>select * from aif_operation where lower(name) like '%omf%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from tab</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_comment</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=14252</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='x_accnt_hrchy_sts_map'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_contact</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm120</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm120</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where org_id='509686137'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='509686137'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='509686137' or billing_root2bus_org=12393</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where record_type like 'stand%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where org_id='509684991'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_acct_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_sp_role</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_acct_vw where not exists (select * from table_con_sp_role where sp_account2bus_org = bus_org_objid)</queryString>
+				</query>
+				<query>
+					<queryString>update table_user set password=(select password from table_user where login_name='nm1') where login_name='nm1brs'</queryString>
+				</query>
+				<query>
+					<queryString>insert into table_config_itm values (3802,null,'x_d2ob_use_help_table',0,0,0,'true',5,'',1,0,'xxxxx')</queryString>
+				</query>
+				<query>
+					<queryString>select t1.ref_id,t1.title from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='x_deposit_reason_codes'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where  t4.title like 'x_promo_acc_list'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>drop table TABLE_X_V_NAME_ADDRESS</queryString>
+				</query>
+				<query>
+					<queryString>create table TABLE_X_V_NAME_ADDRESS  as (
+select table_con_bus_role.objid objid,table_con_bus_role.objid x_con_bus_role_objid ,first_name,last_name , s_first_name  , s_last_name , 
+case when table_address.address_2 is null then table_address.address else table_address.address || ',' || table_address.address_2 end x_entire_address,
+upper(case when table_address.address_2 is null then table_address.address else table_address.address || ',' || table_address.address_2 end) s_x_entire_address
+from table_contact
+inner join table_con_bus_role on table_con_bus_role.con_bus_role2contact=table_contact.objid 
+inner join table_site on table_con_bus_role.bus_address2site=table_site.objid
+inner join table_address on table_site.cust_billaddr2address=table_address.objid
+inner join table_hgbst_elm on cbusrole2hgbst_elm=table_hgbst_elm.objid and table_hgbst_elm.s_ref_id in (  'PRIMARY' ,  'USER' )
+)</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set str_value='false' where objid=3696</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name like '%spa%'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name> brcrm160</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin1052:1521:brcrm160</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select t1.objid,t1.title from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like '%AGGR%'</queryString>
+				</query>
+				<query>
+					<queryString>select t1.objid,t1.title from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like 'X%BAN%' and state &lt;&gt; 'Inactive'</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27912 where objid in (7526,27909,2403)</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27913 where objid in (7527 ,2404)</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27914 where objid in (7528,2401)</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27915 where objid=2402</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27916 where objid=2405</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set mapping2hgbst_elm=27517 where objid=27910</queryString>
+				</query>
+				<query>
+					<queryString>commit</queryString>
+				</query>
+				<query>
+					<queryString>select sysdate from dual</queryString>
+				</query>
+				<query>
+					<queryString>select t1.objid,t1.title from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like 'CLFY%PAR%' and state &lt;&gt; 'Inactive'</queryString>
+				</query>
+				<query>
+					<queryString>select t1.objid,t1.title, t1.ref_id from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like '%AGGR%'</queryString>
+				</query>
+				<query>
+					<queryString>select t1.objid,t1.title,t1.ref_id from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like 'CLFY%PAR%' and state &lt;&gt; 'Inactive'</queryString>
+				</query>
+				<query>
+					<queryString>select t1.objid,t1.title ,t1.ref_id from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where upper(T4.REF_ID) like 'X%BAN%' and state &lt;&gt; 'Inactive'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_values_map</queryString>
+				</query>
+				<query>
+					<queryString>select x_root_bus_id from table_x_fc_ob_union_vw where x_root_bus_type='OB'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name='x_billing_contact_role'</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set scope='5' , str_value='true' where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name like '%OMF%'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name> brcrm118</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm118</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_string_db order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like 'x_find_caller' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw</queryString>
+				</query>
+				<query>
+					<queryString>CREATE TABLE &quot;SA&quot;.&quot;CSM2CRM_TRX_LOG&quot; (&quot;TRX_SEQUENCE_ID&quot; NUMBER(12, 0) 
+  CONSTRAINT &quot;CSM2CRM_TRX_SEQUENCE_ID_NN&quot; NOT NULL ENABLE, 
+  &quot;SYS_CREATION_DATE&quot; DATE NOT NULL ENABLE, &quot;SYS_UPDATE_DATE&quot; DATE, 
+  &quot;OPERATOR_ID&quot; NUMBER(9, 0), &quot;APPLICATION_ID&quot; CHAR(6), 
+  &quot;DL_SERVICE_CODE&quot; CHAR(5) NOT NULL ENABLE, &quot;DL_UPDATE_STAMP&quot; 
+  NUMBER(4, 0), &quot;TRX_NAME&quot; VARCHAR2(25) CONSTRAINT 
+  &quot;CSM2CRM_TRX_NAME_NN&quot; NOT NULL ENABLE, &quot;TRX_TYPE&quot; CHAR(1) CONSTRAINT 
+  &quot;CSM2CRM_TRX_TYPE_NN&quot; NOT NULL ENABLE, &quot;TRX_DATETIME&quot; DATE CONSTRAINT 
+  &quot;CSM2CRM_TRX_DATETIME_NN&quot; NOT NULL ENABLE, &quot;ENTITY_TYPE&quot; CHAR(1) 
+  CONSTRAINT &quot;CSM2CRM_ENTITY_TYPE_NN&quot; NOT NULL ENABLE, &quot;ENTITY_ID&quot; 
+  VARCHAR2(20), &quot;PARENT_ID&quot; VARCHAR2(20), &quot;PARENT_TYPE&quot; CHAR(1), 
+  &quot;ROOT_TYPE&quot; CHAR(1), &quot;ROOT_ID&quot; VARCHAR2(20), &quot;RELATED_BAN&quot; NUMBER(9, 
+  0), &quot;TRX_DETAILS&quot; CLOB CONSTRAINT &quot;CSM2CRM_TRX_DETAILS_NN&quot; NOT NULL 
+  ENABLE, &quot;POLL_STATUS&quot; CHAR(1) CONSTRAINT &quot;CSM2CRM_POLL_STATUS_NN&quot; NOT 
+  NULL ENABLE, &quot;POLL_DATETIME&quot; DATE CONSTRAINT 
+  &quot;CSM2CRM_POLL_DATETIME_NN&quot; NOT NULL ENABLE) PCTFREE 10 PCTUSED 40 
+  INITRANS 1 MAXTRANS 255 STORAGE(INITIAL 4014080 NEXT 40960 MINEXTENTS 
+  1 FREELISTS 1 FREELIST GROUPS 1 BUFFER_POOL DEFAULT)</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG</queryString>
+				</query>
+				<query>
+					<queryString>select * from mtm_privclass7_value_item2</queryString>
+				</query>
+				<query>
+					<queryString>drop table mtm_privclass7_value_item2</queryString>
+				</query>
+				<query>
+					<queryString>CREATE TABLE mtm_privclass7_value_item2
+(       privclass2value_item number NOT NULL,
+        value_item2privclass number NOT NULL
+        )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter where name='x_itrxn_mob_union_vw_xfilter' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter  order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>update table_xfilter set name='x_itrxn_mob_union_vw_xfilter' where objid=714</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_xfilter  where name='x_itrxn_mob_union_vw_xfilter'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select ref_id,title  from table_hgbst_lst where ref_id='x_promo_acc_list'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm129</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm129</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM31</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM31</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select org_id,phone_number from table_x_fc_bundled_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='509685576'</queryString>
+				</query>
+				<query>
+					<queryString>select org_id,phone_number from table_x_fc_standalone_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where serial_no='650656119'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where serial_no='650656118'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='509685577'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_sp_role</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_con_sp_role where sp_account2bus_org=10943</queryString>
+				</query>
+				<query>
+					<queryString>select org_id from table_x_fc_bundled_subs_vw where org_id='509685577'</queryString>
+				</query>
+				<query>
+					<queryString>select org_id,phone_number from table_x_fc_standalone_subs_vw where org_id='509685577'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_standalone_subs_vw where org_id='509685577'</queryString>
+				</query>
+				<query>
+					<queryString>update table_hgbst_elm set title='Silver',S_TITLE='SILVER' where title like 'Sil%' and ref_id='LEGACY'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where title like 'Sil%' and ref_id='LEGACY'</queryString>
+				</query>
+				<query>
+					<queryString>select org_id from table_x_fc_bundled_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_account_subs_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_choice_fld</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_choice_fld where field_name='part_status'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where site_part2hgbst_elm=32622</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where objid=32622</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where objid=32622 or site_part2hgbst_elm=32622</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM3</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM3</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>update table_site_part set site_part2site_part='1463' where objid = 1572</queryString>
+				</query>
+				<query>
+					<queryString>SELECT *  FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+    LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	right OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part 
+	  WHERE	
+  table_site_part.objid='1463'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where site_part_objid='1463'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where site_part2site_part='1463'</queryString>
+				</query>
+				<query>
+					<queryString>update table_site_part set site_part2site_part='1463', level_to_part=2 where objid = 1572</queryString>
+				</query>
+				<query>
+					<queryString>SELECT * FROM table_fc_so_cont_subs_vw WHERE  objid =  1463</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where string like 'The field length/f%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like '%wcoc%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>Insert into SA.TABLE_STRING_DB (OBJID,ID,STRING,LOCALE,TYPE,DEV,TRANSLATE_IND,NAME) values (36306,33702,'No subsidy was found for the subscriber',1033,3,1,0,'x_wcoc_get_econ_info_empty')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='1023521'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT * FROM ALL_SYNONYMS WHERE OWNER='SA'</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_da_pub_log</queryString>
+				</query>
+				<query>
+					<queryString>commit</queryString>
+				</query>
+				<query>
+					<queryString>SELECT * FROM adp_relation</queryString>
+				</query>
+				<query>
+					<queryString>SELECT count(rel_name) FROM adp_relation group by rel_name</queryString>
+				</query>
+				<query>
+					<queryString>SELECT count(rel_name) FROM adp_relation group by rel_name having count (rel_name) &gt; 1</queryString>
+				</query>
+				<query>
+					<queryString>SELECT count(rel_name),rel_name FROM adp_relation group by rel_name having count (rel_name) &gt; 1</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner ='SA'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm3</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin1052:1521:brcrm3</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM11</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM11</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where org_id='509685063'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid=4266</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_3_snapshot_report order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_3_snapshot_exception order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_x_3_snapshot_exception order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like 'wifi'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like 'qw%'</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set scope=5 where name='x_spa_offer_no_to_display'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name='x_spa_offer_no_to_display'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner='SA'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db</queryString>
+				</query>
+				<query>
+					<queryString>select max(length(name)) from table_string_db</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where id='33603'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where id='3603'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where id='5603'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where id='5703'</queryString>
+				</query>
+				<query>
+					<queryString>update  table_string_db set id = 5703 where name='x_spa_header_data'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_spa_header_data'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM26</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin1052:1521:NM1CRM26</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_choice_fld where rel_name='blg_cust_type2hgbst_elm'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='bm_cust_type'</queryString>
+				</query>
+				<query>
+					<queryString>select blg_cust_type2hgbst_elm,count (blg_cust_type2hgbst_elm) from table_bus_org group by blg_cust_type2hgbst_elm</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where objid in (1548,2369,27079,27901)</queryString>
+				</query>
+				<query>
+					<queryString>update table_bus_org set blg_cust_type2hgbst_elm=27901 where objid = 14251</queryString>
+				</query>
+				<query>
+					<queryString>select org_id,blg_cust_type2hgbst_elm from table_bus_org where objid = 14251</queryString>
+				</query>
+				<query>
+					<queryString>select cease_date from table_bus_org where org_id='102723157'</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set i_value=1 where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set i_value=0 where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name like '%OMF%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bg_action where sequence_key='POLLER:000000043992'</queryString>
+				</query>
+				<query>
+					<queryString>select sequence_key, count(sequence_key) from table_bg_action where dependent_id is null group by sequence_key having (count(sequence_key) &gt; 1 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from tab where tname like 'ADP%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from tab where tname like 'ADP%' and tabtype='VIEW'</queryString>
+				</query>
+				<query>
+					<queryString>select tname from tab where tname like 'ADP%' and tabtype='VIEW'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like '%x_ect%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner='SA'</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part t1 where x_mdn is not null and not exists (select objid from table_site_part where t1.objid=table_site_part.site_part2site_part)</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM7_TRX</name>
+			<username>bmlapp7</username>
+			<password>bmlapp7</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@hpp423:1521:bml11g</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG where trx_sequence_id=43992</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>BELLCND1</name>
+			<username>sa</username>
+			<password />
+			<prompt>true</prompt>
+			<connect>jdbc:oracle:thin:@ALEXANS01V:1521:BELLCND1</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>ALTER PROFILE default LIMIT
+  PASSWORD_LIFE_TIME UNLIMITED</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG</queryString>
+				</query>
+				<query>
+					<queryString>update CSM2CRM_TRX_LOG set poll_status='N'</queryString>
+				</query>
+				<query>
+					<queryString>select * from aif_operation</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_objects</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_objects where lower(object_name) like 'table_da_evt_trig'</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_db_links</queryString>
+				</query>
+				<query>
+					<queryString>select * from DBA_OBJECTS where lower(object_name) like 'table_da_evt_trig'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where x_entire_address like 'Not%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where x_entire_address like '%15%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from DBA_OBJECTS</queryString>
+				</query>
+				<query>
+					<queryString>select * from DBA_OBJECTS where lower(object_type) like '%link%'</queryString>
+				</query>
+				<query>
+					<queryString>drop  database link PETE</queryString>
+				</query>
+				<query>
+					<queryString>drop  database link TEST_19APR</queryString>
+				</query>
+				<query>
+					<queryString>drop  database link BMLCRM_MASTER</queryString>
+				</query>
+				<query>
+					<queryString>drop  database link BMLCRM</queryString>
+				</query>
+				<query>
+					<queryString>select * from ALL_DB_LINKS</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_da_evt_trig</queryString>
+				</query>
+				<query>
+					<queryString>select zipcode from table_x_fc_ob_union_vw where x_entire_address like '%15%'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT * FROM ( SELECT T1.record_id, T1.record_type, T1.objid, T1.bus_org_objid, T1.con_objid, 
+T1.x_billing_address_objid, T1.site_part_objid, T1.org_id, 
+T1.x_add_lob_search, T1.x_root_bus_objid, T1.x_root_bus_id, T1.phone_number, 
+T1.x_lob_phone_number, T1.status, T1.mapped_status, T1.x_bus_type, 
+T1.x_root_bus_type, T1.x_status_objid, T1.x_status_ref_id, T1.x_status_order, 
+T1.first_name, T1.middle_name, T1.last_name, T1.x_email, T1.x_billing_address, 
+T1.x_billing_address_2, T1.x_entire_address, T1.city, T1.zipcode, T1.x_role_active, 
+T1.x_role_name, T1.x_role_name_ref_id, T1.x_bus_role_name_ref_id, T1.serial_no, T1.esn_sim_no, 
+T1.x_is_subscription, T1.x_parent_bus_id, T1.x_birth_date, T1.x_mother_maiden_name, 
+T1.x_type_hgbst_elm_title, T1.x_type_hgbst_elm_objid, T1.x_sub_type_elm_title,
+ T1.x_accnt_sub_type_elm_objid, T1.x_accnt_sub_type_elm, T1.x_imei_no, 
+T1.S_x_root_bus_id &quot;T1.S_x_root_bus_id&quot; FROM table_x_fc_ob_union_vw T1  
+WHERE  rownum &lt;=  1000002 
+AND (  T1.s_x_role_name_ref_id IN  (  'PRIMARY' ,  'USER' )  ) 
+AND (  T1.x_accnt_sub_type_elm &lt;&gt;  4266 ) AND (  T1.s_x_entire_address LIKE  '%15%' ) AND (  T1.zipcode =  'M4W1J7' ) 
+AND (  T1.s_x_role_name_ref_id IN  (  'PRIMARY' ,  'USER' )  ) AND (  T1.x_accnt_sub_type_elm &lt;&gt;  4266 )  
+ORDER BY  20 ASC, 17 DESC, 36 ASC, 46 ASC, 1 ASC ) WHERE ROWNUM &lt;= 404</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM50</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM50</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_x_user_info</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where string like '%Rate Plan and Features%'</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_bg_action where objid='552520'</queryString>
+				</query>
+				<query>
+					<queryString>select count(* ) from table_bg_action</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_employee</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like 'BM%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower(name) like 'x%invalid%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower(name) like 'x_%invalid%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower(name) like '%invalid%value%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='x_deposit_reason_codes'</queryString>
+				</query>
+				<query>
+					<queryString>select t1.ref_id,t1.title from table_hgbst_elm t1
+inner join  MTM_HGBST_ELM0_HGBST_SHOW1 t2 on T1.OBJID = T2.HGBST_ELM2HGBST_SHOW
+inner join table_hgbst_show t3 on T3.OBJID=T2.HGBST_SHOW2HGBST_ELM
+inner join  table_hgbst_lst t4 on T3.OBJID=T4.HGBST_LST2HGBST_SHOW
+where T4.REF_ID='x_deposit_reason_codes'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select login_name,password from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select password from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from tab</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part t1 where x_mdn is not null and not exists (select objid from table_site_part where t1.objid=table_site_part.site_part2site_part)</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM60</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM60</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_hgbst_elm  where title like 'Promo%G%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm  where ref_id like 'Promo%G%'</queryString>
+				</query>
+				<query>
+					<queryString>select domain,name,expr from table_expr where domain='com.bell.crm.cim.pp.XSearchSelectPpStep'</queryString>
+				</query>
+				<query>
+					<queryString>select objid,domain,name,expr from table_expr where domain='com.bell.crm.cim.pp.XSearchSelectPpStep'</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set expr='$PromoAccountType AND Not isNull ($DaysContract) AND $DaysContract &gt; 0 AND (isNull($SUBINFO:PromoGroup) OR ''LEGACY''=$SUBINFO:PromoGroup OR ''''=$SUBINFO:PromoGroup OR ''NA''=$SUBINFO:PromoGroup ) AND ($CommitmentTerm=12 OR $CommitmentTerm=24 OR $CommitmentTerm=36)' where objid=22</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_header</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner = 'SA'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr order by objid</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where ref_id like 'smart%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner='SA'</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set name='PromoGroup.HIGH.SelectFacet' where name='PromoGroup.High.SelectFacet'</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set name='PromoGroup.HIGH.EnableFacet' where name='PromoGroup.High.EnableFacet'</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name from adp_relation group by rel_name having count(rel_name) &gt; 1</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_lst order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_site_part where objid=32622 or site_part2hgbst_elm=32622</queryString>
+				</query>
+				<query>
+					<queryString>SELECT cf.objid, cf.ref_count, cf.has_view, cf.is_global, cf.is_active, cf.ref_id, cf.name, co.focus_object, co.name FROM table_cntrld_fn cf, table_cntrld_obj co WHERE cf.cntrld_fn2cntrld_obj = co.objid ORDER BY co.objid</queryString>
+				</query>
+				<query>
+					<queryString>select * from aif_operation</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>CRMLN801</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:CRMLN801</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM44</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM44</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * FROM table_x_fc_ob_union_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_privclass</queryString>
+				</query>
+				<query>
+					<queryString>select max(x_adj_limit) from table_privclass</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='1023521'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where s_last_name like '%WCOC%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where s_last_name like '%WCOC%' and zipcode='K1R7S9'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where s_last_name like '%WCOC%' and zipcode='K1R7S9' and s_x_role_name_ref_id in ('PRIMARY','USER')</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_fc_ob_union_vw where s_last_name like '%WCOC%' and zipcode='K1R7S9' and s_x_role_name_ref_id in ('PRIMARY','USER') and x_accnt_sub_type_elm &lt;&gt;4266 and x_root_bus_type = 'OB'</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part t1 where x_mdn is not null and not exists (select objid from table_site_part where t1.objid=table_site_part.site_part2site_part)</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM51</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM51</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select x_birth_date from table_fc_so_cont_acct_vw order by x_birth_date desc</queryString>
+				</query>
+				<query>
+					<queryString>select x_birth_date from table_fc_so_cont_subs_vw order by x_birth_date desc</queryString>
+				</query>
+				<query>
+					<queryString>select x_birth_date from table_fc_so_cont_subs_vw order by x_birth_date asc</queryString>
+				</query>
+				<query>
+					<queryString>select x_birth_date from table_bus_org</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_fc_so_cont_subs_vw order by x_birth_date asc</queryString>
+				</query>
+				<query>
+					<queryString>SELECT objid, con_objid, contact_id, first_name, middle_name, last_name, phone, e_mail, bus_org_objid, org_id, org_name, salutation, is_active, ml_salutation, address, city, zipcode, x_role_name, x_role_name_ref_id, x_root_bus_objid, x_root_bus_id, x_additional_name, x_mother_maiden_name, x_birth_date, x_bus_status_num, x_bus_status, x_bus_sub_market, x_bus_instructions, x_bus_type, x_blg_cust_type, x_blg_cust_sub_type, x_type_hgbst_elm, x_acc_type_ref_id, x_sub_type_hgbst_elm, x_accnt_sub_type_elm, x_acc_sub_type_ref_id, x_billing_address, x_billing_address_objid, x_cntct_role_order, x_ml_role_name, x_prim_birth_date, x_coUser_occupation, x_coUser_employer, x_coUser_hire_date, x_coUser_work_tel_no, x_coUser_work_extn FROM table_fc_so_cont_acct_vw 
+WHERE  (  objid =  40688032 )  AND  (  bus_org_objid =  21866279 )  AND  (  con_objid =  57997649 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_relation</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_relation where rel_name='case_soln2workaround'</queryString>
+				</query>
+				<query>
+					<queryString>select rowid from adp_relation where rel_name='case_soln2workaround'</queryString>
+				</query>
+				<query>
+					<queryString>delete from adp_relation where rowid='AABKQPAAFAAAAP8AAL' and rel_name='case_soln2workaround'</queryString>
+				</query>
+				<query>
+					<queryString>select rowid from adp_relation where  rel_name='case_soln2workaround'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_relation where  rel_name='case_soln2workaround'</queryString>
+				</query>
+				<query>
+					<queryString>delete from adp_relation where rowid='AABKQPAAFAAANaYAAx' and rel_name='lic_count2lic_types'</queryString>
+				</query>
+				<query>
+					<queryString>select rowid from adp_relation where rel_name='lic_count2lic_types'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_relation where rel_name='lic_count2lic_types'</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name,count(rel_name) from adp_relation group by rel_name</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name from adp_relation group by rel_name having count(rel_name) &gt; 2</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name,count(rel_name) from adp_relation group by rel_name having count(rel_name) &gt; 2</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name,count(rel_name) from adp_relation group by rel_name having count(rel_name) = 2</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name from adp_relation group by rel_name having count(rel_name) &gt; 1</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>BMLAPP3</name>
+			<username>BMLAPP3</username>
+			<password>BMLAPP3</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@hpp423:1521:bml11g</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useDefault" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from logical_date</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG order by trx_sequence_id</queryString>
+				</query>
+				<query>
+					<queryString>update CSM2CRM_TRX_LOG set poll_status='N'  where trx_sequence_id=35457</queryString>
+				</query>
+				<query>
+					<queryString>select * from CSM2CRM_TRX_LOG order by trx_sequence_id desc</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>CRMLN835</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:CRMLN835</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select max(id) from table_string_db</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_df_no_device_was_found'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like 'x_df_%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_header</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name like 'x_df%' and locale=1033</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower (string) like '%contact CGI%' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower (string) like '%CGI%' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower (string) like '%problem%' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where lower (string) like '%contact cgi%' order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_spa_header_data'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM20</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM20</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_string_db where name like '%buf%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name = 'x_buffer_limit_exceeds_err_msg'</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_x_3_snapshot_report</queryString>
+				</query>
+				<query>
+					<queryString>truncate table table_x_3_snapshot_exception</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_x_3_snapshot_report</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_x_3_snapshot_exception</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_x_3_snapshot_report where x_3_report2exception=402</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from  table_x_3_snapshot_report</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name> NM1CRM54</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM54</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList />
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM54</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM54</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select count(*) from  table_x_3_snapshot_report</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_x_3_snapshot_report order by objid desc</queryString>
+				</query>
+				<query>
+					<queryString>select * from  table_x_3_snapshot_exception</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM27</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM27</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>SELECT
+count(*)  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+count(*)  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+count(*)  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	RIGHT OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where org_id='509685213'</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+count(*)  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	RIGHT OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part 
+	  WHERE	table_bus_org.x_status2hgbst_elm IS NOT NULL</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+*  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	RIGHT OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part 
+	  WHERE	table_bus_org.x_status2hgbst_elm IS NOT NULL 
+   AND 	(table_elm_bus_role_name.ref_id='primary') and (table_elm_role_name.ref_id='user') and table_bus_org.x_type='B' and (table_bus_org.billing_root2bus_org=-2 or table_bus_org.billing_root2bus_org is null or table_root_account.x_type='N')</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+*  
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	RIGHT OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part 
+	  WHERE	table_bus_org.x_status2hgbst_elm IS NOT NULL</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	table_bus_org.org_id
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part 
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+	and table_site_part.objid=24119</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	*
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	*
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	table_bus_org.org_id
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_BUS_ORG&quot; (OBJID, ORG_ID, S_ORG_ID, NAME, S_NAME, TYPE, LOC_TYPE, YEAR_END, YEAR_START, TAX_EXEMPT, STANDARDS, PHONE, FAX, BUSINESS_DESC, WEB_SITE, STOCK_SYM, REVN_RANGE, SIZE_EMPL, SIZE_REVN, PRODUCT, OWNERSHIP, COMMENTS, ALT_NAME, E_MAIL, ARCH_IND, DEV, ALT_URL, STATUS, UPDATE_STAMP, STRUCT_TYPE, SALES_TAX_ID, FED_TAX_ID, IS_COMPETITOR, IS_PARTNER, TAX_EXEMPT_START_DT, BUS_NODE, COLLECTN_STS, BLG_CUST_TYPE, BLG_ENABLED_IND, BLG_EVT_GEN_STS, SALES_RATING, RSC_PL_CD, DLR_CD, BLG_CUST_SUB_TYPE, ID_VALUE, S_ID_VALUE, IS_INDIV, CUST_TYPE, BILLING_ID, S_BILLING_ID, ESTABLISH_DATE, CEASE_DATE, FISCAL_YEAR_END, GUID, IS_LEGAL_ENTITY, PROSPECT2TERRITORY, BUS_PRIMARY2ADDRESS, DEFAULTBUS2PRICE_PROG, PRIMARY2SITE, PRIMARY2BLG_ARGMNT, PRIMARY2PP_BUCKET, DFLT_BLG_HRCHY2ROLLUP, SUPPORT2EMPLOYEE, BILLING_ROOT2BUS_ORG, ACCOUNT2CURRENCY, DLR_CD2HGBST_ELM, BLG_CUST_TYPE2HGBST_ELM, BLG_CUST_SUB_TYPE2HGBST_ELM, CUST_ID_TYPE2HGBST_ELM, NDV_CUST_CNTCT2CONTACT, BUS_ORG2BOH_BE, BO_LTYPE2HGBST_ELM, BO_OWNER2HGBST_ELM, BO_RANGE2HGBST_ELM, BO_RATING2HGBST_ELM, BO_SIZE2HGBST_ELM, BO_TYPE2HGBST_ELM, X_ID, X_TYPE, X_PASSWORD, X_BIRTH_DATE, X_INSTRUCTIONS, X_CC, X_SUB_MARKET, X_HOME_PHONE, X_WORK_PHONE, X_DRIVER_LIC_NO, X_SIN, X_STATUS, X_STATUS2HGBST_ELM, X_STATUS_FR, X_ADD_LOB_SEARCH ) VALUES  ( -2, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', , '', '', '', '', '', , , '', , TO_DATE('','yyyy-mm-dd hh24:mi:ss'), , '', '', , , TO_DATE('','yyyy-mm-dd hh24:mi:ss'), , '', '', , , '', '', '', '', '', '', , , '', '', TO_DATE('','yyyy-mm-dd hh24:mi:ss'), TO_DATE('','yyyy-mm-dd hh24:mi:ss'), TO_DATE('','yyyy-mm-dd hh24:mi:ss'), '', , , , , , , , , , , , , , , , , , , , , , , , '', '', '', TO_DATE('','yyyy-mm-dd hh24:mi:ss'), '', '', '', '', '', '', '', '', , '', '' )</queryString>
+				</query>
+				<query>
+					<queryString>INSERT INTO &quot;SA&quot;.&quot;TABLE_BUS_ORG&quot; (OBJID ) VALUES  ( -2 )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_bus_org where objid=-2</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	table_bus_org.org_id
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	table_bus_org.org_id
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+	table_bus_org.org_id
+FROM	table_site_part	 
+	INNER JOIN 	table_con_sp_role 	ON table_site_part.objid	= table_con_sp_role.con_sp_role2site_part  	and table_site_part.objid=24119
+	INNER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_con_sp_role.sp_account2bus_org 
+	INNER JOIN 	table_con_bus_role 	ON table_bus_org.objid	= table_con_bus_role.con_bus_role2bus_org 
+	INNER JOIN 	table_bus_org  table_root_account	ON table_root_account.objid	= table_bus_org.billing_root2bus_org 
+	INNER JOIN 	table_contact 	ON table_contact.objid	= table_con_sp_role.con_sp_role2contact 
+	LEFT OUTER JOIN 	table_site 	ON table_site.objid	= table_con_bus_role.bus_address2site 
+	LEFT OUTER JOIN 	table_address 	ON table_address.objid	= table_site.cust_billaddr2address 
+	INNER JOIN 	table_hgbst_elm  table_elm_role_name	ON table_elm_role_name.objid	= table_con_sp_role.csp_role2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_site_part_status	ON table_elm_site_part_status.objid	= table_site_part.site_part2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_mapped_status	ON table_elm_mapped_status.objid	= table_elm_site_part_status.mapping2hgbst_elm 
+	LEFT OUTER JOIN 	table_x_sp_equip_info 	ON table_site_part.objid	= table_x_sp_equip_info.x_equip_info2site_part 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_type	ON table_elm_acc_type.objid	= table_bus_org.blg_cust_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_acc_sub_type	ON table_elm_acc_sub_type.objid	= table_bus_org.blg_cust_sub_type2hgbst_elm 
+	INNER JOIN 	table_hgbst_elm  table_elm_bus_role_name	ON table_elm_bus_role_name.objid	= table_con_bus_role.cbusrole2hgbst_elm 
+
+	RIGHT OUTER JOIN 	table_site_part  table_imei_no_part	ON table_site_part.objid	= table_imei_no_part.site_part2site_part 
+	  WHERE	table_bus_org.x_status2hgbst_elm IS NOT NULL 
+   AND 	(table_elm_bus_role_name.ref_id='primary') and (table_elm_role_name.ref_id='user') and table_bus_org.x_type='B' and (table_bus_org.billing_root2bus_org=-2 or table_bus_org.billing_root2bus_org is null or table_root_account.x_type='N')</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner='sa'</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where owner='SA'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM39</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM39</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_string_db where name='x_ban_locking_failure_message'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_ban_locking_failure_message' or id=70215</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_config_itm where name='x_spa_offer_no_to_display'</queryString>
+				</query>
+				<query>
+					<queryString>update table_config_itm set scope=5 where name='x_spa_offer_no_to_display'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_spa_header_data'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where name='x_spa_header_plan_features'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_string_db where id='5704'</queryString>
+				</query>
+				<query>
+					<queryString>update  table_string_db set id = 5704 where name='x_spa_header_plan_features'</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_site_part t1 where x_mdn is not null and not exists (select objid from table_site_part where t1.objid=table_site_part.site_part2site_part)</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>chicrm10</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin599:1710:chicrm10</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from aif_operation</queryString>
+				</query>
+				<query>
+					<queryString>select * from aif_operation where name like '%security%'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm116</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm116</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from TABLE_X_SEARCH_INTRXN_OB</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+*
+FROM	table_contact	 
+	INNER JOIN 	table_intrxn 	ON table_contact.objid	= table_intrxn.intrxn2contact 
+	LEFT OUTER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_intrxn.intrxn2bus_org 
+	INNER JOIN 	table_channel_inst 	ON table_intrxn.objid	= table_channel_inst.channel_inst2intrxn 
+	INNER JOIN 	table_channel 	ON table_channel.objid	= table_channel_inst.channel_inst2channel 
+	INNER JOIN 	table_medium 	ON table_medium.objid	= table_channel.channel2medium 
+	INNER JOIN 	table_topic 	ON table_intrxn.objid	= table_topic.topic2intrxn 
+	LEFT OUTER JOIN 	table_site_part 	ON table_site_part.objid	= table_intrxn.x_intrxn2site_part 
+	INNER JOIN 	table_session 	ON table_intrxn.objid	= table_session.session2intrxn 
+	INNER JOIN 	table_user 	ON table_user.objid	= table_session.session2user 
+	INNER JOIN 	table_employee 	ON table_user.objid	= table_employee.employee2user 
+	LEFT OUTER JOIN 	table_hgbst_elm  table_x_elm_reason_2	ON table_x_elm_reason_2.objid	= table_topic.r2_topic2hgbst_elm 
+	LEFT OUTER JOIN 	table_hgbst_elm  table_x_elm_result	ON table_x_elm_result.objid	= table_topic.res_topic2hgbst_elm 
+	
+  WHERE 	(start_time &gt; ADD_MONTHS(sysdate,-18))</queryString>
+				</query>
+				<query>
+					<queryString>SELECT
+*
+FROM	table_contact	 
+	INNER JOIN 	table_intrxn 	ON table_contact.objid	= table_intrxn.intrxn2contact 
+	LEFT OUTER JOIN 	table_bus_org 	ON table_bus_org.objid	= table_intrxn.intrxn2bus_org 
+	INNER JOIN 	table_channel_inst 	ON table_intrxn.objid	= table_channel_inst.channel_inst2intrxn 
+	INNER JOIN 	table_channel 	ON table_channel.objid	= table_channel_inst.channel_inst2channel 
+	INNER JOIN 	table_medium 	ON table_medium.objid	= table_channel.channel2medium 
+	INNER JOIN 	table_topic 	ON table_intrxn.objid	= table_topic.topic2intrxn 
+	LEFT OUTER JOIN 	table_site_part 	ON table_site_part.objid	= table_intrxn.x_intrxn2site_part 
+	INNER JOIN 	table_session 	ON table_intrxn.objid	= table_session.session2intrxn 
+	INNER JOIN 	table_user 	ON table_user.objid	= table_session.session2user 
+	INNER JOIN 	table_employee 	ON table_user.objid	= table_employee.employee2user 
+	LEFT OUTER JOIN 	table_hgbst_elm  table_x_elm_reason_2	ON table_x_elm_reason_2.objid	= table_topic.r2_topic2hgbst_elm 
+	LEFT OUTER JOIN 	table_hgbst_elm  table_x_elm_result	ON table_x_elm_result.objid	= table_topic.res_topic2hgbst_elm 
+	
+  WHERE 	(table_intrxn.start_time &gt; ADD_MONTHS(sysdate,-18))</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where ref_id like 'smart%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like '%smart%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like '%smartso%'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>brcrm123</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:brcrm120</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select * from table_user</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_user_info</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>CRMLN838</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin169:1521:CRMLN838</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>update table_hgbst_elm set title='Tier',s_title='TIER' where title like 'Promo%G%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where ref_id like 'Promo%G%'</queryString>
+				</query>
+				<query>
+					<queryString>UPDATE &quot;SA&quot;.&quot;TABLE_EXPR&quot; SET EXPR = 'NOT $PromoAccountType OR $CommitmentTerm=0 OR  isNull ($DaysContract) OR $DaysContract &lt;=0 OR ( NOT $CommitmentTerm=999 AND NOT ''HIGH''=$SUBINFO:PromoGroup AND NOT ''MID''=$SUBINFO:PromoGroup )' WHERE (OBJID = 21) AND (EXPR = 'NOT $PromoAccountType OR ( NOT $CommitmentTerm=999 AND NOT ''HIGH''=$SUBINFO:PromoGroup AND NOT ''MID''=$SUBINFO:PromoGroup )')</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set expr='NOT $PromoAccountType OR $CommitmentTerm=0 OR  isNull ($DaysContract) OR $DaysContract &lt;=0 OR ( NOT $CommitmentTerm=999 AND NOT ''HIGH''=$SUBINFO:PromoGroup AND NOT ''MID''=$SUBINFO:PromoGroup )' where objid=21</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr where objid=21</queryString>
+				</query>
+				<query>
+					<queryString>NOT $PromoAccountType OR $CommitmentTerm=0 OR  isNull ($DaysContract) OR $DaysContract &lt;=0 OR ( NOT $CommitmentTerm=999 AND NOT 'HIGH'=$SUBINFO:PromoGroup AND NOT 'MID'=$SUBINFO:PromoGroup )</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr where objid=20</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr where objid=19</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set expr='NOT $PromoAccountType OR   $CommitmentTerm=0 OR  isNull ($DaysContract) OR $DaysContract &lt;=0 OR ( NOT $CommitmentTerm=999 AND NOT ''HIGH''=$SUBINFO:PromoGroup )' where objid=19</queryString>
+				</query>
+				<query>
+					<queryString>select domain,name,expr from table_expr where domain='com.bell.crm.cim.pp.XSearchSelectPpStep'</queryString>
+				</query>
+				<query>
+					<queryString>select objid,domain,name,expr from table_expr where domain='com.bell.crm.cim.pp.XSearchSelectPpStep'</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where ref_id like 'smart%'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where lower(ref_id) like '%smartso%'</queryString>
+				</query>
+				<query>
+					<queryString>select rel_name,count(rel_name) from adp_relation group by rel_name having count(rel_name) = 2</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set name='PromoGroup.HIGH.SelectFacet' where name='PromoGroup.High.SelectFacet'</queryString>
+				</query>
+				<query>
+					<queryString>update table_expr set name='PromoGroup.HIGH.EnableFacet' where name='PromoGroup.High.EnableFacet'</queryString>
+				</query>
+				<query>
+					<queryString>select count(*) from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from adp_header</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+		<bookmark>
+			<name>NM1CRM36</name>
+			<username>sa</username>
+			<password>sa</password>
+			<prompt>false</prompt>
+			<connect>jdbc:oracle:thin:@illin775:1521:NM1CRM36</connect>
+			<autoCommit>true</autoCommit>
+			<autoCommitPreference>Always True</autoCommitPreference>
+			<autoCommitIgnoreView>false</autoCommitIgnoreView>
+			<quoteAll>false</quoteAll>
+			<sendQueryAsIs>false</sendQueryAsIs>
+			<stripNewline>false</stripNewline>
+			<shutdownOnDisconnect>false</shutdownOnDisconnect>
+			<defaultEncoding />
+			<driver>oracle.jdbc.driver.OracleDriver</driver>
+			<type>ORACLE</type>
+			<substituteVariables>false</substituteVariables>
+			<variablesRegexp>\$\{(.*?)\}</variablesRegexp>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\ojdbc6.jar</driverLocation>
+			<driverLocation>C:\CRMCC\projects\thirdparty\jdbc\oracle\orai18n.jar</driverLocation>
+			<Other_Schemas schemaRule="useAll" />
+			<quickList />
+			<queryList>
+				<query>
+					<queryString>select count(*) from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>delete from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where OWNER='SA'</queryString>
+				</query>
+				<query>
+					<queryString>select * from all_synonyms where OWNER='SA' and table_name='TABLE_EXPR'</queryString>
+				</query>
+				<query>
+					<queryString>select org_id from table_x_fc_bundled_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+				<query>
+					<queryString>select org_id from table_x_fc_standalone_subs_vw where x_type_hgbst_elm_title='Consumer'</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_expr</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_x_values_map</queryString>
+				</query>
+				<query>
+					<queryString>select * from table_hgbst_elm where ref_id='LEGACY'</queryString>
+				</query>
+				<query>
+					<queryString>select title, title_fr from table_hgbst_elm where ref_id in ('LEGACY','NA')</queryString>
+				</query>
+				<query>
+					<queryString>select ref_id,title, title_fr from table_hgbst_elm where ref_id in ('LEGACY','NA')</queryString>
+				</query>
+				<query>
+					<queryString>select ref_id,title, title_fr from table_hgbst_elm where ref_id in ('PromoGroup')</queryString>
+				</query>
+				<query>
+					<queryString>select ref_id,title  from table_hgbst_lst where ref_id='x_promo_acc_list'</queryString>
+				</query>
+			</queryList>
+		</bookmark>
+	</bookmarks>
+</SAVED_DATA>

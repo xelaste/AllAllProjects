@@ -1,0 +1,781 @@
+format 56
+"xx"
+  revision 7
+  modified_by 100 "alexanderst"
+
+
+  
+  // class settings
+  default_attribute_visibility protected default_relation_visibility protected default_operation_visibility public
+  //class diagram settings
+  draw_all_relations yes hide_attributes no hide_operations no show_members_full_definition no show_members_visibility no show_members_stereotype no show_members_multiplicity no show_members_initialization no member_max_width 127 show_parameter_dir yes show_parameter_name yes package_name_in_tab no class_drawing_mode natural drawing_language uml show_context_mode no auto_label_position yes show_infonote no shadow yes
+  //use case diagram settings
+  package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes class_drawing_mode actor shadow yes
+  //sequence diagram settings
+  show_full_operations_definition no write_horizontally yes class_drawing_mode natural drawing_language uml draw_all_relations yes shadow yes
+  //collaboration diagram settings
+  show_full_operations_definition no show_hierarchical_rank no write_horizontally yes drawing_language uml package_name_in_tab no show_context no draw_all_relations yes shadow yes
+  //object diagram settings
+   write_horizontally yes package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes shadow yes
+  //component diagram settings
+  package_name_in_tab no show_context no auto_label_position yes draw_all_relations yes shadow yes
+  draw_component_as_icon no show_component_req_prov no show_component_rea no
+  //deployment diagram settings
+  package_name_in_tab no show_context no write_horizontally yes auto_label_position yes draw_all_relations yes shadow yes
+  draw_component_as_icon no show_component_req_prov no show_component_rea no
+  //state diagram settings
+  package_name_in_tab no show_context no auto_label_position yes write_trans_label_horizontally yes show_trans_definition no draw_all_relations yes shadow yes
+  show_activities yes region_horizontally yes drawing_language uml
+  //activity diagram settings
+  package_name_in_tab no show_context no show_opaque_action_definition no auto_label_position yes write_flow_label_horizontally no draw_all_relations yes shadow yes
+  show_infonote yes drawing_language uml
+  
+  class_color yellow duration_color transparent continuation_color gray note_color blue fragment_color transparent subject_color transparent usecase_color yellow package_color transparent component_color green artifact_color green deploymentnode_color gray state_color yellow stateaction_color transparent activity_color transparent activityregion_color transparent activityaction_color transparent parameterpin_color white 
+  font_size 8
+  diagram_format A4
+
+  mark_for_import
+  
+  ncouples 1
+  key "html dir" value "N:/UNIVER/MSc/OOD/Assignments/Assignment12/Diagrams/xx/doc/"
+  classview 128100 "Hotel Classes"
+    //class diagram settings
+    draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+    //collaboration diagram settings
+    show_full_operations_definition default show_hierarchical_rank default write_horizontally default drawing_language default package_name_in_tab default show_context default draw_all_relations default shadow default
+    //object diagram settings
+     write_horizontally default package_name_in_tab default show_context default auto_label_position default draw_all_relations default shadow default
+    //sequence diagram settings
+    show_full_operations_definition default write_horizontally default class_drawing_mode default drawing_language default draw_all_relations default shadow default
+    //state diagram settings
+    package_name_in_tab default show_context default auto_label_position default write_trans_label_horizontally default show_trans_definition default draw_all_relations default shadow default
+    show_activities default region_horizontally default drawing_language default
+    //class settings
+    //activity diagram settings
+    package_name_in_tab default show_context default show_opaque_action_definition default auto_label_position default write_flow_label_horizontally default draw_all_relations default shadow default
+    show_infonote default drawing_language default
+    classdiagram 128100 "HotelClasses"
+      draw_all_relations no hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+      size A4
+    end
+
+    class 128100 "Clerk"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      ncouples 1
+      key "Name" value ""
+      classrelation 130148 // <generalisation>
+	relation 130148 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130148 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+
+      classrelation 142052 // <generalisation>
+	relation 138852 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142052 // <generalisation>
+	  b parent class_ref 134756 // Employee
+      end
+    end
+
+    class 128228 "Entity"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 134116 // <association>
+	relation 132964 ----
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134116 // <association>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134244 // <association>
+      end
+    end
+
+    class 128356 "Offer"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130276 // <generalisation>
+	relation 130276 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130276 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+    end
+
+    class 128484 "RoomType"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130532 // <generalisation>
+	relation 130532 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130532 // <generalisation>
+	  b parent class_ref 128356 // Offer
+      end
+
+      classrelation 133604 // <aggregation>
+	relation 132708 o---
+	  a role_name "" multiplicity "*" init_value "0" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133604 // <aggregation>
+	  b role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133732 // <aggregation>
+      end
+
+      classrelation 137316 // <composition>
+	relation 135908 *---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137316 // <composition>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137444 // <composition>
+      end
+
+      classrelation 141796 // OrderItem2Room
+	relation_ref 138596 // OrderItem2Room
+      end
+    end
+
+    class 128612 "FacilityType"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130660 // <generalisation>
+	relation 130660 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130660 // <generalisation>
+	  b parent class_ref 128356 // Offer
+      end
+
+      classrelation 133860 // <aggregation>
+	relation 132836 o---
+	  a role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133860 // <aggregation>
+	  b role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133988 // <aggregation>
+      end
+
+      classrelation 138084 // <composition>
+	relation 136292 *---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138084 // <composition>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138212 // <composition>
+      end
+
+      classrelation 142692 // OrderItem2Facility
+	relation_ref 139236 // OrderItem2Facility
+      end
+    end
+
+    class 128740 "ServiceType"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130788 // <generalisation>
+	relation 130788 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130788 // <generalisation>
+	  b parent class_ref 128356 // Offer
+      end
+
+      classrelation 133732 // <aggregation>
+	relation_ref 132708 // <aggregation>
+      end
+
+      classrelation 133988 // <aggregation>
+	relation_ref 132836 // <aggregation>
+      end
+
+      classrelation 139364 // <composition>
+	relation 136932 *---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139364 // <composition>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139492 // <composition>
+      end
+    end
+
+    class 128868 "Customer"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130404 // <generalisation>
+	relation 130404 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130404 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+
+      classrelation 132836 // <aggregation>
+	relation_ref 132196 // <aggregation>
+      end
+
+      classrelation 140900 // (Order2Customer)
+	relation 138212 *--- name "Order2Customer"
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 140900 // (Order2Customer)
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141028 // (Order2Customer)
+      end
+    end
+
+    class 130020 "Order"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 130916 // <generalisation>
+	relation 130916 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 130916 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+
+      classrelation 133092 // (Order2Log)
+	relation_ref 132324 // Order2Log
+      end
+
+      classrelation 141028 // (Order2Customer)
+	relation_ref 138212 // Order2Customer
+      end
+
+      classrelation 141412 // <composition>
+	relation 138468 *---
+	  a role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141412 // <composition>
+	  b role_name "" multiplicity "1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141540 // <composition>
+      end
+    end
+
+    class 130148 "Logger"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      comment "The class for store history about transactions. This class iis a realtion between entities p
+participating in transaction"
+      classrelation 132708 // <aggregation>
+	relation 132196 o---
+	  a role_name "" multiplicity "1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132708 // <aggregation>
+	  b role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132836 // <aggregation>
+      end
+
+      classrelation 132964 // (Order2Log)
+	relation 132324 o--- name "Order2Log"
+	  a role_name "" multiplicity "1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 132964 // (Order2Log)
+	  b role_name "" multiplicity "1..*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 133092 // (Order2Log)
+      end
+
+      classrelation 133476 // <generalisation>
+	relation 132580 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 133476 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+
+      classrelation 135396 // <aggregation>
+	relation 134116 o---
+	  a role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135396 // <aggregation>
+	  b role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 135524 // <aggregation>
+      end
+
+      classrelation 138468 // <composition>
+	relation_ref 136420 // <composition>
+      end
+
+      classrelation 138596 // <aggregation>
+	relation 136548 o---
+	  a role_name "" multiplicity "0..1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138596 // <aggregation>
+	  b role_name "" multiplicity "1" const_relation protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138724 // <aggregation>
+      end
+
+      classrelation 138852 // <aggregation>
+	relation 136676 o---
+	  a role_name "" multiplicity "0..1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138852 // <aggregation>
+	  b role_name "" multiplicity "0..1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138980 // <aggregation>
+      end
+
+      classrelation 139108 // <aggregation>
+	relation 136804 o---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139108 // <aggregation>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139236 // <aggregation>
+      end
+
+      classrelation 139620 // <aggregation>
+	relation 137060 o---
+	  a role_name "" multiplicity "0..1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139620 // <aggregation>
+	  b role_name "" multiplicity "0..1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 139748 // <aggregation>
+      end
+
+      classrelation 142308 // <aggregation>
+	relation 139108 o---
+	  a role_name "" multiplicity "1" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142308 // <aggregation>
+	  b role_name "" multiplicity "*" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142436 // <aggregation>
+      end
+    end
+
+    class 130276 "DataManager"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 134244 // <association>
+	relation_ref 132964 // <association>
+      end
+    end
+
+    class 131428 "Payment"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135524 // <aggregation>
+	relation_ref 134116 // <aggregation>
+      end
+
+      classrelation 135780 // <generalisation>
+	relation 134372 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 135780 // <generalisation>
+	  b parent class_ref 128228 // Entity
+      end
+    end
+
+    class 131556 "DiscountType"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135652 // <generalisation>
+	relation 134244 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 135652 // <generalisation>
+	  b parent class_ref 128356 // Offer
+      end
+
+      classrelation 137828 // <composition>
+	relation 136164 *---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137828 // <composition>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 137956 // <composition>
+      end
+    end
+
+    class 131684 "ReceptionClerk"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 135908 // <generalisation>
+	relation 134500 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 135908 // <generalisation>
+	  b parent class_ref 128100 // Clerk
+      end
+    end
+
+    class 131812 "PhoneClerk"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136036 // <generalisation>
+	relation 134628 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136036 // <generalisation>
+	  b parent class_ref 128100 // Clerk
+      end
+    end
+
+    class 131940 "ServiceClerk"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 136164 // <generalisation>
+	relation 134756 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 136164 // <generalisation>
+	  b parent class_ref 128100 // Clerk
+      end
+    end
+
+    class 133092 "Room"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 137444 // <composition>
+	relation_ref 135908 // <composition>
+      end
+
+      classrelation 138340 // <composition>
+	relation 136420 *---
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138340 // <composition>
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 138468 // <composition>
+      end
+
+      classrelation 138724 // <aggregation>
+	relation_ref 136548 // <aggregation>
+      end
+    end
+
+    class 133220 "Discount"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 137956 // <composition>
+	relation_ref 136164 // <composition>
+      end
+
+      classrelation 138980 // <aggregation>
+	relation_ref 136676 // <aggregation>
+      end
+    end
+
+    class 133348 "Facility"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 138212 // <composition>
+	relation_ref 136292 // <composition>
+      end
+
+      classrelation 139236 // <aggregation>
+	relation_ref 136804 // <aggregation>
+      end
+    end
+
+    class 133476 "Service"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 139492 // <composition>
+	relation_ref 136932 // <composition>
+      end
+
+      classrelation 139748 // <aggregation>
+	relation_ref 137060 // <aggregation>
+      end
+    end
+
+    class 134628 "OrderItem"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 141540 // <composition>
+	relation_ref 138468 // <composition>
+      end
+
+      classrelation 141668 // (OrderItem2Room)
+	relation 138596 *--- name "OrderItem2Room"
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141668 // (OrderItem2Room)
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141796 // OrderItem2Room
+      end
+
+      classrelation 142564 // (OrderItem2Facility)
+	relation 139236 *--- name "OrderItem2Facility"
+	  a role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142564 // (OrderItem2Facility)
+	  b role_name "" protected
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142692 // OrderItem2Facility
+      end
+    end
+
+    class 134756 "Employee"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 142436 // <aggregation>
+	relation_ref 139108 // <aggregation>
+      end
+    end
+
+    class 134884 "Manager"
+      visibility package 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      
+      classrelation 142180 // <generalisation>
+	relation 138980 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142180 // <generalisation>
+	  b parent class_ref 134756 // Employee
+      end
+    end
+  end
+
+  deploymentview 128100 "aa"
+    //deployment diagram settings
+    package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+    draw_component_as_icon default show_component_req_prov default show_component_rea default
+    deploymentdiagram 129252 "xx"
+      package_name_in_tab default show_context default write_horizontally default auto_label_position default draw_all_relations default shadow default
+      draw_component_as_icon default show_component_req_prov default show_component_rea default
+      size A4
+    end
+  end
+end

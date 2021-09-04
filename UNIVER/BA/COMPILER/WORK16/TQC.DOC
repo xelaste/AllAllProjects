@@ -1,0 +1,28 @@
+Compiler project.
+Writen by Stekolchik Alexander at 1998.
+
+   How produce Tqc.exe from the source files.
+   Project writen using C language compiler version 2.0.
+   For producing exe file you need Borland C compile installed onto yours Pc ,
+   and the system directory of the compiler should be include in path.
+   Check the file maketqc placed in the sub directory SRC\ where placed all
+   the source files. There are defined variables you have to change for
+   compile sources files.
+
+   List of variables you may need to change:
+
+   TCROOT = c:\TC2.0  directory C compiler installed.
+   APPNAME = TQC      name of application.
+   INCPATH = $(TCROOT)\include directory of include files
+   LIBPATH = $(TCROOT)\lib     directory of library files
+   CC = $(TCROOT)\tcc.exe      name of compiler program
+
+   After you have checked maketqc file , you can run make for
+   produce TQC.EXE file.Change directory to the directory where
+   source files are.Run program make.
+
+   Command line:
+   make -fmaketqc
+
+   It is possible make exe file using turbo C enviroment.
+   Use file tqc.PRJ then and be sure that compiler model is large.

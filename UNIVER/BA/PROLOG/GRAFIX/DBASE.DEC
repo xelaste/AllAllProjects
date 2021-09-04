@@ -1,0 +1,481 @@
+/*
+DBASE III File Interface by Brian D Steel, 18 Jul 89 - (c) 1989 LPA Ltd
+-----------------------------------------------------------------------
+
+This module gives access to DBASE III database and memo files (.DBF and .DBT),
+allowing them to be opened, read, and updated by LPA PROLOG Professional;
+DBASE III index files (.NDX) are not currently supported by this interface.
+The routines provided are as follows:
+
+        append_db/3     appends a new record to the database (.DBF)
+        close_db/1      closes the .DBF and .DBT files for the database
+        delete_db/2     deletes a record from the database (.DBF)
+        find_db/4       finds a string within the database (.DBF)
+        info_db/4       returns information about the database (.DBF)
+        open_db/1       opens the .DBF and .DBT files for the database
+        read_db/3       reads a record from the database (.DBF)
+        restore_db/2    restores a deleted record to the database (.DBF)
+        write_db/3      writes to an existing record in the database (.DBF)
+        append_memo/3   appends a new memo to the database (.DBT)
+        read_memo/3     reads a memo from the database (.DBT)
+
+In all these routines, programs should only use the root of the database name
+(ie, omit any file extension): the .DBF and .DBT suffixes are added internally
+whenever needed.
+
+The database file (.DBF)
+------------------------
+
+Records in the .DBF file are represented as a Prolog list of the form:
+
+        [data1,data2 ... datan]
+
+where "data1" ... "datan" are compound terms defining the types and values of
+the fields. There are 5 such field types, which are represented as follows:
+
+        character       represented as a Prolog string
+        numeric         represented as a Prolog number
+        logical         represented as a 1-character Prolog atom
+        memo            represented as a Prolog number indexing the memo file
+        date            represented as a Prolog structure of the form D/M/Y
+
+Character fields may be of any length up to 255 bytes, the maximum length of
+a fixed format field in LPA PROLOG Professional.
+
+Numeric fields use a fixed place format, and may be represented in Prolog as
+integers or floating point numbers depending upon their values.
+
+Logical fields indicate true or false values using one of the characters
+(Y y T t) and (N n F f) respectively, or (?) for an uninitialised field.
+
+Memo fields consist of a numeric index which can be used to specify a memo in
+the .DBT file. The text of the memo itself is not stored in the memo field,
+but can be obtained separately from the .DBT file (see below).
+
+Date fields store day, month and year as integers, which should contain
+reasonable values.
+
+The memo file (.DBT)
+--------------------
+
+Records in the .DBT file are represented as Prolog strings (lists of bytes),
+and these may be of any length within the constraints of the heap and stack.
+They are not directly handled only by the two predicates, append_memo/3 and
+read_memo/3.
+*/
+
+:- crmod(dbase_mod,
+        [append_db,close_db,delete_db,find_db,info_db,open_db,read_db,
+         restore_db,write_db,append_memo,read_memo],
+        [character,numeric,logical,memo,date,
+         ?,'Y',y,'N',n,'T',t,'F',f,'C','L','M','D',' ',*]).
+
+/*
+append a record to the database
+-------------------------------
+
+A database record is appended to the end of the .DBF file for the database,
+and its position is returned for direct referencing. If the database is not
+open, or the record fails to match the correct type constraints, then this
+primitive fails without updating the database.
+
+        Name    is an atom naming the database
+        Numrcs  is a variable to return the record number used
+        Records is the database record to be written
+*/
+
+append_db(Name,Numrcs,Records) :-
+  def(dbase),
+  dbase(Name,Dbf,Dbt,Dat,[Numrcs,Hedsze,Recsze],Fields),
+  End is Hedsze + Numrcs * Recsze,
+  seek(Dbf,End),
+  write_rec(Fields,Records,Dbf),
+  fw(Dbf,[c(1)],['~Z']),
+  new_date(Dbf),
+  Newrcs is Numrcs + 1,
+  N0 is Newrcs mod 256,
+  N1 is ip(Newrcs / 256) mod 256,
+  N2 is ip(Newrcs / 65536) mod 256,
+  N3 is ip(Newrcs / 16777216) mod 256,
+  fw(Dbf,[b(4)],[[N0,N1,N2,N3]]),
+  retract(dbase(Name,Dbf,Dbt,Date,[Numrcs,Hedsze,Recsze],Fields)),
+  assert(dbase(Name,Dbf,Dbt,Date,[Newrcs,Hedsze,Recsze],Fields)),
+  !.
+
+/*
+close the database
+------------------
+
+This closes the .DBF and .DBT files for the database. This primitive succeeds
+even if there was no such database open.
+
+        Name    is an atom naming the database
+*/
+
+close_db(Name) :-
+  def(dbase),
+  retract(dbase(Name,Dbf,Dbt,Date,Format,Fields)),
+  close(Dbf),
+  close(Dbt),
+  fail.
+close_db(Name).
+
+/*
+delete a record from the database
+---------------------------------
+
+A specified database record in the .DBF file is marked as deleted. Note that
+it is possible to restore such records (restore_db/2). If the database is not
+open, or the record number is not valid, then this primitive fails without
+updating the database.
+
+        Name    is an atom naming the database
+        Pos     is the number of the record to be deleted
+*/
+
+delete_db(Name,Pos) :-
+  switch_flag(Name,Pos,' ',*),
+  !.
+
+/*
+find a string with the database
+-------------------------------
+
+A search is made within the .DBF file for a record containing the given string.
+The record from which to begin the search is specified by its number, and the
+number is returned of the first record found containing the string. If the
+database is not open, or the starting record number is not valid, or the string
+is not found, then this primitive fails.
+
+        Name    is an atom naming the database
+        Pos     is the number of the record to be deleted
+        String  is an atom which defines the string to search for
+        New     is a variable to return the number of any record found
+*/
+
+find_db(Name,Pos,String,New) :-
+  goto_record(Name,Pos,Dbf,Dbt,Date,[Numrcs,Hedsze,Recsze],Fields),
+  find(Dbf,String),
+  seek(Dbf,Offset),
+  length(String,Length),
+  New is ip((Offset - Hedsze - Length) / Recsze),
+  !.
+
+/*
+return information about the database
+-------------------------------------
+
+The field types and widths, the number of records, and the date of the last
+update are returned for the given database. If the database is not open, then
+this primitive fails.
+
+        Name    is an atom naming the database
+        Format  is a variable returning format information about the fields
+        Numrcs  is a variable returning the number of records in the database
+        Date    is a variable returning the date as a structure
+
+The format is returned as a Prolog structure with the following form:
+
+        [[name1,type1],[name2,type2], ... [namen,typen]]
+
+where "name1" ... "namen" are atoms consisting of the names of the fields as
+specified in the .DBF file header, and "type1" ... "typen" are compound terms
+defining the types and sizes of the fields. There are 5 such field types,
+which are represented as follows:
+
+        character(W)    character field
+        numeric(W,P)    numeric field
+        logical(1)      logical field
+        memo(10)        memo field
+        date(8)         date field
+
+where W is the field width, and P is the number of decimal places. The last
+three field types are always of the widths given.
+*/
+
+info_db(Name,Format,Numrcs,Date) :-
+  def(dbase),
+  dbase(Name,Dbf,Dbt,[Dd,Mm,Yyyy],[Numrcs|Sizes],Fields),
+  field_info(Fields,Format),
+  Date = date(Dd,Mm,Yyyy),
+  !.
+
+/*
+open a database
+---------------
+
+Before any of these database routines will work, a database must be opened.
+This primitive closes any existing database of the given name, before opening
+a new one. The .DBF file must exist: otherwise a file not found error will
+result; depending upon information stored within the file, a correspondinf
+.DBT file might also be needed.
+
+        Name    is an atom naming the database
+*/
+
+open_db(Name) :-
+  close_db(Name),
+  concat(Name,'.dbf',Dbf),
+  open(Dbf),
+  read_header(Dbf,Id,Date,Format),
+  read_fields(Dbf,Fields),
+  open_memo(Id,Name,Dbt),
+  assert(dbase(Name,Dbf,Dbt,Date,Format,Fields)),
+  !.
+
+/*
+read a record from the database
+-------------------------------
+
+A specified database record is read from the .DBF file of the database. If
+the database is not open, or the record number is not valid, then this
+primitive fails.
+
+        Name    is an atom naming the database
+        Pos     is the number of the record to read
+        Records is a varianble to return the database record
+*/
+
+read_db(Name,Pos,Records) :-
+  goto_record(Name,Pos,Dbf,Dbt,Date,[Numrcs,Hedsze,Recsze],Fields),
+  fr(Dbf,[c(1)],[Flag]),
+  read_rec(Flag,Recsze,Fields,Records,Dbf),
+  !.
+
+/*
+restore a record to the database
+--------------------------------
+
+A previously deleted database record in the .DBF file is restored by marking
+it as not deleted. Note that this primitive can be used to reverse the effects
+of delete_db/2. If the database is not open, or the number given is not that of
+a deleted record, then this primitive fails without updating the database.
+
+        Name    is an atom naming the database
+        Pos     is the number of the record to be restored
+*/
+
+restore_db(Name,Pos) :-
+  switch_flag(Name,Pos,*,' '),
+  !.
+
+/*
+write a record to the database
+------------------------------
+
+A database record is written to an existing location in the .DBF file for the
+database, replacing the existing record. If the database is not open, or the
+record number is not valid, or the record fails to match the correct type
+constraints, then this primitive fails without updating the database.
+
+        Name    is an atom naming the database
+        Pos     is the number of the record to write
+        Records is the database record to be written
+*/
+
+write_db(Name,Pos,Records) :-
+  goto_record(Name,Pos,Dbf,Dbt,Date,Format,Fields),
+  write_rec(Fields,Records,Dbf),
+  new_date(Dbf),
+  !.
+
+/*
+append a memo to the database
+-----------------------------
+
+A memo is appended to the end of the .DBT file for the database, and its
+index is returned for direct referencing. If the database is not open, or does
+not include a memo file, then this primitive fails without updating the
+database.
+
+        Name    is an atom naming the database
+        Memo    is a variable to return the memo index
+        Notes   is the a string containing the memo text to be written
+*/
+
+append_memo(Name,Memo,Notes) :-
+  def(dbase),
+  dbase(Name,Dbf,Dbt,Date,Format,Fields),
+  write_notes(Dbt,Memo,Notes),
+  !.
+
+/*
+read a memo from the database
+-----------------------------
+
+A specified memo is read from the .DBT file of the database. If the database
+is not open, or does not include a memo file, or the memo index is not valid,
+then this primitive fails.
+
+        Name    is an atom naming the database
+        Memo    is a number giving the memo index
+        Notes   is a variable to return the memo text as a string
+*/
+
+read_memo(Name,Memo,Notes) :-
+  def(dbase),
+  dbase(Name,Dbf,Dbt,Date,Format,Fields),
+  read_notes(Memo,Notes,Dbt),
+  !.
+
+/*
+internal routines
+-----------------
+
+Below this point are the routines needed to implement the DBASE III interface.
+All are written in standard LPA PROLOG Professional, using no undocumented
+hooks. By all means examine the hereafter uncommented code to see how it all
+works ... and good luck!
+*/
+
+field_name([],[]).
+field_name([0|Any],[]) :-
+  !.
+field_name([Char|Rest],[Char|Name]) :-
+  field_name(Rest,Name).
+
+build_fields(13,Dbf,[]) :-
+  !.
+build_fields(First,Dbf,[[Name,Type,Width,Places]|Fields]) :-
+  fr(Dbf,[b(10),c(1),b(4),b(1),b(1),b(14)],[Rest,Type,Addr,Len,Dec,Filler]),
+  field_name([First|Rest],String),
+  fs(String,[c(0)],[Name]),
+  Len = [Width],
+  Dec = [Places],
+  read_fields(Dbf,Fields).
+
+field_one('C',[Width,0],character(Width)).
+field_one('N',[Width,Places],numeric(Width,Places)).
+field_one('L',[1,0],logical(1)).
+field_one('M',[10,0],memo(10)).
+field_one('D',[8,0],date(8)).
+
+read_part(0,[],Dbt) :-
+  !.
+read_part(Dif,Notes,Dbt) :-
+  cmp(-1,Dif,256),
+  fr(Dbt,[b(Dif)],[Notes]),
+  !.
+read_part(Dif,Notes,Dbt) :-
+  fr(Dbt,[b(255)],[First]),
+  Left is Dif - 255,
+  read_part(Left,Next,Dbt),
+  concat(First,Next,Notes).
+
+read_record([],[],Dbf).
+read_record([[Name,Type|Field]|Fields],[Record|Records],Dbf) :-
+  read_write(Type,Field,Record,fr,Dbf),
+  read_record(Fields,Records,Dbf).
+
+read_write('C',[Width,0],Data,Io,Stream) :-
+  Left is 0 - Width,
+  Io(Stream,[b(Left)],[Data]).
+read_write('N',[Width,0],Data,Io,Stream) :-
+  !,
+  Io(Stream,[q(Width)],[Data]),
+  number(Data).
+read_write('N',[Width,Places],Data,Io,Stream) :-
+  Io(Stream,[f(Width,Places)],[Data]).
+read_write('L',[1,0],Data,Io,Stream) :-
+  Io(Stream,[c(1)],[Data]),
+  one on(Data,[?,'Y',y,'N',n,'T',t,'F',f]).
+read_write('M',[10,0],Number,Io,Stream) :-
+  Io(Stream,[q(10)],[Number]),
+  number(Number).
+read_write('D',[8,0],(Dd/Mm/Yyyy),Io,Stream) :-
+  Io(Stream,[r(4,10),r(2,10),r(2,10)],[Yyyy,Mm,Dd]).
+
+write_record([],[],[]).
+write_record([[Name,Type|Field]|Fields],[Record|Records],[String|Strings]) :-
+  read_write(Type,Field,Record,fs,String),
+  write_record(Fields,Records,Strings).
+
+read_notes(0,[],Dbt) :-
+  !.
+read_notes(Memo,Notes,Dbt) :-
+  Addr is Memo * 512,
+  seek(Dbt,Addr),
+  find(Dbt,'~Z~Z'),
+  seek(Dbt,End),
+  Dif is End - Addr - 2,
+  seek(Dbt,Addr),
+  read_part(Dif,Notes,Dbt).
+
+write_notes([],0,Notes) :-
+  !.
+write_notes(Dbt,Memo,Notes) :-
+  seek(Dbt,0),
+  fr(Dbt,[b(4)],[Block]),
+  Block = [A0,A1,A2,A3],
+  Memo is A0 + 256 * (A1 + 256 * (A2 + 256 * A3)),
+  Addr is 512 * Memo,
+  seek(Dbt,Addr),
+  fw(Dbt,[b(0),c(2)],[Notes,'~Z~Z']),
+  seek(Dbt,Pos),
+  Newblk is ip((Pos + 511) / 512),
+  N0 is Newblk mod 256,
+  N1 is ip(Newblk / 256) mod 256,
+  N2 is ip(Newblk / 65536) mod 256,
+  N3 is ip(Newblk / 16777216) mod 256,
+  seek(Dbt,0),
+  fw(Dbt,[b(4)],[[N0,N1,N2,N3]]).
+
+read_rec(*,Recsze,Fields,[],Dbf) :-
+  Less is Recsze - 1,
+  fr(Dbf,[b(Less)],[Deleted]).
+read_rec(' ',Recsze,Fields,Records,Dbf) :-
+  read_record(Fields,Records,Dbf).
+
+open_memo(3,Name,[]).
+open_memo(131,Name,Dbt) :-
+  concat(Name,'.dbt',Dbt),
+  open(Dbt).
+
+read_fields(Dbf,Fields) :-
+  fr(Dbf,[b(1)],[Id]),
+  Id = [Byte],
+  build_fields(Byte,Dbf,Fields).
+
+read_header(Dbf,Id,[Dd,Mm,Y],[Numrcs,Hedsze,Recsze]) :-
+  fr(Dbf,[b(32)],[Header]),
+  Header = [Id,Yy,Mm,Dd,N0,N1,N2,N3,H0,H1,R0,R1|Dummy],
+  Y is Yy + 1900,
+  Numrcs is N0 + 256 * (N1 + 256 * (N2 + 256 * N3)),
+  Hedsze is H0 + 256 * H1,
+  Recsze is R0 + 256 * R1.
+
+field_info([],[]).
+field_info([[Name,Type|Args]|Fields],[[Name,Info]|Formats]) :-
+  field_one(Type,Args,Info),
+  field_info(Fields,Formats).
+
+goto_record(Name,Pos,Dbf,Dbt,Date,[Numrcs,Hedsze,Recsze],Fields) :-
+  def(dbase),
+  number(Pos),
+  dbase(Name,Dbf,Dbt,Date,[Numrcs,Hedsze,Recsze],Fields),
+  cmp(-1,Pos,Numrcs),
+  Offset is Hedsze + Pos * Recsze,
+  seek(Dbf,Offset).
+
+switch_flag(Name,Pos,From,To) :-
+  goto_record(Name,Pos,Dbf,Dbt,Date,Format,Fields),
+  seek(Dbf,Offset),
+  fr(Dbf,[c(1)],[Flag]),
+  Flag = From,
+  seek(Dbf,Offset),
+  fw(Dbf,[c(1)],[To]),
+  new_date(Dbf).
+
+new_date(Dbf) :-
+  date(Dd,Mm,Yyyy),
+  Yy is Yyyy - 1900,
+  seek(Dbf,1),
+  fw(Dbf,[b(3)],[[Yy,Mm,Dd]]),
+  retract(dbase(Name,Dbf,Dbt,Date,Format,Fields)),
+  assert(dbase(Name,Dbf,Dbt,[Dd,Mm,Yyyy],Format,Fields)).
+
+write_rec(Fields,Records,Dbf) :-
+  write_record(Fields,Records,Strings),
+  fw(Dbf,[b(0)],[[32]|Strings]).
+
+:- cumod(&).

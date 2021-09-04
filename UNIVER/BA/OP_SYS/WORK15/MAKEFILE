@@ -1,0 +1,10 @@
+CC = gcc
+CFLAGS =  -g
+BIN = mycron 
+OBJ = mycron.o  
+mycron: $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $(OBJ)
+mycrn.o: mycron.c 
+	$(CC) $(CFLAGS) -c mycron.c
+clean:
+	rm -f $(BIN) *.o core

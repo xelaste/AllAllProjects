@@ -1,0 +1,13 @@
+IASN a 1 
+IGRT _t2 a 0
+JMPZ 12 _t2 
+JUMP 5  
+IINP a  
+IINP b  
+IMLT _t3 a b
+IDIV _t4 b a
+ISUB _t5 _t3 _t4
+IPRT _t5  
+JUMP 2  
+HALT   
+Compiler project. Developed by Alexander Stekolchik.1998

@@ -1,0 +1,46 @@
+Compiler project.
+Writen by Stekolchik Alexander at 1998.
+This disk context:
+.\Readme this file.
+.\TQC.DOC - explantation about generating TQC.EXE from the source files.
+\SRC\ library of the source files
+  TQC.C       main function
+  COMMON.H    common header file
+  SCANNER.H  lexical analizer definitions and constants
+  TLA.C      lexical analizer functions
+  GSTACK.H  stack definitions and declarations
+  GSTACK.C  common stack operation function
+  HASH.H   hashtable header file
+  HASH.C   hashtable functions
+  STKENTRY H  parser stack definitions and declarations
+  STKENTRY.C  parser stack function
+  PARSER.H   parser header file
+  PARS_TAB.C  definitions of LALR actions table and goto table
+  PARSER.C    parser operation function
+  SEMANTIC.H semantic actions constants
+  SEMANTIC.C semantic action functions
+\EXM\ library of examples testing tqc.exe
+
+A.TIN        FIBO.LST    MIXERR.TIN   BIGTEST.QUD   BIGTEST.LST
+B.TIN        IF.LST      PRIMES.TIN   FIBO.QUD
+BIGTEST.TIN  MIXERR.LST  SQRT.TIN     IF.QUD
+FIBO.TIN     WHILE.LST   WHILE.TIN    PRIMES.LST
+GCD.TIN      A.QUD       A.LST        WHILE.QUD
+IF.TIN       B.QUD       B.LST        PRIMES.QUD
+
+Where
+   *.tin file input programs
+   *.lst listings of the input files produced by compiler
+   *.qud output files program in QUAD language generated from input files *.tin
+Command line of compiler  - TQC NAME_OF_FILE.TIN
+
+
+
+
+
+
+
+
+
+
+

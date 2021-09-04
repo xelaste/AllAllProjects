@@ -1,0 +1,27 @@
+<root>
+   <BindElement type="Lookup" name="idSearchPart">
+        <HtmlInfo htmlId="idSearchPart"/>
+   <SubmitInfo>   		
+      <WMCall >OPENPOPUP</WMCall>
+      <WMOpenPopupInfo >
+         <Mode>PICK</Mode>
+      </WMOpenPopupInfo>
+      <DataCommElement name="forwardTopLevelInfo" event="PreInitCdo2Control" eventSource="TARGET" source="PARENT" target="OPENED" id="clfy1040_d_0">
+                <DataCommItem type="CDO" id="clfy1041_d_0">
+                        <CDOAction operation="COPY" source="conditionUpcCDO" target="conditionUpcCDO" id="clfy1042_d_0">
+                        	<Field source="upcFlag" target="upcFlag" id="clfy1043_d_0"/>
+                        	<Field source="readOnlyFlag" target="readOnlyFlag"/>
+                        </CDOAction>
+                </DataCommItem>
+       </DataCommElement>
+   </SubmitInfo>
+    <LookupInfo name="" id="clfy167_d_5">
+        <ListJspPage id="clfy168_d_5">/morder/productcatalogue/product/product_list.jsp</ListJspPage>
+        <XfilterName id="clfy169_d_5">product_list_xFilter</XfilterName>
+        <IsListPageFirst id="clfy171_d_5">False</IsListPageFirst>
+        <SearchAgainstView id="clfy232_d_2">1</SearchAgainstView>
+    </LookupInfo>
+    </BindElement>   
+
+
+</root>

@@ -1,0 +1,29 @@
+prog mixerr;
+var a:int,a:real,
+    c:int,
+    fg:rael,tg1:real,htmp:int,
+    d:yy,samp:int,samp1:int;
+
+begin
+  if d>0 then d:=1; else d:=2; fi;
+
+  if samp>2 then samp:=1; print 2; else samp:=2 print 1; fi;
+  if if>0 then Aa:= 1;
+	      Bpraint 1;
+	      a:= 2+3*5-4.0+7/3;
+	      read samp1;
+	      print fg;
+	      fg:=3;
+	      if 2=2.0 then print 1 else print 0 fi;
+	else  a := 2;
+	      c:=1.0;
+	      b:=3;
+  fi;
+  while 2>0 do
+     a:=2*3.0+samp/2;
+     k:=2*4+2/3;
+     print a;
+
+  od;
+  if a=1 then print 1; else print 0; fi;
+end.

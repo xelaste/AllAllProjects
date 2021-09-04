@@ -1,0 +1,298 @@
+Turbo Assembler	 Version 3.1	    08/04/96 16:23:03	    Page 1
+ex14_1.ASM
+
+
+
+      1				     ;--------------------------------------------------------
+      2				     SHOW_MONTH	macro N	;macro for print string	onto screen
+      3				     push dx;save value	of dx
+      4				     push ax
+      5				     mov dx,offset new_line
+      6				     call write
+      7				     mov dx,offset MONTH&N
+      8				     call write
+      9				     mov dx,offset DAYS&N
+     10				     call write
+     11				     pop ax;return value of AX
+     12				     pop dx;return value of DX
+     13				     endm ;SHOW_MONTH
+     14				     ;------------------------------------------------------------
+     15				     SHOW_ALL_MONTHS macro
+     16				      i=1
+     17				      rept 12
+     18				      SHOW_MONTH %i
+     19				      i=i+1
+     20				      endm ;rept
+     21				     endm ;SHOW_ALL_MONTH
+     22				     ;----------------------------------------------------------
+     23	0000			     dseg segment
+     24	0000  4D 4F 4E 54 48 31	20+	MONTH1 db 'MONTH1 $'
+     25	      24
+     26	0008  4D 4F 4E 54 48 32	20+	MONTH2 db 'MONTH2 $'
+     27	      24
+     28	0010  4D 4F 4E 54 48 33	20+	MONTH3 db 'MONTH3 $'
+     29	      24
+     30	0018  4D 4F 4E 54 48 34	20+	MONTH4 db 'MONTH4 $'
+     31	      24
+     32	0020  4D 4F 4E 54 48 35	20+	MONTH5 db 'MONTH5 $'
+     33	      24
+     34	0028  4D 4F 4E 54 48 36	20+	MONTH6 db 'MONTH6 $'
+     35	      24
+     36	0030  4D 4F 4E 54 48 37	20+	MONTH7 db 'MONTH7 $'
+     37	      24
+     38	0038  4D 4F 4E 54 48 38	20+	MONTH8 db 'MONTH8 $'
+     39	      24
+     40	0040  4D 4F 4E 54 48 39	20+	MONTH9 db 'MONTH9 $'
+     41	      24
+     42	0048  4D 4F 4E 54 48 31	30+	MONTH10	db 'MONTH10 $'
+     43	      20 24
+     44	0051  4D 4F 4E 54 48 31	31+	MONTH11	db 'MONTH11 $'
+     45	      20 24
+     46	005A  4D 4F 4E 54 48 31	32+	MONTH12	db 'MONTH12 $'
+     47	      20 24
+     48	0063  33 31 24			DAYS1 db '31$'
+     49	0066  32 38 24			DAYS2 db '28$'
+     50	0069  33 31 24			DAYS3 db '31$'
+     51	006C  33 30 24			DAYS4 db '30$'
+     52	006F  33 31 24			DAYS5 db '31$'
+     53	0072  33 30 24			DAYS6 db '30$'
+     54	0075  33 31 24			DAYS7 db '31$'
+     55	0078  33 31 24			DAYS8 db '31$'
+     56	007B  33 30 24			DAYS9 db '30$'
+     57	007E  33 31 24			DAYS10 db '31$'
+Turbo Assembler	 Version 3.1	    08/04/96 16:23:03	    Page 2
+ex14_1.ASM
+
+
+
+     58	0081  33 30 24			DAYS11 db '30$'
+     59	0084  33 31 24			DAYS12 db '31$'
+     60	0087  0D 0A 24			new_line  db 0dh,0ah,'$' ;cr+lf	ascii codes
+     61	008A			     dseg ends
+     62				     ;------------------------------------------------------
+     63	0000			     sseg segment stack
+     64	0000  64*(????)			  dw 100 dup(?)
+     65	00C8			     sseg ends
+     66				     ;------------------------------------------------------
+     67	0000			     cseg segment
+     68					  assume cs:cseg,ds:dseg,ss:sseg
+     69				     ;------------ROUTINE TO PRINT A STRING -------------------------
+     70	0000			     write proc
+     71	0000  B4 09			   mov ah,9
+     72	0002  CD 21			   int 21h
+     73	0004  C3			   ret
+     74	0005			     write endp
+     75				     ;-----------------------------------------------------------------
+     76	0005			     main proc far
+     77	0005  1E			  push ds     ;	/---------------------------\
+     78	0006  33 C0			  xor  ax,ax  ;	| Save return address to Dos|
+     79	0008  50			  push ax     ;	\---------------------------/
+     80	0009  B8 0000s			  mov ax,dseg ;points the ds register to the
+     81	000C  8E D8			  mov ds,ax   ;data segment of this program
+     82				     ;=========================================================
+     83				     SHOW_ALL_MONTHS
+2    84				      SHOW_MONTH %i
+3    85	000E  52		     push dx;save value	of dx
+3    86	000F  50		     push ax
+3    87	0010  BA 0087r		     mov dx,offset new_line
+3    88	0013  E8 FFEA		     call write
+3    89	0016  BA 0000r		     mov dx,offset MONTH1
+3    90	0019  E8 FFE4		     call write
+3    91	001C  BA 0063r		     mov dx,offset DAYS1
+3    92	001F  E8 FFDE		     call write
+3    93	0022  58		     pop ax;return value of AX
+3    94	0023  5A		     pop dx;return value of DX
+2    95				      SHOW_MONTH %i
+3    96	0024  52		     push dx;save value	of dx
+3    97	0025  50		     push ax
+3    98	0026  BA 0087r		     mov dx,offset new_line
+3    99	0029  E8 FFD4		     call write
+3   100	002C  BA 0008r		     mov dx,offset MONTH2
+3   101	002F  E8 FFCE		     call write
+3   102	0032  BA 0066r		     mov dx,offset DAYS2
+3   103	0035  E8 FFC8		     call write
+3   104	0038  58		     pop ax;return value of AX
+3   105	0039  5A		     pop dx;return value of DX
+2   106				      SHOW_MONTH %i
+3   107	003A  52		     push dx;save value	of dx
+3   108	003B  50		     push ax
+3   109	003C  BA 0087r		     mov dx,offset new_line
+3   110	003F  E8 FFBE		     call write
+3   111	0042  BA 0010r		     mov dx,offset MONTH3
+3   112	0045  E8 FFB8		     call write
+3   113	0048  BA 0069r		     mov dx,offset DAYS3
+3   114	004B  E8 FFB2		     call write
+Turbo Assembler	 Version 3.1	    08/04/96 16:23:03	    Page 3
+ex14_1.ASM
+
+
+
+3   115	004E  58		     pop ax;return value of AX
+3   116	004F  5A		     pop dx;return value of DX
+2   117				      SHOW_MONTH %i
+3   118	0050  52		     push dx;save value	of dx
+3   119	0051  50		     push ax
+3   120	0052  BA 0087r		     mov dx,offset new_line
+3   121	0055  E8 FFA8		     call write
+3   122	0058  BA 0018r		     mov dx,offset MONTH4
+3   123	005B  E8 FFA2		     call write
+3   124	005E  BA 006Cr		     mov dx,offset DAYS4
+3   125	0061  E8 FF9C		     call write
+3   126	0064  58		     pop ax;return value of AX
+3   127	0065  5A		     pop dx;return value of DX
+2   128				      SHOW_MONTH %i
+3   129	0066  52		     push dx;save value	of dx
+3   130	0067  50		     push ax
+3   131	0068  BA 0087r		     mov dx,offset new_line
+3   132	006B  E8 FF92		     call write
+3   133	006E  BA 0020r		     mov dx,offset MONTH5
+3   134	0071  E8 FF8C		     call write
+3   135	0074  BA 006Fr		     mov dx,offset DAYS5
+3   136	0077  E8 FF86		     call write
+3   137	007A  58		     pop ax;return value of AX
+3   138	007B  5A		     pop dx;return value of DX
+2   139				      SHOW_MONTH %i
+3   140	007C  52		     push dx;save value	of dx
+3   141	007D  50		     push ax
+3   142	007E  BA 0087r		     mov dx,offset new_line
+3   143	0081  E8 FF7C		     call write
+3   144	0084  BA 0028r		     mov dx,offset MONTH6
+3   145	0087  E8 FF76		     call write
+3   146	008A  BA 0072r		     mov dx,offset DAYS6
+3   147	008D  E8 FF70		     call write
+3   148	0090  58		     pop ax;return value of AX
+3   149	0091  5A		     pop dx;return value of DX
+2   150				      SHOW_MONTH %i
+3   151	0092  52		     push dx;save value	of dx
+3   152	0093  50		     push ax
+3   153	0094  BA 0087r		     mov dx,offset new_line
+3   154	0097  E8 FF66		     call write
+3   155	009A  BA 0030r		     mov dx,offset MONTH7
+3   156	009D  E8 FF60		     call write
+3   157	00A0  BA 0075r		     mov dx,offset DAYS7
+3   158	00A3  E8 FF5A		     call write
+3   159	00A6  58		     pop ax;return value of AX
+3   160	00A7  5A		     pop dx;return value of DX
+2   161				      SHOW_MONTH %i
+3   162	00A8  52		     push dx;save value	of dx
+3   163	00A9  50		     push ax
+3   164	00AA  BA 0087r		     mov dx,offset new_line
+3   165	00AD  E8 FF50		     call write
+3   166	00B0  BA 0038r		     mov dx,offset MONTH8
+3   167	00B3  E8 FF4A		     call write
+3   168	00B6  BA 0078r		     mov dx,offset DAYS8
+3   169	00B9  E8 FF44		     call write
+3   170	00BC  58		     pop ax;return value of AX
+3   171	00BD  5A		     pop dx;return value of DX
+Turbo Assembler	 Version 3.1	    08/04/96 16:23:03	    Page 4
+ex14_1.ASM
+
+
+
+2   172				      SHOW_MONTH %i
+3   173	00BE  52		     push dx;save value	of dx
+3   174	00BF  50		     push ax
+3   175	00C0  BA 0087r		     mov dx,offset new_line
+3   176	00C3  E8 FF3A		     call write
+3   177	00C6  BA 0040r		     mov dx,offset MONTH9
+3   178	00C9  E8 FF34		     call write
+3   179	00CC  BA 007Br		     mov dx,offset DAYS9
+3   180	00CF  E8 FF2E		     call write
+3   181	00D2  58		     pop ax;return value of AX
+3   182	00D3  5A		     pop dx;return value of DX
+2   183				      SHOW_MONTH %i
+3   184	00D4  52		     push dx;save value	of dx
+3   185	00D5  50		     push ax
+3   186	00D6  BA 0087r		     mov dx,offset new_line
+3   187	00D9  E8 FF24		     call write
+3   188	00DC  BA 0048r		     mov dx,offset MONTH10
+3   189	00DF  E8 FF1E		     call write
+3   190	00E2  BA 007Er		     mov dx,offset DAYS10
+3   191	00E5  E8 FF18		     call write
+3   192	00E8  58		     pop ax;return value of AX
+3   193	00E9  5A		     pop dx;return value of DX
+2   194				      SHOW_MONTH %i
+3   195	00EA  52		     push dx;save value	of dx
+3   196	00EB  50		     push ax
+3   197	00EC  BA 0087r		     mov dx,offset new_line
+3   198	00EF  E8 FF0E		     call write
+3   199	00F2  BA 0051r		     mov dx,offset MONTH11
+3   200	00F5  E8 FF08		     call write
+3   201	00F8  BA 0081r		     mov dx,offset DAYS11
+3   202	00FB  E8 FF02		     call write
+3   203	00FE  58		     pop ax;return value of AX
+3   204	00FF  5A		     pop dx;return value of DX
+2   205				      SHOW_MONTH %i
+3   206	0100  52		     push dx;save value	of dx
+3   207	0101  50		     push ax
+3   208	0102  BA 0087r		     mov dx,offset new_line
+3   209	0105  E8 FEF8		     call write
+3   210	0108  BA 005Ar		     mov dx,offset MONTH12
+3   211	010B  E8 FEF2		     call write
+3   212	010E  BA 0084r		     mov dx,offset DAYS12
+3   213	0111  E8 FEEC		     call write
+3   214	0114  58		     pop ax;return value of AX
+3   215	0115  5A		     pop dx;return value of DX
+    216				     ;=========================================================
+    217	0116  CB		     finish: ret ;return from procedure	"main"
+    218				     ;-------------------------------------------------------------------
+    219	0117			     main endp
+    220	0117			     cseg ends
+    221				     end main ;do not forget the starting address
+Turbo Assembler	 Version 3.1	    08/04/96 16:23:03	    Page 5
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "08/04/96"
+??FILENAME			  Text	 "ex14_1  "
+??TIME				  Text	 "16:23:03"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX14_1
+@WORDSIZE			  Text	 2
+DAYS1				  Byte	 DSEG:0063
+DAYS10				  Byte	 DSEG:007E
+DAYS11				  Byte	 DSEG:0081
+DAYS12				  Byte	 DSEG:0084
+DAYS2				  Byte	 DSEG:0066
+DAYS3				  Byte	 DSEG:0069
+DAYS4				  Byte	 DSEG:006C
+DAYS5				  Byte	 DSEG:006F
+DAYS6				  Byte	 DSEG:0072
+DAYS7				  Byte	 DSEG:0075
+DAYS8				  Byte	 DSEG:0078
+DAYS9				  Byte	 DSEG:007B
+FINISH				  Near	 CSEG:0116
+I				  Number 000D
+MAIN				  Far	 CSEG:0005
+MONTH1				  Byte	 DSEG:0000
+MONTH10				  Byte	 DSEG:0048
+MONTH11				  Byte	 DSEG:0051
+MONTH12				  Byte	 DSEG:005A
+MONTH2				  Byte	 DSEG:0008
+MONTH3				  Byte	 DSEG:0010
+MONTH4				  Byte	 DSEG:0018
+MONTH5				  Byte	 DSEG:0020
+MONTH6				  Byte	 DSEG:0028
+MONTH7				  Byte	 DSEG:0030
+MONTH8				  Byte	 DSEG:0038
+MONTH9				  Byte	 DSEG:0040
+NEW_LINE			  Byte	 DSEG:0087
+WRITE				  Near	 CSEG:0000
+
+Macro Name
+
+SHOW_ALL_MONTHS
+SHOW_MONTH
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0117 Para	  none
+DSEG				  16  008A Para	  none
+SSEG				  16  00C8 Para	  Stack
+

@@ -1,0 +1,10 @@
+window_sizes 1280 977 311 963 682 82
+diagrams
+  active  classdiagram_ref 128100 // HotelClasses
+    963 821 100 4 0 0
+end
+show_stereotypes
+selected classview_ref 128100 // Hotel Classes
+open
+end
+end

@@ -1,0 +1,149 @@
+Turbo Assembler	 Version 3.1	    06/12/96 05:53:25	    Page 1
+divby2.ASM
+
+
+
+      1				     ;--------------------------------------------------------
+      2	0000			     dseg segment
+      3	0000  53 79 6E 74 61 78	20+	  msg1	    db 'Syntax error or	missing	signs$'
+      4	      65 72 72 6F 72 20	6F+
+      5	      72 20 6D 69 73 73	69+
+      6	      6E 67 20 73 69 67	6E+
+      7	      73 24
+      8	001E  4F 64 64 20 6E 75	6D+	  msg2	    db 'Odd number - incorect divisions$'
+      9	      62 65 72 20 2D 20	69+
+     10	      6E 63 6F 72 65 63	74+
+     11	      20 64 69 76 69 73	69+
+     12	      6F 6E 73 24
+     13	003E  0D 0A 24			  new_line  db 0dh,0ah,'$' ;cr+lf ascii	codes
+     14	0041			     dseg ends
+     15				     ;------------------------------------------------------
+     16	0000			     sseg segment stack
+     17	0000  64*(????)			  dw 100 dup(?)
+     18	00C8			     sseg ends
+     19				     ;------------------------------------------------------
+     20	0000			     cseg segment
+     21					  assume cs:cseg,ds:dseg,ss:sseg
+     22	0000			     main proc far
+     23	0000  1E			  push ds     ;	/---------------------------\
+     24	0001  2B C0			  sub ax,ax   ;	| Save return address to Dos|
+     25	0003  50			  push ax     ;	\---------------------------/
+     26
+     27	0004  B8 0000s			  mov ax,dseg ;points the ds register to the
+     28	0007  8E D8			  mov ds,ax   ;data segment of this program
+     29				     ;=========================================================
+     30				     ;=========================================================
+     31	0009  B4 01		     read_ch1: mov ah,1	  ; /-----------------------------------------------\
+     32	000B  CD 21			       int 21h	  ; |read the sign (ch1) using dos function 1 (ah=1)|
+     33	000D  8A F8			       mov bh,al  ; | the sign in register BH.			    |
+     34							  ; \-----------------------------------------------/
+     35
+     36				     ;---------- check if (ch='+') or (ch1='-')
+     37	000F  80 FF 2B			       cmp bh ,'+'
+     38	0012  74 05			       je read_ch2
+     39	0014  80 FF 2D			       cmp bh, '-'
+     40	0017  75 55			       jne syntax_error
+     41				     ;*********************************************************************
+     42	0019  B4 01		     read_ch2: mov ah,1	  ;same	as read_ch1
+     43	001B  CD 21			       int 21h
+     44	001D  8A D8			       mov bl,al  ;store digit in register BL
+     45
+     46				     ;------- check if ch2 in ('0'...'9');
+     47	001F  80 FB 30			      cmp bl , '0'
+     48	0022  72 4A			      jb syntax_error
+     49	0024  80 FB 39			      cmp bl , '9'
+     50	0027  77 45			      ja syntax_error
+     51				     ;******************************************************************
+     52	0029  80 EB 30		     translate:	sub bl,48d  ;Form an integer digit from	ASCII code
+     53	002C  80 FF 2B				cmp bh ,'+' ;find out if the digit should be positive
+     54	002F  74 05				je divide   ;if	yes , skip to "divide",else
+     55	0031  F6 D3				not bl	    ;first form	1 compliment and then
+     56	0033  80 C3 01				add bl,1    ;form to  compliment. finally
+     57							    ;you have the negative representation
+Turbo Assembler	 Version 3.1	    06/12/96 05:53:25	    Page 2
+divby2.ASM
+
+
+
+     58				     ;*********************************************************************
+     59	0036  D0 FB		     divide: sar bl,1	    ;divide by 2
+     60	0038  72 23			     jc	not_correct ;if	carry flag ="1"	then result incorrect.
+     61				     ;----------- before changing again	to ASCII code ---------------
+     62	003A  80 FF 2B			     cmp bh,'+'	;find out if the number	is positive
+     63	003D  74 05			     je	print	;if yes	, skip to "print else
+     64	003F  F6 D3			     not bl	;form 1's compliment again and then
+     65	0041  80 C3 01			     add bl,1	 ; add 1 to get	the unsigned number
+     66				     ;******************************************************************
+     67	0044  80 C3 30		     print:  add bl,48	;form ASCII code of the	digit
+     68				     ;------------------------------------------------
+     69	0047  BA 003Er			     mov dx, offset new_line
+     70	004A  B4 09			     mov ah,9 ;dos function 9
+     71	004C  CD 21			     int 21h
+     72				     ;------------------------ print sign :
+     73	004E  8A D7			     mov dl,bh
+     74	0050  B4 02			     mov ah,2
+     75	0052  CD 21			     int 21h
+     76				     ;------------ print digit (as character):
+     77	0054  8A D3			     mov dl,bl
+     78	0056  B4 02			     mov ah,2
+     79	0058  CD 21			     int 21h
+     80	005A  EB 20 90			     jmp finish
+     81				     ;***************************************************************
+     82	005D  BA 003Er		     not_correct: mov dx, offset new_line
+     83	0060  B4 09				  mov ah,9
+     84	0062  CD 21				  int 21h
+     85
+     86	0064  BA 001Er				  mov dx, offset msg2
+     87	0067  B4 09				  mov ah,9
+     88	0069  CD 21				  int 21h
+     89
+     90	006B  EB 0F 90				  jmp finish
+     91				     ;****************************************************************
+     92	006E  BA 003Er		     syntax_error: mov dx, offset new_line
+     93	0071  B4 09				   mov ah,9
+     94	0073  CD 21				   int 21h
+     95
+     96	0075  BA 0000r				   mov dx, offset msg1
+     97	0078  B4 09				   mov ah,9
+     98	007A  CD 21				   int 21h
+     99				     ;*******************************************************************
+    100	007C  CB		     finish: ret ;return from procedure	"main"
+    101				     ;-------------------------------------------------------------------
+    102	007D			     main endp
+    103	007D			     cseg ends
+    104				     end main ;don'nt forget the starting address
+Turbo Assembler	 Version 3.1	    06/12/96 05:53:25	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "06/12/96"
+??FILENAME			  Text	 "divby2  "
+??TIME				  Text	 "05:53:24"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 DIVBY2
+@WORDSIZE			  Text	 2
+DIVIDE				  Near	 CSEG:0036
+FINISH				  Near	 CSEG:007C
+MAIN				  Far	 CSEG:0000
+MSG1				  Byte	 DSEG:0000
+MSG2				  Byte	 DSEG:001E
+NEW_LINE			  Byte	 DSEG:003E
+NOT_CORRECT			  Near	 CSEG:005D
+PRINT				  Near	 CSEG:0044
+READ_CH1			  Near	 CSEG:0009
+READ_CH2			  Near	 CSEG:0019
+SYNTAX_ERROR			  Near	 CSEG:006E
+TRANSLATE			  Near	 CSEG:0029
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  007D Para	  none
+DSEG				  16  0041 Para	  none
+SSEG				  16  00C8 Para	  Stack
+

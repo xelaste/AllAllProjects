@@ -1,0 +1,3 @@
+INDEX VERSION 1.126+C:\UNIVER\MSc\eclipse\workspace_crypto\.metadata\.plugins\org.eclipse.jdt.core
+1128619038.index
+2039482882.index

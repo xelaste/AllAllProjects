@@ -1,0 +1,26 @@
+%--------------------------------------------------
+diameter(T,D):-diameter_and_height(T,D,H).
+%--------------------------------------------------
+% Diameter of tree is max of A , B , C where
+% A is height left subtree + height right subtree + 2
+% B is Diameter of Left subtree
+% C is Diameter of Right subtree
+%--------------------------------------------------
+diameter_and_height(nil,0,-1).
+diameter_and_height(t(L,X,R),D,H):-
+                   different(t(L,X,R),nil),
+                   diameter_and_height(L,DL,HL),
+                   diameter_and_height(R,DR,HR),
+                   max(HL,HR,H1),
+                   H is H1+1,
+                   D1 is HL+HR+2,
+                   max(DL,DR,D2),
+                   max(D1,D2,D).
+%--------------------------------------------------
+max(X,Y,Y):-
+            X=<Y,!.
+max(X,Y,X):-
+            X>Y.
+%--------------------------------------------------
+different(X,Y):-X\=Y.
+%--------------------------------------------------

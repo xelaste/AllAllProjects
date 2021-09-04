@@ -1,0 +1,47 @@
+/* Telephone Bell Simulation - (c) Brian D Steel, 1987
+
+   This program only works on IBM PCs and compatibles, since it uses the
+   beep primitive (on other machines, you will here just a monotonous
+   series of control-G bells!).
+
+   The program is worth looking at because it uses PROLOG Professional's
+   meta-level programming, and some fairly advanced list processing. The
+   program "genlist" generates a conjunction of atoms of the form:
+
+	(beep(F1,T1),beep(F2,T2),beep(F1,T1), ... ,Var)
+
+   and returns the variable at the end. By unifying this variable with the
+   list produced by "genlist", a cyclic (infinite) conjunction of calls to the
+   beep primitive is made.
+
+   The command:
+
+	phone _freq
+
+   produces a trimphone type call, using two frequencies, _freq and _freq
+   + 3 semitones. Having computed the second frequency, it calls "genlist"
+   twice to generate a series of calls to BEEP using these frequencies.
+   The end of the list is then unified with the beginning to produce an
+   infinite series of calls, which are executed as a metabody. */
+
+/* This command produces the phone sound - try: phone 660 */
+
+
+phone(F) :-  
+  durations(W,S,L) ,
+  G is ip(F * 2 ^ 0.25) ,
+  genlist(16,F,G,W,S,X,Y) ,
+  genlist(24,F,G,W,S,Y,Z) ,
+  Z = (beep(0,L),X),
+  X . 
+
+/* This program generates a list of BEEPs, and returns the end of the list */
+
+genlist(0,F,G,W,S,(beep(0,S),V),V) . 
+genlist(N,F,G,W,S,(beep(F,W),B),V) :-  
+  L is N - 1 ,
+  genlist(L,G,F,W,S,B,V) . 
+
+/* The durations given here produce a nice warble like a trimphone */
+
+durations(32,256,2048) . 

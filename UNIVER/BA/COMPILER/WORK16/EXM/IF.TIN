@@ -1,0 +1,7 @@
+prog bigtest;
+var  a: int,
+     b:real;
+begin
+     b:=-(2+1);
+     if 1<2 then print 1; else print 0; fi;
+end.

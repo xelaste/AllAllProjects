@@ -1,0 +1,60 @@
+%-------------------------------------------------------------------------
+go:-solve(8,5,3,8,0,0,4,4,0).
+%-------------------------------------------------------------------------
+% Ca,Cb,Cc capacities of jugs
+% NA,NB,NC start values of water volumes in jugs
+% GoalA,GoalB,GoalC goal values of water volumes
+solve(Ca,Cb,Cc,NA,NB,NC,GoalA,GoalB,GoalC):-
+  write('Input: '),
+  write(' Ca='),write(Ca),write(' NA='),write(NA),write(' GoalA='),write(GoalA),
+  write(' Cb='),write(Cb),write(' NB='),write(NB),write(' GoalB='),write(GoalB),
+  write(' Cc='),write(Cc),write(' NC='),write(NC),write(' GoalC='),write(GoalC),
+  assert(a(Ca)),assert(b(Cb)),assert(c(Cc)), % define capacities of the jugs
+  depth_first_search([],[a/NA,b/NB,c/NC],[a/GoalA,b/GoalB,c/GoalC],Sol),
+  nl,write('Output:'),nl,
+  write(Sol),nl,
+  retract(a(Ca)),retract(b(Cb)),retract(c(Cc)). %delete data
+%--------------------------------------------------------------------------
+depth_first_search(Path,Goal,Goal,[Goal|Path]):-!.
+depth_first_search(Path,Node,Goal,Sol):-
+                  move(Node,Node1),
+                  not member(Node1,Path),
+                  depth_first_search([Node|Path],Node1,Goal,Sol).
+%--------------------------------------------------------------------------
+% Move from node [a/Na,b/Nb,c/Nc] to node [a/NewNa,b/NewNb,c/NewNc]
+% where Na,Nb,Nc - How much water was in jugs before move
+% NewNa,NewNb,NewNc - new quantities
+move([a/Na,b/Nb,c/Nc],[a/NewNa,b/NewNb,c/NewNc]):-
+    pour(a/Na,b/Nb,Nc,NewNa,NewNb,NewNc) %Pour water from a to b
+    ;
+    pour(a/Na,c/Nc,Nb,NewNa,NewNc,NewNb) %Pour water from a to c
+    ;
+    pour(b/Nb,a/Na,Nc,NewNb,NewNa,NewNc) %Pour water from b to a
+    ;
+    pour(b/Nb,c/Nc,Na,NewNb,NewNc,NewNa) %Pour water from b to c
+    ;
+    pour(c/Nc,a/Na,Nb,NewNc,NewNa,NewNb) %Pour water from c to a
+    ;
+    pour(c/Nc,b/Nb,Na,NewNc,NewNb,NewNa). %Pour water from c to b
+%---------------------------------------------------------------------------
+member(X,[X|_]).
+member(X,[_|Tail]):-member(X,Tail).
+%---------------------------------------------------------------------------
+min(X,Y,X):-X=<Y,!.
+min(X,Y,Y):-X>Y.
+%---------------------------------------------------------------------------
+% Routina for pouring water from one jug to another
+% From,To - jugs for move water from one to another
+% Cfrom,Cto - capacities of the jugs
+% Nfrom,Nto - how much water is in the jugs
+% NewNfrom , NewNTo how much water is in the jugs after pouring
+% Third jug how much water is in the third jug do not be changed
+pour(From/Nfrom,To/Nto,ThirdJug,NewNFrom,NewNTo,ThirdJug):-
+     call(From(Cfrom)),call(To(Cto)),
+     Nfrom>0,
+     Nto<Cto,
+     EmptyPlace is Cto - Nto,
+     min(EmptyPlace,Nfrom,WaterToPour),
+     NewNFrom is Nfrom - WaterToPour,
+     NewNTo is Nto + WaterToPour.
+%---------------------------------------------------------------------------

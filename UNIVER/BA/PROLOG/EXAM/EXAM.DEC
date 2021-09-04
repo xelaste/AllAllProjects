@@ -1,0 +1,11 @@
+swap([X,Y|Rest],[Y,X|Rest]) :- X>Y.
+swap([Z|Rest],[Z|Rest1]) :-swap(Rest,Rest1).
+swap([],[]).
+
+bubble(List,Sorted) :- swap(List,List1),
+!,
+bubble(List1,Sorted).
+bubble(Sorted,Sorted).
+p(a,X).
+p(b,a).
+q(X,Y):-not p(Y,X).

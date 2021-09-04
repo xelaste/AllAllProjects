@@ -1,0 +1,134 @@
+/*
+
+Implementation of GSX Primitives - (c) Brian D Steel - 24 Feb 89
+----------------------------------------------------------------
+
+This module contains the definitions of the GSX graphics primitives which were
+previously built in to the LPA PROLOG Professional compiler. They have been
+removed from the system to make way for a new set of graphics primitives
+which can correctly handle the IBM EGA and VGA screens. With this module,
+existing graphics programs will run correctly, provided that you remember
+to import the predicates defined here into any of your modules.
+
+*/
+
+:- crmod(gsx_mod,[line,mark,fill,text,inxy,gmod,gdev],[]).
+
+line(Points) :-
+  !,
+  length(Points,Total),
+  Coords is Total / 2,
+  gsx([6,Coords],[],Points).
+line(Type,Width) :-
+  !,
+  line(Type,Width,1).
+line(Type,Width,Colour) :-
+  gsx([15,0],[Type],[]),
+  gsx([16,1],[],[Width,0]),
+  gsx([17,0],[Colour],[]).
+
+mark(Points) :-
+  !,
+  length(Points,Total),
+  Coords is Total / 2,
+  gsx([7,Coords],[],Points).
+mark(Type,Size) :-
+  !,
+  mark(Type,Size,1).
+mark(Type,Size,Colour) :-
+  gsx([18,0],[Type],[]),
+  gsx([19,1],[],[0,Size]),
+  gsx([20,0],[Colour],[]).
+
+fill(Points) :-
+  !,
+  length(Points,Total),
+  Coords is Total / 2,
+  gsx([9,Coords],[],Points).
+fill(Style,Index) :-
+  !,
+  fill(Style,Index,1).
+fill(Style,Index,Colour) :-
+  gsx([23,0],[Style],[]),
+  gsx([24,0],[Index],[]),
+  gsx([25,0],[Colour],[]).
+
+text(Point,Con) :-
+  atom(Con),
+  !,
+  fs(String,[['C',0]],[Con]),
+  length(String,Length),
+  gsx([8,1,0,Length],String,Point).
+text(Point,Var) :-
+  !,
+  text(1,1,0),
+  getchar(Point,Char),
+  getloop(Char,Point,[],Revstring),
+  rev(Revstring,[],String),
+  fs(String,[['C',0]],[Var]).
+text(Font,Size,Angle) :-
+  !,
+  text(Font,Size,Angle,1).
+text(Font,Size,Angle,Colour) :-
+  gsx([21,0],[Font],[]),
+  gsx([12,1],[],[0,Size]),
+  Tenths is Angle * 10,
+  gsx([13,0],[Tenths,0,0],[]).
+
+inxy(Point,Result) :-
+  !,
+  inxy(Point,Result,Button).
+inxy(Point,Result,Button) :-
+  gsx([28,1],[1],Point,Cntout,Intout,Result),
+  Intout = [Button].
+
+gmod(0) :-
+  !,
+  gsx([3,0],[],[]).
+gmod(Mode) :-
+  gsx([32,0],[Mode],[]).
+
+gdev(0) :-
+  !,
+  gsx([4,0],[],[]),
+  gsx([2,0],[],[]),
+  gsx,
+  put('WND:',23).
+gdev(Device) :-
+  gsx([4,0],[],[]),
+  gsx([2,0],[],[]),
+  gsx([1,0,0,10],[Device,1,1,1,1,1,1,1,1,1],[]).
+
+process(127,Coords,Newcoords,String,Newstring) :-
+  ed([127]).
+process(8,Coords,Newcoords,[Char|String],String) :-
+  findplace(-,Coords,Newcoords),
+  gsx([8,1,0,1],[32],Coords).
+process(Char,Coords,Newcoords,String,[Char|String]) :-
+  cmp(-1,31,Char),
+  findplace(+,Coords,Newcoords),
+  gsx([8,1,0,1],[Char],Coords).
+process(Char,Coords,Coords,String,String) :-
+  beep(440,256).
+
+findplace(Operator,[Col,Row],[Newcol,Row]) :-
+  Newcol is Operator(Col,410).
+
+rev([],List,List).
+rev([Head|Tail],List,Revlist) :-
+  rev(Tail,[Head|List],Revlist).
+
+getloop(13,Coords,String,String) :-
+  gsx([8,1,0,1],[32],Coords).
+getloop(Char,Coords,String,Newstring) :-
+  process(Char,Coords,Newcoords,String,Intstring),
+  getchar(Newcoords,Newchar),
+  !,
+  getloop(Newchar,Newcoords,Intstring,Newstring).
+
+getchar(Coords,Char) :-
+  gsx([8,1,0,1],[95],Coords),
+  fr('TRM:',[['B',1]],[Byte]),
+  [Char] = Byte.
+
+:- cumod(&).

@@ -1,0 +1,227 @@
+/*
+
+Colour Attributes Selector - Brian D Steel - 19 Aug 88
+Copyright (c) - Logic Programming Associates Ltd, 1988
+
+This program defines a relations:
+
+	colour(Newframe,Newcontents)
+
+and
+
+	colour(Newframe,Newcontents,Oldframe,Oldcontents)
+
+which allows you to use the cursor keys to try out all possible window colour
+combinations interactively. When you press the return key, the appropriate
+video attributes are returned. If any incorrect keys are pressed, a help menu
+is displayed.
+
+*/
+
+/* display a window and allow the user to change its colour attributes */
+
+colour(Newframe,Newcontents) :-			% start with no attributes
+  colour(Newframe,Newcontents,0,0).
+
+colour(Newframe,Newcontents,Frame,Contents) :-	% start with given attributes
+  write('~X'),
+  cuwind(Window),
+  crwind('frame video',9,19,8,40,0,0),
+  crwind('status window',6,19,1,40,0,0,64),
+  cuwind(Window),
+  startat(Frame,Contents,Params),
+  show(1,Params),
+  getb(Byte),
+  input(Byte,1,Params,Newframe,Newcontents),
+  close('frame video'),
+  close('status window'),
+  !,
+  number(Newframe).
+
+/* work out what indices correspond to the given initial attributes */
+
+startat(Frame,Contents,[Cf,Cb,Ff,Fb]) :-	% return the four indices
+  workout(Frame,Ff,Fb),
+  workout(Contents,Cf,Cb).
+
+/* work out for foreground and background components of a video attribute */
+
+workout(Att,Fore,Back) :-			% try normal settings
+  separate(Att,Fore,Back).
+
+workout(Att,Fore,Back) :-			% try inverse settings
+  inverse(Att,Newattrib),
+  separate(Newattrib,Fore,Back).
+
+/* split off the foreground and background components and try to locate them */
+
+separate(Att,Fore,Back) :-			% split attribute
+  Forval is Att mod 32,
+  locate(fore,Forval,Fore),
+  Bacval is Att - Forval,
+  locate(back,Bacval,Back).
+
+/* return the inverse of various attributes */
+
+inverse(2,224).					% black on white
+
+inverse(3,225).					% bold black (!) on white
+
+inverse(Att,Newattrib) :-			% general case
+  Bold is Att mod 2,
+  Fore is (Att - 2 - Bold) mod 32,
+  Back is Att - Fore - 2 - Bold,
+  Newattrib is Fore * 8 + Back / 8 + Bold.
+
+/* locate the index value for an attribute of the given type */
+
+locate(Type,Val,Index) :-			% get the index value
+  Type(Mod,Vals),
+  poson(Val,Vals,1,Index).
+
+/* compute the index by finding the position of an attribute on the list */
+
+poson(Val,[Val|Rest],Index,Index).		% found it
+
+poson(Val,[Wrong|Vals],Index,Result) :-	% carry on looking
+  Newindex is Index + 1,
+  poson(Val,Vals,Newindex,Result).
+
+/* show the effects of the currently selected attribute fractions */
+
+show(Mode,[Cf,Cb,Ff,Fb]) :-			% show mode, values and effects
+  namode(Mode,Name,Type),
+  enhance(Mode,'~R',[u(5),u(5),u(5),u(5)],Fmt),
+  fw('status window',['~M~D~B',u(-20),'~D'|Fmt],[Name,Cf,Cb,Ff,Fb]),
+  getmode(Fb,Ff,Frame),
+  getmode(Cb,Cf,Contents),
+  video('frame video',Frame,Contents),
+  cursor('frame video',0,0),
+  fw('frame video',[u(0)],['~Dnormal video~Y~M~J',
+		'~Bbold video~Y~M~J',
+		'~D~Rreverse video~Y~M~J',
+		'~D~Uunderscore video~Y~M~J',
+		'~D~B~Rbold + reverse video~Y~M~J',
+		'~D~B~Ubold + underscore video~Y~M~J',
+		'~D~R~Ureverse + underscore video~Y~M~J',
+		'~D~B~R~Ubold + reverse + underscore video~Y']).
+
+/* return the name of a given mode */
+
+namode(1,'contents foreground',fore).		% character colour
+namode(2,'contents background',back).		% its background
+namode(3,'frame foreground',fore).		% frame colour
+namode(4,'frame background',back).		% its background
+
+/* grab a byte from the keyboard, grabbing the second half of cursor keys */
+
+getb(Byte) :-					% normal characters
+  get0('TRM:',Byte),
+  not Byte = 0.
+
+getb(Byte) :-					% cursor pad characters
+  get0('TRM:',Byte).
+
+/* main loop fails on escape, succeeds on return and continues for others */
+
+input(27,Mode,Params,fail,-1).			% fail if escape hit
+
+input(13,Mode,[Cf,Cb,Ff,Fb],Frame,Contents) :-	% succeed if return hit
+  getmode(Fb,Ff,Frame),
+  getmode(Cb,Cf,Contents).
+
+input(Byte,Mode,Index,Frame,Contents) :-	% use key, show and continue
+  convert(Byte,[Mode,Index],[Newmode,Newindex]),
+  show(Newmode,Newindex),
+  getb(Newbyte),
+  !,
+  input(Newbyte,Newmode,Newindex,Frame,Contents).
+
+/* convert a key into a argument, performing any appropriate function */
+
+convert(Key,Arg,Newarg) :-			% perform function of key
+  means(Key,Function),
+  perform(Function,Arg,Newarg).
+
+convert(Error,Arg,Arg) :-			% silly key, so show help
+  cuwind(Window),
+  crwind('help window',9,19,8,40,1,0,64),
+  write('~Ruse the cursor keys:~Y~D~M~J~J'),
+  fw('help window',['~B',u(-7),'~Dor ~B',u(-4),'~D',u(0),'~M~J'],
+		[up,'^E','to increment colour index',
+		 down,'^X','to decrement colour index',
+		 left,'^S','to move selection left',
+		 right,'^D','to move selection right',
+		 return,'^M','to confirm selection',
+		 escape,'^[','to cancel selection']),
+  cuwind(Window),
+  beep(220,256),
+  getb(Dummy),
+  close('help window').
+
+/* table of key meanings (escape and return handled elsewhere) */
+
+means(72,up).					% increment using cursor key
+means(5,up).					% increment using control key
+means(80,down).					% decrement using cursor key
+means(24,down).					% decrement using control key
+means(75,left).					% left tab using cursor key
+means(19,left).					% left tab using control key
+means(77,right).				% right tab using cusor key
+means(4,right).					% right tab using control key
+
+/* perform appropriate actions for the given key */
+
+perform(up,[Mode,Atts],[Mode,Newatts]) :-	% increment the index value
+  change(Mode,+,Atts,Newatts).
+
+perform(down,[Mode,Atts],[Mode,Newatts]) :-	% decrement the index value
+  change(Mode,-,Atts,Newatts).
+
+perform(left,[Mode,Atts],[Newmode,Atts]) :-	% tab left on index menu
+  Newmode is (Mode + 2) mod 4 + 1.
+
+perform(right,[Mode,Atts],[Newmode,Atts]) :-	% tab right on index menu
+  Newmode is Mode mod 4 + 1.
+
+/* increment or decrement the given mode and index */
+
+change(Mode,Operator,Atts,Newatts) :-		% return new attributes
+  select(Mode,Atts,Newatts,Val,Newval),
+  namode(Mode,Name,Type),
+  Type(Modulo,Videos),
+  Newval is Operator(Val - 1,1) mod Modulo + 1.
+
+/* select the appropriate attribute list for the given mode */
+
+select(1,[Val|Atts],[Newval|Atts],Val,Newval).	% found it
+
+select(Mode,[Att|Atts],[Att|New],Val,Newval) :-	% carry on looking
+  Newmode is Mode - 1,
+  select(Newmode,Atts,New,Val,Newval).
+
+/* modify the numbered format field with the given enhancements */
+
+enhance(1,Att,[Ft|Fts],['~D',Att,Ft,'~D'|Fts]).	% place enhancement here
+
+enhance(Num,Att,[Ft|Fts],[Ft|Newfts]) :-	% keep going
+  Less is Num - 1,
+  enhance(Less,Att,Fts,Newfts).
+
+/* convert from index values back into video attributes */
+
+getmode(Back,Fore,Mode) :-			% return the video mode
+  back(Dum1,Backs),
+  mem(Backs,[Back],Backmode),
+  fore(Dum2,Fores),
+  mem(Fores,[Fore],Foremode),
+  Mode is Backmode + Foremode.
+
+/* meaningful foreground modes */
+
+fore(16,[0,1,4,5,8,9,12,13,16,17,20,21,24,25,28,29]).	% colours
+
+/* meaningful background modes */
+
+back(8,[0,32,64,96,128,160,192,224]).		% backgrounds
+

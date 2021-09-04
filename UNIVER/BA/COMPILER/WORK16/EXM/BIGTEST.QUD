@@ -1,0 +1,90 @@
+IPRT 1  
+RPRT 1.123  
+IASN a 1 
+IPRT a  
+IASN b a 
+IPRT b  
+RASN c 1.1234 
+RPRT c  
+RASN d c 
+RPRT d  
+ITOR _t4 100 
+RASN c _t4 
+RPRT c  
+ITOR _t5 a 
+RASN c _t5 
+RPRT c  
+IADD _t6 1 2
+IADD _t7 _t6 3
+IPRT _t7  
+RADD _t8 1.1 2.2
+RPRT _t8  
+ITOR _t9 1 
+RADD _t9 _t9 2.2
+RPRT _t9  
+IMLT _t10 2 3
+IADD _t11 1 _t10
+IPRT _t11  
+RMLT _t12 1.1 2.2
+RPRT _t12  
+ITOR _t13 1 
+RMLT _t13 _t13 2.2
+RPRT _t13  
+ILSS _t15 1 2
+JMPZ 38 _t15 
+JUMP 36  
+IPRT 1  
+JUMP 39  
+IPRT 0  
+IEQL _t17 1 2
+JMPZ 44 _t17 
+JUMP 42  
+IPRT 0  
+JUMP 45  
+IPRT 1  
+IGRT _t19 1 2
+JMPZ 50 _t19 
+JUMP 48  
+IPRT 0  
+JUMP 51  
+IPRT 1  
+RLSS _t21 1.0 2.0
+JMPZ 56 _t21 
+JUMP 54  
+IPRT 1  
+JUMP 57  
+IPRT 0  
+REQL _t23 1.0 2.0
+JMPZ 62 _t23 
+JUMP 60  
+IPRT 0  
+JUMP 63  
+IPRT 1  
+RGRT _t25 1.0 2.0
+JMPZ 68 _t25 
+JUMP 66  
+IPRT 0  
+JUMP 69  
+IPRT 1  
+ITOR _t26 1 
+REQL _t27 1.0 _t26
+JMPZ 75 _t27 
+JUMP 73  
+IPRT 1  
+JUMP 76  
+IPRT 0  
+IASN a 1 
+IGRT _t30 a 0
+JMPZ 89 _t30 
+JUMP 80  
+IINP a  
+RINP c  
+ITOR _t31 a 
+RMLT _t31 _t31 c
+ITOR _t32 a 
+RDIV _t32 c _t32
+RSUB _t33 _t31 _t32
+RPRT _t33  
+JUMP 77  
+HALT   
+Compiler project. Developed by Alexander Stekolchik.1998

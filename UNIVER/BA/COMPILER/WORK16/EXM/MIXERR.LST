@@ -1,0 +1,22 @@
+Compiler project. Developed by Alexander Stekolchik.1998
+Process file  mixerr.tin
+   1.  prog mixerr;
+   2.  var a:int,a:real,
+Duplicate definition of  a
+   3.      c:int,
+   4.      fg:rael,tg1:real,htmp:int,
+Parse error.
+   5.      d:yy,samp:int,samp1:int;
+Parse error.
+   6.  
+   7.  begin
+   8.    if d>0 then d:=1; else d:=2; fi;
+Invalid data type  d 0
+Invalid data type  d 1
+Invalid data type  d 2
+   9.  
+  10.    if samp>2 then samp:=1; print 2; else samp:=2 print 1; fi;
+Parse error.
+Because of parser error skip  1
+  11.    if if>0 then Aa:= 1;
+Parse error.

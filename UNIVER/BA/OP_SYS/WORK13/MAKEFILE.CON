@@ -1,0 +1,4 @@
+gcc -c -g agent.c
+gcc -c -g control.c
+gcc -g -o agents.o agent.o  control.o 
+rm agent.o control.o 

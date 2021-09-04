@@ -1,0 +1,1856 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Doc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <m_xmiID>Os5u3KHo1d8VMy9</m_xmiID>
+  <name>CRC card builder doc</name>
+  <crcCards>
+    <crcCard>
+      <m_xmiID>g9Y0VkSo4f3P8Am</m_xmiID>
+      <name>List of customers</name>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>Fj46WvIc20Ttx7H</m_xmiID>
+          <name>Maintain list of customers</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Zu5b9LCk4e7F0Wg</m_xmiID>
+              <name>getCustomerInfo</name>
+            </Method>
+            <Method>
+              <m_xmiID>Hj49DzLd16MaYr2</m_xmiID>
+              <name>addNewCustomer</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>e5RUo2v4HWt1k0B</m_xmiID>
+          <name>Maintain customer payments</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Vo1g3O0Uvh7S6Rw</m_xmiID>
+              <name>acceptPayment</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Xq43RvQe76GbYs9</m_xmiID>
+      <name>GUI</name>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>Va34Owk7BDs29In</m_xmiID>
+          <name>Display free rooms by filter</name>
+          <Methods>
+            <Method>
+              <m_xmiID>k1L7YfDz05Nrn2J</m_xmiID>
+              <name>displayFreeRoomsByFilter</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>Wj84FtEy1a7TNh6</m_xmiID>
+          <name>Manage list of discounts</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Bj28NqZe67AyRi9</m_xmiID>
+              <name>displayDiscounts</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>Tw9h8BCu50Uxq6Z</m_xmiID>
+          <name>Accept payments</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Wl04ZpXm1a5A6Gb</m_xmiID>
+              <name>acceptCash</name>
+            </Method>
+            <Method>
+              <m_xmiID>j7HEz38Uka2ZIe9</m_xmiID>
+              <name>acceptCreditCard</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>g4U3ZzPu96Crq2F</m_xmiID>
+          <name>Issue customer bill</name>
+          <Methods>
+            <Method>
+              <m_xmiID>c7S9DmHf5g0WGl1</m_xmiID>
+              <name>createBill</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>r8F7NmTv0h5PEb4</m_xmiID>
+          <name>Log guest services</name>
+          <Methods>
+            <Method>
+              <m_xmiID>u9HKv68Aei1C2Sb</m_xmiID>
+              <name>logGuestServices</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>h8J2Cbw5O9Ruk7H</m_xmiID>
+          <name>Manage conference rooms schedule</name>
+          <Methods>
+            <Method>
+              <m_xmiID>x8H6ThXm01RkWr7</m_xmiID>
+              <name>getConferenceRoomsSchedule</name>
+            </Method>
+            <Method>
+              <m_xmiID>Rg19PyIc47EeHd8</m_xmiID>
+              <name>orderConferenceRoom</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>Af5m0B3IgOx6y7Y</m_xmiID>
+          <name>Manage Customers Record</name>
+          <Methods>
+            <Method>
+              <m_xmiID>k5VCp0b2IUh3c1J</m_xmiID>
+              <name>addNewCustomer</name>
+            </Method>
+            <Method>
+              <m_xmiID>t7H8XrRw24IqDz6</m_xmiID>
+              <name>displayCustomerInfo</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>i9D4XgQu58Svz2U</m_xmiID>
+          <name>Manage room orders</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Xv9q7N4Kru5V1Wb</m_xmiID>
+              <name>getOrderInfo</name>
+            </Method>
+            <Method>
+              <m_xmiID>m3I9Vpf2C4NhAn0</m_xmiID>
+              <name>displayOrderInformation</name>
+            </Method>
+            <Method>
+              <m_xmiID>Ag5u3R9SiWe06Nf</m_xmiID>
+              <name>acceptOrder</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>o4FUd23Kpu9ZRt6</m_xmiID>
+          <name>Manage room status</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Df92YbGv6y0BAq4</m_xmiID>
+              <name>checkInRoom</name>
+            </Method>
+            <Method>
+              <m_xmiID>Hq19AaMj87WvGk2</m_xmiID>
+              <name>checkOutRoom</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Na26Qwy4B7JzGi8</m_xmiID>
+      <name>List of rooms</name>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>c2CBw38EtUl7x5I</m_xmiID>
+          <name>Maintain list of rooms</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Yb78IvCc34XfRl9</m_xmiID>
+              <name>getFreeRoomsByFilter</name>
+            </Method>
+            <Method>
+              <m_xmiID>Ou6j1Q9ZxCm45Vp</m_xmiID>
+              <name>getRoomInfo</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>Om57DaXk60FbCz8</m_xmiID>
+          <name>Maintain room statuses</name>
+          <Methods>
+            <Method>
+              <m_xmiID>g0T5DeUl3b6IOv4</m_xmiID>
+              <name>markRoomOrdered</name>
+            </Method>
+            <Method>
+              <m_xmiID>Je54Vsm8P7LdOz6</m_xmiID>
+              <name>checkOutRoom</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Xp5g1DLn3a8URc6</m_xmiID>
+      <name>Logger</name>
+      <description>List of ordered rooms</description>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>w3N5Lng7EPk06Fq</m_xmiID>
+          <name>Maintain list of ordered rooms</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Fa68PvTl9i0LJj5</m_xmiID>
+              <name>saveOrder</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+        <Responsibility>
+          <m_xmiID>i2A8Nax7B0PbMz6</m_xmiID>
+          <name>Maintain list of room occuppance</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Cd6o1REf5a2N8Ob</m_xmiID>
+              <name>logRoomRelease</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>q2RQw76JfUh49El</m_xmiID>
+      <name>List of orders</name>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>k3LWx59VuMd86Qh</m_xmiID>
+          <name>Manage orders</name>
+          <Methods>
+            <Method>
+              <m_xmiID>k5F8Ulb1JHr0n2S</m_xmiID>
+              <name>getOrderInformation</name>
+            </Method>
+            <Method>
+              <m_xmiID>Jl6i9V8OeHp32Sd</m_xmiID>
+              <name>saveOrder</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Lw9f7TXu8e6JCs3</m_xmiID>
+      <name>List of discounts</name>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>Vc29Hfi0ZEj38Mk</m_xmiID>
+          <name>Manage list of discounts</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Cf38Wwc2G9XzHt7</m_xmiID>
+              <name>getDiscountForCustomer</name>
+            </Method>
+            <Method>
+              <m_xmiID>Fv17IyDn2l6Q5Zg</m_xmiID>
+              <name>getListOfDiscounts</name>
+            </Method>
+            <Method>
+              <m_xmiID>Sn6k5YXg43Foy2V</m_xmiID>
+              <name>createDiscount</name>
+            </Method>
+            <Method>
+              <m_xmiID>w3F4Mfk6UZm17Ry</m_xmiID>
+              <name>updateExistingDiscount</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>c3N2Dkd9AGz51Ut</m_xmiID>
+      <name>Log of services</name>
+      <description>Log of services</description>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>v0J7HcIi6g3TBm5</m_xmiID>
+          <name>Maintain log of guest services</name>
+          <Methods>
+            <Method>
+              <m_xmiID>c2YPw7j8N1OsBm0</m_xmiID>
+              <name>getLogOfGuestServices</name>
+            </Method>
+            <Method>
+              <m_xmiID>v7BLl1o9TDh40Yr</m_xmiID>
+              <name>logGuestServices</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>v3XHk8s9Q1UqIa6</m_xmiID>
+      <name>Billing module</name>
+      <description>Billing module</description>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>y4B6Eps2FAe1z5R</m_xmiID>
+          <name>Issue customer bill</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Bo20CbEa1x4K6Fs</m_xmiID>
+              <name>createBill</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Lb3n4A6Bfm1ICw2</m_xmiID>
+      <name>Credit Card Module</name>
+      <description>Credit Card communication module</description>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>u5H7CsZg64KiPk0</m_xmiID>
+          <name>Manage Credit Card payment</name>
+          <Methods>
+            <Method>
+              <m_xmiID>Mz73Ijr5S6Fkh2N</m_xmiID>
+              <name>pay</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>y8APr09OpLz6c5H</m_xmiID>
+      <name>Conference rooms schedule</name>
+      <description>Conference rooms schedule</description>
+      <attributes />
+      <Responsibilities>
+        <Responsibility>
+          <m_xmiID>Ad9q8QBg45Hzi6C</m_xmiID>
+          <name>Manage conference rooms schedule</name>
+          <Methods>
+            <Method>
+              <m_xmiID>z2S6Lnx4J1AyFs0</m_xmiID>
+              <name>getConferenceRoomsSchedule</name>
+            </Method>
+            <Method>
+              <m_xmiID>Nd5u7AVc14Tnw3D</m_xmiID>
+              <name>orderConferenceRoom</name>
+            </Method>
+          </Methods>
+        </Responsibility>
+      </Responsibilities>
+      <superclass />
+    </crcCard>
+  </crcCards>
+  <sequences>
+    <sequence>
+      <m_xmiID>z4OUn3y7F9KbYp6</m_xmiID>
+      <name>Order A Room</name>
+      <trigger>Customer contacts the hotel</trigger>
+      <preConditions>
+        <condition>
+          <m_xmiID>r4X8Rog3K0Vyk5D</m_xmiID>
+          <name>Customer is identified</name>
+        </condition>
+      </preConditions>
+      <successConditions>
+        <condition>
+          <m_xmiID>a0DQe5t4CUg86Rl</m_xmiID>
+          <name>A room is booked for the customer</name>
+        </condition>
+      </successConditions>
+      <failureConditions>
+        <condition>
+          <m_xmiID>Jo03Xtp2UOh68Qb</m_xmiID>
+          <name>A room is not booked for the customer</name>
+        </condition>
+      </failureConditions>
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>Rl6k2PAx07Eav9L</m_xmiID>
+          <name>Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>Rz90PsIk48FdDv3</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+      </objects>
+      <messages>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Ub12Myx6YWq3p9E</m_xmiID>
+          <name>ref start 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>ref</operatorType>
+          <operand>Identify Customer</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Red</color>
+        </message>
+        <message>
+          <m_xmiID>a1F6MiZe2t5WVx7</m_xmiID>
+          <name>Identify Customer</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>v6J7Lrh5C8NbWi3</m_xmiID>
+          <name>ref end 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Ho40MtSf18UsPk2</m_xmiID>
+          <name>ref start 9</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>ref</operatorType>
+          <operand>Make Order</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Red</color>
+        </message>
+        <message>
+          <m_xmiID>u0SHg58Wvs3RXy2</m_xmiID>
+          <name>Make Order</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Fb2v0KQa34WhTk5</m_xmiID>
+          <name>opt end 1</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+      </messages>
+      <description>Customer orders a room</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>Kg9t3G0NePw48Eq</m_xmiID>
+      <name>Identify Customer</name>
+      <trigger>Customer contacts the hotel</trigger>
+      <preConditions>
+        <condition>
+          <m_xmiID>Aw05WeJt7h3Z1Vn</m_xmiID>
+          <name>Customer is identified</name>
+        </condition>
+      </preConditions>
+      <successConditions>
+        <condition>
+          <m_xmiID>Tq5i0U2Swa6G8Yz</m_xmiID>
+          <name>A room is booked for the customer</name>
+        </condition>
+      </successConditions>
+      <failureConditions>
+        <condition>
+          <m_xmiID>Jl3y1NXi6s8VUn2</m_xmiID>
+          <name>A room is not booked for the customer</name>
+        </condition>
+      </failureConditions>
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>f4A3Fxb0X6Ggq1B</m_xmiID>
+          <name>Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>Uc54Bwp9F1IgYq3</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of customers</card>
+        </object>
+        <object>
+          <m_xmiID>j4V8TuXl9o7ORf6</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+      </objects>
+      <messages>
+        <message>
+          <m_xmiID>Db05VjWf9s6HFl2</m_xmiID>
+          <name>Identify Customer</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage Customers Record</destResponsibility>
+          <destMethod>displayCustomerInfo</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Uk29WtBo0b4A3Mr</m_xmiID>
+          <name>Identify Customer</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of customers</dest>
+          <destResponsibility>Maintain list of customers</destResponsibility>
+          <destMethod>getCustomerInfo</destMethod>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>c8GOj6o1V4BkFf0</m_xmiID>
+          <name>opt start 2</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>opt</operatorType>
+          <operand>Customer not found</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>x8F3Vmg9KQl4z6N</m_xmiID>
+          <name>No such customer</name>
+          <source> : List of customers</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Oc7q3S1Aag8EKd2</m_xmiID>
+          <name>Display no such customer</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Fk7r0X8Kax4RWl5</m_xmiID>
+          <name>Insert new customer information</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage Customers Record</destResponsibility>
+          <destMethod>addNewCustomer</destMethod>
+        </message>
+        <message>
+          <m_xmiID>u0MTn87Zdt9YVx3</m_xmiID>
+          <name>Add new customer</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of customers</dest>
+          <destResponsibility>Maintain list of customers</destResponsibility>
+          <destMethod>addNewCustomer</destMethod>
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>r7I6LoOf2e0B3Nq</m_xmiID>
+          <name>opt end 2</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>f5A9SjJi8k1R0De</m_xmiID>
+          <name>Customer Info</name>
+          <source> : List of customers</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Ml8b3WJd69IoYy7</m_xmiID>
+          <name>Display Customer Info</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+      </messages>
+      <description>Get customer/guest information or adds a new one</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>m4B2ZyTq51PgVz9</m_xmiID>
+      <name>Make Order</name>
+      <trigger>Customer contacts the hotel</trigger>
+      <preConditions>
+        <condition>
+          <m_xmiID>m6C0Fir1X3JkQq4</m_xmiID>
+          <name>Customer is identified</name>
+        </condition>
+      </preConditions>
+      <successConditions>
+        <condition>
+          <m_xmiID>Js8j1U5Cmx4AHh6</m_xmiID>
+          <name>A room is booked for the customer</name>
+        </condition>
+      </successConditions>
+      <failureConditions>
+        <condition>
+          <m_xmiID>p1N8EoFf75MgPj3</m_xmiID>
+          <name>A room is not booked for the customer</name>
+        </condition>
+      </failureConditions>
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>Zo26CiPk4f3RMn0</m_xmiID>
+          <name>Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>l9O5HuBh16ZwWz8</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+        <object>
+          <m_xmiID>z0C5UdMf73Xio2N</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of rooms</card>
+        </object>
+        <object>
+          <m_xmiID>d8Z0WgCa16Djb3H</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Logger</card>
+        </object>
+        <object>
+          <m_xmiID>Pu4q8Q2AsRn5r0X</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of orders</card>
+        </object>
+        <object>
+          <m_xmiID>Ew26Ybt3Q5Rcn9P</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of discounts</card>
+        </object>
+      </objects>
+      <messages>
+        <message>
+          <m_xmiID>Dc42Aer8IPu06Hp</m_xmiID>
+          <name>Get list of discounts</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage list of discounts</destResponsibility>
+          <destMethod>displayDiscounts</destMethod>
+        </message>
+        <message>
+          <m_xmiID>z5KRc71OuUp82Nd</m_xmiID>
+          <name>Get list of discounts</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of discounts</dest>
+          <destResponsibility>Manage list of discounts</destResponsibility>
+          <destMethod>getListOfDiscounts</destMethod>
+        </message>
+        <message>
+          <m_xmiID>o7Z8UbXf2r6NSt3</m_xmiID>
+          <name>List of discounts</name>
+          <source> : List of discounts</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Ub31FqEx58TcJo0</m_xmiID>
+          <name>Display list of discounts</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>y0C8ZkIf93EhDe7</m_xmiID>
+          <name>Get free rooms by filter</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Display free rooms by filter</destResponsibility>
+          <destMethod>displayFreeRoomsByFilter</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Fn2w3I8Azf6E4Nb</m_xmiID>
+          <name>Get free rooms by filter</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of rooms</dest>
+          <destResponsibility>Maintain list of rooms</destResponsibility>
+          <destMethod>getFreeRoomsByFilter</destMethod>
+        </message>
+        <message>
+          <m_xmiID>j2D9UaMo7c4HYt3</m_xmiID>
+          <name>List of rooms</name>
+          <source> : List of rooms</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Me8k0V6Xhr7K2Hn</m_xmiID>
+          <name>List of rooms</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>e4Z9Qms2MXf78Vl</m_xmiID>
+          <name>opt start 1</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>opt</operatorType>
+          <operand>Non empty rooms list</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>Sx8z9I5OiDn6c0Q</m_xmiID>
+          <name>Make order</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage room orders</destResponsibility>
+          <destMethod>acceptOrder</destMethod>
+        </message>
+        <message>
+          <m_xmiID>v6F9Owd2X7IxKe0</m_xmiID>
+          <name>Save order</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of orders</dest>
+          <destResponsibility>Manage orders</destResponsibility>
+          <destMethod>saveOrder</destMethod>
+        </message>
+        <message>
+          <m_xmiID>m8K2GhFb96PwHn4</m_xmiID>
+          <name>Acknoledge room order</name>
+          <source> : List of orders</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>n9S2Vdp6CLb5r3B</m_xmiID>
+          <name>Log order</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Logger</dest>
+          <destResponsibility>Maintain list of ordered rooms</destResponsibility>
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>e2STq3l9QKd5z0V</m_xmiID>
+          <name>Ok</name>
+          <source> : Logger</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Nn3m2TEo0a4R6Bd</m_xmiID>
+          <name>Book room</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of rooms</dest>
+          <destResponsibility>Maintain room statuses</destResponsibility>
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Qg1q6F9CbRz70Wc</m_xmiID>
+          <name>Ok</name>
+          <source> : List of rooms</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>z7DWp8f2XRu0t1T</m_xmiID>
+          <name>Display acknoledged order</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Sg19Div5H7GqAu2</m_xmiID>
+          <name>ref end 9</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+      </messages>
+      <description>Make an order</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>Xg54BjLn21Icv8J</m_xmiID>
+      <name>Check In Hotel</name>
+      <trigger>Customer contacts the hotel</trigger>
+      <preConditions>
+        <condition>
+          <m_xmiID>y5GKu8b3R0HfBn4</m_xmiID>
+          <name>Customer is identified</name>
+        </condition>
+      </preConditions>
+      <successConditions>
+        <condition>
+          <m_xmiID>Ak7f8T3EiOn02Dz</m_xmiID>
+          <name>A room is booked for the customer</name>
+        </condition>
+      </successConditions>
+      <failureConditions>
+        <condition>
+          <m_xmiID>i5R0NdIg3l9U4Gn</m_xmiID>
+          <name>A room is not booked for the customer</name>
+        </condition>
+      </failureConditions>
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>Am4g1LBq9s0KIw8</m_xmiID>
+          <name>Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>m7MQb80Gyp5I2Dc</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+        <object>
+          <m_xmiID>z1OPr6v8FYq75Jx</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of orders</card>
+        </object>
+        <object>
+          <m_xmiID>Ox32Pvo9HFh51Vm</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of rooms</card>
+        </object>
+        <object>
+          <m_xmiID>a3A2Vtp4J5Heo9M</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Logger</card>
+        </object>
+      </objects>
+      <messages>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Jz0s9IAb7m1CWj6</m_xmiID>
+          <name>ref start 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>ref</operatorType>
+          <operand>Identify Customer</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Red</color>
+        </message>
+        <message>
+          <m_xmiID>d3HSm7y2IPb45Lo</m_xmiID>
+          <name>Identify Customer</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Tr60Gqu8L7YfBy9</m_xmiID>
+          <name>ref end 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Ow4d3U5BvFy9i8X</m_xmiID>
+          <name>opt start 29</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>opt</operatorType>
+          <operand>New Order</operand>
+          <saveState>false</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>n3E4Yem6PTq82Jd</m_xmiID>
+          <name>ref start 9</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>ref</operatorType>
+          <operand>Make Order</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Red</color>
+        </message>
+        <message>
+          <m_xmiID>Ze81Bhu5S3HvNk6</m_xmiID>
+          <name>Make Order</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Js5w3RVj74PvHq8</m_xmiID>
+          <name>ref end 1</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>true</restoreState>
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Su05Mdq2T6QvPg1</m_xmiID>
+          <name>opt end 29</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message>
+          <m_xmiID>Xy90Lae4UGd82Yl</m_xmiID>
+          <name>Get order information</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage room orders</destResponsibility>
+          <destMethod>displayOrderInformation</destMethod>
+        </message>
+        <message>
+          <m_xmiID>r2J3WdKj87DtRs6</m_xmiID>
+          <name>Get order information</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of orders</dest>
+          <destResponsibility>Manage orders</destResponsibility>
+          <destMethod>getOrderInformation</destMethod>
+        </message>
+        <message>
+          <m_xmiID>m7N4RjLl12MkCf8</m_xmiID>
+          <name>Order information</name>
+          <source> : List of orders</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Ze98HfLd53Isb4G</m_xmiID>
+          <name>Display order information</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>q6HRs7i4NOr1a5K</m_xmiID>
+          <name>Checkin to room</name>
+          <source>Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage room status</destResponsibility>
+          <destMethod>checkInRoom</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Ny53Dgu1ZWt42Pj</m_xmiID>
+          <name>Checkin room</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of rooms</dest>
+          <destResponsibility>Maintain room statuses</destResponsibility>
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>y1WZl28PtXa0i3Q</m_xmiID>
+          <name>Acknoledge room ready</name>
+          <source> : List of rooms</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Ej74ZeAn8h0C5Ga</m_xmiID>
+          <name>Log client checkin</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Logger</dest>
+          <destResponsibility>Maintain list of room occuppance</destResponsibility>
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>a7J9NkSh32Hbj5X</m_xmiID>
+          <name>Ok</name>
+          <source> : Logger</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>u1UWt4v0ZKm78Hr</m_xmiID>
+          <name>Display room ready acknoledgment</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+      </messages>
+      <description>Customer/Guest checks in the hotel</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>e6I4Zpa1UEj8d9K</m_xmiID>
+      <name>Check-out</name>
+      <trigger>Customer comes to Reception Clerk</trigger>
+      <preConditions />
+      <successConditions />
+      <failureConditions>
+        <condition>
+          <m_xmiID>Mq69RcOf2t1H8Zb</m_xmiID>
+          <name>Customer does not pay</name>
+        </condition>
+        <condition>
+          <m_xmiID>x4G6YaKt98AdBj7</m_xmiID>
+          <name>Credit card company rejects payment</name>
+        </condition>
+      </failureConditions>
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>Sd2h3K0PoTl19Mj</m_xmiID>
+          <name>Reception Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>a5MPw7g2N9Lov4H</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of rooms</card>
+        </object>
+        <object>
+          <m_xmiID>d8DHm2f6Z9Suz4U</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of customers</card>
+        </object>
+        <object>
+          <m_xmiID>Gs6u7I2BmRb1q0F</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+        <object>
+          <m_xmiID>y0R8ZbMs19SzBm7</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Billing module</card>
+        </object>
+        <object>
+          <m_xmiID>f8OXl1x4BSy2s3W</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Credit Card Module</card>
+        </object>
+        <object>
+          <m_xmiID>d4M6Upy5V9GuHq2</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Logger</card>
+        </object>
+      </objects>
+      <messages>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>g2N0Kel3Z4Hsf6S</m_xmiID>
+          <name>loop start 10</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>ref</operatorType>
+          <operand>Create bill for a customer</operand>
+          <saveState>false</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>f8Z2SxTu6n1HQy4</m_xmiID>
+          <name>Create bill for a customer</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : Billing module</dest>
+          <destResponsibility>Issue customer bill</destResponsibility>
+          <destMethod>createBill</destMethod>
+        </message>
+        <message>
+          <m_xmiID>i8FGu39LyRl0v2B</m_xmiID>
+          <name>Bill for the customer</name>
+          <source> : Billing module</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Kb37PvRi1r9MSp2</m_xmiID>
+          <name>loop end 10</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Mg32LbVn8l5RAt1</m_xmiID>
+          <name>alt start 3</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>alt</operatorType>
+          <operand>Customer pay with cash</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>Ls2v0FOh31Ama8J</m_xmiID>
+          <name>Customer pay with cash</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Accept payments</destResponsibility>
+          <destMethod>acceptCash</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Sn49PzNk5l2W6Lh</m_xmiID>
+          <name>Customer pay</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of customers</dest>
+          <destResponsibility>Maintain customer payments</destResponsibility>
+          <destMethod>acceptPayment</destMethod>
+        </message>
+        <message>
+          <m_xmiID>r0LCc2e3Y6NwJt1</m_xmiID>
+          <name>Ok</name>
+          <source> : List of customers</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Io42OmJq59FfHa1</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopOperandHelper">
+          <m_xmiID>q0K3CjXp1u7V4Ah</m_xmiID>
+          <name>operand 1</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operand>Customer pay with credit card</operand>
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>u0AJt14WqPg3n5B</m_xmiID>
+          <name>Customer pay with credit card</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Accept payments</destResponsibility>
+          <destMethod>acceptCreditCard</destMethod>
+        </message>
+        <message>
+          <m_xmiID>f0OWh7q2F5Sjo1G</m_xmiID>
+          <name>Pay</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Credit Card Module</dest>
+          <destResponsibility>Manage Credit Card payment</destResponsibility>
+          <destMethod>pay</destMethod>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>j2QHa13Ezg6INw7</m_xmiID>
+          <name>alt start 4</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>alt</operatorType>
+          <operand>Credit Card Payment accepted</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>Sz84Nxr6TZq1l2Y</m_xmiID>
+          <name>Ok</name>
+          <source> : Credit Card Module</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>w8H2PnFl4p9E5Jc</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopOperandHelper">
+          <m_xmiID>q4F0Uhd3HVe57Mt</m_xmiID>
+          <name>Credit Card Payment rejected</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operand>Credit Card Payment rejected</operand>
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>c2X5Dlk0Y3Stm6P</m_xmiID>
+          <name>Reject</name>
+          <source> : Credit Card Module</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Iv65Akf8RLj97Uh</m_xmiID>
+          <name>Reject</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Wm0o2JSd57Dpa3G</m_xmiID>
+          <name>loop end 4</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message xsi:type="umlLoopOperandHelper">
+          <m_xmiID>m6RSd0w2W5YtPb8</m_xmiID>
+          <name>Customer does not pay</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operand>Customer does not pay</operand>
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>p1W9OyUz7r6MGc3</m_xmiID>
+          <name>Increase customer credit</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Accept payments</destResponsibility>
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>v0A6Mhc3OCn58Rp</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>h4M7Kcz3WNp15Fn</m_xmiID>
+          <name>loop end 3</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message>
+          <m_xmiID>Wi7g3A0Gcs6S2Pm</m_xmiID>
+          <name>Free the room</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage room status</destResponsibility>
+          <destMethod>checkOutRoom</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Oo9x8BYt1u7Z4Xp</m_xmiID>
+          <name>Free the room</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : List of rooms</dest>
+          <destResponsibility>Maintain room statuses</destResponsibility>
+          <destMethod>checkOutRoom</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Su42Utp7T0GmAv6</m_xmiID>
+          <name>Ok</name>
+          <source> : List of rooms</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Ty7w9N2YrOf54Fu</m_xmiID>
+          <name>Log room release</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Logger</dest>
+          <destResponsibility>Maintain list of room occuppance</destResponsibility>
+          <destMethod>logRoomRelease</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Ib0t6O7Nji5PXl8</m_xmiID>
+          <name>Ok</name>
+          <source> : Logger</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>h1FUv9w5J0Djn6E</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+      </messages>
+      <description>Check-out from the hotel</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>v8EPr07CzWj2u1X</m_xmiID>
+      <name>Create bill for a customer</name>
+      <trigger>Customer wants check-out</trigger>
+      <preConditions />
+      <successConditions />
+      <failureConditions />
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>Sd2h3K0PoTl19Mj</m_xmiID>
+          <name>Reception Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>a5MPw7g2N9Lov4H</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of rooms</card>
+        </object>
+        <object>
+          <m_xmiID>d8DHm2f6Z9Suz4U</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of customers</card>
+        </object>
+        <object>
+          <m_xmiID>Gb89Dmk0K3Ehi2W</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Log of services</card>
+        </object>
+        <object>
+          <m_xmiID>Gs6u7I2BmRb1q0F</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+        <object>
+          <m_xmiID>y0R8ZbMs19SzBm7</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Billing module</card>
+        </object>
+        <object>
+          <m_xmiID>Cr6l5H7Wft4I1Tb</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>List of discounts</card>
+        </object>
+      </objects>
+      <messages>
+        <message>
+          <m_xmiID>f8Z2SxTu6n1HQy4</m_xmiID>
+          <name>Create bill for a customer</name>
+          <source>Reception Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Issue customer bill</destResponsibility>
+          <destMethod>createBill</destMethod>
+        </message>
+        <message>
+          <m_xmiID>h7CXp32Aub6UEo9</m_xmiID>
+          <name>Create bill for a customer</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Billing module</dest>
+          <destResponsibility>Issue customer bill</destResponsibility>
+          <destMethod>createBill</destMethod>
+        </message>
+        <message>
+          <m_xmiID>z1AUm5y8MWv27Zb</m_xmiID>
+          <name>Get Customer Info</name>
+          <source> : Billing module</source>
+          <result>false</result>
+          <dest> : List of customers</dest>
+          <destResponsibility>Maintain list of customers</destResponsibility>
+          <destMethod>getCustomerInfo</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Kf03LqEb4s8Y7Mw</m_xmiID>
+          <name>Customer Info</name>
+          <source> : List of customers</source>
+          <result>true</result>
+          <dest> : Billing module</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>y6C7Kgb5P3Uiq8Q</m_xmiID>
+          <name>Get room info</name>
+          <source> : Billing module</source>
+          <result>false</result>
+          <dest> : List of rooms</dest>
+          <destResponsibility>Maintain list of rooms</destResponsibility>
+          <destMethod>getRoomInfo</destMethod>
+        </message>
+        <message>
+          <m_xmiID>x9YPi7o5LAa80Ud</m_xmiID>
+          <name>Room info</name>
+          <source> : List of rooms</source>
+          <result>true</result>
+          <dest> : Billing module</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Fx0u5A1Wmg4L2Hw</m_xmiID>
+          <name>Get log of guest services</name>
+          <source> : Billing module</source>
+          <result>false</result>
+          <dest> : Log of services</dest>
+          <destResponsibility>Maintain log of guest services</destResponsibility>
+          <destMethod>getLogOfGuestServices</destMethod>
+        </message>
+        <message>
+          <m_xmiID>o3OBp86Sjy2E9Cs</m_xmiID>
+          <name>Log of services</name>
+          <source> : Log of services</source>
+          <result>true</result>
+          <dest> : Billing module</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>q2VZb4o9O3Ict0X</m_xmiID>
+          <name>Get discounts</name>
+          <source> : Billing module</source>
+          <result>false</result>
+          <dest> : List of discounts</dest>
+          <destResponsibility>Manage list of discounts</destResponsibility>
+          <destMethod>getDiscountForCustomer</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Zn5j1TIy9w7DJi2</m_xmiID>
+          <name>Discount</name>
+          <source> : List of discounts</source>
+          <result>true</result>
+          <dest> : Billing module</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>s9O5WyKz21YbBe6</m_xmiID>
+          <name>Bill for the customer</name>
+          <source> : Billing module</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>i8FGu39LyRl0v2B</m_xmiID>
+          <name>Bill for the customer</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Reception Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+      </messages>
+      <description>Create bill for a customer</description>
+    </sequence>
+    <sequence>
+      <m_xmiID>f3TJl52Pjp7ZMw6</m_xmiID>
+      <name>Log guest services</name>
+      <trigger />
+      <preConditions />
+      <successConditions />
+      <failureConditions />
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>p2ZTc40Vof1N9Si</m_xmiID>
+          <name>Guest Service Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>Fw41NpEv2e8A9Yl</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>GUI</card>
+        </object>
+        <object>
+          <m_xmiID>Hp5b0EXg76Uzy4S</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Log of services</card>
+        </object>
+        <object>
+          <m_xmiID>Md50EmYc87Xsb4P</m_xmiID>
+          <name />
+          <IsActor>false</IsActor>
+          <card>Conference rooms schedule</card>
+        </object>
+      </objects>
+      <messages>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Jt5u3HCr6c0YTp9</m_xmiID>
+          <name>loop start 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>alt</operatorType>
+          <operand>Customer uses hotel services</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>a8MLy5r7Q6YbXg0</m_xmiID>
+          <name>Customer uses hotel services</name>
+          <source>Guest Service Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Log guest services</destResponsibility>
+          <destMethod>logGuestServices</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Dn03Kvz5N7VeYb6</m_xmiID>
+          <name>Customer uses hotel services</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Log of services</dest>
+          <destResponsibility>Maintain log of guest services</destResponsibility>
+          <destMethod>logGuestServices</destMethod>
+        </message>
+        <message>
+          <m_xmiID>a0Q9Lyd2DSx75Aq</m_xmiID>
+          <name>Ok</name>
+          <source> : Log of services</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Kv45Zpk2R8YtHq0</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Guest Service Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopOperandHelper">
+          <m_xmiID>By79NnPs3j6MOh2</m_xmiID>
+          <name>operand 4</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operand>Order conference room</operand>
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>r9U0KxWn48Vbd5L</m_xmiID>
+          <name>Retreive conference rooms schedule</name>
+          <source>Guest Service Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage conference rooms schedule</destResponsibility>
+          <destMethod>getConferenceRoomsSchedule</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Yv93LjXh8g1B2Ep</m_xmiID>
+          <name>Retreive conference rooms schedule</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Conference rooms schedule</dest>
+          <destResponsibility>Manage conference rooms schedule</destResponsibility>
+          <destMethod>getConferenceRoomsSchedule</destMethod>
+        </message>
+        <message>
+          <m_xmiID>d5SXz28YnHh74Re</m_xmiID>
+          <name>Schedule</name>
+          <source> : Conference rooms schedule</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>o7S5IpRj16KyQv0</m_xmiID>
+          <name>Schedule</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Guest Service Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>g3IVo02Tux1H7Gv</m_xmiID>
+          <name>loop start 6</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>loop</operatorType>
+          <operand>while order not accepted</operand>
+          <saveState>false</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>n0OEb81Guk3L2Vs</m_xmiID>
+          <name>Order conference room</name>
+          <source>Guest Service Clerk</source>
+          <result>false</result>
+          <dest> : GUI</dest>
+          <destResponsibility>Manage conference rooms schedule</destResponsibility>
+          <destMethod>orderConferenceRoom</destMethod>
+        </message>
+        <message>
+          <m_xmiID>p9BGh3t6YWq82Vx</m_xmiID>
+          <name>Order conference room</name>
+          <source> : GUI</source>
+          <result>false</result>
+          <dest> : Conference rooms schedule</dest>
+          <destResponsibility>Manage conference rooms schedule</destResponsibility>
+          <destMethod>orderConferenceRoom</destMethod>
+        </message>
+        <message xsi:type="umlLoopStartHelper">
+          <m_xmiID>Lm27Gho0Z1Jyp6M</m_xmiID>
+          <name>loop start 7</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operatorType>alt</operatorType>
+          <operand>Conference room order succeeded</operand>
+          <saveState>true</saveState>
+          <color>NamedColor:Green</color>
+        </message>
+        <message>
+          <m_xmiID>u4Y6Ccd7GVj15Hv</m_xmiID>
+          <name>Log conference room order</name>
+          <source> : Conference rooms schedule</source>
+          <result>false</result>
+          <dest> : Log of services</dest>
+          <destResponsibility>Maintain log of guest services</destResponsibility>
+          <destMethod>logGuestServices</destMethod>
+        </message>
+        <message>
+          <m_xmiID>Pe31Ssm0M7Wah9I</m_xmiID>
+          <name>Ok</name>
+          <source> : Log of services</source>
+          <result>true</result>
+          <dest> : Conference rooms schedule</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Nq0r3W9Cjd7DAu6</m_xmiID>
+          <name>Ok</name>
+          <source> : Conference rooms schedule</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>Lb1x9PAk7w3U2Yf</m_xmiID>
+          <name>Ok</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Guest Service Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopOperandHelper">
+          <m_xmiID>Ev76Mjh5TPo20Da</m_xmiID>
+          <name>operand 6</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <operand>Conference room can not be ordered on selected date</operand>
+          <restoreState>true</restoreState>
+        </message>
+        <message>
+          <m_xmiID>r5XQp3h4R1SqOl7</m_xmiID>
+          <name>Reject</name>
+          <source> : Conference rooms schedule</source>
+          <result>true</result>
+          <dest> : GUI</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message>
+          <m_xmiID>p0EDl83YmFy29Tn</m_xmiID>
+          <name>Reject</name>
+          <source> : GUI</source>
+          <result>true</result>
+          <dest>Guest Service Clerk</dest>
+          <destResponsibility />
+          <destMethod />
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>r7J3Fsb4HIi96Eu</m_xmiID>
+          <name>loop end 7</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>Sh12MrZc9x8T0Is</m_xmiID>
+          <name>loop end 6</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+        <message xsi:type="umlLoopEndHelper">
+          <m_xmiID>e6Q3KoRw2l0S1Xy</m_xmiID>
+          <name>loop end 5</name>
+          <source />
+          <result>false</result>
+          <dest />
+          <destResponsibility />
+          <destMethod />
+          <restoreState>false</restoreState>
+        </message>
+      </messages>
+      <description>Log guest services</description>
+    </sequence>
+  </sequences>
+</Doc>

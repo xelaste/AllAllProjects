@@ -1,0 +1,17 @@
+ Length  Method   Size  Ratio   Date    Time   CRC-32     Name ("^" ==> case
+ ------  ------   ----  -----   ----    ----   ------     ----   conversion)
+   2036  Deflate    730  64%  11-09-83  12:15  45c4024f   animals.pro
+   3208  Deflate    890  72%  01-28-86  00:05  40081f2f   autoc.grm
+  20846  Deflate   7022  66%  02-18-86  01:39  f4e5889b   autoc.pro
+     20  Stored      20   0%  01-04-86  13:35  8108b168   autoc.txt
+  51420  Deflate  14341  72%  02-18-86  01:32  08622ba9   classy.pro
+  11182  Deflate   3903  65%  11-09-83  12:35  8093e5a3   dbaql.pro
+   1553  Deflate    787  49%  11-09-83  12:37  99cfa4d4   mlist.pro
+  15843  Deflate   4803  70%  01-02-86  16:10  f0fa4237   pced.pro
+   6390  Deflate   2046  68%  11-09-83  17:51  31ad5749   roadmap.pro
+  20408  Deflate   4116  80%  11-11-83  12:54  3f860dfc   sessions.txt
+   7512  Deflate   1971  74%  05-06-92  21:36  0945b613   symdiff.pro
+   3357  Deflate   1024  69%  01-04-86  13:23  b81629dc   tinydef.pro
+ ------          ------  ---                              -------
+ 143775           41653  71%                              12     
+

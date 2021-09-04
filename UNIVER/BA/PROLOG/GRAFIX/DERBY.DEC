@@ -1,0 +1,74 @@
+/*
+    Horse Race Game - (c) Brian D Steel - 05 Nov 86
+
+    This simple game displays 10 "horses" on the screen, and waits for
+    you to press a key to start the race.
+
+    Random numbers and list processing are used to move the horses during
+    the race, and when one reaches the end, its name is displayed.
+
+    Run the race by typing:
+
+	race .
+
+    The result will be different every time.
+
+*/
+
+/* draw 10 horses using graphics chars, and commence the race when ready */
+
+race :-  
+  write('~^~D~L'),
+  forall(on(Number,[0,1,2,3,4,5,6,7,8,9]),(named(Number,Name) , write('~R') , write(Name), write('~Y~M~J~D~Bимн~D~M~J'))),
+  write('~R~K~J'),
+  cursor(&:,21,16),
+  write('~_place your bets - hit any key when ready ...'),
+  flush('TRM:'),
+  fr('TRM:',[['B',1]],[Any]),
+  cursor(&:,21,16),
+  write('the race is now on ...~Y~X'),
+  runit([0,0,0,0,0,0,0,0,0,0]).
+
+/* choose a horse at random, move it on and test if it has won */
+
+runit(Pos) :-  
+  Choice is ip(rand(10)),
+  pos(Choice,Pos,Newpos,Col),
+  Row is Choice * 2 + 1,
+  cursor(&:,Row,Col),
+  write('~D.~Bимн'),
+  test(Col,Choice,Newpos).
+
+/* pick out which horse has been selected, and advance it 2 spaces */
+
+pos(0,[Col|Rest],[Newcol|Rest],Col) :-  
+  Newcol is Col + 1,
+  !.
+pos(Pos,[Any|Rest],[Any|Newrest],Col) :-  
+  Less is Pos - 1,
+  pos(Less,Rest,Newrest,Col).
+
+/* test if the horse has won - if not, continue running the race */
+
+test(76,Horse,Pos) :-  
+  cursor(&:,21,39),
+  named(Horse,Name),
+  write('~G~D~R'),
+  write(Name),
+  write(' won the race'),
+  nl.
+test(Col,Horse,Pos) :-  
+  runit(Pos).
+
+/* database of horse names used in the race */
+
+named(0,nijinski). 
+named(1,'red rum'). 
+named(2,shergar). 
+named(3,'lucky star'). 
+named(4,dragonfly). 
+named(5,'black beauty'). 
+named(6,'knackers yard'). 
+named(7,corbierre). 
+named(8,'national velvet'). 
+named(9,'my little pony'). 

@@ -1,0 +1,5 @@
+fscreen(const.h, msg.h)
+menu   (const.h, msg.h)
+listmng(const.h, msg.h, struct.h)
+unitmng(const.h, msg.h, struct.h)
+main   (const.h, msg.h, struct.h)

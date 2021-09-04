@@ -1,0 +1,7 @@
+counter([],X,0).
+counter([Y|List],X,Num):-
+        Y\=X,
+        counter(List,X,Num).
+counter([X|List],X,Num):-
+        counter(List,X,Num1),
+        Num is Num1+1.

@@ -1,0 +1,28 @@
+change_base(Term,Base,NewTerm):-integer(Term),
+                                !,
+                                transform(Term,Base,NewTerm).
+change_base(Term,Base,Term):-atom(Term),
+                             !.
+change_base(Term,Base,NewTerm):-
+            Term=..[X,Y|List],
+            change_base(X,Base,X1),
+            change_base(Y,Base,Y1),
+            process(List,Base,List1),
+            NewTerm=..[X1,Y1|List1].
+
+process([],Base,[]):-!.
+process([X|Tail],Base,[Y|Tail1]):-
+        change_base(X,Base,Y),
+        process(Tail,Base,Tail1).
+
+transform(Num,Base,-Num1):- Num<0,
+                            !,
+                            transform(-Num,Base,Num1).
+
+transform(Num,Base,Num):- Num<Base,
+                          !.
+transform(Num,Base,NewNum):- Num>=Base,
+          Reminder is Num mod Base,
+          Div is (Num-Reminder)/Base,
+          transform(Div,Base,NewNum1),
+          NewNum is NewNum1*10+Reminder.

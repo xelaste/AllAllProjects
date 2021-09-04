@@ -1,0 +1,313 @@
+/*
+
+Meal Selection Example - written by Brian D Steel, Jan 1988 - (c) 1988 LPA Ltd
+------------------------------------------------------------------------------
+
+This program is designed to help you select meals of various sorts from
+a database of dishes. The normal interface to the programs is via the
+front-end relation 'menu', which is called as follows:
+
+   ?- menu(type_of_meal).
+
+where 'type_of_meal' is one of:
+
+   any_meal	- any combination of starter, main course, dessert and wine
+   good_meal	- starter, main course and wine chosen to complement each other
+   cheap_meal	- any meal costing less than œ15
+   yuppie_meal	- a good meal costing more than œ30
+   diet_meal	- any meal containing fewer than 650 calories
+   glutton_meal	- a good meal containing more than 1500 calories
+
+*/
+
+/* this is the front end program */
+
+menu :-
+  inmenu(Meal,[any_meal,
+		good_meal,
+		cheap_meal,
+		yuppie_meal,
+		diet_meal,
+		glutton_meal],
+	'Choose a meal type',8,20,20,41,49),
+  menu(Meal).
+
+menu(Meal) :-
+  close_menus,
+  concat('Today''s delicious choice of ',Meal,Name),
+  concat(Name,' menus',Menu),
+  crwind(Menu,5,15,11,50,89,56),
+  write('I''m thinking - please wait a moment ...'),
+  Meal(Starter,Main,Dessert,Wine),
+  cost(Starter,Main,Dessert,Wine,Cost),
+  energy(Starter,Main,Dessert,Wine,Calories),
+  fw(Menu,['~X~D~L~JStarter:~I~B',c(0),
+		'~D~M~J~I~I~I-oOo-~M~JMain Course:~I~B',c(0),
+		'~D~M~J~I~I~I-oOo-~M~JDessert:~I~B',c(0),
+		'~D~M~J~I~I~I-oOo-~M~JWine:~I~I~B',c(0),
+		'~D~M~J~Jprice: ~Bœ',f(5,2),
+		'~D - calories: ~B',u(0)],
+	[Starter,Main,Dessert,Wine,Cost,Calories]),
+  wait_for_more,
+  cuwind(&:),
+  close(Menu).
+menu(Meal) :-
+  close_menus.
+
+/* any old meal consists of a starter, main dish, dessert and wine */
+
+any_meal(Starter,Main,Dessert,Wine) :-
+  starter(Starter),
+  main(Main),
+  dessert(Dessert),
+  wine(Wine).
+
+/* a good meal is one where the starter and wine are ok with the main dish */
+
+good_meal(Starter,Main,Dessert,Wine) :-
+  any_meal(Starter,Main,Dessert,Wine),
+  starter_ok(Starter,Main),
+  wine_ok(Wine,Main).
+
+/* a cheap meal is any meal costing less than œ15 */
+
+cheap_meal(Starter,Main,Dessert,Wine) :-
+  any_meal(Starter,Main,Dessert,Wine),
+  cost(Starter,Main,Dessert,Wine,Cost),
+  Cost < 15.
+
+/* a yuppie meal must be a good meal costing more than œ30 */
+
+yuppie_meal(Starter,Main,Dessert,Wine) :-
+  good_meal(Starter,Main,Dessert,Wine),
+  cost(Starter,Main,Dessert,Wine,Cost),
+  Cost > 30.
+
+/* a diet meal is any meal with fewer than 650 calories */
+
+diet_meal(Starter,Main,Dessert,Wine) :-
+  any_meal(Starter,Main,Dessert,Wine),
+  energy(Starter,Main,Dessert,Wine,Calories),
+  Calories < 650.
+
+/* a glutton meal must be a good one with over 1500 calories */
+
+glutton_meal(Starter,Main,Dessert,Wine) :-
+  good_meal(Starter,Main,Dessert,Wine),
+  energy(Starter,Main,Dessert,Wine,Calories),
+  Calories > 1500.
+
+/* a starter is ok if it is not the same type of dish as the main course */
+
+starter_ok(Starter,Main) :-
+  dish_type(Starter,Type),
+  not dish_type(Main,Type).
+
+/* white wines are ok with fish and poultry, and red ones with meat */
+
+wine_ok(Wine,Main) :-
+  colour(Wine,white),
+  dish_type(Main,poultry).
+wine_ok(Wine,Main) :-
+  colour(Wine,white),
+  dish_type(Main,fish).
+wine_ok(Wine,Main) :-
+  colour(Wine,red),
+  dish_type(Main,meat).
+
+/* the cost of a meal is the price plus 15% vat and 12.5% service charge */
+
+cost(Starter,Main,Dessert,Wine,Cost) :-
+  price(Starter,Prc1),
+  price(Main,Prc2),
+  price(Dessert,Prc3),
+  price(Wine,Prc4),
+  Cost is (Prc1 + Prc2 + Prc3 + Prc4) * 1.15 * 1.125.
+
+/* the number of calories in a meal is the total energy of the four parts */
+
+energy(Starter,Main,Dessert,Wine,Calories) :-
+  calories(Starter,Cal1),
+  calories(Main,Cal2),
+  calories(Dessert,Cal3),
+  calories(Wine,Cal4),
+  Calories is Cal1 + Cal2 + Cal3 + Cal4.
+
+/* these are the starters */
+
+starter(prawn_cocktail).
+starter(pate_maison).
+starter(avocado_vinaigrette).
+starter(stuffed_mushrooms).
+starter(parma_ham_with_melon).
+starter(asparagus_soup).
+
+/* and here are the main courses (vegetables are included!) */
+
+main(dover_sole).
+main(fillet_steak).
+main(calves_liver).
+main(chicken_kiev).
+main(ragout_of_lamb).
+main(poached_salmon).
+
+/* the desserts follow here */
+
+dessert(chocolate_fudge_cake).
+dessert(vanilla_ice_cream).
+dessert(peach_melba).
+dessert(waffles_with_maple_syrup).
+dessert(fresh_fruit_salad).
+dessert(apple_and_blackberry_pie).
+
+/* and these are the wines */
+
+wine(chablis).
+wine(muscadet_sur_lie).
+wine(beaujolais_nouveau).
+wine(nuits_saint_george).
+wine(gewurztraminer).
+wine(cabernet_shiraz).
+
+/* the various meal item's prices (before service and vat) are listed here */
+
+price(chablis,10.95).
+price(muscadet_sur_lie,5.45).
+price(beaujolais_nouveau,4.75).
+price(nuits_saint_george,12.75).
+price(gewurztraminer,9.25).
+price(cabernet_shiraz,8.65).
+price(chocolate_fudge_cake,1.75).
+price(vanilla_ice_cream,0.95).
+price(peach_melba,1.55).
+price(waffles_with_maple_syrup,1.35).
+price(fresh_fruit_salad,1.95).
+price(apple_and_blackberry_pie,1.75).
+price(dover_sole,8.75).
+price(fillet_steak,6.5).
+price(calves_liver,4.95).
+price(chicken_kiev,3.65).
+price(ragout_of_lamb,5.25).
+price(poached_salmon,7.25).
+price(prawn_cocktail,2.25).
+price(pate_maison,1.45).
+price(avocado_vinaigrette,1.55).
+price(stuffed_mushrooms,1.15).
+price(parma_ham_with_melon,2.75).
+price(asparagus_soup,1.95).
+
+/* the energy content of each meal item is listed here in kilocalories */
+
+calories(chablis,125).
+calories(muscadet_sur_lie,100).
+calories(beaujolais_nouveau,150).
+calories(nuits_saint_george,225).
+calories(gewurztraminer,125).
+calories(cabernet_shiraz,200).
+calories(chocolate_fudge_cake,450).
+calories(vanilla_ice_cream,325).
+calories(peach_melba,375).
+calories(waffles_with_maple_syrup,425).
+calories(fresh_fruit_salad,175).
+calories(apple_and_blackberry_pie,250).
+calories(dover_sole,250).
+calories(fillet_steak,650).
+calories(calves_liver,425).
+calories(chicken_kiev,450).
+calories(ragout_of_lamb,500).
+calories(poached_salmon,225).
+calories(prawn_cocktail,175).
+calories(pate_maison,150).
+calories(avocado_vinaigrette,275).
+calories(stuffed_mushrooms,200).
+calories(parma_ham_with_melon,100).
+calories(asparagus_soup,125).
+
+/* here is a list of the colours of the various wines */
+
+colour(beaujolais_nouveau,red).
+colour(nuits_saint_george,red).
+colour(cabernet_shiraz,red).
+colour(chablis,white).
+colour(muscadet_sur_lie,white).
+colour(gewurztraminer,white).
+
+/* this classifies the main type of ingredients in each starter and main dish */
+
+dish_type(pate_maison,poultry).
+dish_type(chicken_kiev,poultry).
+dish_type(avocado_vinaigrette,vegetable).
+dish_type(stuffed_mushrooms,vegetable).
+dish_type(asparagus_soup,vegetable).
+dish_type(parma_ham_with_melon,meat).
+dish_type(fillet_steak,meat).
+dish_type(calves_liver,meat).
+dish_type(ragout_of_lamb,meat).
+dish_type(prawn_cocktail,fish).
+dish_type(dover_sole,fish).
+dish_type(poached_salmon,fish).
+
+/* this procedure prints a message in a one-line window, and waits for a key */
+
+wait_for_more :-
+  flush('TRM:'),
+  cuwind(Window),
+  crwind(msg,16,15,1,45,0,93,16),
+  write('Press SPACE for more, any other key to finish'),
+  get0('TRM:',Key),
+  cuwind(Window),
+  close(msg),
+  Key \= 32.
+
+/* this procedure closes all windows whose names begin 'Today' */
+
+close_menus :-
+  cuwind(&:),
+  wdict(Windows),
+  forall((on(Window,Windows) , concat('Today',Something,Window)),close(Window)).
+
+/* this code constitutes the menu selection routine */
+
+inmenu(Choice,List,Name,Row,Col,Cols):-
+  inmenu(Choice,List,Name,Row,Col,Cols,0,0).
+
+inmenu(Choice,List,Name,Row,Col,Cols,Frame,Contents) :-
+  Width is 0 - Cols,
+  length(List,Length),
+  cuwind(Window),
+  write('~^'),
+  crwind(Name,Row,Col,Length,Cols,Frame,Contents),
+  fw('WND:',[u(Width)],List),
+  peruse(Choice,List,Width),
+  cuwind(Window),
+  close(Name),
+  !.
+
+/* peruse the menu by writing out entries and then choosing the one wanted */
+
+peruse(Choice,[Head|Tail],Width) :-
+  cursor('WND:',0,0),
+  fw('WND:',['~R',u(Width)],[Head]),
+  write('~D~X~_'),
+  get0('TRM:',Char),
+  choose(Char,Choice,[],[Head|Tail],Width),
+  write('~C').
+
+/* terminate with choice on carriage return, otherwise carry on choosing */
+
+choose(13,Entry,Any,[Entry|Anymore],Width).
+choose(Ascii,Entry,Above,Below,Width) :-
+  choice(Ascii,[Above,Below],[Newabove,Newbelow],Width),
+  write('~_'),
+  get0('TRM:',Newascii),
+  !,
+  choose(Newascii,Entry,Newabove,Newbelow,Width).
+
+/* just pick up space (go down one) and backspace (go back one) */
+
+choice(32,[Above,[Head,Next|Below]],[[Head|Above],[Next|Below]],Width) :-
+  fw('WND:',['~M~D',u(Width),'~R',u(Width)],[Head,Next]).
+choice(8,[[Head|Above],[Next|Below]],[Above,[Head,Next|Below]],Width) :-
+  fw('WND:',['~M~D',u(Width),'~M~H~M~R',u(Width)],[Next,Head]).
+choice(Any,List,List,Width) :-
+  write('~G').

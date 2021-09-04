@@ -1,0 +1,157 @@
+/*
+
+EMS Virtual Memory Handler - Brian D Steel - 16 Aug 88
+Copyright (c) - Logic Programming Associates Ltd, 1988
+
+This program illustrates the use of PROLOG arrays by providing a simple virtual
+memory system for loading programs into, and executing programs from EMS
+arrays. Note that your computer must be equipped with EMS version 3.2 or later
+for this program to work.
+
+Programs are loaded into an EMS array called 'code', using the command:
+
+	?- load(file).
+
+The 'code' array contains 1000 rows of 3 columns each. The first cell in a row
+contains the predicate name of a clause; the second contains a copy of the
+first argument of the clause head. The third cell contains the entire clause
+as a structure.
+
+An error handler ('?ERROR?') is provided to intercept calls to predicates not
+defined in your program proper, and instead to search the 'code' array for
+matching 'clauses'. The search is made simultaneously on predicate name and
+first argument, simulating the indexing used in optimised compiled code. When
+found, 'clause' bodies are executed directly using meta-programming.
+
+This simple mechanism works correctly for programs that are static - that is,
+programs which do not modify their own definitions using 'assert' and
+'retract'; dynamic programs should be avoided!
+
+Programs stored in this manner can be listed to the screen using the command:
+
+	?- listing.				% for all programs, or:
+	?- listing(Pred).			% for just the one program
+
+The 'load' command deletes any existing 'code' array, before setting up a new
+one. You can therefore only have one 'virtual' program at a time.
+
+Please note that this file is provided as a programming example only: there are
+far more efficient ways of using EMS arrays for storing data than via the
+mechanism shown here.
+
+*/
+
+/* load a file assuming a .dec extension, into an array called 'code' */
+
+load(File) :-					% load file into ems memory
+  open(File,'DEC'),
+  kill(code),
+  crarray(code,1000,3,[],48),
+  loadin(File,1).
+
+load(File) :-					% close file when done
+  close(File).
+
+/* load the file in by reading and processing entries until end of file */
+
+loadin(File,Row) :-				% load successive entries
+  read(File,Thing),
+  Thing \= end_of_file,
+  loadone(File,Thing,Row,New),
+  !,
+  loadin(File,New).
+
+/* load one entry, incrementing the array row index as necessary */
+
+loadone(File,(:- Goal),Row,Row) :-		% execute a command
+  !,
+  Goal.
+
+loadone(File,(Head :- Body),Row,New) :-		% store a clause (rule)
+  Head =.. [Pred|Args],
+  !,
+  addone(Pred,Args,Body,Row,New).
+
+loadone(File,Head,Row,New) :-			% store a clause (assertion)
+  Head =.. [Pred|Args],
+  !,
+  addone(Pred,Args,true,Row,New).
+
+loadone(File,Any,Row,Row) :-			% funnies handled here
+  write('Failed to load, trying: '),
+  writeq(Any),
+  nl,
+  fail.
+
+/* "assert" a clause into the array, incrementing the row count */
+
+addone(Pred,[Arg|Args],Body,Row,New) :-		% one or more arguments in head
+  setblck(code,Row,1,1,3,[Pred,Arg,[[Pred,Arg|Args]|Body]]),
+  New is Row + 1.
+
+addone(Pred,[],Body,Row,New) :-			% no arguments in head
+  setblck(code,Row,1,1,3,[Pred,Dummy,[[Pred]|Body]]),
+  New is Row + 1.
+
+/* error handler catches predicates which are not defined and searches array */
+
+'?ERROR?'(2,Goal) :-				% at least one argument in goal
+  Goal =.. [Pred,Arg|Args],
+  !,
+  schline(code,0,1000,[Pred,Arg],Row),
+  trycell(Row,Arg,[Pred,Arg|Args]).
+
+'?ERROR?'(2,Goal) :-				% no arguments in goal
+  Goal =.. [Pred],
+  !,
+  schline(code,0,1000,[Pred,Arg],Row),
+  trycell(Row,Arg,[Pred]).
+
+'?ERROR?'(2,Goal) :-				% system goals should fail
+  pdef(Pred),
+  !,
+  fail.
+
+'?ERROR?'(Num,Goal) :-				% handle other errors
+  errh(Num,Goal).
+
+/* retrieve a 'clause' from the array and try it, or search for more */
+
+trycell(Row,Arg,Goal) :-			% retrieve 'clause' and try it
+  getblck(code,Row,2,1,2,Block),
+  Block = [Arg,[Goal|Body]],
+  Body.
+
+trycell(Row,Arg,[Pred|Args]) :-			% search for another clause
+  schline(code,Row,1000,[Pred,Arg],New),
+  trycell(New,Arg,[Pred|Args]).
+
+/* list out the programs stored in the EMS array */
+
+list :-						% list all programs
+  list(All).
+
+list(Pred) :-					% list just one program
+  listout(0,Pred).
+
+list(Pred).					% succeed when all is done
+
+/* search the 'code' array for 'clauses' for program 'Pred', and output them */
+
+listout(From,Pred) :-				% list clauses from given row
+  schline(code,From,1000,[Pred],Row),
+  getblck(code,Row,3,1,1,Clause),
+  grnhol(Ground,Clause,Vars),
+  Ground = [[List|Body]],
+  Head =.. List,
+  listone((Head :- Body),Vars),
+  !,
+  listout(Row,Pred).
+
+/* show rules and facts in ground form */
+
+listone((Head :- true),Vars) :-		% clause (assertion) to output
+  portray_clause(Head,Vars).
+
+listone((Head :- Body),Vars) :-		% clause (rule) to output
+  portray_clause((Head :- Body),Vars).

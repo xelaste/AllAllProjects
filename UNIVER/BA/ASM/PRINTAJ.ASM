@@ -1,0 +1,17 @@
+.MODEL SMALL
+.CODE
+PRINT_A_J  proc
+    mov DL,'A'
+    mov CX,10
+PRINT_LOOP:
+    call WRITE_CHAR
+    inc DL
+    loop PRINT_LOOP
+PRINT_A_J endp
+WRITE_CHAR  proc
+      mov AH,2
+      int 21h
+      ret
+WRITE_CHAR endp
+end PRINT_A_J
+

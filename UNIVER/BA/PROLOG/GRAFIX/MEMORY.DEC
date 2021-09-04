@@ -1,0 +1,51 @@
+/*
+Program to check amount of free memory - (c) Brian D Steel - 05 Apr 89
+--------------------------------------   -----------------   ---------
+
+This program creates a small window, which will fit into the first memory
+slot in memory, and then uses an undocumented feature of the atom primitive
+to find the address of this window. It then follows the undocumented DOS
+memory chain counting up the number of free bytes, and keeping track
+of the largest available contiguous block of memory.
+
+Type the command: "?- free." for a summary of available memory.
+*/
+
+free :-
+  cuwind(Me),
+  crwind(small,0,0,1,1,0,0,24),
+  atom(small,_,_,Buffer),
+  Address is Buffer - 16,
+  cuwind(Me),
+  close(small),
+  count(77,Address,0,Total,0,Largest),
+  write('total free space = '),
+  write(Total),
+  write(' bytes; largest contiguous block = '),
+  write(Largest),
+  write(' bytes '),
+  nl.
+
+count(Tag,Address,Total,Total,Largest,Largest) :-
+  not on(Tag,[77,90]).
+count(Tag,Address,Count,Total,Big,Largest) :-
+  data(Address,Newtag,Seg,Size,Newaddr),
+  include(Seg,Size,Count,Newcnt,Big,Newbig),
+  count(Newtag,Newaddr,Newcnt,Total,Newbig,Largest).
+
+data(Address,Tag,Seg,Size,Newaddr) :-
+  peek(Address,Data,5),
+  Data = [Tag,Seglo,Seghi,Sizlo,Sizhi],
+  Seg is Seglo + Seghi * 256,
+  Size is (Sizlo + Sizhi * 256)* 16 + 16,
+  Newaddr is Address + Size.
+
+include(0,Size,Count,Newcnt,Big,Newbig) :-
+  Newcnt is Size + Count,
+  bigger(Size,Big,Newbig).
+include(Seg,Size,Count,Count,Big,Big).
+
+bigger(Small,Big,Big) :-
+  cmp(-1,Small,Big).
+bigger(Big,Small,Big).
+

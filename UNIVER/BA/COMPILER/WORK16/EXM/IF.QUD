@@ -1,0 +1,12 @@
+IADD _t0 2 1
+ISUB _t1 0 _t0
+ITOR _t2 _t1 
+RASN b _t2 
+ILSS _t4 1 2
+JMPZ 10 _t4 
+JUMP 8  
+IPRT 1  
+JUMP 11  
+IPRT 0  
+HALT   
+Compiler project. Developed by Alexander Stekolchik.1998

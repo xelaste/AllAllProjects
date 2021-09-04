@@ -1,0 +1,516 @@
+/*
+
+PROLOG Benchmark Suite - Copyright (c) 1987-94 Brian D Steel
+----------------------   -----------------------------------
+
+Update 28 Feb 94 - Increased Iteration Counts
+---------------------------------------------
+
+Due to the greater than tenfold speed increase in microcomputers since the
+days when this benchmark suite was first implemented, the loop counts for
+the 8 "bench" tests has been increased from 25 to 250, and for the 2 "lips"
+tests, from 100 to 1000 and from 25 to 250 respectively. The "check(8)"
+clause was updated from 30162 to 49620, which is the final random number
+after the new number of calls.
+
+Introduction
+------------
+
+To run the benchmark suite, load this file and type:
+
+  ?- suite .
+
+NB - this should run to completion and yield the YES prompt from PROLOG.
+
+These benchmark programs attempt to give an all-round performance test for
+any Edinburgh Syntax PROLOG system. There are four data predicates used to
+provide input for most of the benchmarks. These are:
+
+Two lists of 30 elements length, with the 30th element only on both lists:
+
+list1([101,102,103, ... 129,here]) .
+list2([201,202,203, ... 229,here]) .
+
+Two data relations with 30 clauses each, the 30th entry only the same value:
+
+data1(101) .
+data1(102) .
+data1(103) .
+...
+data1(129) .
+data1(here) .
+
+data2(201) .
+data2(202) .
+data2(203) .
+...
+data2(229) .
+data2(here) .
+
+Brief description of the individual tests
+-----------------------------------------
+
+0: dummy test - used to subtract the overhead of the benchmark code from
+   whatever is being tested
+
+1: naive reverse - tests the speed of reversing list1 (30 elements), giving
+   a measure of the speed of non-backtracking (deterministic) execution
+   combined with list processing
+
+2: list membership - tests how long it takes to find which item is on both
+   list1 and list2, giving a measure of the efficiency of backtracking (non-
+   deterministic) search using list processing
+
+3: database membership using indexing - find which value is true of both
+   data1 and data2, utilising first argument indexing on data2 if supported;
+   again this tests backtracking, but without list processing
+
+4: database membership not using indexing - like test 3, but data1 and data2
+   are used to generate values which are later tested for unification, thereby
+   sidestepping any argument indexing
+
+5: database modification - this asserts data1 values for a temporary relation,
+   and then calls the asserted clause which itself tests for data2 of the
+   same value; this adds database modification to test 4
+
+6: meta-level programming - a generic program is defined to hold true if
+   all predicates listed in its first argument are true of the meta-arguments
+   supplied in its second argument; this adds meta-level programming to the
+   backtracking tests
+
+7: get bag of all solutions - tests how long it takes to accumulate a first bag
+   of values for X such that data1 is true of X and data2 is true of Y; this
+   tests how efficiently the bagof predicate backtracks over the two data
+   relations and then returns a first bag of 30 solutions
+
+8: random number list - this is an all-rounder thats using floating point
+   arithmetic, clause assertion/retraction and list processing and to
+   generate sorted lists of random integers; it does not use any built-in
+   random function or sort predicate, but implements a program to perform the
+   arithmetic directly in PROLOG
+
+lips measurement - naive reverse is timed for 30 and 100 elements lists
+   1000 and 250 times respectively, and the logical inferences per second
+   (lips) rate is displayed for each one
+
+Testing for valid benchmark results
+-----------------------------------
+
+Some of these tests use PROLOG predicates rather than straight logic. If they
+fail to work correctly (which will be signalled on the screen), the reasons
+will probably be one of the following:
+
+1: should never fail - uses straight logic
+
+2: should never fail - uses straight logic
+
+3: should never fail - uses straight logic
+
+4: should never fail - uses straight logic
+
+5: will fail if assert or retract do not work correctly, but should be ok on
+   any PROLOG system
+
+6: should never fail - uses straight logic and meta-level programming
+
+7: will fail if bagof is not implemented, or returns the wrong number of
+   solutions: the bag should be a list of 30 elements, and is tested by a call
+   to the length predicate
+
+8: will fail if assert or retract do not work correctly, or if there are
+   problems with the mathematics predicate is: after 250 runs of test 8,
+   a single clause should be left for the relation data, containing the
+   exact value 49620; any other value indicates problems
+
+Failure to complete the test(s)
+-------------------------------
+
+Some PROLOG systems may not be able to complete certain tests owing to poor
+memory management or other defects, causing the whole suite to grind to a
+halt. In such cases, note this fact and run any remaining tests. The command:
+
+  ?-bench(N,250) .
+
+should be used to run an individual test numbered N, the 250 iterations should
+be adhered to if possible. All tests except number 8 can be run for other
+numbers of iterations, either if the execution time is unbearably slow or too
+fast for a realistic timing: remember that the time returned is an average, not
+a total, so do not make any corrections for different iteration counts.
+Test 8 itself will signal failure if not run exactly 250 times, because the
+final random number is tested for being the correct value. The commands:
+
+  ?-lips(30,1000) .
+  ?-lips(100,250) .
+
+should be used to test the number of logical inferences per second based on
+both 30-element and 100-element list reversal. 
+
+Notes on compatibility
+----------------------
+
+This suite is written in "Edinburgh" syntax, as used by most PROLOG systems.
+Unfortunately, there is no explicit reference standard for this syntax, so
+there might be a need for minor alterations to the code so that it functions
+correctly. As written, the program will load under all versions of PROLOG
+tested with the single exception of access to the time of day (see below);
+hopefully no other alterations will be needed.
+
+Compiling the tests
+-------------------
+
+As written, the tests should run in the interpreted or (where applicable)
+incrementally compiled modes of any PROLOG system. Where a full, optimising
+compiler is also provided, some PROLOGs demand extra information to be recorded
+in the program, especially if the compiler only works in a module-based
+fashion. Any additions made to the program for the purpose of compiling should
+be limited to module declarations and compiler directives; the source itself
+should not be touched. If the compiler objects, this should be reported, since
+it indicates a departure from the interpreted form of the language.
+
+Cut and other control predicates and modes
+------------------------------------------
+
+It is important that no changes are made to the control logic, by adding
+cut (!), fail or true directives to the code, since these would invalidate
+comparisons with other PROLOG systems. Likewise, any time-saving tricks such
+as disabling garbage collection or turning off tail recursion should be
+avoided, since these only serve to improve benchmark timings and cannot safely
+be used in real applications.
+
+Time of day
+-----------
+It seems that no two PROLOG systems use the same mechanism for returning the
+time of day. A predicate called tod (time of day) must be implemented to return
+all four arguments (hours, minutes, seconds and hundreths) in order for these
+benchmarks to run. If hundreths are not supported, return a value of zero.
+
+LPA PROLOG Professional
+-----------------------
+
+These programs were first developed using LPA PROLOG Professional 2.0, and
+therefore run as-is, either in incrementally or optimised compiled modes.
+Various modifications were made after testing Arity/PROLOG and PROLOG-2, so
+that the tests would load or compile on these systems too. In particular, the
+data and list relations were reduced to 30 elements each from 50, which only
+LPA's PROLOG could handle correctly, and the time of day access was isolated
+for ease of conversion between PROLOGs.
+
+SD-PROLOG
+---------
+
+SD-PROLOG's time predicate returns its four arguments using colon operators
+rather then commas. Edit tod so that is is defined as follows:
+
+  tod(Hr,Mn,Sc,Hu) :-
+    time(Hr:Mn:Sc:Hu) .
+
+Arity/PROLOG
+------------
+
+Arity/PROLOG's time predicate returns a single argument, which itself has the
+four arguments needed. Edit tod so that it is defined as follows:
+
+  tod(Hr,Mn,Sc,Hu) :-
+    time(time(Hr,Mn,Sc,Hu)) .
+
+PROLOG-2
+--------
+
+PROLOG-2's time predicate does not support hundreths of a second, so edit tod
+to be as follows:
+
+  tod(Hr,Mn,Sc,0) :-
+    time(Hr,Mn,Sc) .
+
+About Turbo-PROLOG
+------------------
+
+Most people will agree that Turbo-PROLOG is not really PROLOG at all, with its
+restrictive data typing, correspondingly weak unification, and total lack of
+meta-level programming and dynamic database support. This is not to say that
+has no use as a Pascal-like language, but for AI applications it is most
+unsuitable. These benchmark programs could not be made to run under Turbo-
+PROLOG for many of the reasons outlined above, and this explains the lack of
+any compatibility notes for this product.
+
+*/
+
+/* the suite is run by typing the PROLOG command: suite. */
+
+suite :-
+  nl ,
+  write('PROLOG Benchmark Suite - (c) 1987-94 Brian D Steel') ,
+  nl ,
+  write('--------------------------------------------------') ,
+  nl ,
+  nl ,
+  bench(1,250) ,
+  bench(2,250) ,
+  bench(3,250) ,
+  bench(4,250) ,
+  bench(5,250) ,
+  bench(6,250) ,
+  bench(7,250) ,
+  bench(8,250) ,
+  lips(30,1000) ,
+  lips(100,250) .
+
+/* bench prepares and then times the execution of tests 1 to 8 */
+
+bench(Num,Count) :-
+  prepare(Num,Arg1,Arg2) ,
+  label(Num,Prompt) ,
+  write(Prompt) ,
+  nl ,
+  write('        timing ') ,
+  write(Count) ,
+  write(' runs of test ') ,
+  write(Num) ,
+  write(': ') ,
+  timeit(Num,Arg1,Arg2,Count,Time) ,
+  check(Num) ,
+  ! ,
+  write('average time (in seconds) = ') ,
+  write(Time) ,
+  nl .
+bench(Num,Count) :-
+  write('*** THIS TEST HAS FAILED ***') ,
+  nl .
+
+/* logical inferences per second (lips) is computed from naive reverse */
+
+lips(Num,Count) :-
+  genlist(Num,List) ,
+  write('Compute LIPS rate for ') ,
+  write(Num) ,
+  write(' element list') ,
+  nl ,
+  write('        timing ') ,
+  write(Count) ,
+  write(' naive reverses of a list length ') ,
+  write(Num) ,
+  write(': ') ,
+  timeit(1,List,[],Count,Time) ,
+  Lips is (Num + 1) * (Num + 2) / 2 / Time ,
+  write('lips = ') ,
+  write(Lips) ,
+  nl .
+
+/* generate a list of given length used by lips measurement program */
+
+genlist(0,[]) :-
+  ! .
+genlist(Num,[Num|List]) :-
+  Next is Num - 1 ,
+  genlist(Next,List) .
+
+/* time a given test against the dummy test zero */
+
+timeit(Num,Arg1,Arg2,Count,Time) :-
+  timetest(Num,Arg1,Arg2,Count,Time1) ,
+  timetest(0,Arg1,Arg2,Count,Time2) ,
+  Time is (Time1 - Time2) / 100 / Count .
+
+/* time an individual test by trying it and failing a given number of times */
+
+timetest(Num,Arg1,Arg2,Count,Time) :-
+  tod(H1,M1,S1,F1) ,
+  runtest(Num,Arg1,Arg2,Count) ,
+  tod(H2,M2,S2,F2) ,
+  Time is (H2 - H1) * 360000 + (M2 - M1) * 6000 + (S2 - S1) * 100 + (F2 - F1) .
+
+/* time of day returns hours, minutes, seconds and (if possible) hundreths */
+
+tod(Hr,Mn,Sc,Hu) :-
+  time(Hr,Mn,Sc,Hu) .
+
+/* run a test backtracking until the count is exhausted */
+
+runtest(Num,Arg1,Arg2,Count) :-
+  count(Count) ,
+  not(testcase(Num,Arg1,Arg2)) ,
+  ! ,
+  fail .
+runtest(Num,Arg1,Arg2,Count) .
+
+/* succeed on backtracking only a given number of times */
+
+count(1) :-
+  ! .
+count(Any) .
+count(Num) :-
+  Less is Num - 1 ,
+  count(Less) .
+
+/* preparation of data for test 0 to 8 */
+
+prepare(0,[],[]) .
+prepare(1,List,[]) :-
+  list1(List) .
+prepare(2,List1,List2) :-
+  list1(List1) ,
+  list2(List2) .
+prepare(3,[],[]) .
+prepare(4,[],[]) .
+prepare(5,[],[]) .
+prepare(6,[],[]) .
+prepare(7,[],[]) .
+prepare(8,[],[]) :-
+  abolish(data/1) ,
+  assert(data(0)) .
+
+/* labels briefly describing tests 0 to 8 for display purposes */
+
+label(0,'Dummy compensation case') .
+label(1,'Naive reverse of list1') .
+label(2,'X on lists list1 and list2') .
+label(3,'X in relations data1 and data2') .
+label(4,'X in relation data1 and Y in data2 and X same as Y') .
+label(5,'X from data1 asserted as data if data2 of Y and X same as Y') .
+label(6,'Relations data1 and data2 are all true of some X') .
+label(7,'Return bag of X such that data1 of X and data2 of Y') .
+label(8,'Generate a sorted list of random numbers') .
+
+/* code for tests 0 to 8 */
+
+testcase(0,Arg1,Arg2) :-
+  ! .
+testcase(1,List1,Arg2) :-
+  naive(List1,Reverse) ,
+  ! .
+testcase(2,List1,List2) :-
+  memb(Element,List1) ,
+  memb(Element,List2) ,
+  ! .
+testcase(3,Arg1,Arg2) :-
+  data1(Value) ,
+  data2(Value) ,
+  ! .
+testcase(4,Arg1,Arg2) :-
+  data1(Value1) ,
+  data2(Value2) ,
+  same(Value1,Value2) ,
+  ! .
+testcase(5,Arg1,Arg2) :-
+  abolish(data/0) ,
+  data1(Val1) ,
+  addclause((data :- data2(Val2),same(Val1,Val2))) ,
+  data ,
+  ! .
+testcase(6,Arg1,Arg2) :-
+  alltrue([data1,data2],[Any]) ,
+  ! .
+testcase(7,Arg1,Arg2) :-
+  bagof(Value1,(data1(Value1),data2(Value2)),List) ,
+  ! .
+testcase(8,Arg1,Arg2) :-
+  randlist(30,List) ,
+  ! .
+
+/* check that any predicates used in the suite worked correctly */
+
+check(0) .
+check(1) .
+check(2) .
+check(3) .
+check(4) .
+check(5) :-
+  retract((data :- data2(Val2),same(Val1,Val2))) ,
+  Val1 = here ,
+  not(retract((data :- data2(Val4),same(Val3,Val4)))) .
+check(6) .
+check(7) :-
+  bagof(Value1,(data1(Value1),data2(Value2)),List) ,
+  length(List,30) .
+check(8) :-
+  data(49620) ,
+  not((data(Other),Other \= 49620)) .
+
+/* list1 and list2 have 30 elements each, but only the last one is on both */
+
+list1([101,102,103,104,105,106,107,108,109,110,
+       111,112,113,114,115,116,117,118,119,120,
+       121,122,123,124,125,126,127,128,129,here]) .
+
+list2([201,202,203,204,205,206,207,208,209,210,
+       211,212,213,214,215,216,217,218,219,220,
+       221,222,223,224,225,226,227,228,229,here]) .
+
+/* data1 and data2 have 30 clauses each, but only the last is true of both */
+
+data1(101) .  data1(102) .  data1(103) .  data1(104) .  data1(105) .
+data1(106) .  data1(107) .  data1(108) .  data1(109) .  data1(110) .
+data1(111) .  data1(112) .  data1(113) .  data1(114) .  data1(115) .
+data1(116) .  data1(117) .  data1(118) .  data1(119) .  data1(120) .
+data1(121) .  data1(122) .  data1(123) .  data1(124) .  data1(125) .
+data1(126) .  data1(127) .  data1(128) .  data1(129) .  data1(here) .
+
+data2(201) .  data2(202) .  data2(203) .  data2(204) .  data2(205) .
+data2(206) .  data2(207) .  data2(208) .  data2(209) .  data2(210) .
+data2(211) .  data2(212) .  data2(213) .  data2(214) .  data2(215) .
+data2(216) .  data2(217) .  data2(218) .  data2(219) .  data2(220) .
+data2(221) .  data2(222) .  data2(223) .  data2(224) .  data2(225) .
+data2(226) .  data2(227) .  data2(228) .  data2(229) .  data2(here) .
+
+/* classical naive reverse used as basis of test 1 and lips measurement */
+
+naive([],[]) .
+naive([Head|Tail],List) :-
+  naive(Tail,Rev) ,
+  app(Rev,[Head],List) .
+
+/* classical append program called by naive reverse */
+
+app([],List,List) .
+app([Head|Tail],List,[Head|New]) :-
+  app(Tail,List,New) .
+
+/* classical list membership used as basis of test 2 */
+
+memb(Element,[Element|List]) .
+memb(Element,[Head|Tail]) :-
+  memb(Element,Tail) .
+
+/* unification predicate to avoid "equals" optimisation in tests 4 and 5 */
+
+same(Any,Any) .
+
+/* special assert which undoes itself on failure used in test 5 */
+
+addclause(Clause) :-
+  assert(Clause) .
+addclause(Clause) :-
+  retract(Clause) ,
+  fail .
+
+/* meta-level test of predicates and arguments is the basis of test 6 */
+
+alltrue([],Args) .
+alltrue([Pred|Rest],Args) :-
+  Call =.. [Pred|Args] ,
+  call(Call) ,
+  alltrue(Rest,Args) .
+
+/* creating a sorted random list is the basis of test 8 */
+
+randlist(0,[]) .
+randlist(Length,List) :-
+  Less is Length - 1 ,
+  randlist(Less,Tail) ,
+  random(Head) ,
+  insert(Head,Tail,List) .
+
+/* random number program uses floating point multiply, add a modulo only */
+
+random(Num) :-
+  retract(data(Rnd)) ,
+  Num is (Rnd * 21081 + 13579) mod 65536 ,
+  assert(data(Num)) .
+
+/* insertion into a list used by test 8 */
+
+insert(Element,[],[Element]) .
+insert(Element,[Head|Tail],[Element,Head|Tail]) :-
+  Element < Head .
+insert(Element,[Head|Tail],[Head|Newtail]) :-
+  insert(Element,Tail,Newtail) .

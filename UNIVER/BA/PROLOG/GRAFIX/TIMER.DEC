@@ -1,0 +1,63 @@
+/*
+
+Benchmark Timing Program - Brian D Steel - 06 Dec 1988
+Copyright (c) - Logic Programming Associates Ltd, 1988
+
+This program uses the time of day clock to time a given number of iterations
+of the given goal (1000 by default), and then compares this time with a control
+loop. The difference is then divided by the number of iterations, and the
+average time displayed. The command:
+
+	t(write(hello)).
+
+would time how long it takes to write 'hello' by running it 1000 times. The
+command:
+
+	t(X is 3 + 4, 10000).
+
+would time the expression handler, calculating X = 3 + 4, 10000 times.
+
+*/
+
+/* time the given goal 1000 times, or as many times as requested */
+
+t(Goal) :-
+  t(Goal,1000).
+t(Goal,Num) :-
+  testime(Num,Goal,Time),
+  write('average of '),
+  writeq(Num),
+  write(' runs: '),
+  writeq(Goal),
+  write(' took '),
+  writeq(Time),
+  write(' seconds~M~J').
+
+/* time the given goal, and then a control loop, and return the difference */
+
+testime(Num,Goal,Time) :-
+  runtest(Num,Goal,Tim1),
+  runtest(Num,true,Tim2),
+  Time is (Tim1 - Tim2) / 100 / Num.
+
+/* run the given test after a garbage collection, and return the total time */
+
+runtest(Num,Goal,Time) :-
+  space(Spc),
+  time(Hr1,Mn1,Sc1,Fr1),
+  loop(Num,Goal),
+  time(Hr2,Mn2,Sc2,Fr2),
+  Time is (Hr2 - Hr1) * 360000
+        + (Mn2 - Mn1) * 6000
+        + (Sc2 - Sc1) * 100
+        + (Fr2 - Fr1).
+
+/* repeat goal Num times. Note use of double negation to undo var bindings */
+
+loop(0,Goal) :-
+  !.
+loop(Num,Goal) :-
+  not not Goal,
+  Less is Num - 1,
+  loop(Less,Goal).
+

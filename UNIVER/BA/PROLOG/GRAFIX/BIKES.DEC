@@ -1,0 +1,30 @@
+alien_to(Part,Thing) :-
+  part_of(Part,Something),
+  not needed_by(Part,Thing).
+parts_list(Thing,List) :-
+  setof(Part,needed_by(Part,Thing),List).
+needed_by(Part,Thing) :-
+  part_of(Part,Thing).
+needed_by(Part,Thing) :-
+  part_of(Part,Other),
+  needed_by(Other,Thing).
+part_of(spoke,wheel).
+part_of(tyre,wheel).
+part_of(rim,wheel).
+part_of(wheel,bike).
+part_of(pedal,bike).
+part_of(link,chain).
+part_of(chain,transmission).
+part_of(sprocket,transmission).
+part_of(sprocket,wheel).
+part_of(button,coat).
+part_of(transmission,bike).
+part_of(battery,light).
+part_of(bulb,light).
+part_of(light,bike).
+part_of(handlebar,bike).
+part_of(frame,bike).
+part_of(saddle,frame).
+part_of(peas,meal).
+part_of(tooth,sprocket).
+part_of(valve,tyre).

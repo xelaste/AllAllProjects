@@ -1,0 +1,25 @@
+MAGIC    TRN      1536 09/05/93   16:04                                         
+TASK2    BAT        29 04/03/93   14:05                                         
+COMMAND  COM     47845 11/11/91    5:00                                         
+CONFIG   BAK       283 06/05/93    9:48                                         
+TASK3    BAT        29 04/03/93   14:05                                         
+MAIN     BAT        34 12/11/92   14:42                                         
+SCAN     RPT       193 18/12/92    7:21                                         
+AUTOEXEC BAT       365 06/05/93    9:12                                         
+CHKLIST  CPS       162 12/03/93    7:11                                         
+OPTAUTO  BAT       143 27/03/92    9:24                                         
+OPT1TEST BAT        71 27/03/92    9:24                                         
+M42      TRN      1024 09/05/93   16:00                                         
+TIMERUN  EXE      1515 30/08/92    5:05                                         
+TIMERUN  DAT        40 19/12/92   10:22                                         
+CMOS     CPS        48 21/03/93    9:19                                         
+CONFIG   SYS       295 06/05/93    9:48                                         
+DEMO         <DIR>     06/05/93   11:08                                         
+MAGIC        <DIR>     06/05/93   11:17                                         
+       37 file(s)      57599 bytes                                              
+                      317440 bytes free                                         
+                                                                                
+C:\TC\ALEX>scrprnt.exe                                                          
+                                                                                
+C:\TC\ALEX>scrprnt.exe                                                          
+                                                                                

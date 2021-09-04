@@ -1,0 +1,17 @@
+make_list([X],Dest):- %input list include only number
+  gen(X,Dest).
+make_list(Source,Dest) :- %input list include more than one number
+  get_head_and_tail(Head,Tail,Source),
+  gen(Head,SubList),
+  make_list(Tail,Dest1),
+  concat(SubList,Dest1,Dest).
+
+get_head_and_tail(Head,Tail,[Head|Tail]).
+
+gen(N,[N]) :- %if number <=1 do nothing
+  N =< 1.
+gen(N,[N|SubList]) :- %if number > 1 expand it
+  N > 1 ,
+  N1 is N - 1,
+  gen(N1,SubList).
+

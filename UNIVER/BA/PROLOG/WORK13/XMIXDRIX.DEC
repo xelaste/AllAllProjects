@@ -1,0 +1,111 @@
+x_mix_drix:-
+  makemove(x,[' ',' ',' ',' ',' ',' ',' ',' ',' '],[1,2,3,4,5,6,7,8,9],none).
+%---------------------------------------------------------
+makemove(_,Pos,[],none)  :-!,
+                           writepos(Pos),
+                           write('Winner is '),write(none),nl.
+
+makemove(Side,Position,FreeCellList,none):-!,
+        write('Move of '),write(Side),write('. List of free cell is '),
+        writelist(FreeCellList),write(' press CTRL+C to stop'),nl,
+        writepos(Position),nl,
+        read(Move),
+        processmove(Move,Side,Position,FreeCellList,Winner).
+
+makemove(_,Pos,_,Winner) :-delete(Winner,[0,x],L),
+                           writepos(Pos),
+                           write('Winner is '),write(Winner),nl.
+%---------------------------------------------------------
+processmove(Move,Side,Position,FreeCellList,Winner):-
+            delete(Move,FreeCellList,NewFreeCellList),
+            !,
+            insert(Side,Move,[],Position,NewPosition,1),
+            checkwinner(NewPosition,Side,NewWinner),
+            setside(Side,NewSide),
+            makemove(NewSide,NewPosition,NewFreeCellList,NewWinner)
+            ;
+            write('Invalid move , try again !!!'),nl,
+            makemove(Side,Position,FreeCellList,Winner).
+%---------------------------------------------------------
+setside(x,0):-!.
+setside(0,x):-!.
+%---------------------------------------------------------
+checkwinner(Position,Side,Side):-
+            set_row_col_diag(Position,R1,R2,R3,C1,C2,C3,D1,D2),
+            exists_match(Side,R1,R2,R3,C1,C2,C3,D1,D2),
+            !.
+checkwinner(_,_,none).
+%---------------------------------------------------------
+set_row_col_diag([X11,X12,X13,X21,X22,X23,X31,X32,X33],
+                 [X11,X12,X13],[X21,X22,X23],[X31,X32,X33],
+                 [X11,X21,X31],[X12,X22,X32],[X13,X23,X33],
+                 [X11,X22,X33],[X31,X22,X13]).
+%---------------------------------------------------------
+exists_match(Side,R1,R2,R3,C1,C2,C3,D1,D2):-
+             match([Side,Side,Side],R1),
+             !;
+             match([Side,Side,Side],R2),
+             !;
+             match([Side,Side,Side],R3),
+             !;
+             match([Side,Side,Side],C1),
+             !;
+             match([Side,Side,Side],C2),
+             !;
+             match([Side,Side,Side],C3),
+             !;
+             match([Side,Side,Side],D1),
+             !;
+             match([Side,Side,Side],D2).
+%---------------------------------------------------------
+match([X,Y,Z],[X,Y,Z]).
+%---------------------------------------------------------
+writelist([]):-!.
+writelist([X|Tail]):-
+          write(X),write(','),
+          writelist(Tail).
+%---------------------------------------------------------
+insert(What,Place,Before,[X|After],NewPos,Counter):-
+       Place=:=Counter,
+       !,
+       concat(Before,[What|After],NewPos).
+insert(What,Place,Before,[X|After],NewPos,Counter):-
+       Counter<Place,
+       Counter1 is Counter+1,
+       concat(Before,[X],Before1),
+       insert(What,Place,Before1,After,NewPos,Counter1).
+%----------------------------------------------------------
+delete(X,[X|List],List):-!.
+delete(X,[Y|List],[Y|List1]):-delete(X,List,List1).
+%----------------------------------------------------------
+endofrow(N):-
+            N mod 3 =:= 0,
+            !,
+            nl,
+            write('*--*--*--*'),nl.
+endofrow(N).
+%----------------------------------------------------------
+beginofrow(N):-
+          N mod 3 =:= 1,
+          !,
+          write('|').
+beginofrow(N).
+%----------------------------------------------------------
+writecell(Pos,CellCounter):-CellCounter>9,
+                                 !.
+writecell([],CellCounter):-
+         beginofrow(CellCounter),
+         write(' '),write(' |'),
+         endofrow(CellCounter),
+         CellCounter1 is CellCounter+1,
+         writecell([],CellCounter1).
+
+writecell([X|Tail],CellCounter):-
+         beginofrow(CellCounter),
+         write(X),write(' |'),
+         endofrow(CellCounter),
+         CellCounter1 is CellCounter+1,
+         writecell(Tail,CellCounter1).
+writepos(Pos):-write('*--*--*--*'),nl,
+               writecell(Pos,1).
+%----------------------------------------------------------

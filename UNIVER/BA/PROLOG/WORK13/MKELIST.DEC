@@ -1,0 +1,15 @@
+not_is_in_list(X,[X|List],[],List):-
+               !.
+not_is_in_list(X,[Y|Tail],[X],[Y|Tail]):-X<Y,
+               !.
+not_is_in_list(X,[Y|Tail],Item,List):-
+           X>Y,
+           not_is_in_list(X,Tail,Item,List).
+
+make_list([],List2,[]).
+make_list(List1,[],List1).
+
+make_list([Head|Tail1],List2,List):-
+     not_is_in_list(Head,List2,Match,Tail2),
+     make_list(Tail1,Tail2,Tail),
+     concat(Match,Tail,List).

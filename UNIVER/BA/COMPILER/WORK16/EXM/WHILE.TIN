@@ -1,0 +1,11 @@
+prog whilee;
+var  a: int,
+     b: int;
+begin
+     a:=1;
+     while a>0 do
+           read a;
+           read b;
+           print a*b-b/a;
+     od;
+end.

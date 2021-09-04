@@ -1,0 +1,28 @@
+%-----------------------------------------------------------
+postorder(T,T1,L):-postorder_and_sum(T,T1,L,S).
+%-----------------------------------------------------------
+postorder_and_sum(nil,nil,[],0).
+postorder_and_sum(t(Left,X,Right),NewTree,L,Sum):-
+          different(t(Left,X,Right),nil),
+          postorder_and_sum(Left,NewLeft,L1,LeftSum),
+          postorder_and_sum(Right,NewRight,R1,RightSum),
+          Sum is LeftSum + RightSum + X,
+          X1 is Sum-X,
+          maketree(NewLeft,X1,NewRight,NewTree),
+          concat(R1,[X1],L2),
+          concat(L1,L2,L).
+%-----------------------------------------------------------
+maketree(L,X,R,t(L,X,R)).
+%-----------------------------------------------------------
+different(X,Y):-X\=Y.
+%-----------------------------------------------------------
+checkprog:-
+    see('TREE.DAT'),
+    tell('TREENEW.DAT'),
+    read(T),
+    postorder(T,T1,L),
+    write('T1='),write(T1),write('.'),nl,
+    write('L='),write(L),write('.'),nl,
+    seen,
+    told.
+%---------------------------------------------------------------

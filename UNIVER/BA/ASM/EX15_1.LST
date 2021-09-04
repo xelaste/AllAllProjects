@@ -1,0 +1,883 @@
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 1
+ex15_1.ASM
+
+
+
+      1	      =0005		     N equ 5 ;size of board;
+      2	      =002A		     ALIVE equ '*'
+      3	      =0020		     DEAD  equ ' '
+      4				     ;--------------------------------------------------------
+      5				     WRITELN macro STRING ;macro for print string onto screen
+      6				     push dx;save value	of dx
+      7				     push ax;save value	of ax
+      8				     mov dx,offset new_line
+      9				     call write
+     10				     mov dx,offset STRING
+     11				     call write
+     12				     pop ax;restore value of AX
+     13				     pop dx;restore value of DX
+     14				     endm ;WRITELN;
+     15				     ;------------------------------------------------------------
+     16				     LINE Macro	Num,FIRST,CELL,LAST
+     17				     LINE&Num db FIRST
+     18					      db (N-1) dup (CELL),&LAST
+     19				     i=i+1
+     20				     endm;
+     21				     ;------------------------------------------------------------
+     22				     SHOW_MATRIXE macro
+     23				      i=0
+     24				      rept Number_of_line
+     25				      WRITELN LINE&%i
+     26				      i=i+1
+     27				      endm ;rept
+     28				     endm ;SHOW_MATRIXE
+     29				     ;----------------------------------------------------------
+     30	0000			     dseg segment
+     31	0000			     MATRIXE: ;used for	display	current	generation
+     32	      =0000		     i=0
+     33				     LINE %i,'Ú','ÄÄÄÂ','ÄÄÄ¿$'
+1    34	0000  DA		     LINE0 db 'Ú'
+1    35	0001  04*(C4 C4	C4 C2) C4 +	      db (N-1) dup ('ÄÄÄÂ'),'ÄÄÄ¿$'
+     36	      C4 C4 BF 24
+     37				     LINE %i,'³','   ³','   ³$'
+1    38	0016  B3		     LINE1 db '³'
+1    39	0017  04*(20 20	20 B3) 20 +	      db (N-1) dup ('	³'),'	³$'
+     40	      20 20 B3 24
+     41				     rept N-1
+     42				     LINE %i,'Ã','ÄÄÄÅ','ÄÄÄ´$'
+     43				     LINE %i,'³','   ³','   ³$'
+     44				     endm
+1    45				     LINE %i,'Ã','ÄÄÄÅ','ÄÄÄ´$'
+2    46	002C  C3		     LINE2 db 'Ã'
+2    47	002D  04*(C4 C4	C4 C5) C4 +	      db (N-1) dup ('ÄÄÄÅ'),'ÄÄÄ´$'
+     48	      C4 C4 B4 24
+1    49				     LINE %i,'³','   ³','   ³$'
+2    50	0042  B3		     LINE3 db '³'
+2    51	0043  04*(20 20	20 B3) 20 +	      db (N-1) dup ('	³'),'	³$'
+     52	      20 20 B3 24
+1    53				     LINE %i,'Ã','ÄÄÄÅ','ÄÄÄ´$'
+2    54	0058  C3		     LINE4 db 'Ã'
+2    55	0059  04*(C4 C4	C4 C5) C4 +	      db (N-1) dup ('ÄÄÄÅ'),'ÄÄÄ´$'
+     56	      C4 C4 B4 24
+1    57				     LINE %i,'³','   ³','   ³$'
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 2
+ex15_1.ASM
+
+
+
+2    58	006E  B3		     LINE5 db '³'
+2    59	006F  04*(20 20	20 B3) 20 +	      db (N-1) dup ('	³'),'	³$'
+     60	      20 20 B3 24
+1    61				     LINE %i,'Ã','ÄÄÄÅ','ÄÄÄ´$'
+2    62	0084  C3		     LINE6 db 'Ã'
+2    63	0085  04*(C4 C4	C4 C5) C4 +	      db (N-1) dup ('ÄÄÄÅ'),'ÄÄÄ´$'
+     64	      C4 C4 B4 24
+1    65				     LINE %i,'³','   ³','   ³$'
+2    66	009A  B3		     LINE7 db '³'
+2    67	009B  04*(20 20	20 B3) 20 +	      db (N-1) dup ('	³'),'	³$'
+     68	      20 20 B3 24
+1    69				     LINE %i,'Ã','ÄÄÄÅ','ÄÄÄ´$'
+2    70	00B0  C3		     LINE8 db 'Ã'
+2    71	00B1  04*(C4 C4	C4 C5) C4 +	      db (N-1) dup ('ÄÄÄÅ'),'ÄÄÄ´$'
+     72	      C4 C4 B4 24
+1    73				     LINE %i,'³','   ³','   ³$'
+2    74	00C6  B3		     LINE9 db '³'
+2    75	00C7  04*(20 20	20 B3) 20 +	      db (N-1) dup ('	³'),'	³$'
+     76	      20 20 B3 24
+     77				     LINE %i,'À','ÄÄÄÁ','ÄÄÄÙ$'
+1    78	00DC  C0		     LINE10 db 'À'
+1    79	00DD  04*(C4 C4	C4 C1) C4 +	      db (N-1) dup ('ÄÄÄÁ'),'ÄÄÄÙ$'
+     80	      C4 C4 D9 24
+     81	      =000B		     Number_of_line=i
+     82	00F2  05*(20)		     UP_BORDER	 db (N)	  dup (DEAD);help area for making check	easer
+     83	00F7  19*(20)		     board	 db (N*N) dup (DEAD);array of current generation
+     84	0110  05*(20)		     DOWN_BORDER db (N)	  dup (DEAD);help area for making check	easer
+     85	0115  19*(20)		     New_board	 db (N*N) dup (DEAD);array of new generation
+     86	012E  50 72 65 73 73 20	20+  GO_ON_MESSAGE db 'Press  E	to stop	, any other key	to continue$'
+     87	      45 20 74 6F 20 73	74+
+     88	      6F 70 20 2C 20 61	6E+
+     89	      79 20 6F 74 68 65	72+
+     90	      20 6B 65 79 20 74	6F+
+     91	      20 63 6F 6E 74 69	6E+
+     92	      75 65 24
+     93	015B  0000		     counter dw	0 ;counter of generation
+     94	015D  FFFA FFFB	FFFC 0001 +  INNER_CELL_AREA   dw -N-1,-N,-N+1,1,N+1,N,N-1,-1;offsets of NEIGHBOUR cells
+     95	      0006 0005	0004 FFFF
+     96	016D  0000 FFFB	FFFC 0001 +  FIRST_COLUMN_AREA dw    0,-N,-N+1,1,N+1,N,	 0, 0;relative to checked cell
+     97	      0006 0005	0000 0000
+     98	017D  FFFA FFFB	0000 0000 +  LAST_COLUMN_AREA  dw -N-1,-N,   0,0,  0,N,N-1,-1
+     99	      0000 0005	0004 FFFF
+    100				     ;	 *----*----*----*----*----*
+    101				     ;	 | 0  |	1  | 2	| 3  | 4  |  Upper border  all cells are dead
+    102				     ;	 *----*----*----*----*----*  N=5
+    103				     ;0	 |-N-1|	-N |-N+1|    |	  |  checking the inner	cell X
+    104				     ;	 *----*----*----*----*----*  if	cell from last or first	column is checked
+    105				     ;1	 | -1 |	X  | 1	|    |	  |  corresponding values of offsets gets zero
+    106				     ;	 *----*----*----*----*----*
+    107				     ;2	 | N-1|	N  | N+1|    |	  |
+    108				     ;	 *----*----*----*----*----*
+    109				     ;3	 |    |	   |	|    |	  |
+    110				     ;	 *----*----*----*----*----*
+    111				     ;4	 |    |	   |	|    |	  |
+    112				     ;	 *----*----*----*----*----*
+    113				     ;	 |    |	   |	|    |	  | Down border	all cells are dead
+    114				     ;	 *----*----*----*----*----*
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 3
+ex15_1.ASM
+
+
+
+    115	018D  0D 0A 24		     new_line  db 0dh,0ah,'$' ;cr+lf ascii codes
+    116	0190  0D 0A 47 65 6E 65	72+  counter_msg db 0dh,0ah,'Generation	number:	$'
+    117	      61 74 69 6F 6E 20	6E+
+    118	      75 6D 62 65 72 3A	20+
+    119	      24
+    120	01A6			     KEYBOARD_INPUT LABEL BYTE
+    121	01A6  02		     MAX_NUM_LENTH  db 2
+    122	01A7  00		     NUM_DIGIT_READ db 0
+    123	01A8  20 20 24		     INPUT_NUMBER   db '  ','$'	;string	for storing input number
+    124	01AB  49 6E 76 61 6C 69	64+  INVALID_NUMBER db 'Invalid	digit',0dh,0ah,'$'
+    125	      20 64 69 67 69 74	0D+
+    126	      0A 24
+    127	01BB  49 6E 70 75 74 20	6C+  ENTER_PROMPT   db 'Input lineNo and columnNo from 1 to $'
+    128	      69 6E 65 4E 6F 20	61+
+    129	      6E 64 20 63 6F 6C	75+
+    130	      6D 6E 4E 6F 20 66	72+
+    131	      6F 6D 20 31 20 74	6F+
+    132	      20 24
+    133	01E0  2E 20 20 30 20 2C	20+  STOP_PROMPT    db '.  0 , 0 to stop $'
+    134	      30 20 74 6F 20 73	74+
+    135	      6F 70 20 24
+    136	01F2  49 3D 20 24	     LINE_PROMPT    db 'I= $'
+    137	01F6  4A 3D 20 24	     COL_PROMPT	    db 'J= $'
+    138	01FA  49 6E 76 61 6C 69	64+  INVALID_PLACE  db 'Invalid	line or	column$'
+    139	      20 6C 69 6E 65 20	6F+
+    140	      72 20 63 6F 6C 75	6D+
+    141	      6E 24
+    142	0211			     dseg ends
+    143				     ;------------------------------------------------------
+    144	0000			     sseg segment stack
+    145	0000  64*(????)			  dw 100 dup(?)
+    146	00C8			     sseg ends
+    147				     ;------------------------------------------------------
+    148	0000			     cseg segment
+    149					  assume cs:cseg,ds:dseg,ss:sseg
+    150				     ;------------ROUTINE TO PRINT A STRING -------------------------
+    151	0000			     write proc
+    152	0000  B4 09			   mov ah,9
+    153	0002  CD 21			   int 21h
+    154	0004  C3			   ret
+    155	0005			     write endp
+    156				     ;-------------------------------------------------------------
+    157	0005			     getchar proc
+    158				     ;Getting charcter from the	keyboard
+    159				     ;return AL	with ASCII code	of accepted character
+    160				     ;------------------------------------------------------------------
+    161	0005  B4 08		     mov ah,8
+    162	0007  CD 21		     int 21h
+    163	0009  C3		     ret
+    164	000A			     getchar endp
+    165				     ;-----------------------------------------------------------------
+    166	000A			     board2Matrixe proc
+    167				     ;copying data from	board to display matrixe
+    168				     ;----------------------------------------------------------------
+    169	000A  50		     push ax
+    170	000B  53		     push bx
+    171	000C  51		     push cx
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 4
+ex15_1.ASM
+
+
+
+    172	000D  55		     push bp
+    173	000E  56		     push si
+    174				     ;---------------------------------------------------------------
+    175	000F  8B EC		     mov bp,sp
+    176	0011  BB 0000r		     lea bx,LINE0 ;pointer to matrixe
+    177	0014  8B 76 0C		     mov si,[bp+12] ;pointer to	board
+    178	0017  B9 0005		     mov cx,N
+    179	001A			     fill_matrixe:
+    180	001A  51		     push cx
+    181	001B  B9 0005		     mov cx,N
+    182	001E  83 C3 18		     add bx,4*(N+1)
+    183	0021			     NEXT_CELL:
+    184	0021  8A 04		     mov al,[si]
+    185	0023  88 87 0000r	     mov LINE0[bx],al
+    186	0027  46		     inc si
+    187	0028  83 C3 04		     add bx,4
+    188	002B  E2 F4		     loop NEXT_CELL
+    189	002D  59		     pop cx
+    190	002E  E2 EA		     loop fill_matrixe
+    191	0030  5E		     pop si
+    192	0031  5D		     pop bp
+    193	0032  59		     pop cx
+    194	0033  5B		     pop bx
+    195	0034  58		     pop ax
+    196	0035  C3		     ret
+    197	0036			     board2Matrixe endp
+    198				     ;---------------------------------------------------------------
+    199	0036			     proc new2board
+    200				     ;this procedure copying data from new_board to board
+    201				     ;----------------------------------------------------------------
+    202	0036  57		     push di; /--------------------------\
+    203	0037  56		     push si; |	saving registers	 |
+    204	0038  51		     push cx; |				 |
+    205	0039  06		     push es; \--------------------------/
+    206	003A  1E		     push ds
+    207	003B  07		     pop es
+    208	003C  BE 0115r		     mov si,offset New_board
+    209	003F  BF 00F7r		     mov di,offset board
+    210	0042  B9 0019		     mov cx,N*N
+    211	0045  FC		     cld
+    212	0046  F3> A4		     rep movsb ;copy from new board to board
+    213	0048  07		     pop es; /----------------------------\
+    214	0049  59		     pop cx; |	 restoring  registers	  |
+    215	004A  5E		     pop si; |				  |
+    216	004B  5F		     pop di; \----------------------------/
+    217	004C  C3		     ret
+    218	004D			     new2board endp
+    219				     ;---------------------------------------------------------------
+    220	004D			     proc PUT_DIGIT
+    221				     ;routine for printing decimal DIGIT
+    222				     ;On entry DL Lower	4 bits contain number to be printed
+    223				     ;------------------------------------------------------------------
+    224	004D  52		     push dx ;save register used
+    225	004E  50		     push ax
+    226	004F  80 C2 30		     add dl,'0'
+    227	0052  B4 02		     mov ah,2
+    228	0054  CD 21		     int 21h
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 5
+ex15_1.ASM
+
+
+
+    229	0056  58		     pop ax ;restore old values	of registers
+    230	0057  5A		     pop dx
+    231	0058  C3		     ret
+    232	0059			     PUT_DIGIT endp
+    233				     ;-----------------------------------------------------------------
+    234	0059			     proc PrintNum
+    235				     ;This procdure writes a 16-bit unsigned number in decimal notation
+    236				     ;On entry DX N:16-bit insigned number
+    237				     ;--------------------------------------------------------------
+    238	0059  50		     push ax
+    239	005A  51		     push cx
+    240	005B  52		     push dx
+    241	005C  56		     push si
+    242	005D  8B C2		     mov ax,dx
+    243	005F  BE 000A		     mov si,10 ;will divide by 10 using	si
+    244	0062  33 C9		     xor cx,cx ;count of digit placed in stack
+    245	0064			     NON_ZERO:
+    246	0064  33 D2		      XOR dx,dx
+    247	0066  F7 F6		      div si   ;calculate n/10 and n mod 10
+    248	0068  52		      push dx  ;push digit onto	stack
+    249	0069  41		      inc cx   ;one more digit added
+    250	006A  0B C0		      or ax,ax ;n=0 yet
+    251	006C  75 F6		      jne NON_ZERO
+    252	006E			     WRITE_DIGIT_LOOP:
+    253	006E  5A		       pop dx
+    254	006F  E8 FFDB		       call PUT_DIGIT
+    255	0072  E2 FA		       LOOP WRITE_DIGIT_LOOP
+    256	0074  5E		     pop si
+    257	0075  5A		     pop dx
+    258	0076  59		     pop cx
+    259	0077  58		     pop ax
+    260	0078  C3		     ret
+    261	0079			     PrintNum endp
+    262				     ;-----------------------------------------------------------------
+    263	0079			     COUNT_ALIVE_NEIGHBOURS proc
+    264				     ;procedure	counts alive neighbour
+    265				     ;on entry di-adrress of offset table,
+    266				     ;output the number	of alive NEIGHBOURs in dx
+    267				     ;------------------------------------------------
+    268	0079  50		     push ax
+    269	007A  53		     push bx
+    270	007B  51		     push cx
+    271	007C  56		     push si
+    272	007D  33 D2		     xor dx,dx
+    273	007F  B9 0008		     mov cx,8
+    274	0082  8B DE		     mov bx,si
+    275	0084			     CONTINUE:
+    276	0084  33 C0		     xor ax,ax
+    277	0086  8B 05		     mov ax,[di]
+    278	0088  0B C0		     or	ax,ax
+    279	008A  74 0B		     jz	END_NEIGHBOUR;if offset	is 0 continue to next NEIGHBOUR
+    280	008C  8B F0		     mov si,ax
+    281	008E  8A 20		     mov ah,[bx+si]
+    282	0090  B0 2A		     mov al,ALIVE
+    283	0092  3A E0		     cmp ah,al;if NEIGHBOUR alive
+    284	0094  75 01		     jnz END_NEIGHBOUR ;it is not
+    285	0096  42		     inc dx	      ;yes it is
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 6
+ex15_1.ASM
+
+
+
+    286	0097			     END_NEIGHBOUR:
+    287	0097  83 C7 02		     add di,2
+    288	009A  E2 E8		     loop CONTINUE
+    289	009C  5E		     pop si
+    290	009D  59		     pop cx
+    291	009E  5B		     pop bx
+    292	009F  58		     pop ax
+    293	00A0  C3		     ret
+    294	00A1			     COUNT_ALIVE_NEIGHBOURS endp
+    295				     ;-----------------------------------------------------------------
+    296	00A1			     MAKE_NEW_GENERATION proc
+    297				     ;procedure	that preparing new generation in memory	(new_board)
+    298				     ;from the current generation (board)
+    299				     ;----------------------------------------------------------------
+    300	00A1  50		     push ax
+    301	00A2  53		     push bx
+    302	00A3  51		     push cx
+    303	00A4  52		     push dx
+    304	00A5  57		     push di
+    305	00A6  56		     push si
+    306				     ;-----------------------------------------------------------------
+    307	00A7  33 D2		     xor dx,dx
+    308	00A9  BE 00F7r		     lea si,board
+    309	00AC  BB 0115r		     lea bx,New_board
+    310	00AF  B9 0005		     mov cx,N
+    311	00B2			     BUILD_NEW_board:
+    312	00B2  51		     push cx
+    313	00B3  B9 0005		     mov cx,N
+    314	00B6			     CHECK_ROW:
+    315	00B6  B8 0005		     mov ax,N
+    316	00B9  3B C8		     cmp cx,ax
+    317	00BB  74 0E		     je	FIRST  ;first column
+    318	00BD  83 F9 01		     cmp cx,01h;
+    319	00C0  74 12		     je	LAST   ;last column
+    320				     ;-------------------------------------
+    321	00C2			     INNER:
+    322	00C2  BF 015Dr		     mov di,offset INNER_CELL_AREA
+    323	00C5  E8 FFB1		     call COUNT_ALIVE_NEIGHBOURS
+    324	00C8  EB 10 90		     jmp END_CHECK_CELL
+    325				     ;-------------------------------------
+    326	00CB			     FIRST:
+    327	00CB  BF 016Dr		     mov di,offset FIRST_COLUMN_AREA
+    328	00CE  E8 FFA8		     call COUNT_ALIVE_NEIGHBOURS
+    329	00D1  EB 07 90		     jmp END_CHECK_CELL
+    330				     ;-------------------------------------
+    331	00D4			     LAST:
+    332	00D4  BF 017Dr		     mov di,offset LAST_COLUMN_AREA
+    333	00D7  E8 FF9F		     call COUNT_ALIVE_NEIGHBOURS
+    334				     ;-------------------------------------
+    335	00DA			     END_CHECK_CELL:
+    336	00DA  B0 2A		     mov al,ALIVE
+    337	00DC  8A 24		     mov ah,[si]
+    338	00DE  3A C4		     cmp al,ah	  ;is cell alive ?
+    339	00E0  74 08		     je	ALIVE_CELL;yes it is
+    340				     ;-------------------------------------
+    341	00E2			     DEAD_CELL:
+    342	00E2  83 FA 03		     cmp dx,3
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 7
+ex15_1.ASM
+
+
+
+    343	00E5  74 0D		     je	NEW_LIFE
+    344	00E7  EB 11 90		     jmp DEARTH
+    345	00EA			     ALIVE_CELL:
+    346	00EA  83 FA 04		     cmp dx,4
+    347	00ED  73 0B		     jae DEARTH
+    348	00EF  83 FA 01		     cmp dx,1
+    349	00F2  76 06		     jbe DEARTH
+    350	00F4			     NEW_LIFE:
+    351	00F4  C6 07 2A		     mov BYTE PTR [bx],ALIVE
+    352	00F7  EB 04 90		     jmp END_CELL_LOOP
+    353	00FA			     DEARTH:
+    354	00FA  C6 07 20		     mov BYTE PTR [bx],DEAD
+    355	00FD			     END_CELL_LOOP:
+    356	00FD  46		     inc si
+    357	00FE  43		     inc bx
+    358	00FF  E2 B5		     loop CHECK_ROW
+    359	0101  59		     pop cx
+    360	0102  E2 AE		     loop BUILD_NEW_BOARD
+    361	0104  5E		     pop si
+    362	0105  5F		     pop di
+    363	0106  5A		     pop dx
+    364	0107  59		     pop cx
+    365	0108  5B		     pop bx
+    366	0109  58		     pop ax
+    367	010A  C3		     ret
+    368	010B			     MAKE_NEW_GENERATION endp
+    369				     ;-----------------------------------------------------------------
+    370	010B			     disp_gen proc
+    371				     ;Procedure	for display board with current generation of life
+    372				     ;-----------------------------------------------------------------
+    373	010B  50		     push ax
+    374	010C  53		     push bx
+    375	010D  52		     push dx
+    376	010E  33 C0		     xor ax,ax
+    377	0110  50 55 8B EC C7 46	02+  push offset board
+    378	      00F7r 5D
+    379	011A  E8 FEED		     call board2Matrixe
+    380	011D  5B		     pop bx
+    381				     SHOW_MATRIXE
+2   382				      WRITELN LINE%i
+3   383	011E  52		     push dx;save value	of dx
+3   384	011F  50		     push ax;save value	of ax
+3   385	0120  BA 018Dr		     mov dx,offset new_line
+3   386	0123  E8 FEDA		     call write
+3   387	0126  BA 0000r		     mov dx,offset LINE0
+3   388	0129  E8 FED4		     call write
+3   389	012C  58		     pop ax;restore value of AX
+3   390	012D  5A		     pop dx;restore value of DX
+2   391				      WRITELN LINE%i
+3   392	012E  52		     push dx;save value	of dx
+3   393	012F  50		     push ax;save value	of ax
+3   394	0130  BA 018Dr		     mov dx,offset new_line
+3   395	0133  E8 FECA		     call write
+3   396	0136  BA 0016r		     mov dx,offset LINE1
+3   397	0139  E8 FEC4		     call write
+3   398	013C  58		     pop ax;restore value of AX
+3   399	013D  5A		     pop dx;restore value of DX
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 8
+ex15_1.ASM
+
+
+
+2   400				      WRITELN LINE%i
+3   401	013E  52		     push dx;save value	of dx
+3   402	013F  50		     push ax;save value	of ax
+3   403	0140  BA 018Dr		     mov dx,offset new_line
+3   404	0143  E8 FEBA		     call write
+3   405	0146  BA 002Cr		     mov dx,offset LINE2
+3   406	0149  E8 FEB4		     call write
+3   407	014C  58		     pop ax;restore value of AX
+3   408	014D  5A		     pop dx;restore value of DX
+2   409				      WRITELN LINE%i
+3   410	014E  52		     push dx;save value	of dx
+3   411	014F  50		     push ax;save value	of ax
+3   412	0150  BA 018Dr		     mov dx,offset new_line
+3   413	0153  E8 FEAA		     call write
+3   414	0156  BA 0042r		     mov dx,offset LINE3
+3   415	0159  E8 FEA4		     call write
+3   416	015C  58		     pop ax;restore value of AX
+3   417	015D  5A		     pop dx;restore value of DX
+2   418				      WRITELN LINE%i
+3   419	015E  52		     push dx;save value	of dx
+3   420	015F  50		     push ax;save value	of ax
+3   421	0160  BA 018Dr		     mov dx,offset new_line
+3   422	0163  E8 FE9A		     call write
+3   423	0166  BA 0058r		     mov dx,offset LINE4
+3   424	0169  E8 FE94		     call write
+3   425	016C  58		     pop ax;restore value of AX
+3   426	016D  5A		     pop dx;restore value of DX
+2   427				      WRITELN LINE%i
+3   428	016E  52		     push dx;save value	of dx
+3   429	016F  50		     push ax;save value	of ax
+3   430	0170  BA 018Dr		     mov dx,offset new_line
+3   431	0173  E8 FE8A		     call write
+3   432	0176  BA 006Er		     mov dx,offset LINE5
+3   433	0179  E8 FE84		     call write
+3   434	017C  58		     pop ax;restore value of AX
+3   435	017D  5A		     pop dx;restore value of DX
+2   436				      WRITELN LINE%i
+3   437	017E  52		     push dx;save value	of dx
+3   438	017F  50		     push ax;save value	of ax
+3   439	0180  BA 018Dr		     mov dx,offset new_line
+3   440	0183  E8 FE7A		     call write
+3   441	0186  BA 0084r		     mov dx,offset LINE6
+3   442	0189  E8 FE74		     call write
+3   443	018C  58		     pop ax;restore value of AX
+3   444	018D  5A		     pop dx;restore value of DX
+2   445				      WRITELN LINE%i
+3   446	018E  52		     push dx;save value	of dx
+3   447	018F  50		     push ax;save value	of ax
+3   448	0190  BA 018Dr		     mov dx,offset new_line
+3   449	0193  E8 FE6A		     call write
+3   450	0196  BA 009Ar		     mov dx,offset LINE7
+3   451	0199  E8 FE64		     call write
+3   452	019C  58		     pop ax;restore value of AX
+3   453	019D  5A		     pop dx;restore value of DX
+2   454				      WRITELN LINE%i
+3   455	019E  52		     push dx;save value	of dx
+3   456	019F  50		     push ax;save value	of ax
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 9
+ex15_1.ASM
+
+
+
+3   457	01A0  BA 018Dr		     mov dx,offset new_line
+3   458	01A3  E8 FE5A		     call write
+3   459	01A6  BA 00B0r		     mov dx,offset LINE8
+3   460	01A9  E8 FE54		     call write
+3   461	01AC  58		     pop ax;restore value of AX
+3   462	01AD  5A		     pop dx;restore value of DX
+2   463				      WRITELN LINE%i
+3   464	01AE  52		     push dx;save value	of dx
+3   465	01AF  50		     push ax;save value	of ax
+3   466	01B0  BA 018Dr		     mov dx,offset new_line
+3   467	01B3  E8 FE4A		     call write
+3   468	01B6  BA 00C6r		     mov dx,offset LINE9
+3   469	01B9  E8 FE44		     call write
+3   470	01BC  58		     pop ax;restore value of AX
+3   471	01BD  5A		     pop dx;restore value of DX
+2   472				      WRITELN LINE%i
+3   473	01BE  52		     push dx;save value	of dx
+3   474	01BF  50		     push ax;save value	of ax
+3   475	01C0  BA 018Dr		     mov dx,offset new_line
+3   476	01C3  E8 FE3A		     call write
+3   477	01C6  BA 00DCr		     mov dx,offset LINE10
+3   478	01C9  E8 FE34		     call write
+3   479	01CC  58		     pop ax;restore value of AX
+3   480	01CD  5A		     pop dx;restore value of DX
+    481				     ;------------------------------
+    482				     ;print generation number
+    483				     ;------------------------------
+    484	01CE  BA 0190r		     mov dx,offset counter_msg
+    485	01D1  E8 FE2C		     call write
+    486	01D4  8B 16 015Br	     mov dx,counter
+    487	01D8  E8 FE7E		     call PrintNum
+    488				     ;---------------------------------
+    489	01DB  5A		     pop dx
+    490	01DC  5B		     pop bx
+    491	01DD  58		     pop ax
+    492	01DE  C3		     ret
+    493	01DF			     disp_gen endp
+    494				     ;----------------------------------------------------------------
+    495	01DF			     convert_digit proc
+    496				     ;this procedure converts a	character from ASCII to	a nibble (4 bits)
+    497				     ;On entry AL character to convert
+    498				     ;Return   AL Nibble
+    499				     ;	       CF set for error	, cleared otherwise
+    500				     ;-----------------------------------------------------------------
+    501	01DF  3C 30		     cmp al,'0'
+    502	01E1  72 08		     jb	BAD_DIGIT
+    503	01E3  3C 39		     cmp al,'9'
+    504	01E5  77 04		     ja	BAD_DIGIT
+    505	01E7  2C 30		     sub al,'0'
+    506	01E9  F8		     clc
+    507	01EA  C3		     ret
+    508	01EB			     BAD_DIGIT:
+    509	01EB  F9		     stc
+    510	01EC  C3		     ret
+    511	01ED			     convert_digit endp
+    512				     ;----------------------------------------------------------------
+    513	01ED			     read_string proc
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 10
+ex15_1.ASM
+
+
+
+    514				     ;procedure	for read string	from keyboard
+    515				     ;on entry DS:DX Address of	string area
+    516				     ;---------------------------------------------------------------
+    517	01ED  50		     push ax
+    518	01EE  B4 0A		     mov ah,0Ah
+    519	01F0  CD 21		     int 21h
+    520	01F2  58		     pop ax
+    521	01F3  C3		     ret
+    522	01F4			     read_string endp
+    523				     ;----------------------------------------------------------------
+    524	01F4			     get_a_num proc
+    525				     ;gets decimal number from the keyboard
+    526				     ;return dx
+    527				     ;---------------------------------------------------------------
+    528	01F4  50		     push ax
+    529	01F5  53		     push bx
+    530	01F6  51		     push cx
+    531	01F7  56		     push si
+    532	01F8  BE 000A		     mov si,10D
+    533	01FB			     REPEAT_INPUT:
+    534	01FB  BA 01A6r		     lea dx,KEYBOARD_INPUT
+    535	01FE  E8 FFEC		     call read_string
+    536	0201  80 3E 01A7r 01	     cmp NUM_DIGIT_READ,1
+    537	0206  72 22		     jb	NO_DIGITS
+    538	0208  33 C9		     xor cx,cx
+    539	020A  8A 0E 01A7r	     mov cl,NUM_DIGIT_READ
+    540	020E  33 DB		     xor bx,bx
+    541	0210  33 D2		     xor dx,dx
+    542	0212  33 C0		     xor ax,ax
+    543	0214			     CALC_INPUT_NUMBER:
+    544	0214  8B C2		     mov ax,dx
+    545	0216  F7 E6		     mul si
+    546	0218  8B D0		     mov dx,ax
+    547	021A  8A 87 01A8r	     mov al,INPUT_NUMBER[bx]
+    548	021E  E8 FFBE		     call convert_digit
+    549	0221  72 0E		     jc	INPUT_ERROR
+    550	0223  03 D0		     add dx,ax
+    551	0225  E2 ED		     loop CALC_INPUT_NUMBER
+    552	0227  EB 03 90		     jmp END_GET_A_NUM
+    553	022A			     NO_DIGITS:
+    554	022A  33 D2		     xor dx,dx
+    555	022C			     END_GET_A_NUM:
+    556	022C  5E		     pop si
+    557	022D  59		     pop cx
+    558	022E  5B		     pop bx
+    559	022F  58		     pop ax
+    560	0230  C3		     ret
+    561	0231			     INPUT_ERROR:
+    562				     writeln INVALID_NUMBER
+1   563	0231  52		     push dx;save value	of dx
+1   564	0232  50		     push ax;save value	of ax
+1   565	0233  BA 018Dr		     mov dx,offset new_line
+1   566	0236  E8 FDC7		     call write
+1   567	0239  BA 01ABr		     mov dx,offset INVALID_NUMBER
+1   568	023C  E8 FDC1		     call write
+1   569	023F  58		     pop ax;restore value of AX
+1   570	0240  5A		     pop dx;restore value of DX
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 11
+ex15_1.ASM
+
+
+
+    571	0241  EB B8		     jmp REPEAT_INPUT
+    572	0243			     get_a_num endp
+    573				     ;----------------------------------------------------------------
+    574	0243			     get_board proc
+    575				     ;procedure	that getting start state of board
+    576				     ;--------------------------------------------------------------
+    577	0243  50		     push ax
+    578	0244  53		     push bx
+    579	0245  51		     push cx
+    580	0246  52		     push dx
+    581	0247  56		     push si
+    582	0248  33 C9		     xor cx,cx
+    583	024A  BE 0005		     mov si,N
+    584	024D			     BEGIN_INPUT:
+    585				     ;------------------------------
+    586				     ;print input prompt
+    587				     ;------------------------------
+    588				     writeln ENTER_PROMPT
+1   589	024D  52		     push dx;save value	of dx
+1   590	024E  50		     push ax;save value	of ax
+1   591	024F  BA 018Dr		     mov dx,offset new_line
+1   592	0252  E8 FDAB		     call write
+1   593	0255  BA 01BBr		     mov dx,offset ENTER_PROMPT
+1   594	0258  E8 FDA5		     call write
+1   595	025B  58		     pop ax;restore value of AX
+1   596	025C  5A		     pop dx;restore value of DX
+    597	025D  BA 0005		     mov dx,N
+    598	0260  E8 FDF6		     call PrintNum
+    599	0263  BA 01E0r		     mov dx,offset STOP_PROMPT
+    600	0266  E8 FD97		     call write
+    601				     ;---------------------------------
+    602				     writeln LINE_PROMPT
+1   603	0269  52		     push dx;save value	of dx
+1   604	026A  50		     push ax;save value	of ax
+1   605	026B  BA 018Dr		     mov dx,offset new_line
+1   606	026E  E8 FD8F		     call write
+1   607	0271  BA 01F2r		     mov dx,offset LINE_PROMPT
+1   608	0274  E8 FD89		     call write
+1   609	0277  58		     pop ax;restore value of AX
+1   610	0278  5A		     pop dx;restore value of DX
+    611	0279  E8 FF78		     call get_a_num
+    612	027C  8A C2		     mov al,dl;input I line
+    613				     writeln COL_PROMPT
+1   614	027E  52		     push dx;save value	of dx
+1   615	027F  50		     push ax;save value	of ax
+1   616	0280  BA 018Dr		     mov dx,offset new_line
+1   617	0283  E8 FD7A		     call write
+1   618	0286  BA 01F6r		     mov dx,offset COL_PROMPT
+1   619	0289  E8 FD74		     call write
+1   620	028C  58		     pop ax;restore value of AX
+1   621	028D  5A		     pop dx;restore value of DX
+    622	028E  E8 FF63		     call get_a_num
+    623	0291  8A E2		     mov ah,dl;input J column
+    624	0293  0B C0		     or	ax,ax
+    625	0295  74 3C		     jz	IF_WAS_INPUT
+    626	0297  3C 01		     cmp al,1
+    627	0299  72 25		     jb	OUT_OF_RANGE
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 12
+ex15_1.ASM
+
+
+
+    628	029B  3C 05		     cmp al,N
+    629	029D  77 21		     ja	OUT_OF_RANGE
+    630	029F  2C 01		     sub al,1
+    631	02A1  80 FC 01		     cmp ah,1
+    632	02A4  72 1A		     jb	OUT_OF_RANGE
+    633	02A6  80 FC 05		     cmp ah,N
+    634	02A9  77 15		     ja	OUT_OF_RANGE
+    635	02AB  33 DB		     xor bx,bx
+    636	02AD  80 EC 01		     sub ah,1
+    637	02B0  8A DC		     mov bl,ah
+    638	02B2  32 E4		     xor ah,ah
+    639	02B4  F7 E6		     mul si   ;compute offset of whole lines
+    640	02B6  03 D8		     add bx,ax
+    641	02B8  C6 87 00F7r 2A	     mov BYTE PTR board[bx],ALIVE
+    642	02BD  41		     inc cx
+    643	02BE  EB 8D		     jmp BEGIN_INPUT
+    644	02C0			     OUT_OF_RANGE:
+    645				     writeln INVALID_PLACE
+1   646	02C0  52		     push dx;save value	of dx
+1   647	02C1  50		     push ax;save value	of ax
+1   648	02C2  BA 018Dr		     mov dx,offset new_line
+1   649	02C5  E8 FD38		     call write
+1   650	02C8  BA 01FAr		     mov dx,offset INVALID_PLACE
+1   651	02CB  E8 FD32		     call write
+1   652	02CE  58		     pop ax;restore value of AX
+1   653	02CF  5A		     pop dx;restore value of DX
+    654	02D0  E9 FF7A		     jmp BEGIN_INPUT
+    655	02D3			     IF_WAS_INPUT:
+    656	02D3  F8		     clc
+    657	02D4  0B C9		     or	cx,cx
+    658	02D6  75 01		     jnz END_GET_BOARD
+    659	02D8  F9		     stc
+    660	02D9			     END_GET_BOARD:
+    661	02D9  5E		     pop si
+    662	02DA  5A		     pop dx
+    663	02DB  59		     pop cx
+    664	02DC  5B		     pop bx
+    665	02DD  58		     pop ax
+    666	02DE  C3		     ret
+    667	02DF			     get_board endp
+    668				     ;----------------------------------------------------------------
+    669	02DF			     main proc far
+    670	02DF  1E			  push ds     ;	/---------------------------\
+    671	02E0  33 C0			  xor  ax,ax  ;	| Save return address to Dos|
+    672	02E2  50			  push ax     ;	\---------------------------/
+    673	02E3  B8 0000s			  mov ax,dseg ;points the ds register to the
+    674	02E6  8E D8			  mov ds,ax   ;data segment of this program
+    675				     ;=========================================================
+    676	02E8  E8 FF58		     call get_board
+    677	02EB  72 2A		     jc	finish
+    678	02ED			     NEW_GENERATION:
+    679	02ED  E8 FE1B		     call disp_gen
+    680				     writeln GO_ON_MESSAGE
+1   681	02F0  52		     push dx;save value	of dx
+1   682	02F1  50		     push ax;save value	of ax
+1   683	02F2  BA 018Dr		     mov dx,offset new_line
+1   684	02F5  E8 FD08		     call write
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 13
+ex15_1.ASM
+
+
+
+1   685	02F8  BA 012Er		     mov dx,offset GO_ON_MESSAGE
+1   686	02FB  E8 FD02		     call write
+1   687	02FE  58		     pop ax;restore value of AX
+1   688	02FF  5A		     pop dx;restore value of DX
+    689	0300  E8 FD02		     call getchar
+    690	0303  3C 45		     cmp al,45h;if pressed E or	e get out
+    691	0305  74 10		     je	finish
+    692	0307  3C 65		     cmp al,65h; e pressed
+    693	0309  74 0C		     je	finish
+    694	030B  FF 06 015Br	     inc counter
+    695	030F  E8 FD8F		     call MAKE_NEW_GENERATION
+    696	0312  E8 FD21		     call New2board
+    697	0315  EB D6		     jmp NEW_GENERATION
+    698				     ;=================================================================
+    699	0317  CB		     finish: ret ;return from procedure	"main"
+    700				     ;-----------------------------------------------------------------
+    701	0318			     main endp
+    702	0318			     cseg ends
+    703				     end main ;do not forget the starting address
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 14
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "08/22/96"
+??FILENAME			  Text	 "ex15_1  "
+??TIME				  Text	 "22:10:06"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX15_1
+@WORDSIZE			  Text	 2
+ALIVE				  Number 002A
+ALIVE_CELL			  Near	 CSEG:00EA
+BAD_DIGIT			  Near	 CSEG:01EB
+BEGIN_INPUT			  Near	 CSEG:024D
+BOARD				  Byte	 DSEG:00F7
+BOARD2MATRIXE			  Near	 CSEG:000A
+BUILD_NEW_BOARD			  Near	 CSEG:00B2
+CALC_INPUT_NUMBER		  Near	 CSEG:0214
+CHECK_ROW			  Near	 CSEG:00B6
+COL_PROMPT			  Byte	 DSEG:01F6
+CONTINUE			  Near	 CSEG:0084
+CONVERT_DIGIT			  Near	 CSEG:01DF
+COUNTER				  Word	 DSEG:015B
+COUNTER_MSG			  Byte	 DSEG:0190
+COUNT_ALIVE_NEIGHBOURS		  Near	 CSEG:0079
+DEAD				  Number 0020
+DEAD_CELL			  Near	 CSEG:00E2
+DEARTH				  Near	 CSEG:00FA
+DISP_GEN			  Near	 CSEG:010B
+DOWN_BORDER			  Byte	 DSEG:0110
+END_CELL_LOOP			  Near	 CSEG:00FD
+END_CHECK_CELL			  Near	 CSEG:00DA
+END_GET_A_NUM			  Near	 CSEG:022C
+END_GET_BOARD			  Near	 CSEG:02D9
+END_NEIGHBOUR			  Near	 CSEG:0097
+ENTER_PROMPT			  Byte	 DSEG:01BB
+FILL_MATRIXE			  Near	 CSEG:001A
+FINISH				  Near	 CSEG:0317
+FIRST				  Near	 CSEG:00CB
+FIRST_COLUMN_AREA		  Word	 DSEG:016D
+GETCHAR				  Near	 CSEG:0005
+GET_A_NUM			  Near	 CSEG:01F4
+GET_BOARD			  Near	 CSEG:0243
+GO_ON_MESSAGE			  Byte	 DSEG:012E
+I				  Number 000B
+IF_WAS_INPUT			  Near	 CSEG:02D3
+INNER				  Near	 CSEG:00C2
+INNER_CELL_AREA			  Word	 DSEG:015D
+INPUT_ERROR			  Near	 CSEG:0231
+INPUT_NUMBER			  Byte	 DSEG:01A8
+INVALID_NUMBER			  Byte	 DSEG:01AB
+INVALID_PLACE			  Byte	 DSEG:01FA
+KEYBOARD_INPUT			  Byte	 DSEG:01A6
+LAST				  Near	 CSEG:00D4
+LAST_COLUMN_AREA		  Word	 DSEG:017D
+LINE0				  Byte	 DSEG:0000
+Turbo Assembler	 Version 3.1	    08/22/96 22:10:06	    Page 15
+Symbol Table
+
+
+
+LINE1				  Byte	 DSEG:0016
+LINE10				  Byte	 DSEG:00DC
+LINE2				  Byte	 DSEG:002C
+LINE3				  Byte	 DSEG:0042
+LINE4				  Byte	 DSEG:0058
+LINE5				  Byte	 DSEG:006E
+LINE6				  Byte	 DSEG:0084
+LINE7				  Byte	 DSEG:009A
+LINE8				  Byte	 DSEG:00B0
+LINE9				  Byte	 DSEG:00C6
+LINE_PROMPT			  Byte	 DSEG:01F2
+MAIN				  Far	 CSEG:02DF
+MAKE_NEW_GENERATION		  Near	 CSEG:00A1
+MATRIXE				  Near	 DSEG:0000
+MAX_NUM_LENTH			  Byte	 DSEG:01A6
+N				  Number 0005
+NEW2BOARD			  Near	 CSEG:0036
+NEW_BOARD			  Byte	 DSEG:0115
+NEW_GENERATION			  Near	 CSEG:02ED
+NEW_LIFE			  Near	 CSEG:00F4
+NEW_LINE			  Byte	 DSEG:018D
+NEXT_CELL			  Near	 CSEG:0021
+NON_ZERO			  Near	 CSEG:0064
+NO_DIGITS			  Near	 CSEG:022A
+NUMBER_OF_LINE			  Number 000B
+NUM_DIGIT_READ			  Byte	 DSEG:01A7
+OUT_OF_RANGE			  Near	 CSEG:02C0
+PRINTNUM			  Near	 CSEG:0059
+PUT_DIGIT			  Near	 CSEG:004D
+READ_STRING			  Near	 CSEG:01ED
+REPEAT_INPUT			  Near	 CSEG:01FB
+STOP_PROMPT			  Byte	 DSEG:01E0
+UP_BORDER			  Byte	 DSEG:00F2
+WRITE				  Near	 CSEG:0000
+WRITE_DIGIT_LOOP		  Near	 CSEG:006E
+
+Macro Name
+
+LINE
+SHOW_MATRIXE
+WRITELN
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0318 Para	  none
+DSEG				  16  0211 Para	  none
+SSEG				  16  00C8 Para	  Stack
+

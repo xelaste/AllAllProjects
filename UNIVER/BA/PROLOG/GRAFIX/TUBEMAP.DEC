@@ -1,0 +1,238 @@
+/*
+    Underground railway route finder program - (c) Brian D Steel - 06 Nov 86
+
+    This program consists of a database of "arcs" on the central region
+    of London's Underground Railway (the "Tube"), and some simple rules
+    for getting from any one station to another. Each arc is a PROLOG
+    assertion of the form:
+
+	arc(line,[station1,station2])
+
+    which names two adjoining stations on a given line. This is a naive,
+    but reasonnably intuitive description of a line. There are 9 lines
+    and 53 stations in the database.
+
+    The search rules are very simple, and do not return the best route
+    possible, merely the first encountered. Checks are made to prevent
+    really silly routes which involve leaving and rejoining any given line.
+
+    To run the program, choose and two stations and type the command:
+
+	route(station1,station2).
+
+    For example, try:
+
+	route(paddington,waterloo).
+
+    When the route has been displayed, you will be prompted for whether
+    you want more. If you type y or Y, another solution will be shown.
+*/
+
+/* basic command to find and display a route, and prompt for more */
+
+route(Stn1,Stn2) :-  
+  find_line([Stn1,Stn2],[],Route),
+  fill_out(Route,All),
+  display_line(All),
+  nl('WND:'),
+  write('more? '),
+  get(Answer),
+  nl('WND:'),
+  \+ on([Answer],["y","Y"]).
+
+/* find direct or indirect line between two stations, with loop checking */
+
+find_line([Stn1,Stn2],Route,[Line,[Stn1,Stn2]|Route]) :-  
+  arc(Line,[Stn1,Any1]),
+  arc(Line,[Stn2,Any2]),
+  \+ on(Line,Route).
+find_line([Stn1,Stn2],Route,[Line2,[Stn3,Stn2],Line1,[Stn1,Stn3]|Route]) :-  
+  arc(Line1,[Stn1,Any1]),
+  \+ on(Line1,Route),
+  arc(Line2,[Stn2,Any2]),
+  \+ on(Line2,Route),
+  junction(Stn3,[Line1,Line2]).
+find_line([Stn1,Stn2],Route,Newroute) :-  
+  arc(Line1,[Stn1,Any1]),
+  \+ on(Line1,Route),
+  junction(Stn3,[Line1,Line2]),
+  \+ on(Line2,Route),
+  find_line([Stn3,Stn2],[Line1,[Stn1,Stn3]|Route],Newroute).
+
+/* a junction is any station that occurs on more than one line */
+
+junction(Stn,[Line1,Line2]) :-  
+  arc(Line1,[Stn,Any1]),
+  arc(Line2,[Stn,Any2]),
+  Line1 \= Line2.
+
+/* fill out all stations passed on the given route */
+
+fill_out([],[]). 
+fill_out([Line,[Stn1,Stn2]|Rest],[Line,Stops|All]) :-  
+  direction(Direction),
+  fill_line(Direction,Line,[Stn2,Stn1],[],Stops),
+  fill_out(Rest,All).
+
+/* fill in the stations between the termini on the lines travelled */
+
+fill_line(Direction,Line,[Stn,Stn],Route,[Stn|Route]) :-  
+  !.
+fill_line(Direction,Line,[Stn1,Stn2],Route,Newroute) :-  
+  link(Direction,Line,[Stn1,Stn3]),
+  \+ on(Stn3,Route),
+  fill_line(Direction,Line,[Stn3,Stn2],[Stn1|Route],Newroute).
+
+/* display the stations on each line travelled */
+
+display_line([]). 
+display_line([Line,Stns|Route]) :-  
+  display_line(Route),
+  write(Line),
+  write(:),
+  nl,
+  print_line(Stns).
+
+/* print the stations on a single line */
+
+print_line([]). 
+print_line([Stn|Others]) :-  
+  write('     '),
+  write(Stn),
+  nl,
+  print_line(Others).
+
+/* direction of links is either forwards (as in arc) or backwards */
+
+direction(forwards). 
+direction(backwards). 
+
+/* this link returns arcs in either direction - you can travel both ways! */
+
+link(forwards,Line,Stns) :-  
+  arc(Line,Stns).
+link(backwards,Line,[Stn1,Stn2]) :-  
+  arc(Line,[Stn2,Stn1]),
+  Stn1 \= * .
+
+/* database of arcs on the central tube network - with some dummy termini */
+
+arc(piccadilly,[earls_court,gloucester_road]). 
+arc(piccadilly,[gloucester_road,south_kensington]). 
+arc(piccadilly,[south_kensington,knightsbridge]). 
+arc(piccadilly,[knightsbridge,hyde_park_corner]). 
+arc(piccadilly,[hyde_park_corner,green_park]). 
+arc(piccadilly,[green_park,piccadilly_circus]). 
+arc(piccadilly,[piccadilly_circus,leicester_square]). 
+arc(piccadilly,[leicester_square,covent_garden]). 
+arc(piccadilly,[covent_garden,holborn]). 
+arc(piccadilly,[holborn,russell_square]). 
+arc(piccadilly,[russell_square,kings_cross]). 
+arc(piccadilly,[kings_cross,*]). 
+arc(piccadilly,[holborn,aldwych]). 
+arc(piccadilly,[aldwych,*]). 
+
+arc(circle,[edgware_road,paddington]). 
+arc(circle,[paddington,bayswater]). 
+arc(circle,[bayswater,notting_hill_gate]). 
+arc(circle,[notting_hill_gate,high_street_kensington]). 
+arc(circle,[high_street_kensington,gloucester_road]). 
+arc(circle,[gloucester_road,south_kensington]). 
+arc(circle,[south_kensington,sloane_square]). 
+arc(circle,[sloane_square,victoria]). 
+arc(circle,[victoria,st_james_park]). 
+arc(circle,[st_james_park,westminster]). 
+arc(circle,[westminster,embankment]). 
+arc(circle,[embankment,temple]). 
+arc(circle,[temple,blackfriars]). 
+arc(circle,[blackfriars,mansion_house]). 
+arc(circle,[mansion_house,cannon_street]). 
+arc(circle,[cannon_street,monument]). 
+arc(circle,[monument,tower_hill]). 
+arc(circle,[tower_hill,aldgate]). 
+arc(circle,[aldgate,shoreditch]). 
+arc(circle,[shoreditch,moorgate]). 
+arc(circle,[moorgate,barbican]). 
+arc(circle,[barbican,farringdon]). 
+arc(circle,[farringdon,kings_cross]). 
+arc(circle,[kings_cross,euston_square]). 
+arc(circle,[euston_square,great_portland_street]). 
+arc(circle,[great_portland_street,baker_street]). 
+arc(circle,[baker_street,edgware_road]). 
+
+arc(district,[edgware_road,paddington]). 
+arc(district,[paddington,bayswater]). 
+arc(district,[bayswater,notting_hill_gate]). 
+arc(district,[notting_hill_gate,high_street_kensington]). 
+arc(district,[high_street_kensington,earls_court]). 
+arc(district,[earls_court,gloucester_road]). 
+arc(district,[gloucester_road,south_kensington]). 
+arc(district,[south_kensington,sloane_square]). 
+arc(district,[sloane_square,victoria]). 
+arc(district,[victoria,st_james_park]). 
+arc(district,[st_james_park,westminster]). 
+arc(district,[westminster,embankment]). 
+arc(district,[embankment,temple]). 
+arc(district,[temple,blackfriars]). 
+arc(district,[blackfriars,mansion_house]). 
+arc(district,[mansion_house,cannon_street]). 
+arc(district,[cannon_street,monument]). 
+arc(district,[monument,tower_hill]). 
+arc(district,[tower_hill,*]). 
+
+arc(metropolitan,[aldgate,shoreditch]). 
+arc(metropolitan,[shoreditch,moorgate]). 
+arc(metropolitan,[moorgate,barbican]). 
+arc(metropolitan,[barbican,farringdon]). 
+arc(metropolitan,[farringdon,kings_cross]). 
+arc(metropolitan,[kings_cross,euston_square]). 
+arc(metropolitan,[euston_square,great_portland_street]). 
+arc(metropolitan,[great_portland_street,baker_street]). 
+arc(metropolitan,[baker_street,edgware_road]). 
+arc(metropolitan,[edgware_road,paddington]). 
+arc(metropolitan,[paddington,*]). 
+
+arc(central,[notting_hill_gate,queensway]). 
+arc(central,[queensway,lancaster_gate]). 
+arc(central,[lancaster_gate,marble_arch]). 
+arc(central,[marble_arch,bond_street]). 
+arc(central,[bond_street,oxford_circus]). 
+arc(central,[oxford_circus,tottenham_court_road]). 
+arc(central,[tottenham_court_road,holborn]). 
+arc(central,[holborn,chancery_lane]). 
+arc(central,[chancery_lane,st_pauls]). 
+arc(central,[st_pauls,bank]). 
+arc(central,[bank,shoreditch]). 
+arc(central,[shoreditch,*]). 
+
+arc(victoria,[victoria,green_park]). 
+arc(victoria,[green_park,oxford_circus]). 
+arc(victoria,[oxford_circus,warren_street]). 
+arc(victoria,[warren_street,euston]). 
+arc(victoria,[euston,kings_cross]). 
+arc(victoria,[kings_cross,*]). 
+
+arc(bakerloo,[waterloo,embankment]). 
+arc(bakerloo,[embankment,charing_cross]). 
+arc(bakerloo,[charing_cross,piccadilly_circus]). 
+arc(bakerloo,[piccadilly_circus,oxford_circus]). 
+arc(bakerloo,[oxford_circus,regents_park]). 
+arc(bakerloo,[regents_park,baker_street]). 
+arc(bakerloo,[baker_street,marylebone]). 
+arc(bakerloo,[marylebone,edgware_road]). 
+arc(bakerloo,[edgware_road,paddington]). 
+arc(bakerloo,[paddington,*]). 
+
+arc(northern,[waterloo,embankment]). 
+arc(northern,[embankment,charing_cross]). 
+arc(northern,[charing_cross,leicester_square]). 
+arc(northern,[leicester_square,tottenham_court_road]). 
+arc(northern,[tottenham_court_road,goodge_street]). 
+arc(northern,[goodge_street,warren_street]). 
+arc(northern,[warren_street,euston]). 
+arc(northern,[euston,*]). 
+
+arc(jubilee,[charing_cross,green_park]). 
+arc(jubilee,[green_park,bond_street]). 
+arc(jubilee,[bond_street,baker_street]). 
+arc(jubilee,[baker_street,*]). 

@@ -1,0 +1,158 @@
+Turbo Assembler	 Version 3.1	    07/21/96 18:15:15	    Page 1
+ex13_2.ASM
+
+
+
+      1	      =-0001		     NIL EQU -1
+      2				     ;--------------------------------------------------------
+      3	0000			     dseg segment
+      4	0000  0001				l1 dw 1
+      5	0002  0004r				   dw offset l2
+      6	0004  0002				l2 dw 2
+      7	0006  0008r				   dw offset l3
+      8	0008  0003				l3 dw 3
+      9	000A  000Cr				   dw offset l4
+     10	000C  0004				l4 dw 4
+     11	000E  0010r				   dw offset l5
+     12	0010  0005				l5 dw 5
+     13	0012  0014r				   dw offset l6
+     14	0014  0006				l6 dw 6
+     15	0016  FFFF				dw NIL
+     16				     ;---------------------------------------------------
+     17	0018  06*(0000)			ARRAY dw 6 dup (0)
+     18	0024  0000			SUM   dw 0
+     19	0026  05*(30) 24		NUM   db 5 DUP ('0'),'$' ;array	for display numbers
+     20	002C  000A			TEN   dw 10D
+     21	002E  0D 0A 24		     new_line  db 0dh,0ah,'$' ;cr+lf ascii codes
+     22	0031			     dseg ends
+     23				     ;------------------------------------------------------
+     24	0000			     sseg segment stack
+     25	0000  64*(????)			  dw 100 dup(?)
+     26	00C8			     sseg ends
+     27				     ;------------------------------------------------------
+     28	0000			     cseg segment
+     29					  assume cs:cseg,ds:dseg,ss:sseg
+     30				     ;---------	ROUTINE	TO PRINT A NEW LINE -------------------
+     31	0000			     writeln proc
+     32	0000  BA 002Er			     mov dx, offset new_line
+     33	0003  B4 09			     mov ah,9
+     34	0005  CD 21			     int 21h
+     35	0007  C3			     ret
+     36	0008			     writeln endp
+     37				     ;------------ROUTINE TO PRINT A STRING -------------------------
+     38	0008			     write proc
+     39	0008  B4 09			   mov ah,9
+     40	000A  CD 21			   int 21h
+     41	000C  E8 FFF1			   call	writeln
+     42	000F  C3			   ret
+     43	0010			     write endp
+     44				     ;----------ROUTINE	FOR TRANSFORM NUM VALUE	TO STRING FOR DISPLAY ---------
+     45	0010			     strval proc
+     46	0010  BD 0004		     mov bp,4
+     47	0013			     putzero:	;put zero to string num
+     48	0013  3E: C6 86	0026r 30	    mov	NUM[bp],'0'
+     49	0019  4D			    dec	bp
+     50	001A  83 FD 00			    cmp	bp,0
+     51	001D  7D F4			    jge	putzero
+     52	001F  BD 0004		     mov bp,4
+     53	0022				     transform:
+     54	0022  BA 0000			     mov dx,0
+     55	0025  F7 36 002Cr		     div TEN
+     56	0029  3E: 00 96	0026r		     add NUM[bp],dl
+     57	002E  4D			     dec bp
+Turbo Assembler	 Version 3.1	    07/21/96 18:15:15	    Page 2
+ex13_2.ASM
+
+
+
+     58	002F  3D 0000			     cmp ax,0
+     59	0032  75 EE			     jne transform
+     60	0034  C3			     ret
+     61	0035			     strval endp
+     62				     ;-----------------------------------------------------------------
+     63	0035			     put_sum proc far
+     64	0035  A1 0024r		     mov ax,SUM
+     65	0038  03 07		     add ax,[bx]
+     66	003A  A3 0024r		     mov SUM,ax
+     67	003D  89 84 0018r	     mov array[si],ax
+     68	0041  83 C6 02		     add si,2
+     69	0044  8B 5F 02		     mov bx,[bx+2]
+     70	0047  83 FB FF		     cmp bx,NIL
+     71	004A  74 04		     je	last_node
+     72	004C  0E E8 FFE5	     call put_sum
+     73	0050			     last_node:
+     74	0050  CB		     ret
+     75	0051			     put_sum endp
+     76				     ;------------------------------------------------------------------
+     77	0051			     main proc far
+     78	0051  1E			  push ds     ;	/---------------------------\
+     79	0052  33 C0			  xor  ax,ax  ;	| Save return address to Dos|
+     80	0054  50			  push ax     ;	\---------------------------/
+     81	0055  B8 0000s			  mov ax,dseg ;points the ds register to the
+     82	0058  8E D8			  mov ds,ax   ;data segment of this program
+     83				     ;=========================================================
+     84	005A  BB 0000r		     mov bx,offset l1
+     85	005D  BE 0000		     mov si,0
+     86	0060  83 FB FF		     cmp bx,NIL
+     87	0063  74 1C		     je	finish ;list is	empty
+     88	0065  0E E8 FFCC	     call put_sum
+     89	0069  B9 0006		     mov cx,6
+     90	006C  BE 0000		     mov si,0
+     91	006F			     print_array:
+     92	006F  8B 84 0018r	     mov ax,array[si]
+     93	0073  E8 FF9A		     call strval
+     94	0076  BA 0026r		     mov dx,offset NUM
+     95	0079  E8 FF8C		     call write
+     96	007C  83 C6 02		     add si,2
+     97	007F  E2 EE		     loop print_array
+     98				     ;=========================================================
+     99	0081  CB		     finish: ret ;return from procedure	"main"
+    100				     ;-------------------------------------------------------------------
+    101	0082			     main endp
+    102	0082			     cseg ends
+    103				     end main ;do not forget the starting address
+Turbo Assembler	 Version 3.1	    07/21/96 18:15:15	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "07/21/96"
+??FILENAME			  Text	 "ex13_2  "
+??TIME				  Text	 "18:15:15"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX13_2
+@WORDSIZE			  Text	 2
+ARRAY				  Word	 DSEG:0018
+FINISH				  Near	 CSEG:0081
+L1				  Word	 DSEG:0000
+L2				  Word	 DSEG:0004
+L3				  Word	 DSEG:0008
+L4				  Word	 DSEG:000C
+L5				  Word	 DSEG:0010
+L6				  Word	 DSEG:0014
+LAST_NODE			  Near	 CSEG:0050
+MAIN				  Far	 CSEG:0051
+NEW_LINE			  Byte	 DSEG:002E
+NIL				  Number -0001
+NUM				  Byte	 DSEG:0026
+PRINT_ARRAY			  Near	 CSEG:006F
+PUTZERO				  Near	 CSEG:0013
+PUT_SUM				  Far	 CSEG:0035
+STRVAL				  Near	 CSEG:0010
+SUM				  Word	 DSEG:0024
+TEN				  Word	 DSEG:002C
+TRANSFORM			  Near	 CSEG:0022
+WRITE				  Near	 CSEG:0008
+WRITELN				  Near	 CSEG:0000
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  0082 Para	  none
+DSEG				  16  0031 Para	  none
+SSEG				  16  00C8 Para	  Stack
+

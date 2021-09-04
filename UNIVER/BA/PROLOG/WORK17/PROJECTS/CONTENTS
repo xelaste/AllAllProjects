@@ -1,0 +1,16 @@
+    ANIMALS.PRO - a knowledge base for the CLASSY "shell"
+    AUTOC.GRM   - compiled grammar for AUTOC. I think this may be
+                  generated automatically when something like
+                  TINYDEF is processed
+    AUTOC.PRO   - source of the compiler-compiler
+    AUTOC.TXT   - a sample program in the language defined by
+                  TINYDEF
+    CLASSY.PRO  - an expert systems shell
+    DBAQL.PRO   - the database demonstration
+    ESL.PRE     - this file
+    MLIST.PRO   - sample data-dictionary used by DBAQL
+    PCED.PRO    - the clause-editor
+    ROADMAP.PRO - the route-finder
+    SESSIONS.TXT- sample run of AUTOC
+    SYMDIFF.PRO - the symbolic differentiator
+    TINYDEF.PRO - a language definition to be read by AUTOC

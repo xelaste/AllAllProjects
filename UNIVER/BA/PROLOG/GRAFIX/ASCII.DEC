@@ -1,0 +1,39 @@
+/*
+    ASCII character table - (c) Brian D Steel - 06 Nov 86
+
+    This program shows the decimal numbers and their ascii character
+    equivalents for 128 characters at a time, starting from the specified
+    character. The command:
+
+	table(64).
+
+    will print a table of 128 characters starting with character number
+    64 (the @ character).
+
+    The parameters 0 and 128 will be the most useful for this command
+*/
+
+/* clear the screen, print the banner and then show 128 characters */
+
+table(Start) :-  
+  write('~L~J~J~I~I~I'),
+  Finish is Start + 127,
+  write('컴컴 ascii characters '),
+  write(Start),
+  write(' to '),
+  write(Finish),
+  write(' 컴컴'),
+  nl,
+  nl,
+  showchar(128,Start).
+
+/* show characters in decimal and literal form until count is exhausted */
+
+showchar(0,Char) :-  
+  nl('WND:'),
+  nl('WND:').
+showchar(Count,Char) :-  
+  fw(&:,[['U',5],' = ',['B',-3]],[Char,[0,Char]]),
+  Newcount is Count - 1,
+  Newchar is Char + 1,
+  showchar(Newcount,Newchar).

@@ -1,0 +1,7 @@
+IASN a 1 
+IASN b 1 
+IASN a b 
+IMLT _t3 a b
+IPRT _t3  
+HALT   
+Compiler project. Developed by Alexander Stekolchik.1998

@@ -1,0 +1,89 @@
+/*
+    Window tidying program - (c) Brian D Steel - 05 Nov 86
+
+    The program "tidy" illustrates a simple use of some of the window
+    handling primitives. It will attempt to tidy any windows on the screen
+    so that they are stacked from the top left corner of the screen.
+
+    A simple program "draw" has been included to enable a random set of windows
+    to be created prior to testing "tidy".
+
+    Both programs can be run in "slow" (see every move) or "fast" modes,
+    using the special "screen freeze" facility of LPA PROLOG Professional.
+
+    To draw the windows,
+
+    type:	draw(slow).
+    or:		draw(fast).
+
+    To tidy them once drawn,
+
+    type:	tidy(slow).
+    or:		tidy(fast).
+
+    to stack them up. Repeat as you like, then
+
+    type:	cuwind(&:).
+
+    to get out of window "0" and back to the whole screen
+
+*/
+
+/* tidy windows by picking up window dict and tidying according to its order */
+
+tidy(fast) :-  
+  write('~^'),
+  tidy(slow).
+tidy(slow) :-  
+  wdict(Windows),
+  tidylist(Windows,Any).
+
+/* tidy the given list of windows from top left (0 0) */
+
+tidylist([],[0,0]). 
+tidylist([First|Others],Pos) :-  
+  tidylist(Others,Lastpos),
+  nextpos(First,Lastpos,Pos).
+
+/* find a position for a given window where it will fit */
+
+nextpos(Window,[Row,Col],[Newrow,Newcol]) :-
+  pswind(Window,Row,Col),
+  Newrow is Row + 1,
+  Newcol is Col + 1.
+nextpos(Window,[Row,Col],[1,Newcol]) :-
+  Curcol is Col + 9,
+  pswind(Window,0,Curcol),
+  Newcol is Col + 10.
+
+/* close exisiting windows and draw 20 randomly coloured new ones */
+
+draw(fast) :-  
+  write('~^'),
+  draw(slow).
+draw(slow) :-  
+  cuwind(&:),
+  wdict(Windows),
+  forall(on(Window,Windows),close(Window)),
+  makwind(20).
+
+/* draw a given number of randomly coloured and positioned windows */
+
+makwind(0).
+makwind(Number) :-
+  nameof(Name,Number),
+  Row is ip(rand(14)),
+  Col is ip(rand(59)),
+  Frame is ip(rand(256)),
+  Contents is 1 + 2 * ip(rand(128)),
+  crwind(Name,Row,Col,10,20,Frame,Contents,1),
+  write('my name is window '),
+  write(Name),
+  Next is Number - 1,
+  makwind(Next).
+
+/* return the name of a window from a number */
+
+nameof(Name,Number) :-
+  fs(String,['Window ',r(3,10)], [Number]),
+  fs(String,[c(10)], [Name]).

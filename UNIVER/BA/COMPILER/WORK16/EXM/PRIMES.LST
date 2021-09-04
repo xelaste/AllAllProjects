@@ -1,0 +1,29 @@
+Compiler project. Developed by Alexander Stekolchik.1998
+Process file  primes.tin
+   1.   prog primes;
+   2.   var a:int,
+   3.       b:int,
+   4.       stop:int;
+   5.   begin
+   6.        print 2;
+   7.        print 3;
+   8.        a:=5;
+   9.        while a<34 do
+  10.              b:=2;
+  11.              stop:=1;
+  12.              while b < stop*a/2  do
+  13.                    if a/b*b=a then
+  14.                       stop:=0;
+  15.                       else
+  16.                    fi;
+  17.                    b:=b+1;
+  18.              od;
+  19.              if stop=1 then
+  20.                 print a;
+  21.                 else
+  22.              fi;
+  23.              a:=a+2;
+  24.         od;
+  25.   end.
+
+OK! There was found none error in the source code !!!

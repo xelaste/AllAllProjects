@@ -1,0 +1,55 @@
+Compiler project. Developed by Alexander Stekolchik.1998
+Process file  bigtest.tin
+   1.  prog bigtest;
+   2.  var  a: int,
+   3.       b: int,
+   4.       c: real,
+   5.       d: real;
+   6.  begin
+   7.       print 1;
+   8.       print 1.123;
+   9.  
+  10.       a := 1;
+  11.       print a;
+  12.  
+  13.       b:=a;
+  14.       print b;
+  15.  
+  16.       c:=1.1234;
+  17.       print c;
+  18.  
+  19.       d:=c;
+  20.       print d;
+  21.  
+  22.       c:=100;
+  23.       print c;
+  24.  
+  25.       c:=a;
+  26.       print c;
+  27.  
+  28.       print 1+2+3;
+  29.       print 1.1+2.2;
+  30.       print 1+2.2;
+  31.       print 1+2*3;
+  32.       print 1.1*2.2;
+  33.       print 1*2.2;
+  34.  
+  35.       if 1<2 then print 1; else print 0; fi;
+  36.       if 1=2 then print 0; else print 1; fi;
+  37.       if 1>2 then print 0; else print 1; fi;
+  38.  
+  39.       if 1.0<2.0 then print 1; else print 0; fi;
+  40.       if 1.0=2.0 then print 0; else print 1; fi;
+  41.       if 1.0>2.0 then print 0; else print 1; fi;
+  42.  
+  43.       if 1.0=1 then print 1; else print 0; fi;
+  44.  
+  45.       a:=1;
+  46.       while a>0 do
+  47.             read a;
+  48.             read c;
+  49.             print a*c-c/a;
+  50.       od;
+  51.  end.
+
+OK! There was found none error in the source code !!!

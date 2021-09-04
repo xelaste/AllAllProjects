@@ -1,0 +1,11 @@
+Compiler project. Developed by Alexander Stekolchik.1998
+Process file  if.tin
+   1.  prog bigtest;
+   2.  var  a: int,
+   3.       b:real;
+   4.  begin
+   5.       b:=-(2+1);
+   6.       if 1<2 then print 1; else print 0; fi;
+   7.  end.
+
+OK! There was found none error in the source code !!!

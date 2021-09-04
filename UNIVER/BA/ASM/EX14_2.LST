@@ -1,0 +1,63 @@
+Turbo Assembler	 Version 3.1	    08/14/96 21:43:54	    Page 1
+ex14_2.ASM
+
+
+
+      1				     ;--------------------------------------------------------
+      2	0000			     sseg segment stack
+      3	0000  64*(????)			  dw 100 dup(?)
+      4	00C8			     sseg ends
+      5				     ;------------------------------------------------------
+      6	0000			     cseg segment
+      7					  assume cs:cseg,ss:sseg
+      8				     ;-----------------------------------------------------------
+      9	0000			     main proc far
+     10	0000  1E			  push ds     ;	/---------------------------\
+     11	0001  33 C0			  xor ax,ax   ;	| Save return address to Dos|
+     12	0003  50			  push ax     ;	\---------------------------/
+     13				     ;=========================================================
+     14	0004  B9 0019		     mov cx,25D
+     15	0007  32 C0		     xor al,al
+     16	0009  B4 FF		     mov ah,-1;
+     17	000B			     Start:
+     18	000B  80 C4 02		     add ah,2
+     19	000E  04 02		     add al,2
+     20	0010  50		     push ax
+     21	0011  E2 F8		     loop start
+     22				     ;=========================================================
+     23	0013  B9 0019		     mov cx,25D
+     24	0016			     clear_stack:
+     25	0016  58		     pop ax
+     26	0017  E2 FD		     loop clear_stack
+     27				     ;------------------------------------------
+     28	0019  CB		     Finish: ret ;return from procedure	"main"
+     29				     ;===========================================
+     30	001A			     main endp
+     31	001A			     cseg ends
+     32				     end main ;do not forget the starting address
+Turbo Assembler	 Version 3.1	    08/14/96 21:43:54	    Page 2
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "08/14/96"
+??FILENAME			  Text	 "ex14_2  "
+??TIME				  Text	 "21:43:54"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX14_2
+@WORDSIZE			  Text	 2
+CLEAR_STACK			  Near	 CSEG:0016
+FINISH				  Near	 CSEG:0019
+MAIN				  Far	 CSEG:0000
+START				  Near	 CSEG:000B
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  001A Para	  none
+SSEG				  16  00C8 Para	  Stack
+

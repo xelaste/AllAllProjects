@@ -1,0 +1,165 @@
+Turbo Assembler	 Version 3.1	    06/21/96 02:44:13	    Page 1
+ex12_5.ASM
+
+
+
+      1				     ;--------------------------------------------------------
+      2	      =000A		     ARRAY_SIZE	EQU 10D
+      3	      =0030		     ZERO EQU '0'
+      4				     ;--------------------------------------------------------
+      5	0000			     dseg segment
+      6	0000  0A*(??)			array db ARRAY_SIZE DUP	(?)
+      7	000A  05*(30) 24		NUM   db 5	    DUP	('0'),'$' ;array for display results
+      8	0010  0D 0A 24			new_line  db 0dh,0ah,'$' ;cr+lf	ascii codes
+      9	0013  73 75 6D 3D 24		msg_sum	db 'sum=$'
+     10	0018  61 76 67 3D 24		msg_avg	db 'avg=$'
+     11	001D  0000			INDEX dw 0
+     12	001F  0000			AVG   dw 0
+     13	0021  000A			TEN   dw 10D
+     14	0023  000A			Count dw ARRAY_SIZE
+     15	0025			     dseg ends
+     16				     ;------------------------------------------------------
+     17	0000			     sseg segment stack
+     18	0000  64*(????)			  dw 100 dup(?)
+     19	00C8			     sseg ends
+     20				     ;------------------------------------------------------
+     21	0000			     cseg segment
+     22					  assume cs:cseg,ds:dseg,ss:sseg
+     23	0000			     main proc far
+     24	0000  1E			  push ds     ;	/---------------------------\
+     25	0001  B8 0000			  mov ax,0    ;	| Save return address to Dos|
+     26	0004  50			  push ax     ;	\---------------------------/
+     27	0005  B8 0000s			  mov ax,dseg ;points the ds register to the
+     28	0008  8E D8			  mov ds,ax   ;data segment of this program
+     29				     ;=========================================================
+     30				     ;=========================================================
+     31	000A  C6 06 0000r 0A	     mov array[0],10	;
+     32	000F  C6 06 0001r 0C	     mov array[1],12	;
+     33	0014  C6 06 0002r 23	     mov array[2],35	;
+     34	0019  C6 06 0003r 2F	     mov array[3],47	;
+     35	001E  C6 06 0004r 43	     mov array[4],67	;
+     36	0023  C6 06 0005r 64	     mov array[5],100	; starting the array
+     37	0028  C6 06 0006r 6E	     mov array[6],110	;
+     38	002D  C6 06 0007r 5A	     mov array[7],90	;
+     39	0032  C6 06 0008r 2D	     mov array[8],45	;
+     40	0037  C6 06 0009r 10	     mov array[9],16	;
+     41				     ;=============================================================
+     42	003C  BB 0000		     mov bx,0
+     43	003F			     calc_sum:	      ;calculation sum of array	elements
+     44	003F  B8 0000		     mov ax,0	      ;
+     45	0042  8A 87 0000r	     mov al,array[bx]
+     46	0046  01 06 001Fr	     add AVG,AX
+     47	004A  43		     inc bx	      ;increment index
+     48	004B  83 FB 0A		     cmp bx,ARRAY_SIZE
+     49	004E  72 EF		     jb	calc_sum      ;do while	bx<ARRAY SIZE
+     50
+     51	0050			     display_sum:
+     52	0050  BB 0004		     mov bx,4
+     53	0053  A1 001Fr		     mov ax,AVG
+     54	0056			     transform_sum:
+     55	0056  BA 0000		     mov dx,0
+     56	0059  F7 36 0021r	     div TEN
+     57	005D  00 97 000Ar	     add NUM[bx],dl
+Turbo Assembler	 Version 3.1	    06/21/96 02:44:13	    Page 2
+ex12_5.ASM
+
+
+
+     58	0061  4B		     dec bx
+     59	0062  3D 0000		     cmp ax,0
+     60	0065  75 EF		     jne transform_sum
+     61
+     62	0067  BA 0010r		     mov dx, offset new_line
+     63	006A  B4 09			     mov ah,9
+     64	006C  CD 21			     int 21h
+     65
+     66	006E  BA 0013r		     mov dx, offset msg_sum
+     67	0071  B4 09				  mov ah,9   ;/--------------------------------------\
+     68	0073  CD 21				  int 21h    ;|display sum=value of sum	of the items |
+     69	0075  BA 000Ar		     mov dx, offset NUM	     ;\--------------------------------------/
+     70	0078  B4 09				  mov ah,9
+     71	007A  CD 21				  int 21h
+     72				     ;==============================================================
+     73	007C  A1 001Fr		     mov ax,AVG	       ; /---------------------------------\
+     74	007F  BA 0000		     mov dx,0	       ; |				   |
+     75	0082  F7 36 0023r	     div Count	       ; | compute average		   |
+     76	0086  A3 001Fr		     mov AVG,ax	       ; \---------------------------------/
+     77				     ;==================================================================
+     78	0089			     display_avg:
+     79	0089  BB 0004		     mov bx,4
+     80
+     81	008C			     putzero:	;put zero to num
+     82	008C  C6 87 000Ar 30	     mov NUM[bx],ZERO
+     83	0091  4B		     dec bx
+     84	0092  83 FB 00		     cmp bx,0
+     85	0095  7D F5		     jge putzero
+     86
+     87	0097  BB 0004		     mov bx,4
+     88	009A  A1 001Fr		     mov ax,AVG
+     89	009D			     transform_avg:
+     90	009D  BA 0000		     mov dx,0
+     91	00A0  F7 36 0021r	     div TEN
+     92	00A4  00 97 000Ar	     add NUM[bx],dl
+     93	00A8  4B		     dec bx
+     94	00A9  3D 0000		     cmp ax,0
+     95	00AC  75 EF		     jne transform_avg
+     96				     ;-------------------------------------------------------------
+     97	00AE  BA 0010r		     mov dx, offset new_line
+     98	00B1  B4 09			     mov ah,9
+     99	00B3  CD 21			     int 21h
+    100	00B5  BA 0018r		     mov dx, offset msg_avg
+    101	00B8  B4 09				  mov ah,9   ;/--------------------------------------\
+    102	00BA  CD 21				  int 21h    ;|display sum=value of sum	of the items |
+    103	00BC  BA 000Ar		     mov dx, offset NUM	     ;\--------------------------------------/
+    104	00BF  B4 09				  mov ah,9
+    105	00C1  CD 21				  int 21h
+    106				     ;==============================================================
+    107
+    108				     ;*******************************************************************
+    109	00C3  CB		     finish: ret ;return from procedure	"main"
+    110				     ;-------------------------------------------------------------------
+    111	00C4			     main endp
+    112	00C4			     cseg ends
+    113				     end main ;don'nt forget the starting address
+Turbo Assembler	 Version 3.1	    06/21/96 02:44:13	    Page 3
+Symbol Table
+
+
+
+
+Symbol Name			  Type	 Value
+
+??DATE				  Text	 "06/21/96"
+??FILENAME			  Text	 "ex12_5  "
+??TIME				  Text	 "02:44:12"
+??VERSION			  Number 030A
+@CPU				  Text	 0101H
+@CURSEG				  Text	 CSEG
+@FILENAME			  Text	 EX12_5
+@WORDSIZE			  Text	 2
+ARRAY				  Byte	 DSEG:0000
+ARRAY_SIZE			  Number 000A
+AVG				  Word	 DSEG:001F
+CALC_SUM			  Near	 CSEG:003F
+COUNT				  Word	 DSEG:0023
+DISPLAY_AVG			  Near	 CSEG:0089
+DISPLAY_SUM			  Near	 CSEG:0050
+FINISH				  Near	 CSEG:00C3
+INDEX				  Word	 DSEG:001D
+MAIN				  Far	 CSEG:0000
+MSG_AVG				  Byte	 DSEG:0018
+MSG_SUM				  Byte	 DSEG:0013
+NEW_LINE			  Byte	 DSEG:0010
+NUM				  Byte	 DSEG:000A
+PUTZERO				  Near	 CSEG:008C
+TEN				  Word	 DSEG:0021
+TRANSFORM_AVG			  Near	 CSEG:009D
+TRANSFORM_SUM			  Near	 CSEG:0056
+ZERO				  Number 0030
+
+Groups & Segments		  Bit Size Align  Combine Class
+
+CSEG				  16  00C4 Para	  none
+DSEG				  16  0025 Para	  none
+SSEG				  16  00C8 Para	  Stack
+

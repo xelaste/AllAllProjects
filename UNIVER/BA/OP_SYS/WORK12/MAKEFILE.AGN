@@ -1,0 +1,4 @@
+gcc -c -g agent.c
+gcc -c -g father.c
+gcc -g -o agents.o agent.o father.o
+rm agent.o father.o

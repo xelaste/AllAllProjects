@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Doc xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <m_xmiID>Os5u3KHo1d8VMy9</m_xmiID>
+  <name>CRC card builder doc</name>
+  <crcCards>
+    <crcCard>
+      <m_xmiID>Ig14DrBe03VdPj5</m_xmiID>
+      <name>Hotel</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Kf3h8X1WiMe6a9L</m_xmiID>
+      <name>Service</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Pl5s6XDo1a2Q9Lq</m_xmiID>
+      <name>Order</name>
+      <remark>Room service / pool enterance,  Credit card details, Order details </remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Cx30KtQh6q7AYn5</m_xmiID>
+      <name>Payment</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>p7L8KzUi25FmIv3</m_xmiID>
+      <name>Room</name>
+      <remark>potential attributes: room type, wing, Extras: living room, balcony, kitchenette, Jacuzzi, closet room, Room site: Beach, Pool, inner yard, mountain view, History (for stats)</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>j2V4XoTf03YhRw5</m_xmiID>
+      <name>Dining room</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>t9E6MuBf5d2ZYv8</m_xmiID>
+      <name>Auditorium</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>He6j9DXu2i0ATc3</m_xmiID>
+      <name>Room type</name>
+      <remark>Single companion/Family/Suite</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>e0VSb5p1I9Log8P</m_xmiID>
+      <name>Price</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Mj7x0RAw4z8X2Zd</m_xmiID>
+      <name>Accommodation Type</name>
+      <remark> bed only, B&amp;B, Half board, Full board (something's attribute).</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>At98BqVy46Sko7M</m_xmiID>
+      <name>Customer</name>
+      <remark>Special Details , Special Requests.</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Dg74JsHl19Aay8X</m_xmiID>
+      <name>Club</name>
+      <remark>Type of facility?</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Xh56TaPc7s4V2Zq</m_xmiID>
+      <name>Discount</name>
+      <remark>price?</remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>Fx3p1L4Icd8B6Tq</m_xmiID>
+      <name>Reports</name>
+      <remark>incomes, preferred/un-preferred rooms </remark>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>r9DAk7d6ZWi48Mc</m_xmiID>
+      <name>CRC card 15</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+    <crcCard>
+      <m_xmiID>q9GRi6d5BPo37Uy</m_xmiID>
+      <name>CRC card 16</name>
+      <attributes />
+      <Responsibilities />
+      <superclass />
+    </crcCard>
+  </crcCards>
+  <sequences>
+    <sequence>
+      <m_xmiID>Up0o8VOs2d5Y3Bz</m_xmiID>
+      <name>Template sequence</name>
+      <trigger />
+      <preConditions />
+      <successConditions />
+      <failureConditions />
+      <remarks />
+      <objects>
+        <object>
+          <m_xmiID>p7ECl94Azq6NPi5</m_xmiID>
+          <name>Customer</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>Cw68Hmt0A2UuWs9</m_xmiID>
+          <name>Clerk</name>
+          <IsActor>true</IsActor>
+        </object>
+        <object>
+          <m_xmiID>p7Q6MzKl45TwZh9</m_xmiID>
+          <name>Management</name>
+          <IsActor>true</IsActor>
+        </object>
+      </objects>
+      <messages />
+      <description>collection of all actors</description>
+    </sequence>
+  </sequences>
+</Doc>

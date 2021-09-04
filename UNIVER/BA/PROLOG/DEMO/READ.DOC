@@ -1,0 +1,184 @@
+
+                                                                
+€€   €€           ﬂ€€                                     ‹€€‹  
+€€   €€            €€                                     €€€€  
+€€ ‹ €€ ‹€ﬂﬂﬂ€‹    €€   ‹€ﬂﬂﬂ€‹ ‹€ﬂﬂﬂ€‹ €€€‹€€‹ ‹€ﬂﬂﬂ€‹   ﬂ€€ﬂ  
+€€‹€‹€€ €€‹‹‹€€    €€   €€      €€   €€ €€ € €€ €€‹‹‹€€    ﬂﬂ   
+ €€ﬂ€€  €€   ‹‹    €€   €€   ‹‹ €€   €€ €€ ﬂ €€ €€   ‹‹    €€   
+  ﬂ ﬂ    ﬂﬂﬂﬂﬂ    ﬂﬂﬂﬂ   ﬂﬂﬂﬂﬂ   ﬂﬂﬂﬂﬂ  ﬂﬂ   ﬂﬂ  ﬂﬂﬂﬂﬂ          
+‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹‹  
+
+Thank you for looking at this demonstration disk, which presents LPA's
+latest 16-bit PROLOG compiler for the IBM PC, LPA PROLOG Professional
+3.8. We will come to the demos in a few moments, but before going any
+further, why not familiarise yourself with using this READ-ME utility!
+
+________________________________________________________________
+
+(How to use this READ.EXE file browser
+
+Make sure your NUM LOCK key is set to OFF, and then use the cursor keys
+to move around the text. The row and column of the top left of the
+screen will be displayed at all times, to help you know where you are in
+the file.
+
+Incidentally, you can use READ.EXE with any of your own text files - it
+is much nicer to use than the normal DOS TYPE command, since you can
+scroll all ways through your text. Just enter the command: READ <file>
+in place of your normal TYPE <file> command. Feel free to copy this
+program onto your system disk for future use - all we ask is that you
+don't sell it to others!
+
+________________________________________________________________
+
+(LPA PROLOG Professional - Version 3.8 - Demo Disk
+Written by Brian D Steel, LPA, Apr 88 / 14 Feb 96
+
+On this disk you will find a number of different demos, ranging from a
+quick run through some of the features of LPA PROLOG Professional, to
+the chance to try LPA PROLOG for yourself, using a special demo version
+of the compiler. The demos are summarised below.
+
+(About LPA PROLOG Professional 3.8
+
+Version 3.8 of LPA PROLOG Professional is a full Edinburgh Syntax
+system, following precisely the standards defined by Quintus PROLOG. A
+unique combination of an incremental compiler and optimising compiler
+provides an unparalleled interactive development environment, and very
+fast run time performance. There is no need for an interpreter in this
+setup. In brief, the main features are:
+
+	Edinburgh syntax industry standard for code portability
+	Full colour graphics on VGA, EGA, CGA and AT&T systems
+	LIM EMS supports up to 4 Mb of data in expanded memory
+	Incremental compilation used to implement dynamic assert
+	Decompilation gives full access to clause database
+	Optimised compilation for packaging applications
+	Fast 100% garbage collector reclaims all unused memory
+	Extensive memory optimisations provide space efficiency
+	Powerful HCI primitives for professional applications
+	Robust and reliable system backed by LPA's experience
+
+For a full technical specification, contact LPA at the address shown at
+the bottom of this document.
+
+________________________________________________________________
+
+(DEMO 1 - An overview of LPA PROLOG Professional
+
+This demo is written entirely in LPA PROLOG Professional, and shows off
+various features of the system. Topics covered include window handling,
+input/output, interrupt handling (errors, spypoints, and the
+programmable timer), and much more. Please take the time to view all the
+options, to give some idea of the versatility and power of LPA PROLOG.
+For those of you considering upgrading from earlier versions of LPA
+PROLOG, why not look especially at the new VGA and EGA graphics
+capabilities (option 9 on the main demo memu).
+
+Throughout the demo, PROLOG will be copying text randomly from a file.
+If you have a hard disk drive, then copy the entire contents of this
+demo disk onto it, and run the demo from there. This will speed up the
+display of the demo's explanation windows.
+
+________________________________________________________________
+
+(DEMO 2 - Run the compiled PROLOG benchmark suite
+
+Here is your chance to prove just how fast LPA PROLOG Professional
+really is A general benchmark suite has been written to test various
+aspects of PROLOG, going well beyond the usual "lips" rate measured by
+reversing a list. Demo 3 (see below) will allow you to browse over the
+full program listing - in fact, if you have some other PROLOG system why
+not compile the benchmarks on it too, for a direct comparison.
+
+For the record, the file BENCHMRK.PRO was compiled on a Compaq Portable
+II, running at 8MHz, in just 22 seconds. The execution times are listed
+for the same machine in a separate document, A Comparison of PROLOG
+Compilers for MS-DOS - three other PROLOGs are also reviewed in this
+detailed report, which can be obtained from LPA.
+
+________________________________________________________________
+
+(DEMO 3 - Review the benchmark suite
+
+This demo just displays the code for the PROLOG benchmark suite on the
+screen, with the same file browser you are currently using. The file
+BENCHMRK.DEC is pure PROLOG source code, and can be compiled and run on
+any other PROLOG system you may have, for direct comparison with LPA
+PROLOG.
+
+________________________________________________________________
+
+(DEMO 4 - Have a go at using LPA PROLOG Professional
+
+Yes - you can actually try out LPA PROLOG Professional for yourself!,
+using the version of the system included on this disk. This is the full
+implementation of LPA PROLOG Professional, but with some of the standard
+modules add-on modules omitted (such as optimizing compiler, debugger
+and HCI toolkit). Apart from these omissions, this is an unrestricted
+version of the system. If you want the additional modules, please
+contact LPA (see below).
+
+Try consulting some of your own PROLOG files - any which only use
+standard PROLOG features should run correctly, first time. You can also
+consult (incrementally compile) the benchmark suite and compare its
+performance with the optimised version used in Demo 2.
+
+Note: You should know a little about PROLOG before trying Demo 4 -
+otherwise you will simply get stuck for what to do! If you do get stuck,
+type in the PROLOG command (bold characters only):
+
+	?- halt.
+
+to return to DOS - in any case, if you wait long enough the demo system
+will probably time out anyway!
+
+________________________________________________________________
+
+(Running the demo programs
+
+To run the demos, log onto the drive containing these files, and then
+enter the one of the commands: DEMO1, DEMO2, DEMO3 or DEMO4, depending
+upon which demo you want to see. Remember that Demo 1 works best from a
+hard disk, since it keeps pulling text off a large random access file,
+and this process might be a little slow on some floppy drives. Note that
+most LPA PROLOG applications are 100% memory resident, and drive speed
+does not normally affect run time performance. And remember, only try
+Demo 4 if you know how to use PROLOG!
+
+________________________________________________________________
+
+(If you have a 386 or greater, whether running DOS or Windows ...
+
+... you should find out about LPA's 32-bit versions of PROLOG: DOS-
+PROLOG and WIN-PROLOG. These two products are written in 32-bit
+assembler, and fully utilise the processing power and memory addressing
+of 386 and greater processors. Forget about the 640Kb DOS limit and EMS:
+up to 4096 megabytes of memory can be directly addressed! These two
+PROLOG compilers run directly under MS-DOS 5 and later, and and Windows
+3.1/95/NT respectively.
+
+________________________________________________________________
+
+(For further details please contact:
+
+		Brian D Steel
+		Technical Director
+
+Address:	Logic Programming Associates Ltd
+		Studio 4
+		The Royal Victoria Patriotic Building
+		Trinity Road
+		London
+		SW18 3SX
+		England
+
+Phone:		+44 181 871 2016
+
+Fax:		+44 181 874 0449
+
+Email:		brian@cix.compulink.co.uk
+
+Compuserve:	100012,3141
+
+Home Page:	http://www.lpa.co.uk

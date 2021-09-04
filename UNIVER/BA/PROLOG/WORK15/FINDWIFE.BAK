@@ -1,0 +1,105 @@
+%-----------------------------------------------------------
+% File FindWife.DEC
+%-----------------------------------------------------------
+% predict for checking the program on input files Men.dat , Women.dat
+%-----------------------------------------------------------
+try:-find_couples('Men.dat','Women.dat',FamiliesList),
+     write(FamiliesList),nl.
+%-----------------------------------------------------------
+% This predict is the main program.
+% parameters MenFile,WomenFile - files of data , FamiliesList result
+%-----------------------------------------------------------
+find_couples(MenFile,WomenFile,FamiliesList):-
+             read_data(Men,Women,MenFile,WomenFile,NumberOfMen,NumberOfWomen),
+             NumberOfMen=:=NumberOfWomen,
+             build_families_list(Men,Women,[],FamiliesList),
+             retractall(person(_,_)).
+%-----------------------------------------------------------
+% building the stable couples - get lists of men and women ,
+% Families List is a result
+%-----------------------------------------------------------
+build_families_list([],[],FamiliesList,FamiliesList).
+build_families_list([Husband|Men],Women,Other,FamiliesList):-
+              member(Wife,Women),
+              Family=..[f,Husband,Wife],
+              is_stable(Family,Other),
+              delete(Wife,Women,Women1),
+              build_families_list(Men,Women1,[Family|Other],FamiliesList).
+%------------------------------------------------------------
+is_stable(X,[]):-!.
+is_stable(X,[Y|Tail]):-stablefamily(X,Y),
+                       is_stable(X,Tail).
+%------------------------------------------------------------
+% reading data from input files into database
+% Men list of men,Women list of women,MenFile,WomenFile-input files,
+% NumberOfMen   - number records in the file of men.
+% NumberOfWomen - number records in the file of women.
+%------------------------------------------------------------
+read_data(Men,Women,MenFile,WomenFile,NumberOfMen,NumberOfWomen):-
+         see(MenFile),
+         read_person(Men,NumberOfMen),
+         seen,
+         see(WomenFile),
+         read_person(Women,NumberOfWomen),
+         seen.
+%-----------------------------------------------------------
+read_person(NameList,N):-
+         read(Person),
+         process_person(Person,NameList,N).
+%-----------------------------------------------------------
+process_person(end_of_file,[],0):-!.
+process_person(Person,[Name|PersonList],N):-
+               Person=..[Name|PreferencesList],
+               assert(person(Name,PreferencesList)),
+               read_person(PersonList,N1),
+               N is N1 + 1.
+%-----------------------------------------------------------
+different(X,Y):-X\=Y.
+%-----------------------------------------------------------
+member(X,[X|_]).
+member(X,[_|Tail]):-member(X,Tail).
+%-----------------------------------------------------------
+delete(X,[X|List],List).
+delete(X,[Y|List],[Y|List1]):-different(X,Y),delete(X,List,List1).
+%-----------------------------------------------------------
+% calculate what is the Place of Person2 in list of preferences of Person1
+%-----------------------------------------------------------
+preference(Person1,Person2,Place):-person(Person1,List),
+                                   findplace(Person2,List,Place).
+%-----------------------------------------------------------
+%Where is the X in list L,if nowhere return length(L)+1
+%-----------------------------------------------------------
+findplace(X,[],0).
+findplace(X,[X|_],1).
+findplace(X,[Y|L],N):-different(X,Y),
+                      findplace(X,L,N1),
+                      N is N1 + 1.
+%-----------------------------------------------------------
+% check if set of Family(A,B) and Family(C,D) is stable
+% A love B more than D and C love D more than B
+% or
+% A love B more than D and B love A more than C
+% or
+% D love C more than A and C love D more than B
+% or
+% D love C more than A and B love A more then C
+%-----------------------------------------------------------
+stablefamily(f(A,B),f(C,D)):-
+             preference(A,B,A2B),
+             preference(A,D,A2D),
+             preference(B,A,B2A),
+             preference(D,A,D2A),
+             preference(C,D,C2D),
+             preference(C,B,C2B),
+             preference(D,C,D2C),
+             preference(B,C,B2C),
+             check_preferences(A2B,A2D,B2A,D2A,C2D,C2B,D2C,B2C).
+%-----------------------------------------------------------
+check_preferences(A2B,A2D,B2A,D2A,C2D,C2B,D2C,B2C):-A2B<A2D,C2D<C2B
+                                                    ;
+                                                    A2B<A2D,B2A<B2C
+                                                    ;
+                                                    D2C<D2A,C2D<C2B
+                                                    ;
+                                                    D2C<D2A,B2A<B2C.
+%-----------------------------------------------------------

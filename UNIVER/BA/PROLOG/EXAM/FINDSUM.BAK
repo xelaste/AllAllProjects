@@ -1,0 +1,8 @@
+/*-------------------------------------------*/
+delete(X,[X|List],List).
+delete(X,[Y|List],[Y|List1]):-delete(X,List,List1).
+/*--------------------------------------------*/
+find_sum(List1,0,[]):-!.
+find_sum(List1,Sum,[X|Rest]):-delete(X,List1,List1_1),
+                              Sum1 is Sum - X,
+                              find_sum(List1_1,Sum1,Rest).

@@ -1,0 +1,698 @@
+/*
+  GraFiX Graphics Toolkit by Brian D Steel, 23 Mar 89 - (c) 1989 LPA Ltd
+  ----------------------------------------------------------------------
+
+  The routines in this module are to be used in conjunction with the GraFiX
+  graphics interface supplied with LPA PROLOG Professional. Run PROLOG with the
+  following command to enable the graphics:
+
+  C> GFX PROLOG
+
+  The predicates included are listed here:
+
+  gfx_installed/0               succeeds if GraFiX is installed
+  set_device/1                  selects the graphics or text mode
+  get_resolution/2              returns number of graphics rows and cols
+  get_total_colours/1           returns number of colours supported by mode
+
+  set_colour/1                  sets the colour for graphics operations
+  get_colour/1                  gets the colour being used for graphics
+  set_palette/3                 sets the palette for the current colour
+  set_line_style/1              sets the dot pattern used for line output
+  get_line_style/1              returns the dot pattern used for line output
+  set_fill_mask/1               sets the pixel mask for filling operations
+  get_fill_mask/1               returns the pixel mask for filling operations
+  set_text_size/2               sets the text font scaling factors
+  get_text_size/2               returns the text font scaling factors
+
+  set_clip_region/4             sets the clip region for graphics
+  get_clip_region/4             returns the clip region for graphics
+  fill_clip_region/1            fills the clip region with given colour
+
+  set_origin/2                  sets the logical origin for graphics
+  get_origin/2                  returns the logical origin for graphics
+
+  move_to/2                     moves graphics cursor to absolute location
+  line_to/2                     draws a line to a new absolute location
+  move_relative/2               moves graphics cursor to relative location
+  line_relative/2               draws a line to a new relative location
+  get_cursor/2                  returns the location of the graphics cursor
+
+  ellipse/2                     draws the outline of an elipse
+  rectangle/2                   draws a filled rectangle
+  flood_fill/1                  flood fills a bounded graphics area
+
+  set_pixel/1                   sets the value of a given pixel
+  get_pixel/1                   returns the value of a given pixel
+
+  grab_image/2                  grab an image bit map from the screen
+  display_image/1               display an image bit map using the given mode
+
+  display_text/1                display text of any term in graphics mode
+  display_string/1              display a string in graphics mode
+
+  reset_mouse/0                 test and reset the mouse
+  get_mouse/3                   follow the mouse and return its position
+
+  In all predicates, coordinates are specified in the sequence, (Row,Column).
+  Rows number from top to bottom, and columns from left to right, so (0,0) is
+  initially at the top left of the screen, tying in with the way PROLOG's
+  window manager works. The physical location of this origin can be altered,
+  but the row/column scheme is retained, the coordinates being translated
+  relative to wherever the origin is set.
+
+  Each axis is measured in pixel units, so the scaling of output is dependent
+  upon the graphics mode in force. You can find out what resolution a given
+  mode has, as well as the number of colours it supports: it is up to your
+  programs to compensate for different screen resolutions.
+
+*/
+
+:- crmod('$GRAFIX',[
+            gfx_installed, set_device, get_resolution,
+            get_total_colours, set_colour, get_colour, set_palette,
+            set_line_style, get_line_style, set_fill_mask,
+            get_fill_mask, set_text_size, get_text_size,
+            set_clip_region, get_clip_region,
+            fill_clip_region, set_origin, get_origin, move_to, line_to,
+            move_relative, line_relative, get_cursor, ellipse, rectangle,
+            flood_fill, set_pixel, get_pixel, grab_image, display_image,
+            display_text, display_string, reset_mouse, get_mouse
+],[
+            vga, ega, cga, att, tty, or, and, not, true, xor, black, blue,
+            green, cyan, red, magenta, brown, white, grey, bright_blue, 
+            bright_green, bright_cyan, bright_red, bright_magenta,
+            yellow, bright_white, solid, feint, dashed, dotted,
+            halftone, chequers, diamonds, vertical, hatch, horizontal,
+            backhatch, squares, big_vertical, big_hatch, big_horizontal,
+            big_backhatch, big_squares
+]).
+
+
+/*
+test if GraFiX is installed
+---------------------------
+
+This routine takes no parameters, and simply succeeds if the GraFiX package is
+currently installed in memory. All other graphics predicates give a PROLOG
+error if GraFiX is not installed, so this predicate should be invoked as a
+test before running a graphics program.
+*/
+
+gfx_installed :-
+  gfx.
+
+/*
+set graphics mode
+-----------------
+
+Uses BIOS i/o when in graphics and hardware when in text. The device may be
+an atom as listed in the relation conv_mode/2, or an integer number. All VGA,
+EGA and CGA modes can be accessed with integers in the range 0 - 19
+inclusive. The argument "tty" is used to return to text mode.
+*/
+
+set_device(Mode) :-
+  gfx(0,[-1]),
+  conv_mode(Mode,Value),
+  video(2),
+  gfx(0,[Value]),
+  !.
+
+set_device(tty) :-
+  gfx(0,[-1]),
+  gfx,
+  video(1),
+  put(31).
+
+conv_mode(vga,18).
+conv_mode(att,64).
+conv_mode(ega,16).
+conv_mode(cga,6).
+conv_mode(Num,Num) :-
+  number(Num).
+
+/*
+return the graphics pixel resolution
+------------------------------------
+
+The number of graphics rows and columns is returned. If a text mode is in
+force, both values return zero indicating the lack of plotting coordinates.
+You should call this routine to provide scaling information for your
+graphics.
+*/
+
+get_resolution(Rows,Cols) :-
+  gfx(0,Data),
+  Data = [Rows,Cols,_].
+
+/*
+return the number of colours
+----------------------------
+
+This returns the total number of logical colours that are available in the
+current graphics mode. You can change both the logical colour, and the
+physical colour that is associated with it (see set_colour/1 and
+set_palette/3).
+*/
+
+get_total_colours(Colours) :-
+  gfx(0,Data),
+  Data = [_,_,Colours].
+
+/*
+set the logical colour
+----------------------
+
+This sets the logical colour that will be used for subsequent graphics
+operations. In 16-colour modes (such as "vga" and "ega"), the names listed
+under the relation conv_colour/2 can be used. In all modes, you may directly
+reference the colour index value, which is an integer in the range 0 .. n-1,
+where n is total number of colours supported by a given mode (see
+get_total_colours/1). On VGA screens, you can modify the physical display
+colour associated with given logical colour (see set_palette/3).
+*/
+
+set_colour(Colour) :-
+  conv_colour(Colour,Value),
+  gfx(1,[Value]),
+  !.
+
+conv_colour(black,0).
+conv_colour(blue,1).
+conv_colour(green,2).
+conv_colour(cyan,3).
+conv_colour(red,4).
+conv_colour(magenta,5).
+conv_colour(brown,6).
+conv_colour(white,7).
+conv_colour(grey,8).
+conv_colour(bright_blue,9).
+conv_colour(bright_green,10).
+conv_colour(bright_cyan,11).
+conv_colour(bright_red,12).
+conv_colour(bright_magenta,13).
+conv_colour(yellow,14).
+conv_colour(bright_white,15).
+conv_colour(Num,Num) :-
+  number(Num).
+
+/*
+return the current logical colour
+---------------------------------
+
+This returns the name or number of the currently employed logical colour (see
+set_colour/1 for more information).
+*/
+
+get_colour(Colour) :-
+  gfx(1,Data),
+  Data = [Value],
+  conv_colour(Colour,Value),
+  !.
+
+/*
+set the colour palette
+----------------------
+
+This routine works on VGA screens, in all graphics modes. It is used to
+select which of about 256,000 physical colours is to be assigned to the
+currently active logical colour (see set_colour/1). First set the colour you
+want to change, and then call this predicate with three integer arguments.
+These correspond to the intensities of red, green and blue, and must be in
+the range 0 (no output) to 63 (brightest output) inclusive.
+*/
+
+set_palette(Red,Green,Blue) :-
+  gfx(2,[Red,Green,Blue]).
+
+/*
+set the line style
+------------------
+
+By default lines are drawn as solid (continuous), but using this predicate
+you can use any repeating 16-bit dot pattern for line output. The single
+argument you give either one of the names listed in the relation conv_line/2,
+or an integer whose binary bit pattern is used as the line template (see
+line_to/2 and line_relative/2).
+*/
+
+set_line_style(Style) :-
+  conv_line(Style,Pattern),
+  gfx(3,[Pattern]),
+  !.
+
+conv_line(solid,-1).
+conv_line(feint,21845).
+conv_line(dashed,255).
+conv_line(dotted,4369).
+conv_line(Num,Num) :-
+  number(Num).
+
+/*
+get the line style
+------------------
+
+This returns the name or number of the current line style (see
+set_line_style/1).
+*/
+
+get_line_style(Style) :-
+  gfx(3,Data),
+  Data = [Value],
+  conv_line(Style,Value),
+  !.
+
+/*
+set the fill mask
+-----------------
+
+By default, filled areas (see flood_fill/1 and rectangle/2) are drawn using
+solid colour. This routine allows you to specify any 8*8 pixel pattern to be
+used instead of solid when filling areas. This 8*8 fill mask is represented
+as a list of four integers whose binary patterns make up the fill mask. You
+may specify one of the preset fill masks listed in the relation conv_fill/2,
+or any other by supplying a list of integers as the argument.
+*/
+
+set_fill_mask(Style) :-
+  conv_fill(Style,Pattern),
+  gfx(4,Pattern),
+  !.
+
+conv_fill(solid,[-1,-1,-1,-1]).
+conv_fill(dotted,[136,0,34,0]).
+conv_fill(halftone,[21930,21930,21930,21930]).
+conv_fill(chequers,[3855,3855,-3856,-3856]).
+conv_fill(diamonds,[5128,16674,16768,5154]).
+
+conv_fill(vertical,[-30584,-30584,-30584,-30584]).
+conv_fill(hatch,[4488,17442,4488,17442]).
+conv_fill(horizontal,[255,0,255,0]).
+conv_fill(backhatch,[17544,4386,17544,4386]).
+conv_fill(squares,[-30465,-30584,-30465,-30584]).
+
+conv_fill(big_vertical,[2056,2056,2056,2056]).
+conv_fill(big_hatch,[4104,16416,384,1026]).
+conv_fill(big_horizontal,[255,0,0,0]).
+conv_fill(big_backhatch,[1032,258,16512,4128]).
+conv_fill(big_squares,[2303,2056,2056,2056]).
+
+conv_fill(List,List) :-
+  lst(List).
+
+/*
+get the fill mask
+-----------------
+
+This returns the name or number of the current fill mask (see set_fill_mask/1
+for more information).
+*/
+
+get_fill_mask(Style) :-
+  gfx(4,Data),
+  conv_line(Style,Data),
+  !.
+
+/*
+set text font size
+------------------
+
+Text is displayed in the 8*8 pixel font wired into the IBM PC video BIOS. This
+routine lets you specify the height and width of the pixels that will actually
+be used by the text output predicate (see display_text/1) to enable characters
+to be enlarged independently in both axes. The actual height and width of each
+character cell, in pixels, will be 8 times the values specified here.
+*/
+
+set_text_size(Height,Width) :-
+   gfx(5,[Height,Width]).
+
+/*
+get the text size
+-----------------
+
+This returns the current text size (see set_text_size/1 for more information).
+*/
+
+get_text_size(Height,Width) :-
+  gfx(5,Data),
+  Data = [Height,Width],
+  !.
+
+/*
+set the clip region
+-------------------
+
+Graphics are normally clipped so as to fit the whole screen, but under
+certain circumstances (such as graphics windows) you may want to contain them
+within just part of the screen. This predicate allows you to do this: by
+specifying the top row, left column, depth and width you can define any clip
+region you like. All units are physical values in pixel counts, and neither
+are affected by nor affect the logical origin (see set_origin/2). This
+routine performs no actual output, leaving any existing image on the screen:
+it is up to you to clear the clip region if you want to (see
+fill_clip_region/1).
+*/
+
+set_clip_region(Top,Left,Depth,Width) :-
+  gfx(6,[Top,Left,Depth,Width]).
+
+/*
+get the clip region
+-------------------
+
+This routine returns the current clip region (see set_clip_region/4) for
+graphics operations. Note that this will initially be set to the whole screen
+in any graphics mode.
+*/
+
+get_clip_region(Top,Left,Depth,Width) :-
+  gfx(6,Data),
+  Data = [Top,Left,Depth,Width].
+
+/*
+fill the clip region with the given colour
+------------------------------------------
+
+This routine fills the current clip region (see set_clip_region/4) with solid
+colour of your choice, to clear the way for graphics activities. You can use
+any valid colour name or number (see set_colour/1).
+*/
+
+fill_clip_region(Colour) :-
+  conv_colour(Colour,Value),
+  gfx(1,Data1),
+  gfx(4,Data4),
+  gfx(7,Data6),
+  gfx(8,Data7),
+  gfx(1,[Value]),
+  gfx(4,[-1,-1,-1,-1]),
+  gfx(7,[0,0]),
+  gfx(6,Region),
+  Region = [Row,Col,Depth,Width],
+  gfx(8,[Row,Col]),
+  gfx(13,[Depth,Width]),
+  gfx(1,Data1),
+  gfx(4,Data4),
+  gfx(7,Data6),
+  gfx(8,Data7).
+
+/*
+set the logical origin
+----------------------
+
+This routine allows you to reset the logical origin (plotting coordinates
+(0,0)) to any physical coordinates in or out of the clipping region (see
+set_clip_region/4). You specify the logical origin using a pair of physical
+coordinates (ie, the arguments are not themselves translated by a previously
+set logical origin). All graphics output is translated relative to the new
+logical origin.
+*/
+
+set_origin(Row,Col) :-
+  gfx(7,[Row,Col]).
+
+/*
+get the logical origin
+----------------------
+
+This routine returns the current logical origin (see set_origin/2) for
+graphics operations. Note that this will initially be set to the top left of
+the screen, ie physical coordinates (0,0).
+*/
+
+get_origin(Row,Col) :-
+  gfx(7,Data),
+  Data = [Row,Col].
+
+/*
+move to an absolute location
+----------------------------
+
+This routine moves the (invisible) graphics cursor to an absolute logical
+location, defining the point at which any subsequent graphics operation will
+begin, but does not produce any graphical output itself. The physical
+location of this point is affected by the logical origin (see set_origin/2).
+*/
+
+move_to(Row,Col) :-
+  gfx(8,[Row,Col]).
+
+/*
+draw line to an absolute location
+---------------------------------
+
+This routine draws a straight line from the current position (see move_to/2
+and get_cursor/2) to a new absolute logical location. The graphics cursor is
+also moved to the new location by this operation. The physical location of
+both ends of the line is affected by the logical origin (see set_origin/2).
+*/
+
+line_to(Row,Col) :-
+  gfx(9,[Row,Col]).
+
+/*
+move to a relative location
+---------------------------
+
+This routine moves the (invisible) graphics cursor to a new logical location
+specified relative to the current one (see move_to/2 and get_cursor/2)
+defining the point at which any subsequent graphics operation will begin, but
+does not produce any graphical output itself. The physical location of this
+point is affected by the logical origin (see set_origin/2) and the existing
+graphics cursor location.
+*/
+
+move_relative(Row,Col) :-
+  gfx(10,[Row,Col]).
+
+/*
+draw line to a relative location
+--------------------------------
+
+This routine draws a straight line from the current position (see
+move_relative/2 and get_cursor/2) to a new logical location specified
+relative to the current one. The graphics cursor is also moved to the new
+location by this operation. The physical location of both ends of the line is
+affected by the logical origin (see set_origin/2) and the existing graphics
+cursor location.
+*/
+
+line_relative(Row,Col) :-
+  gfx(11,[Row,Col]).
+
+/*
+get graphics cursor location
+----------------------------
+
+This routine returns the current position of the graphics cursor, which may
+be directly affected by the move and line predicates. It returns the absolute
+location of the graphics cursor.
+*/
+
+get_cursor(Row,Col) :-
+  gfx(8,Data),
+  Data = [Row,Col].
+
+/*
+draw the outline of an ellipse
+------------------------------
+
+This predicate draws an ellipse at the current graphics cursor location (see
+move_to/2 and move_relative/2), whose size and shape is specified by a
+bounding rectangle. The ellipse is not filled, but drawn in solid outline.
+The physical location of the ellipse is dependent on the current logical
+origin (see set_origin/2), and the location of the graphics cursor but does
+not move the cursor.
+*/
+
+ellipse(Depth,Width) :-
+  gfx(12,[Depth,Width]).
+
+/*
+draw a filled rectangle
+-----------------------
+
+This predicate draws a rectangle at the current graphics cursor location (see
+move_to/2 and move_relative/2), whose size and shape is specified by the
+given parameters. The rectangle is filled using the current fill mask (see
+set_fill_mask/1). Filling is performed very efficiently, and irrespective of
+anything already on the scrren, unlike flood fill (see flood_fill/3) which
+can be affected by existing screen images. The physical location of the
+rectangle is dependent on the current logical origin (see set_origin/2), and
+the location of the graphics cursor but does not move the cursor.
+*/
+
+rectangle(Depth,Width) :-
+  gfx(13,[Depth,Width]).
+
+/*
+flood fill a bounded graphics region
+------------------------------------
+
+This routine allows an area to be filled using the current fill mask (see
+set_fill_mask/1), by specifying a bound colour up to which filling is to
+occur. Filling commences at the current graphics cursor location (see
+move_to/2 and move_relative/2). Note that the colour used for filling is that
+set previously (see set_colour/1), and should be different from the bound
+colour specified here. The graphics cursor must be within the clipping region
+(see set_clip_region) for this function, and its position is not affected.
+*/
+
+flood_fill(Bound) :-
+  conv_colour(Bound,Value),
+  gfx(14,[Value]),
+  !.
+
+/*
+set the colour of a pixel
+-------------------------
+
+This routine allows you to set the colour of an individual pixel at the
+current graphics cursor location (see move_to/2 and move_relative/2). The
+colour is specified here as a parameter, and is independent of the colour set
+for other graphics operations (see set_colour/1). Neither the current colour
+nor the graphics cursor location is changed by this predicate.
+*/
+
+set_pixel(Colour) :-
+  conv_colour(Colour,Value),
+  gfx(15,[Value]).
+
+/*
+get the colour of a pixel
+-------------------------
+
+The colour of the pixel existing at the current graphics cursor location (see
+move_to/2 and move_relative/2) can be determined or tested by calling this
+predicate.
+*/
+
+get_pixel(Colour) :-
+  gfx(15,Data),
+  Data = [Value],
+  conv_colour(Colour,Value),
+  !.
+
+/*
+grab an image bit map
+---------------------
+
+This routine allows you to save a portion of the screen in an internal
+buffer, so that it may be re-displayed at a future time (see display_image).
+The area to save is specified by a bounding rectangle, which begins at the
+current graphics cursor location (see move_to/2 and move_relative/2). You
+will have to ensure the internal buffer is large enough for your images:
+using the /nnn option in the GFX command allows you to change this from the
+default of 1kb. A full-screen VGA graphics image requires about 160kb.
+*/
+
+grab_image(Depth,Width) :-
+  gfx(16,[Depth,Width]).
+
+/*
+display an image bit map
+------------------------
+
+An image which has been captured (see grab_image/2) can be redisplayed at any
+time using this predicate. The image is output starting at the current
+graphics cursor location (see move_to/2 and move_relative/2), using one of
+the several available logical combination rules listed under the relation
+conv_image/2. The whole image must be within the currently selected clipping
+region (see set_clip_region).
+*/
+
+display_image(Logic) :-
+  conv_image(Logic,Value),
+  gfx(17,[Value]),
+  !.
+
+conv_image(or,0).
+conv_image(and,1).
+conv_image(not,2).
+conv_image(true,3).
+conv_image(xor,4).
+conv_image(Num,Num) :-
+  number(Num).
+
+/*
+display a line of text
+----------------------
+
+This routine will display the (unquoted) text of a PROLOG term at the current
+graphics cursor location (see move_to/2 and move_relative/2). This location
+is advanced on character to the right for every character output. No processing
+of control characters is carried out: they are displayed just as any other
+character. Characters 0 to 127 are output using the the 8*8 pixel ROM font;
+characters 128 to 255 use the 8*8 pixel RAM font where available.
+*/
+
+display_text(Term) :-
+  fs(String,[u(0)],[Term]),
+  display_string(String).
+
+/*
+display a string
+----------------
+
+This routine will display the (unquoted) characters in a PROLOG string at the
+current graphics cursor location (see move_to/2 and move_relative/2). This
+location is advanced one character to the right for every character output. No
+processing of control characters is carried out: they are displayed as any
+other character. Characters 0 to 127 are output using the the 8*8 pixel ROM
+font; characters 128 to 255 use the 8*8 pixel RAM font where available.
+*/
+
+display_string([]) :-
+  !.
+display_string([Code|Rest]) :-
+  gfx(18,[Code]),
+  display_string(Rest).
+
+/*
+test for and reset the mouse
+----------------------------
+
+This routine tests for the presence of a Microsoft mouse, and if found resets
+its internal parameters. This routine should be called prior to any mouse-
+driven program, to check the mouse is actually there. Resetting the mouse
+takes up to 1 second, and centres the mouse cursor, so it is not a good idea
+to call this predicate more than once per run of a program.
+*/
+
+reset_mouse :-
+  gfx(19,[0]).
+
+/*
+follow the mouse and return its position
+----------------------------------------
+
+The mouse cursor is turned on, and you can track it around the screen. When
+any button or combination of buttons is pressed and then released, this
+predicate returns the row and column of the release, and the buttons which
+were pressed at the time. The parameters returned are given relative to the
+logical origin (see set_origin), and as such are compatible with the other
+graphics routines.
+*/
+
+get_mouse(Row,Col,Buttons) :-
+  gfx(19,[1]),
+  follow_mouse(0,[Rowphys,Colphys,Buttons]),
+  gfx(19,[2]),
+  gfx(7,Data),
+  Data = [Rowlog,Collog],
+  Row is Rowphys-Rowlog,
+  Col is Colphys-Collog.
+
+follow_mouse(Buttons,Params) :-
+  gfx(19,Data),
+  test_mouse(Buttons,Data,Params).
+
+test_mouse(Buttons,[Row,Col,Button],[Row,Col,Buttons]) :-
+  Button < Buttons,
+  !.
+test_mouse(Buttons,[Row,Col,Button],Params) :-
+  follow_mouse(Button,Params).
+
+:- cumod(&).

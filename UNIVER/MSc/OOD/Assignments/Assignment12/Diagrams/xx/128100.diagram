@@ -1,0 +1,151 @@
+format 56
+
+classcanvas 128356 class_ref 128356 // Offer
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 45 287 2000
+  end
+classcanvas 128484 class_ref 128484 // RoomType
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 187 179 2000
+  end
+classcanvas 128612 class_ref 128612 // FacilityType
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 178 338 2000
+  end
+classcanvas 128740 class_ref 128740 // ServiceType
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 76 452 2000
+  end
+classcanvas 129892 class_ref 128868 // Customer
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 576 52 2000
+  end
+classcanvas 130916 class_ref 130020 // Order
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 407 51 2000
+  end
+classcanvas 131556 class_ref 130148 // Logger
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility yes show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 429 309 2000
+  end
+classcanvas 134756 class_ref 131428 // Payment
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 420 449 2000
+  end
+classcanvas 135012 class_ref 131556 // DiscountType
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 168 261 2000
+  end
+classcanvas 136804 class_ref 133092 // Room
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 298 178 2000
+  end
+classcanvas 137316 class_ref 133220 // Discount
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 292 261 2000
+  end
+classcanvas 137444 class_ref 133348 // Facility
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 291 339 2000
+  end
+classcanvas 138980 class_ref 133476 // Service
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 286 453 2000
+  end
+classcanvas 139748 class_ref 134628 // OrderItem
+  draw_all_relations default hide_attributes default hide_operations default show_members_full_definition default show_members_visibility default show_members_stereotype default show_members_multiplicity default show_members_initialization default member_max_width 0 show_parameter_dir default show_parameter_name default package_name_in_tab default class_drawing_mode default drawing_language default show_context_mode default auto_label_position default show_infonote default shadow default
+  xyz 187 52 2000
+  end
+relationcanvas 130532 relation_ref 130532 // <generalisation>
+  decenter_begin 421
+  from ref 128484 z 1999 to ref 128356
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130660 relation_ref 130660 // <generalisation>
+  from ref 128612 z 1999 to ref 128356
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 130788 relation_ref 130788 // <generalisation>
+  from ref 128740 z 1999 to ref 128356
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 133476 relation_ref 132196 // <aggregation>
+  from ref 131556 z 1999 to ref 129892
+  no_role_a no_role_b
+  multiplicity_a_pos 575 97 3000 multiplicity_b_pos 455 290 3000
+relationcanvas 133604 relation_ref 132324 // Order2Log
+  from ref 131556 z 1999 label "Order2Log" italic xyz 415 184 1999 to ref 130916
+  no_role_a no_role_b
+  multiplicity_a_pos 414 96 3000 multiplicity_b_pos 426 290 3000
+relationcanvas 133988 relation_ref 132708 // <aggregation>
+  from ref 128484 z 1999 to point 31 196
+  line 134116 z 1999 to point 31 469
+  line 134244 z 1999 to ref 128740
+  no_role_a no_role_b
+  multiplicity_a_pos 61 478 3000 multiplicity_b_pos 172 205 3000
+relationcanvas 134372 relation_ref 132836 // <aggregation>
+  from ref 128612 z 1999 to ref 128740
+  no_role_a no_role_b
+  multiplicity_a_pos 123 433 3000 multiplicity_b_pos 177 383 3000
+relationcanvas 134884 relation_ref 134116 // <aggregation>
+  decenter_begin 523
+  decenter_end 326
+  from ref 131556 z 1999 to ref 134756
+  no_role_a no_role_b
+  multiplicity_a_pos 426 430 3000 multiplicity_b_pos 441 354 3000
+relationcanvas 135140 relation_ref 134244 // <generalisation>
+  from ref 135012 z 1999 to ref 128356
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 136932 relation_ref 135908 // <composition>
+  decenter_end 512
+  from ref 128484 z 1999 to ref 136804
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 138212 relation_ref 136164 // <composition>
+  from ref 135012 z 1999 to ref 137316
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 138340 relation_ref 136292 // <composition>
+  from ref 128612 z 1999 to ref 137444
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 138596 relation_ref 136548 // <aggregation>
+  from ref 131556 z 1999 to ref 136804
+  no_role_a no_role_b
+  multiplicity_a_pos 350 232 3000 multiplicity_b_pos 418 324 3000
+relationcanvas 138724 relation_ref 136676 // <aggregation>
+  from ref 131556 z 1999 to ref 137316
+  no_role_a no_role_b
+  multiplicity_a_pos 362 300 3000 multiplicity_b_pos 400 328 3000
+relationcanvas 138852 relation_ref 136804 // <aggregation>
+  from ref 131556 z 1999 to ref 137444
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 139108 relation_ref 136932 // <composition>
+  from ref 128740 z 1999 to ref 138980
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 139236 relation_ref 137060 // <aggregation>
+  from ref 131556 z 1999 to ref 138980
+  no_role_a no_role_b
+  multiplicity_a_pos 339 449 3000 multiplicity_b_pos 406 344 3000
+relationcanvas 139492 relation_ref 138212 // Order2Customer
+  from ref 129892 z 1999 label "Order2Customer" italic xyz 473 56 1999 to ref 130916
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 139876 relation_ref 138468 // <composition>
+  from ref 130916 z 1999 to ref 139748
+  no_role_a no_role_b
+  multiplicity_a_pos 265 77 3000 multiplicity_b_pos 390 77 3000
+relationcanvas 140004 relation_ref 138596 // OrderItem2Room
+  from ref 139748 z 1999 label "OrderItem2Room" italic xyz 181 120 1999 to ref 128484
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+relationcanvas 141796 relation_ref 139236 // OrderItem2Facility
+  from ref 139748 z 1999 label "OrderItem2Facility" italic xyz 55 56 1999 to point 9 68
+  line 141924 z 1999 to point 9 354
+  line 142052 z 1999 to ref 128612
+  no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end

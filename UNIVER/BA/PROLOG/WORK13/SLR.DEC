@@ -1,0 +1,16 @@
+salary(InputFile,OutputFile,Tax) :-
+  see(InputFile),
+  tell(OutputFile),
+  makefile(Tax),
+  seen,
+  told.
+makefile(Tax):-
+         read(Person),
+         process(Person,Tax).
+process(end_of_file,_):-!.
+process(person(FirstName,SurName,Salary),Tax):-
+        Salary1 is (Salary - 0.01*Tax*Salary),
+        write(person(FirstName,SurName,Salary1)),
+        write('.'),
+        nl,
+        makefile(Tax).

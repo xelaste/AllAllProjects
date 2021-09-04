@@ -1,0 +1,11 @@
+get_head_and_tail(Head,Tail,[Head|Tail]).
+counter([],X,0).
+counter([Y],X,Num) :-
+  (Y =:= X , Num is 1 ; Y =\= X , Num is 0).
+counter(List,X,Num) :-
+  length(List,L),
+  L > 1,
+  get_head_and_tail(Head,Tail,List),
+  counter([Head],X,Num1),
+  counter(Tail,X,Num2),
+  Num is Num2 + Num1.
