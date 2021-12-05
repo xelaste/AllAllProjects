@@ -1,5 +1,0 @@
-Software Development Expert – Lead the software development process, from the architectural design, 
-via coding and testing and up to go-live in production. 
-The responsibilities I carried out included: creating the architecture documents and design documents, coding the complex parts of the application, 
-solving critical issues (performance, crashes), 
-supervising the development process, reviewing developers code and mentoring junior developers.
