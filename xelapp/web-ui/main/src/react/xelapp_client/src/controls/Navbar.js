@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button } from './Button';
 import { Link } from 'react-router-dom';
-import Dropdown from './Dropdown';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Nav from 'react-bootstrap/Nav';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import Dropdown from 'react-bootstrap/Dropdown';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function Navbar() {
+function AppNavbar() {
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -27,28 +33,53 @@ function Navbar() {
     }
   };
 
-  return   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="m-sm-2 navbar-brand" href="#"><span class="navbar-toggler-icon"></span></a>
-  <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Games</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Algorithms</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
-      </li>
-    </ul>
-  </div>
-  <form>
-      <a class="m-sm-2" href="#">Sign In</a>
-      <input class="m-sm-2" type="search" placeholder="Search"/>
-      <button class="btn btn-outline-success m-sm-2" type="submit">Search</button>
-    </form>
+  return <Navbar bg="dark" variant="dark" expand="lg">
+    <Container fluid>
+      <Navbar.Brand href="#"><span class="navbar-toggler-icon" /></Navbar.Brand>
+      <Navbar.Toggle aria-controls="navbarScroll" />
+      <Navbar.Collapse id="navbarScroll">
+        <Nav
+          className="me-auto my-2 my-lg-0"
+          style={{ maxHeight: '100px' }}
+          navbarScroll
+          variant="dark"
+        >
+          <NavDropdown title="Games" id="navbarGames" bg="dark" variant="dark">
+            <NavDropdown.Item href="#action3">BullsAndCows</NavDropdown.Item>
+          </NavDropdown>
 
-</nav>
+          <NavDropdown title="Algorithms" id="navbarAlgorithms" menuVariant="dark">
+            <Dropdown id="dropdown-item-button-graphs" variant="dark" align="end">
+              <div class="dropdown-item">
+                <Dropdown.Toggle as="div">Graphs</Dropdown.Toggle>
+              </div>
+              <div style={{ position: "relative",right: "-8em"}}>
+              <Dropdown.Menu variant="dark">
+                <Dropdown.Item as="button">Dijkstra</Dropdown.Item>
+                <Dropdown.Item as="button">Prim</Dropdown.Item>
+              </Dropdown.Menu>
+              </div>
+            </Dropdown>
+            <NavDropdown.Item href="#action4">Sorts</NavDropdown.Item>
+            <NavDropdown.Divider />
+            <NavDropdown.Item href="#action5">Text</NavDropdown.Item>
+          </NavDropdown>
+          <Nav.Link href="#">
+            About
+          </Nav.Link>
+        </Nav>
+        <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="Search"
+            className="me-2"
+            aria-label="Search"
+          />
+          <Button variant="outline-success">Search</Button>
+        </Form>
+      </Navbar.Collapse>
+    </Container>
+  </Navbar>
 }
 
-export default Navbar;
+export default AppNavbar;
