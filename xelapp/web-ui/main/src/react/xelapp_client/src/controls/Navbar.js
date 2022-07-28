@@ -35,7 +35,11 @@ function AppNavbar() {
 
   return <Navbar bg="dark" variant="dark" expand="lg">
     <Container fluid>
-      <Navbar.Brand href="#"><span class="navbar-toggler-icon" /></Navbar.Brand>
+      <Navbar.Brand href="#">
+        <Link to='/' className="text-decoration-none text-light" onClick={closeMobileMenu}>
+          <span class="navbar-toggler-icon" />
+        </Link>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
@@ -53,11 +57,15 @@ function AppNavbar() {
               <div class="dropdown-item">
                 <Dropdown.Toggle as="div">Graphs</Dropdown.Toggle>
               </div>
-              <div style={{ position: "relative",right: "-8em"}}>
-              <Dropdown.Menu variant="dark">
-                <Dropdown.Item as="button">Dijkstra</Dropdown.Item>
-                <Dropdown.Item as="button">Prim</Dropdown.Item>
-              </Dropdown.Menu>
+              <div style={{ position: "relative", right: "-8em" }}>
+                <Dropdown.Menu variant="dark">
+                  <Dropdown.Item as="button">
+                    <Link to='/dijkstra' className="text-decoration-none text-light" onClick={closeMobileMenu}>
+                      Dijkstra
+                    </Link>
+                  </Dropdown.Item>
+                  <Dropdown.Item as="button">Prim</Dropdown.Item>
+                </Dropdown.Menu>
               </div>
             </Dropdown>
             <NavDropdown.Item href="#action4">Sorts</NavDropdown.Item>
