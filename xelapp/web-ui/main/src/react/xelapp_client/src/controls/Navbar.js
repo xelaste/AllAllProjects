@@ -37,7 +37,7 @@ function AppNavbar() {
     <Container fluid>
       <Navbar.Brand href="#">
         <Link to='/' className="text-decoration-none text-light" onClick={closeMobileMenu}>
-          <span class="navbar-toggler-icon" />
+          <span className="navbar-toggler-icon" />
         </Link>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="navbarScroll" />
@@ -54,7 +54,7 @@ function AppNavbar() {
 
           <NavDropdown title="Algorithms" id="navbarAlgorithms" menuVariant="dark">
             <Dropdown id="dropdown-item-button-graphs" variant="dark" align="end">
-              <div class="dropdown-item">
+              <div className="dropdown-item">
                 <Dropdown.Toggle as="div">Graphs</Dropdown.Toggle>
               </div>
               <div style={{ position: "relative", right: "-8em" }}>
