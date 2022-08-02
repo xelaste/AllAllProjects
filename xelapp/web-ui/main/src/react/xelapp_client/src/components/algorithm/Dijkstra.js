@@ -20,7 +20,7 @@ export default function Dijkstra() {
   return (
     <>
 	    <div className='home'> 
-          <div id="algorithmContainer" style={{width:"50%",height:"50%"}}><DrawPanel title="Dijkstra"></DrawPanel> </div>
+          <div id="algorithmContainer" style={{width:"50%",height:"70%"}}><DrawPanel title="Dijkstra"></DrawPanel> </div>
       </div>
     </>
   );

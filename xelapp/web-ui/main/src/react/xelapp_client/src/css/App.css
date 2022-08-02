@@ -14,7 +14,7 @@
 .consulting {
   display: flex;
   height: 90vh;
-  align-items: center;
+  align-items: stretch;
   justify-content: center;
   font-size: 3rem;
 }

@@ -11,7 +11,7 @@ class DrawPanel extends React.Component {
         let height=container?container.offsetHeight+"px":"381px";
         return  <div className="text-center">
             {this.props.title ? <h1 className="display-1 text-primary">{this.props.title}</h1>:""}
-            <canvas id="c" width={width} height={height} className="border border-secondary border-3"></canvas>
+            <canvas id="c" width={width} height={height} className="border border-info border-3"></canvas>
         </div>
     }
     drawGrid() {
@@ -30,7 +30,7 @@ class DrawPanel extends React.Component {
             context.moveTo(0, y);
             context.lineTo(width, y);
         }
-        context.strokeStyle = "#ddd";
+        context.strokeStyle = "#d0d0d0";
         context.stroke();
 
         context.beginPath();
@@ -44,16 +44,11 @@ class DrawPanel extends React.Component {
             context.lineTo(width, y);
         }
         context.lineWidth = 2;
-        context.strokeStyle = "#ccc";
+        context.strokeStyle = "#c0c0c0";
         context.stroke();
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.drawGrid();
-    }
-
-    componentDidMount()
-    {
         this.drawGrid();
     }
 }
