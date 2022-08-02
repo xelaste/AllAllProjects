@@ -20,10 +20,6 @@ class DrawPanel extends React.Component {
         let height=c_canvas.offsetHeight - 5;
         width = width - width % 10 + 1;
         height = height - height % 10 + 1;
-        console.log("^^^^****************************");
-        console.log(width);
-        console.log(height);
-        console.log("^^^^****************************");
         let context = c_canvas.getContext("2d");
         for (var x = 0.5; x < width; x += 10) {
             context.moveTo(x, 0);
