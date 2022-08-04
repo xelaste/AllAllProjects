@@ -7,9 +7,9 @@ class GraphLogicalView extends React.Component {
         super(props);
         this.graph = props.graph;
         this.state = {
-            loaded:false
+            loaded:false,
+            graph:this.props.graph
           };
-
     }
 
     graph = {};
@@ -27,16 +27,10 @@ class GraphLogicalView extends React.Component {
     }
     
     handleResize() {
-        let size = {width:window.innerWidth,height:window.innerHeight };
-        this.state = {
-            size: size
-          };
+        this.state.size = {width:window.innerWidth,height:window.innerHeight};
      }
     componentDidMount() {
-        this.state = {
-            ...this.state,
-            loaded:true
-          };
+          this.state.loaded=true;
           window.addEventListener('resize', handleResize);
     }
     componentDidUpdate(prevProps, prevState, snapshot) 

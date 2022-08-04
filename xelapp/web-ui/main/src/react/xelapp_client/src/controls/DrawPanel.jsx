@@ -28,7 +28,7 @@ class DrawPanel extends React.Component {
         </div>
     }
     drawCircle(center, radius, style, text) {
-        let context = this.getContext();
+        let context = this.get2DGraphics();
         context.beginPath();
         context.arc(center.X, center.Y, radius, 0, 2 * Math.PI, false);
         if (style) {
@@ -63,7 +63,7 @@ class DrawPanel extends React.Component {
         let height = c_canvas.offsetHeight - 5;
         width = width - width % 10 + 1;
         height = height - height % 10 + 1;
-        let context = this.getContext();
+        let context = this.get2DGraphics();
         for (var x = 0.5; x < width; x += 10) {
             context.moveTo(x, 0);
             context.lineTo(x, height);
