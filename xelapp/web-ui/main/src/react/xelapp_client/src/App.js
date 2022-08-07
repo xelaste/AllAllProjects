@@ -8,7 +8,7 @@ import ContactUs from './components/pages/ContactUs';
 import SignUp from './components/pages/SignUp';
 import Marketing from './components/pages/Marketing';
 import Consulting from './components/pages/Consulting';
-import Dijkstra from './components/algorithm/Dijkstra'
+import Dijkstra from './components/algorithm/graph/impl/Dijkstra'
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React,{ useState, useEffect } from 'react';
 import '../../../../css/App.css';
-import GraphLogicalView from './graph/GraphLogicalView';
+import GraphLogicalView from '../view/GraphLogicalView';
 import Graph  from '../model/Graph';
  function buildGraph() {
   let graph = new Graph(6);
@@ -8,6 +8,7 @@ import Graph  from '../model/Graph';
   for (let i = 0; i < vertices.length; i++) {
     graph.addVertex(vertices[i]);
   }
+
   graph.addEdge('A', 'B');
   graph.addEdge('A', 'D');
   graph.addEdge('A', 'E');

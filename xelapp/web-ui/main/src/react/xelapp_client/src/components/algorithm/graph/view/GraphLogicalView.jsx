@@ -1,6 +1,6 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import DrawPanel from '../../../controls/DrawPanel';
+import DrawPanel from '../../../../controls/DrawPanel';
 class GraphLogicalView extends React.Component {
 
     constructor(props) {
@@ -31,7 +31,7 @@ class GraphLogicalView extends React.Component {
      }
     componentDidMount() {
           this.state.loaded=true;
-          window.addEventListener('resize', handleResize);
+          window.addEventListener('resize', this.handleResize);
     }
     componentDidUpdate(prevProps, prevState, snapshot) 
     {
