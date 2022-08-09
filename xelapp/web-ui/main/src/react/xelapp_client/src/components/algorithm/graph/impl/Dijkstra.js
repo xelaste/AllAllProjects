@@ -1,40 +1,29 @@
-import React,{ useState, useEffect } from 'react';
+import React from 'react';
 import '../../../../css/App.css';
 import GraphLogicalView from '../view/GraphLogicalView';
 import Graph  from '../model/Graph';
+import Vertex from '../model/Vertex';
+
  function buildGraph() {
   let graph = new Graph(6);
   let vertices = [ 'A', 'B', 'C', 'D', 'E', 'F' ];
   for (let i = 0; i < vertices.length; i++) {
-    graph.addVertex(vertices[i]);
+    let vertex = new Vertex(vertices[i])
+    graph.addVertex(vertex);
   }
 
-  graph.addEdge('A', 'B');
-  graph.addEdge('A', 'D');
-  graph.addEdge('A', 'E');
-  graph.addEdge('B', 'C');
-  graph.addEdge('D', 'E');
-  graph.addEdge('E', 'F');
-  graph.addEdge('E', 'C');
-  graph.addEdge('C', 'F');
+  graph.addEdge( graph.getVertex('A'), graph.getVertex('B'));
+  graph.addEdge(graph.getVertex('A'), graph.getVertex('D'));
+  graph.addEdge(graph.getVertex('A'), graph.getVertex('E'));
+  graph.addEdge(graph.getVertex('B'), graph.getVertex('C'));
+  graph.addEdge(graph.getVertex('D'), graph.getVertex('E'));
+  graph.addEdge(graph.getVertex('E'), graph.getVertex('F'));
+  graph.addEdge(graph.getVertex('E'), graph.getVertex('C'));
+  graph.addEdge(graph.getVertex('C'), graph.getVertex('F'));
+  return graph;
 };
  export default function Dijkstra(props) {
-  const [loaded, setLoaded] = useState(false);
-  const [setResize] = useState(null);
-  const graph = this.prop.graph? this.prop.graph : buildGraph();
-  
-  useEffect(() => {   
-    function handleResize() {
-       let size = {width:window.innerWidth,height:window.innerHeight };
-       setResize (size);
-    }
-  	// Update the document title using the browser API    
-  	if (!loaded ) {
-      setLoaded (true);
-      window.addEventListener('resize', handleResize);
-    } 
-  }
-  );
+  const graph = props.graph? props.graph : buildGraph();
   return (
     <>
 	    <div className='home'> 

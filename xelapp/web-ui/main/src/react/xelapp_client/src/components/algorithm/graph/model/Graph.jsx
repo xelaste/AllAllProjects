@@ -5,12 +5,12 @@ class Graph {
     constructor(noOfVertices) {
         this.noOfVertices = noOfVertices;
         this.adjList = new Map();
-        this.vertices = new Set();
+        this.vertices = new Map();
     }
 
     addVertex(v) {
         this.adjList.set(v.getId(), new Map());
-        this.vertices.add(v);
+        this.vertices.set(v.getId(),v);
     }
 
 
@@ -29,6 +29,9 @@ class Graph {
     }
     getVertices() {
         return this.vertices;
+    }
+    getVertex(v) {
+        return this.vertices.get(v);
     }
 
 }

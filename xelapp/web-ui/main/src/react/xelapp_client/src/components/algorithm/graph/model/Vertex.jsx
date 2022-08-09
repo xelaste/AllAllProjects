@@ -1,12 +1,17 @@
 class Vertex {
     id;
-    data;
-    attributes;
+    data = {};
+    attributes= {};
     constructor (id,data,attributes)
     {
         this.id=id;
-        this.data=data;
-        this.attributes=attributes;
+        if (data) {
+            this.data=data;
+        } 
+        if (attributes)
+        {
+            this.attributes=attributes;
+        }    
     }
     getId()
     {
