@@ -15,10 +15,10 @@ class Graph {
 
 
     addEdge(v, w, data, attributes) {
-        if (!this.adjList.has(v.getId)) {
+        if (!this.adjList.has(v.getId())) {
             this.addVertex(v);
         }
-        if (!this.adjList.has(w.getId)) {
+        if (!this.adjList.has(w.getId())) {
             this.addVertex(w);
         }
         this.adjList.get(v.getId()).set(w.getId(), new Edge(v, w, data, attributes));

@@ -11,7 +11,10 @@ class Vertex {
         if (attributes)
         {
             this.attributes=attributes;
-        }    
+        }  
+        this.getId=this.getId.bind(this);
+        this.getData=this.getData.bind(this);
+        this.getAttributes=this.getAttributes.bind(this);
     }
     getId()
     {
