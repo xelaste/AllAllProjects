@@ -2,7 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import DrawPanel from '../../../../controls/DrawPanel';
 import { halton2D, drawCircle, drawArrow } from '../../../../util/GraphicUtilities';
-const vertexRadius = 25;
+const vertexRadius = 10;
 const vertexMargin = 200;
 class GraphLogicalView extends React.Component {
 
@@ -58,7 +58,7 @@ class GraphLogicalView extends React.Component {
             circleData["center"] = { X: item[0], Y: item[1] };
             circleData["style"] = { color: "#ffee00", lineWidth: 2, font: "12px Arial" };
             circleData["radius"] = vertexRadius;
-            circleData["text"] = "<" + key + ">";
+            circleData["text"] =  key;
             circleData["textColor"] = "#cc00ff";
             drawCircle(_2dgraphics, circleData);
         });
