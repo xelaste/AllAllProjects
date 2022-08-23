@@ -12,9 +12,9 @@ class DrawPanel extends React.Component {
         let container = document.getElementById(containerId);
         let width = container ? container.offsetWidth + "px" : "501px";
         let height = container ? container.offsetHeight + "px" : "381px";
-        let size = {width:width,height:height };
-        this.setState ({...this.state,size:size});
-     }
+        let size = { width: width, height: height };
+        this.setState({ ...this.state, size: size });
+    }
     getDimensions() {
         let c_canvas = document.getElementById("c");
         let width = c_canvas.offsetWidth - 10;
@@ -31,14 +31,11 @@ class DrawPanel extends React.Component {
         let container = document.getElementById(containerId);
         let width = container ? container.offsetWidth + "px" : "501px";
         let height = container ? container.offsetHeight + "px" : "381px";
-        return <div className="text-center">
-            {this.props.title ? <h1 className="display-1 text-primary">{this.props.title}</h1> : ""}
-            <canvas id="c"  width={width} height={height} className="border border-info border-3 bg-light"></canvas>
-        </div>
+        return <canvas id="c" width={width} height={height} className="border border-info border-3 bg-light"></canvas>
     }
     drawGrid() {
         let c_canvas = document.getElementById("c");
-        
+
         let width = c_canvas.offsetWidth - 5;
         let height = c_canvas.offsetHeight - 5;
         width = width - width % 10 + 1;
@@ -71,12 +68,10 @@ class DrawPanel extends React.Component {
         context.strokeStyle = "#c0c0c0";
         context.stroke();
     }
-    drawContent()
-    {
-        if (this.props.drawContent)
-        {
+    drawContent() {
+        if (this.props.drawContent) {
             this.get2DGraphics().globalAlpha = 1;
-            this.props.drawContent(this.get2DGraphics(),{range:this.getDimensions()});
+            this.props.drawContent(this.get2DGraphics(), { range: this.getDimensions() });
         }
     }
     componentDidMount() {

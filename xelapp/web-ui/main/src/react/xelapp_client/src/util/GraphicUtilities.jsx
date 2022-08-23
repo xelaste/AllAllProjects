@@ -2,7 +2,7 @@ const arrowLength = 5;
 const arrowBase = arrowLength * Math.PI / 9
 
 function drawCircle(_2DGraphics, data) {
-    let context = _2DGraphics;
+    const context = _2DGraphics;
     context.beginPath();
     context.arc(data.center.X, data.center.Y, data.radius, 0, 2 * Math.PI, false);
     if (data.style) {
@@ -19,6 +19,7 @@ function drawCircle(_2DGraphics, data) {
 
     }
     context.stroke();
+    context.closePath();
     if (data.text) {
         if (data.style && data.style.font) {
             context.font = data.style.font;
@@ -30,10 +31,11 @@ function drawCircle(_2DGraphics, data) {
         context.beginPath();
         context.fillText(data.text, data.center.X - data.radius / 2, data.center.Y + 3, data.radius * 2);
         context.stroke();
+      context.closePath();
     }
 }
 
-function drawArrow(_2DGraphics, data) {
+function drawArrow(_2dgraphics, data) {
     const x0 = data.peak.X;
     const y0 = data.peak.Y;
     const xb = x0 - arrowLength * data.cosa;
@@ -42,15 +44,15 @@ function drawArrow(_2DGraphics, data) {
     const x1 = xb - arrowBase * data.sina;
     const y2 = yb - arrowBase * data.cosa;
     const x2 = xb + arrowBase * data.sina;
-    _2DGraphics.beginPath();
-    _2DGraphics.moveTo(x0, y0);
-    _2DGraphics.lineTo(x1, y1);
-    _2DGraphics.lineTo(x2, y2);
-    _2DGraphics.closePath();
-    // the outline
-    _2DGraphics.stroke();
-    // the fill color
-    _2DGraphics.fill()
+    _2dgraphics.beginPath();
+    _2dgraphics.moveTo(x0, y0);
+    _2dgraphics.lineTo(x1, y1);
+    _2dgraphics.lineTo(x2, y2);
+    _2dgraphics.strokeStyle = data.strokeStyle;
+    _2dgraphics.fillStyle = data.fillStyle;
+    _2dgraphics.stroke();
+    _2dgraphics.fill()
+    _2dgraphics.closePath();
 }
 
 function halton(index, base) {

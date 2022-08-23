@@ -1,6 +1,6 @@
 import Graph from "../model/Graph";
 import Vertex from "../model/Vertex";
-export default function generateRandomGraph(n,k,w,directed)
+export default function generateRandomGraph(n,k,w,props)
 {
     let g = new Graph(n);
     let p = n*k/(n * (n - 1.0))
@@ -20,10 +20,15 @@ export default function generateRandomGraph(n,k,w,directed)
             // say, edgeProbability = 0.2 which is less
             // than p = 0.4, then add an edge between the
             // vertex i and the vertex j
-            let weight = Math.floor(Math.random() * n * k );
+            if (i===j)
+            {
+                continue;
+            }
+            let weight = Math.floor(w * Math.random());
             let edgeProbability = Math.random();
-            if (edgeProbability < p)
-            g.addEdge( g.getVertex('v'+ i), g.getVertex('v'+j),{weight:weight},{});    
+            if (edgeProbability < p ) {
+                g.addEdge( g.getVertex('v'+ i), g.getVertex('v'+j),{weight:weight},{});    
+            }
         }
     }
     return g;
