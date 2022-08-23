@@ -68,6 +68,12 @@ class DrawPanel extends React.Component {
         context.strokeStyle = "#c0c0c0";
         context.stroke();
     }
+    clearContent()
+    {
+        let c_canvas = document.getElementById("c");
+        let context = c_canvas.getContext("2d");
+        context.clearRect(0, 0, c_canvas.width, c_canvas.height);
+    }
     drawContent() {
         if (this.props.drawContent) {
             this.get2DGraphics().globalAlpha = 1;
@@ -82,6 +88,7 @@ class DrawPanel extends React.Component {
         this.drawContent();
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
+        this.clearContent();
         if (!this.props.grid || !this.props.grid === true) {
             this.drawGrid();
         }

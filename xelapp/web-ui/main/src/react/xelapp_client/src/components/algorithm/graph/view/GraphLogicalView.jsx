@@ -18,7 +18,7 @@ class GraphLogicalView extends React.Component {
         this.drawEdges = this.drawEdges.bind(this);
     }
     drawEdges(_2dgraphics, data) {
-        let edges = this.graph.getEdges()
+        let edges = this.props.graph.getEdges()
         edges.forEach((adjList, key, map) => {
             adjList.forEach((edge, key, map) => {
                 let source = edge.getSource();
@@ -50,7 +50,6 @@ class GraphLogicalView extends React.Component {
                     let circleData = {};
                     let centerx = sourcePoint[0] + dx / 2;
                     let centery = sourcePoint[1] + dy / 2;
-                    console.log("sourcePoint[0]=" + sourcePoint[0], "sourcePoint[1]=" + sourcePoint[1], "dx=" + dx, "dy=" + dy);
                     circleData["center"] = { X: centerx, Y: centery };
                     circleData["style"] = { color: "#ffffff", lineWidth: 1, font: "8px Arial" };
                     circleData["radius"] = 7;
@@ -63,7 +62,7 @@ class GraphLogicalView extends React.Component {
         });
     }
     drawVertices(_2dgraphics, data) {
-        let vertices = this.graph.getVertices();
+        let vertices = this.props.graph.getVertices();
         let count = 0;
         vertices.forEach((vertex, key, map) => {
             const attributes = vertex.getAttributes();
@@ -81,6 +80,10 @@ class GraphLogicalView extends React.Component {
         });
     }
     drawGraph(_2dgraphics, data) {
+        if (Object.keys(this.props.graph).length === 0)
+        {
+            return;
+        }
         this.drawVertices(_2dgraphics, data);
         this.drawEdges(_2dgraphics, data)
     }
