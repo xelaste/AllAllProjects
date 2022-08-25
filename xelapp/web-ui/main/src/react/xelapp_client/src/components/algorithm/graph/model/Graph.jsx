@@ -12,7 +12,10 @@ class Graph {
         this.adjList.set(v.getId(), new Map());
         this.vertices.set(v.getId(),v);
     }
-
+    adj (v)
+    {
+        return this.adjList (v);
+    }
 
     addEdge(v, w, data, attributes) {
         if (!this.adjList.has(v.getId())) {
