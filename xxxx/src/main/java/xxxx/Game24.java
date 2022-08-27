@@ -1,54 +1,73 @@
 package xxxx;
 
-
 public class Game24 {
-	private static String ops[] = { "+", "-", "/", "*" };
-	private boolean play(int[] x) {
-
+	private static char operators[] = { '+', '-', '/', '*' };
+	private static int[][] operatorsPermutation = new int [64][4];
+	private static int[][] cardPermutation = new int[24][4];
+	static {
+		int raw=0;
 		for (int i=0;i<4;i++) {
 			for (int j=0;j<4;j++) {
 				for (int k=0;k<4;k++) {
 					boolean samePriority = (i< 2 && j < 2 && k <2 ) || (i>1  && j>1 && k>1 );
-					if (evaluate(x, new String[] { ops[i], ops[j], ops[k] },samePriority)) {
-						return true;
-					}
+					operatorsPermutation[raw][0] = i;
+					operatorsPermutation[raw][1] = j;
+				    operatorsPermutation[raw][2] = k;
+				    operatorsPermutation[raw][3] = samePriority ? 1 : 0;		
+					raw++;
 				}
 			}
 		}
-		return false;
-	}
-
-	private boolean evaluate(int[] x, String[] operands,boolean samePriority) {
-		for (int i = 0; i < x.length; i++) {
-			for (int j = 0; j < x.length; j++) {
-				for (int k = 0; k < x.length; k++) {
-					for (int l = 0; l < x.length; l++) {
+		raw=0;
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				for (int k = 0; k < 4; k++) {
+					for (int l = 0; l < 4; l++) {
 						if (i != j && i != l && i != k && j != k && j != l && k != l) {
-							for (int t = 0; t < 5; t++) {
-								try {
-									double val = calculate(t, new int[] { x[i], x[j], x[k], x[l] }, operands);
-									if (Math.abs(val - 24) < 0.00001) {
-										return true;
-									}
-									if (samePriority)
-									{
-										break;
-									}
-								
-								} catch (Exception e) {
-									continue;
-								}
-
-							}
+							cardPermutation[raw][0] = i;
+							cardPermutation[raw][1] = j;
+							cardPermutation[raw][2] = k;
+							cardPermutation[raw][3] = l;
+							raw++;
 						}
 					}
 				}
 			}
 		}
+	}
+	
+	
+	private boolean play(int[] x) {
+
+		for (int i = 0; i < operatorsPermutation.length; i++) {
+			for (int j = 0; j < cardPermutation.length; j++) {
+				int[] cards = {x[cardPermutation[j][0]],x[cardPermutation[j][1]],x[cardPermutation[j][2]],x[cardPermutation[j][3]]};
+				char ops1 = operators[operatorsPermutation[i][0]];
+				char ops2 = operators[operatorsPermutation[i][1]];
+				char ops3 = operators[operatorsPermutation[i][2]];
+				char[] ops =  {ops1,ops2,ops3};
+				boolean samePriority = operatorsPermutation[i][3] > 0 ;
+				for (int t = 0; t < 5; t++) {
+					try {
+						double val = calculate(t, cards, ops);
+						if (Math.abs(val - 24) < 0.00001) {
+							return true;
+						}
+						if (samePriority)
+						{
+							break;
+						}
+					
+					} catch (Exception e) {
+						continue;
+					}
+				}
+			}
+		}
 		return false;
 	}
 
-	private float calculate(int templateId, int[] values, String[] ops) {
+	private float calculate(int templateId, int[] values, char[] ops) {
 
 		switch (templateId) {
 		case 0: // "(x1op1x2)op2(x3op3x4)"
@@ -86,15 +105,15 @@ public class Game24 {
 		return 0;
 	}
 
-	private float applyOperation(float a1, float a2, String operand) {
-		switch (operand) {
-		case "+":
+	private float applyOperation(float a1, float a2, char operator) {
+		switch (operator) {
+		case '+':
 			return a1 + a2;
-		case "-":
+		case '-':
 			return a1 - a2;
-		case "*":
+		case '*':
 			return a1 * a2;
-		case "/":
+		case '/':
 			if (a2 != 0) {
 				return a1 / a2;
 			} else {
@@ -106,14 +125,18 @@ public class Game24 {
 
 	public static void main(String[] args) {
 		Game24 game = new Game24();
-		Long ts = System.nanoTime();
-		System.out.println(" [9,6,2,2]" + "  " + game.play(new int[] { 9,6,2,2 }));
-		System.out.println(System.nanoTime() - ts );
-		/*
+		Long ts = System.currentTimeMillis();
+		for (int i=0 ; i<40;i++) {
+				game.play(new int[] { 4, 1, 8, 7 });
+				game.play(new int[] { 1, 2, 1, 2 });
+				game.play(new int[] { 1,7,4,5 });
+		}
+		System.out.println(System.currentTimeMillis() - ts );
+		System.out.println("1,7,4,5 " + game.play(new int[] { 1,7,4,5 }));
 		System.out.println("4, 1, 8, 7 " + game.play(new int[] { 4, 1, 8, 7 }));
 		System.out.println("2, 3, 4, 5 " + game.play(new int[] { 2, 3, 4, 5 }));
 		System.out.println("1, 2, 1, 2 " + game.play(new int[] { 1, 2, 1, 2 }));
-		*/
+		
 
 
 	}
