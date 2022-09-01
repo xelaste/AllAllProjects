@@ -25,6 +25,7 @@ class GraphLogicalView extends React.Component {
                 let target = edge.getTarget();
                 let sourcePoint = source.getAttributes().coordinates;
                 let targetPoint = target.getAttributes().coordinates;
+                let done = target.getAttributes().done;
                 let dx = targetPoint[0] - sourcePoint[0];
                 let dy = targetPoint[1] - sourcePoint[1];
                 let l = Math.sqrt(dx * dx + dy * dy);
@@ -47,9 +48,11 @@ class GraphLogicalView extends React.Component {
                 _2dgraphics.closePath();
 
                 if (edge.getData() && edge.getData().weight) {
+                    let shift = Math.floor(3 * 14 * Math.random());
+                    shift *= (shift%2)===0 ? -1:1;
                     let circleData = {};
-                    let centerx = sourcePoint[0] + dx / 2;
-                    let centery = sourcePoint[1] + dy / 2;
+                    let centerx = (shift * dx/l) + sourcePoint[0] + dx / 2;
+                    let centery = (shift * dy/l) + sourcePoint[1] + dy / 2;
                     circleData["center"] = { X: centerx, Y: centery };
                     circleData["style"] = { color: "#ffffff", lineWidth: 1, font: "8px Arial" };
                     circleData["radius"] = 7;
@@ -57,7 +60,6 @@ class GraphLogicalView extends React.Component {
                     circleData["textColor"] = "#cc00ff";
                     drawCircle(_2dgraphics, circleData);
                 }
-
             });
         });
     }
@@ -80,8 +82,7 @@ class GraphLogicalView extends React.Component {
         });
     }
     drawGraph(_2dgraphics, data) {
-        if (Object.keys(this.props.graph).length === 0)
-        {
+        if (Object.keys(this.props.graph).length === 0) {
             return;
         }
         this.drawVertices(_2dgraphics, data);
@@ -90,7 +91,7 @@ class GraphLogicalView extends React.Component {
 
     render() {
         return <>
-                    <DrawPanel drawContent={this.drawGraph} conainerId="algorithmContainer" title={this.props.title}></DrawPanel>
+            <DrawPanel drawContent={this.drawGraph} conainerId="algorithmContainer" title={this.props.title}></DrawPanel>
         </>
     }
     componentDidMount() {

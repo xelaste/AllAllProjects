@@ -13,6 +13,14 @@ class Edge {
         this.data=data;
         this.attributes=attributes;
     }
+    from ()
+    {
+        return this.getSource();
+    }
+    to ()
+    {
+        return this.getTarget();
+    }
     getSource()
     {
         return this.source;

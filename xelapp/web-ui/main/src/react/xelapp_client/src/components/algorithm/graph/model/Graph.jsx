@@ -14,7 +14,7 @@ class Graph {
     }
     adj (v)
     {
-        return this.adjList (v);
+        return this.adjList.get(v);
     }
 
     addEdge(v, w, data, attributes) {
