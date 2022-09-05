@@ -11,6 +11,10 @@ function MinPriorityQueue(maxSize, comparator) {
             if (a < b) return -1;
         };
     }
+    this.getEntireQueue = function ()  {
+        return [...pq];
+    }
+    this.capacity = ()=>{return maxSize};
     this.comparator = comparator;
     this.isEmpty = function () {
         return pq.length === 0;
@@ -36,7 +40,7 @@ function MinPriorityQueue(maxSize, comparator) {
     }
 
     this.insert = function (i, key) {
-        if (pq.length === maxSize) {
+        if (pq.length === this.capacity()) {
             throw new Error("index >= capacity: " + i);
         }
         if (this.contains(i)) throw new Error("index is already in the priority queue" + i);

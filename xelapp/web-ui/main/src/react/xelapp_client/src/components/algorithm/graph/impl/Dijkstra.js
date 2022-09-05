@@ -6,16 +6,22 @@ import MinPriorityQueue from '../../datatypes/MinPriorityQueue';
 import { useState } from 'react';
 
 const shortPath = (G, s, props) => {
-
-  const distTo = new Map();
-  const edgeTo = new Map();
+  const distTo = props.distTo;
+  const edgeTo = props.edgeTo;
   let vertices = G.getVertices().keys();
-  let pq = new MinPriorityQueue(vertices.length);
+  let pq = props.pq;
+  let tick = 0;
+  for (const vertex of vertices) {
+    distTo.set(vertex, Number.POSITIVE_INFINITY);
+  }
+  distTo.set(s, 0.0);
+  pq.insert(s, distTo.get(s));
+
   const relax = (edge) => {
     let v = edge.from().getId();
     let w = edge.to().getId();
     if (distTo.get(w) > distTo.get(v) + edge.getData().weight) {
-      distTo.set(w, distTo[v] + edge.getData().weight);
+      distTo.set(w, distTo.get(v) + edge.getData().weight);
       if (edgeTo.get(w)) {
         edgeTo.get(w).getAttributes().selected = false;
       }
@@ -30,44 +36,39 @@ const shortPath = (G, s, props) => {
       }
     }
   }
-  for (const vertex of vertices) {
-    distTo.set(vertex, Number.POSITIVE_INFINITY);
+  const processNode = () => {
+    let min = pq.delMin();
+    let v = G.getVertex(min)
+    v.getAttributes().done = true;
+    let adj = G.adj(min);
+    for (let edge of adj.values()) {
+      relax(edge);
+    }
   }
-  distTo.set(s, 0.0);
-
-  pq.insert(s, distTo.get(s));
   const asyncNextNodeCheck = () => {
     if (!pq.isEmpty()) {
-      let v = pq.delMin();
-      let adj = G.adj(v);
-      for (let edge of adj.values()) {
-        relax(edge);
-      }
-    }
-    setTimeout(asyncNextNodeCheck, props.timeout);
+      processNode();
+      setTimeout(asyncNextNodeCheck, props.timeout);  
+    }  
+    props.setTick(tick++);
   }
   if (props.timeout) {
+    processNode();
     setTimeout(asyncNextNodeCheck, props.timeout);
   }
   else {
     while (!pq.isEmpty()) {
-      let min = pq.delMin();
-      let v = G.getVertex(min)
-      v.getAttributes().done = true;
-      props.setVertex(min, "done");
-      let adj = G.adj(min);
-      for (let edge of adj.values()) {
-        relax(edge);
-      }
+      processNode();
+      props.setTick(tick++);
     }
   }
 }
 
-
-
 export default function Dijkstra(props) {
   const [graph, setGraph] = useState({});
-  const [vertex, setVertex] = useState({});
+  const [tick, setTick] = useState(0);
+  const [state,setState] = useState({});
+
   function init() {
     let numberOfNodes = document.getElementById("numberOfNodes").value;
     if (!numberOfNodes) {
@@ -86,42 +87,90 @@ export default function Dijkstra(props) {
     }
     let graph = generateRandomGraph(numberOfNodes, nodeDegree, edgeWeight);
     setGraph(graph);
+    let pq = new MinPriorityQueue(graph.getVertices().keys().length);
+    let state = {distTo:new Map(),
+                edgeTo:new Map(),
+                pq:pq,queue:pq.getEntireQueue() }
+    setState (state);
   }
   function run() {
     let startNode = document.getElementById("startNode").value;
     if (!startNode) {
       startNode = document.getElementById("startNode").placeholder;
     }
-    shortPath(graph, "v" + startNode, { setVertex: (v, status) => { setVertex({ v: v, status: status }) } });
+    shortPath(graph, "v" + startNode, {
+      setTick: (tick) => { setTick(tick) },
+      distTo: state.distTo, 
+      edgeTo: state.edgeTo, 
+      pq:state.pq,
+      timeout:1000,
+    });
   }
   function pageContent() {
-    return <form>
-      <div className="fs-6">
-        <div className="row text-info row-eq-height align-items-end">
-          <div className="col">
-            <label for="numberOfNodes">Number of Nodes:</label>
-            <input type="text" style={{ width: "5em" }} className="form-control" id="numberOfNodes" placeholder="10" />
-          </div>
-          <div className="col ">
-            <label className="sr-only" for="nodeDegree">Avg Degree:</label>
-            <input type="text" style={{ width: "5em" }} className="form-control" id="nodeDegree" placeholder="3" />
-          </div>
-          <div className="col" style={{ verticalAlign: "bottom" }}>
-            <div className='align-bottom' >
-              <label className="sr-only" for="edgeWeight">Weight:</label>
-              <input type="text" style={{ width: "5em" }} className="form-control" id="edgeWeight" placeholder="100" />
+    return <>
+      <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-secondary mb-3">
+        <div className="card-header">
+          <h3 className="text-white">Configuration</h3>
+        </div>
+        <div className="card-body">
+          <form>
+            <div className="fs-6y">
+              <div className="row row-eq-height align-items-end">
+                <div className="col">
+                  <label htmlFor="numberOfNodes">Number of Nodes:</label>
+                  <input type="text" style={{ width: "5em" }} className="form-control" id="numberOfNodes" placeholder="10" />
+                </div>
+                <div className="col ">
+                  <label className="sr-only" htmlFor="nodeDegree">Avg Degree:</label>
+                  <input type="text" style={{ width: "5em" }} className="form-control" id="nodeDegree" placeholder="3" />
+                </div>
+                <div className="col" style={{ verticalAlign: "bottom" }}>
+                  <div className='align-bottom' >
+                    <label className="sr-only" htmlFor="edgeWeight">Weight:</label>
+                    <input type="text" style={{ width: "5em" }} className="form-control" id="edgeWeight" placeholder="100" />
+                  </div>
+                </div>
+                <div className="col">
+                  <label className="sr-only" htmlFor="startNode">Start from:</label>
+                  <input type="text" style={{ width: "5em" }} className="form-control" id="startNode" placeholder="0" />
+                </div>
+              </div>
+              <button type="button" style={{ width: "6em" }} onClick={init} className="btn btn-primary mt-2">Initialize</button>
+              <button type="button" style={{ width: "6em" }} disabled={!graph || Object.keys(graph).length === 0} onClick={run} className="btn btn-primary mt-2 mx-2">Run</button>
+              <button type="button" style={{ width: "6em" }} onClick={() => setGraph({})} className="btn btn-primary mt-2">Clear</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3">
+        <div className="card-header">
+          <h3 className="text-dark">Results</h3>
+        </div>
+        <div className="card-body text-dark">
+          <div className="row row-eq-height align-items-end">
+            <div className="col">
+              <label>Queue</label>
+              {
+                state.queue?state.pq.getEntireQueue().map((v)=>{return <>
+                  <span className="m-1">{v}</span>
+                </>}):""                  
+              }
+
             </div>
           </div>
-          <div className="col">
-            <label className="sr-only" for="startNode">Start from:</label>
-            <input type="text" style={{ width: "5em" }} className="form-control" id="startNode" placeholder="0" />
+          <div className="row row-eq-height align-items-end">
+            <div className="col">
+              <label >DistTo</label>
+              {
+                state.distTo?Array.from(state.distTo.keys()).map((key)=>{return <>
+                  <span className="m-1">{key}:{state.distTo.get(key)}</span>
+                </>}):""                  
+              }
+            </div>
           </div>
         </div>
-        <button type="button" style={{ width: "5em" }} onClick={init} className="btn btn-primary mt-2">Initialize</button>
-        <button type="button" style={{ width: "5em" }} onClick={run} className="btn btn-primary mt-2 mx-2">Run</button>
-        <button type="button" style={{ width: "5em" }} onClick={() => setGraph({})} className="btn btn-primary mt-2">Clear</button>
       </div>
-    </form>
+    </>
   }
 
   return (
@@ -129,7 +178,7 @@ export default function Dijkstra(props) {
       <div className='home'>
         <div className='container-fluid p-20'>
           <div className='row text-center'>
-            <h3 className="display-1 text-primary">Dijkstra</h3>
+            <h3 className="display-4 text-primary">Dijkstra</h3>
           </div>
           <div className="row h-100">
             <div className="col-3">
