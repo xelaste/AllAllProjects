@@ -1,4 +1,4 @@
-const arrowLength = 5;
+const arrowLength = 8;
 const arrowBase = arrowLength * Math.PI / 9
 
 function drawCircle(_2DGraphics, data) {

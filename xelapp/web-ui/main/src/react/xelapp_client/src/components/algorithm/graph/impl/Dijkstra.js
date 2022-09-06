@@ -146,7 +146,7 @@ export default function Dijkstra(props) {
   function pageContent() {
     return <>
       <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-secondary mb-3">
-        <div className="card-header">
+        <div className="card-header  bg-dark">
           <h3 className="text-white">Configuration</h3>
         </div>
         <div className="card-body">
@@ -155,32 +155,32 @@ export default function Dijkstra(props) {
               <div className="row row-eq-height align-items-end">
                 <div className="col">
                   <label htmlFor="numberOfNodes">Number of Nodes:</label>
-                  <input type="text" style={{ width: "5em" }} className="form-control" id="numberOfNodes" placeholder="10" />
+                  <input disabled={execution} type="text" style={{ width: "5em" }} className="form-control" id="numberOfNodes" placeholder="10" />
                 </div>
                 <div className="col ">
                   <label className="sr-only" htmlFor="nodeDegree">Avg Degree:</label>
-                  <input type="text" style={{ width: "5em" }} className="form-control" id="nodeDegree" placeholder="3" />
+                  <input disabled={execution} type="text" style={{ width: "5em" }} className="form-control" id="nodeDegree" placeholder="3" />
                 </div>
                 <div className="col" style={{ verticalAlign: "bottom" }}>
                   <div className='align-bottom' >
                     <label className="sr-only" htmlFor="edgeWeight">Weight:</label>
-                    <input type="text" style={{ width: "5em" }} className="form-control" id="edgeWeight" placeholder="100" />
+                    <input disabled={execution} type="text" style={{ width: "5em" }} className="form-control" id="edgeWeight" placeholder="100" />
                   </div>
                 </div>
                 <div className="col">
                   <label className="sr-only" htmlFor="startNode">Start from:</label>
-                  <input type="text" style={{ width: "5em" }} className="form-control" id="startNode" placeholder="0" />
+                  <input disabled={execution} type="text" style={{ width: "5em" }} className="form-control" id="startNode" placeholder="0" />
                 </div>
               </div>
-              <button type="button" style={{ width: "6em" }} onClick={init} className="btn btn-primary mt-2">Initialize</button>
-              <button type="button" style={{ width: "6em" }} disabled={!graph || Object.keys(graph).length === 0} onClick={run} className="btn btn-primary mt-2 mx-2">Run</button>
-              <button type="button" style={{ width: "6em" }} onClick={() => setGraph({})} className="btn btn-primary mt-2">Clear</button>
+              <button type="button" style={{ width: "6em" }} disabled={execution} onClick={init} className="btn btn-primary mt-2">Initialize</button>
+              <button type="button" style={{ width: "6em" }} disabled={!graph || Object.keys(graph).length === 0 || (execution)} onClick={run} className="btn btn-primary mt-2 mx-2">Run</button>
+              <button type="button" style={{ width: "6em" }} disabled={execution} onClick={() => setGraph({})} className="btn btn-primary mt-2">Clear</button>
             </div>
           </form>
         </div>
       </div>
       <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3">
-        <div className="card-header">
+        <div className="card-header bg-primary">
           {(execution)?<h3 className="bg-secondary blinking">Running</h3>:<h3 className="text-dark">Results</h3>}  
         </div>
         <div className="card-body text-dark">
