@@ -119,7 +119,6 @@ class GraphLogicalView extends React.Component {
                 edge.getAttributes().labelPosition = null;
             });
         });
-        this.state = {...this.state,size:{width:window.innerWidth, height: window.innerHeight}};
     }
 }
 export default GraphLogicalView;

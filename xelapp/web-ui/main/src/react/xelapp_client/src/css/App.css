@@ -81,3 +81,13 @@
   color: #fff;
   font-size: 100px;
 }
+.blinking{
+  animation:blinkingText 1.2s infinite;
+}
+@keyframes blinkingText{
+  0%{     color: #00f;    }
+  49%{    color: #0f0; }
+  60%{    color: #f00;; }
+  99%{    color:transparent;  }
+  100%{   color: #f0f;    }
+}

@@ -11,6 +11,7 @@ const shortPath = (G, s, props) => {
   let vertices = G.getVertices().keys();
   let pq = props.pq;
   let tick = 0;
+  props.setExecution (true);
   for (const vertex of vertices) {
     distTo.set(vertex, Number.POSITIVE_INFINITY);
   }
@@ -67,6 +68,11 @@ const shortPath = (G, s, props) => {
   const asyncNextNodeCheck = () => {
     if (!pq.isEmpty()) {
       processNode();
+      console.log("process node")
+    }
+    else 
+    {
+      props.setExecution (false);
     }
     props.setTick(tick++);
   }
@@ -87,6 +93,7 @@ export default function Dijkstra(props) {
   const [graph, setGraph] = useState({});
   const [tick, setTick] = useState(0);
   const [state, setState] = useState({});
+  const [execution,setExecution] = useState(false);
 
   function init() {
     let numberOfNodes = document.getElementById("numberOfNodes").value;
@@ -129,6 +136,7 @@ export default function Dijkstra(props) {
     setState(newState);
     shortPath(graph, "v" + startNode, {
       setTick: (tick) => { setTick(tick) },
+      setExecution: (flag) => {setExecution(flag)},
       distTo: newState.distTo,
       edgeTo: newState.edgeTo,
       pq: newState.pq,
@@ -173,14 +181,14 @@ export default function Dijkstra(props) {
       </div>
       <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3">
         <div className="card-header">
-          <h3 className="text-dark">Results</h3>
+          {(execution)?<h3 className="bg-secondary blinking">Running</h3>:<h3 className="text-dark">Results</h3>}  
         </div>
         <div className="card-body text-dark">
           <div className="row row-eq-height align-items-end">
             <div className="col">
               <label>Queue</label>
               {
-                state.queue ? state.pq.getEntireQueue().map((v) => {
+                (state.pq && state.pq.getEntireQueue()) ? state.pq.getEntireQueue().map((v) => {
                   return <>
                     <span className="m-1">{v}</span>
                   </>
