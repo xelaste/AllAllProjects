@@ -31,27 +31,46 @@ const shortPath = (G, s, props) => {
         pq.decreaseKey(w, distTo.get(w));
       }
       else {
-        pq.insert(w, distTo[w]);
+        pq.insert(w, distTo.get(w));
         G.getVertex(w).getAttributes().inqueue = true;
       }
     }
   }
+  const asyncProcessAdj = (values, v) => {
+    let result = values.next();
+    if (!result.done) {
+      let edge = result.value;
+      relax(edge)
+      setTimeout(asyncProcessAdj, props.timeout, values, v);
+    }
+    else {
+      v.getAttributes().done = true;
+      setTimeout(asyncNextNodeCheck, props.timeout);
+    }
+    props.setTick(tick++);
+  }
   const processNode = () => {
     let min = pq.delMin();
     let v = G.getVertex(min)
-    v.getAttributes().done = true;
+    v.getAttributes().inqueue = false;
     let adj = G.adj(min);
-    for (let edge of adj.values()) {
-      relax(edge);
+    if (props.timeout) {
+      setTimeout(asyncProcessAdj, props.timeout, adj.values(), v);
+    }
+    else {
+      for (let edge of adj.values()) {
+        relax(edge);
+      }
+      v.getAttributes().done = true;
     }
   }
   const asyncNextNodeCheck = () => {
     if (!pq.isEmpty()) {
       processNode();
-      setTimeout(asyncNextNodeCheck, props.timeout);  
-    }  
+    }
     props.setTick(tick++);
   }
+
   if (props.timeout) {
     processNode();
     setTimeout(asyncNextNodeCheck, props.timeout);
@@ -67,7 +86,7 @@ const shortPath = (G, s, props) => {
 export default function Dijkstra(props) {
   const [graph, setGraph] = useState({});
   const [tick, setTick] = useState(0);
-  const [state,setState] = useState({});
+  const [state, setState] = useState({});
 
   function init() {
     let numberOfNodes = document.getElementById("numberOfNodes").value;
@@ -87,23 +106,33 @@ export default function Dijkstra(props) {
     }
     let graph = generateRandomGraph(numberOfNodes, nodeDegree, edgeWeight);
     setGraph(graph);
-    let pq = new MinPriorityQueue(graph.getVertices().keys().length);
-    let state = {distTo:new Map(),
-                edgeTo:new Map(),
-                pq:pq,queue:pq.getEntireQueue() }
-    setState (state);
   }
   function run() {
     let startNode = document.getElementById("startNode").value;
     if (!startNode) {
       startNode = document.getElementById("startNode").placeholder;
     }
+    let vertices = graph.getVertices();
+    for (let v of vertices.values()) {
+      v.getAttributes().done = false;
+      v.getAttributes().inqueue = false;
+      let adj = graph.adj(v.getId());
+      for (let edge of adj.values()) {
+        edge.getAttributes().selected = false;
+      }
+    }
+    let newState = {
+      ...state, distTo: new Map(),
+      edgeTo: new Map(),
+      pq: new MinPriorityQueue(graph.getVertices().keys().length)
+    }
+    setState(newState);
     shortPath(graph, "v" + startNode, {
       setTick: (tick) => { setTick(tick) },
-      distTo: state.distTo, 
-      edgeTo: state.edgeTo, 
-      pq:state.pq,
-      timeout:1000,
+      distTo: newState.distTo,
+      edgeTo: newState.edgeTo,
+      pq: newState.pq,
+      timeout: 1000,
     });
   }
   function pageContent() {
@@ -151,9 +180,11 @@ export default function Dijkstra(props) {
             <div className="col">
               <label>Queue</label>
               {
-                state.queue?state.pq.getEntireQueue().map((v)=>{return <>
-                  <span className="m-1">{v}</span>
-                </>}):""                  
+                state.queue ? state.pq.getEntireQueue().map((v) => {
+                  return <>
+                    <span className="m-1">{v}</span>
+                  </>
+                }) : ""
               }
 
             </div>
@@ -162,9 +193,23 @@ export default function Dijkstra(props) {
             <div className="col">
               <label >DistTo</label>
               {
-                state.distTo?Array.from(state.distTo.keys()).map((key)=>{return <>
-                  <span className="m-1">{key}:{state.distTo.get(key)}</span>
-                </>}):""                  
+                state.distTo ? Array.from(state.distTo.keys()).map((key) => {
+                  return <>
+                    <span className="m-1">{key}:{state.distTo.get(key)}</span>
+                  </>
+                }) : ""
+              }
+            </div>
+          </div>
+          <div className="row row-eq-height align-items-end">
+            <div className="col">
+              <label >Back Tracking</label>
+              {
+                state.edgeTo ? Array.from(state.edgeTo.keys()).map((key) => {
+                  return <>
+                    <span className="m-1">{key}:{(state.edgeTo.get(key)).getSource().getId()}</span>
+                  </>
+                }) : ""
               }
             </div>
           </div>

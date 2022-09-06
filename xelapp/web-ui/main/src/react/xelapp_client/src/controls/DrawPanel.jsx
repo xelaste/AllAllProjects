@@ -13,6 +13,9 @@ class DrawPanel extends React.Component {
         let width = container ? container.offsetWidth + "px" : "501px";
         let height = container ? container.offsetHeight + "px" : "381px";
         let size = { width: width, height: height };
+        if (this.props.handleContentResize) {
+            this.props.handleContentResize();
+        }
         this.setState({ ...this.state, size: size });
     }
     getDimensions() {
