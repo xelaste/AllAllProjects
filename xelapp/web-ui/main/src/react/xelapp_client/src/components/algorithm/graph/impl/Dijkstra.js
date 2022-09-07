@@ -94,7 +94,7 @@ export default function Dijkstra(props) {
   const [tick, setTick] = useState(0);
   const [state, setState] = useState({});
   const [execution,setExecution] = useState(false);
-
+  
   function init() {
     let numberOfNodes = document.getElementById("numberOfNodes").value;
     if (!numberOfNodes) {
@@ -113,6 +113,12 @@ export default function Dijkstra(props) {
     }
     let graph = generateRandomGraph(numberOfNodes, nodeDegree, edgeWeight);
     setGraph(graph);
+    let newState = {
+      ...state, distTo: new Map(),
+      edgeTo: new Map(),
+      pq: new MinPriorityQueue(graph.getVertices().keys().length)
+    }
+    setState(newState);
   }
   function run() {
     let startNode = document.getElementById("startNode").value;
@@ -140,7 +146,7 @@ export default function Dijkstra(props) {
       distTo: newState.distTo,
       edgeTo: newState.edgeTo,
       pq: newState.pq,
-      timeout: 1000,
+      timeout: 500,
     });
   }
   function pageContent() {
@@ -174,7 +180,7 @@ export default function Dijkstra(props) {
               </div>
               <button type="button" style={{ width: "6em" }} disabled={execution} onClick={init} className="btn btn-primary mt-2">Initialize</button>
               <button type="button" style={{ width: "6em" }} disabled={!graph || Object.keys(graph).length === 0 || (execution)} onClick={run} className="btn btn-primary mt-2 mx-2">Run</button>
-              <button type="button" style={{ width: "6em" }} disabled={execution} onClick={() => setGraph({})} className="btn btn-primary mt-2">Clear</button>
+              <button type="button" style={{ width: "6em" }} disabled={execution} onClick={() => {setGraph({});setState({distTo: new Map(),edgeTo: new Map()})}} className="btn btn-primary mt-2">Clear</button>
             </div>
           </form>
         </div>

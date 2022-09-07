@@ -113,6 +113,9 @@ class GraphLogicalView extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
     }
     handleResize() {
+        if (Object.keys(this.props.graph).length === 0) {
+            return;
+        }
         let edges = this.props.graph.getEdges();
         edges.forEach((adjList, key, map) => {
             adjList.forEach((edge, key, map) => {
