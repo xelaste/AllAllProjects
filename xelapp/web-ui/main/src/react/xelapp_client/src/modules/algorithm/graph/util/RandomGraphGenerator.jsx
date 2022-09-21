@@ -22,7 +22,7 @@ export default function generateRandomGraph(n, k, w, props) {
                 order++;
             }
         }
-        if (order == 0) {
+        if (order === 0) {
             while (true) {
                 let j = Math.ceil(Math.random() * Math.min(i === 0 ? 0 : i - 1, n - 1));
                 let adj = g.adj('v' + j)

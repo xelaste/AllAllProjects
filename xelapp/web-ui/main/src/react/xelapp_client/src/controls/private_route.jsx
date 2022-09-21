@@ -1,23 +1,14 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import {Navigate ,Outlet} from 'react-router-dom';
 
 class PrivateRoute extends React.Component {
     render() {
       const { component: Component, ...rest } = this.props
-      return (
-        <Route {...rest}  render={(props) => {
-            return sessionStorage.getItem('player') ? (
-                <Component {...props} />
+      return  sessionStorage.getItem('player') ? (
+                <Outlet/>
               ):(
-                <Redirect to={{
-                  pathname: '/login',
-                  state: { from: this.props.location }
-                }} />
+                <Navigate to="/login"/>
               )
-          }
-        } >
-        </Route>
-      )
+        } 
     }
-  }
 export default PrivateRoute

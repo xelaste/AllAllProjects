@@ -1,6 +1,10 @@
-import config from 'config';
-import {authHeader} from '../util/auth-header';
+import { useContext } from 'react';
+import AuthContext from '../../store/auth-context'
 
+const AuthHeader = ()=>{
+    const authCtx = useContext(AuthContext);
+    return authCtx.authHeader;
+}
 export const playerService = 
 {
     login,
@@ -19,7 +23,7 @@ function login(username,password)
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(player)
     };
-    return fetch(`${config.apiUrl}/players/authenticate/` + username , requestOptions)
+    return fetch(`${process.env.REACT_APP_API_URL}/players/authenticate/` + username , requestOptions)
     .then(handleResponse)
     .then(player => {
             sessionStorage.setItem('player', JSON.stringify(player));
@@ -41,17 +45,17 @@ function register(player) {
 
     };
 
-    return fetch(`${config.apiUrl}/players/register`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}/players/register`, requestOptions).then(handleResponse);
 }
 
 
 function update(player) {
     const requestOptions = {
         method: 'PUT',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(player)
     };
-    return fetch(`${config.apiUrl}/players`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}/players`, requestOptions).then(handleResponse);
 }
 
 
@@ -59,27 +63,27 @@ function getAll()
 {
     const requestOptions = {
         method: 'GET',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${config.apiUrl}/players`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}/players`, requestOptions).then(handleResponse);
 }
 
 function getWinners() 
 {
     const requestOptions = {
         method: 'GET',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${config.apiUrl}/players/winners`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}/players/winners`, requestOptions).then(handleResponse);
 }
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(name) 
 {
     const requestOptions = {
         method: 'DELETE',
-        headers: { ...authHeader(), 'Content-Type': 'application/json' },
+        headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${config.apiUrl}/players/${name}`, requestOptions).then(handleResponse);
+    return fetch(`${process.env.REACT_APP_API_URL}/players/${name}`, requestOptions).then(handleResponse);
 }
 function handleResponse(response) {
     return response.text().then(text => {
@@ -88,7 +92,7 @@ function handleResponse(response) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 logout();
-                location.reload(true);
+                window.location.reload(true);
             }
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);

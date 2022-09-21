@@ -1,4 +1,3 @@
-"use strict";
 export default class AutoPlay {
     constructor() {
         this.initialSet = [];
@@ -6,7 +5,7 @@ export default class AutoPlay {
             for (let j = 1; j < 10; j++) {
                 for (let k = 1; k < 10; k++) {
                     for (let l = 1; l < 10; l++) {
-                        if (i != j && i != k && i != l && j != k && j != l && k != l) {
+                        if (i !== j && i !== k && i !== l && j !== k && j !== l && k !== l) {
                             this.initialSet.push([i, j, k, l]);
                         }
                     }
@@ -48,12 +47,10 @@ export default class AutoPlay {
 
     game(secret) {
         let heap = this.getInitialSet();
-        let i = 0;
         while (heap.length > 1) {
             let num = heap[Math.floor(Math.random() * heap.length)];
             let filter = this.calculate(secret, num)
             heap = this.prune(heap, filter, num);
-            i++;
         }
     }
 }

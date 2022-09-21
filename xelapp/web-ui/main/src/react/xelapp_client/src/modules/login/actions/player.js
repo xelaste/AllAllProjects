@@ -1,5 +1,5 @@
-import { playerConstants } from "../constants/playerConstants";
-import { playerService } from "../services/player.services";
+import { playerConstants } from "../../../constants/playerConstants";
+import { playerService } from "../../services/player.services";
 
 
 export const playerActions = {

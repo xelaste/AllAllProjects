@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
-import DropdownButton from 'react-bootstrap/DropdownButton';
 import Dropdown from 'react-bootstrap/Dropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import AuthContext from '../store/auth-context';
 
 function AppNavbar() {
+  const authCtx = useContext(AuthContext);
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -40,6 +41,7 @@ function AppNavbar() {
           <span className="navbar-toggler-icon" />
         </Link>
       </Navbar.Brand>
+      {authCtx.isLoggedIn && (<>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
@@ -86,6 +88,7 @@ function AppNavbar() {
           <Button variant="outline-success">Search</Button>
         </Form>
       </Navbar.Collapse>
+      </>)}
     </Container>
   </Navbar>
 }
