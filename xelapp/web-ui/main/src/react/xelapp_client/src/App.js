@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './controls/Navbar';
 import Home from './modules/pages/Home';
-import { BrowserRouter as Router, Route, Routes, Outlet } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import store from './store/redux-store';
 import Services from './modules/pages/Services';
 import Products from './modules/pages/Products';
@@ -12,7 +12,11 @@ import Consulting from './modules/pages/Consulting';
 import Dijkstra from './modules/algorithm/graph/impl/Dijkstra'
 import { Provider } from 'react-redux';
 import PrivateRoute from './controls/private_route';
+const SignUPComponent = () => 
+{
+  return <Provider store={store} ><SignUp /></Provider>;
 
+}
 function App() {
   return (
     <Router>
@@ -26,8 +30,8 @@ function App() {
           <Route path='/marketing' element={<Marketing />} />
           <Route path='/consulting' element={<Consulting />} />
         </Route>
-        <Route path='/login' element={<Provider store={store} ><SignUp /></Provider>} />
-        <Route path='/register' element={<Provider store={store} ><SignUp /></Provider>} />
+        <Route path='/login' element={<SignUPComponent/>} />
+        <Route path='/register' element={<SignUPComponent/>} />
       </Routes>
     </Router>
   );
