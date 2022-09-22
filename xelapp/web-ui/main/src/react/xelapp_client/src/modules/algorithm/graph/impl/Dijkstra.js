@@ -68,7 +68,6 @@ const shortPath = (G, s, props) => {
   const asyncNextNodeCheck = () => {
     if (!pq.isEmpty()) {
       processNode();
-      console.log("process node")
     }
     else 
     {
