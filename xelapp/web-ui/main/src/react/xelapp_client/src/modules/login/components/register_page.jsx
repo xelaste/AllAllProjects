@@ -56,21 +56,21 @@ class RegisterPage extends React.Component {
                         <label htmlFor="firstName">Full Name</label>
                         <input type="text" className="form-control" name="name" value={user.name} onChange={this.handleChange} />
                         {submitted && !user.name &&
-                            <div className="help-block">Name is required</div>
+                            <div className="help-block alert-danger">Name is required</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !user.username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
                         <input type="text" className="form-control" name="username" value={user.username} onChange={this.handleChange} />
                         {submitted && !user.username &&
-                            <div className="help-block">Username is required</div>
+                            <div className="help-block alert-danger">Username is required</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
                         <input type="password" className="form-control" name="password" value={user.password} onChange={this.handleChange} />
                         {submitted && !user.password &&
-                            <div className="help-block">Password is required</div>
+                            <div className="help-block alert-danger">Password is required</div>
                         }
                     </div>
                     <div className="form-group m-3">
