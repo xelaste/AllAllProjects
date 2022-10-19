@@ -1,0 +1,38 @@
+{
+  "name": "all_all_nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "debug": "node --inspect server.js",
+    "mongo.old": "C:/\"Program Files\"/MongoDB/Server/4.0.9/bin/mongod.exe",
+    "mongo": "C:/mongo/mongodb-win32-x86_64-windows-5.0.5/bin/mongod.exe",
+    "jest": "node node_modules/jest/bin/jest.js  --watch --detectOpenHandles"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^26.6.3",
+    "lokijs": "^1.5.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bluebird": "^3.5.1",
+    "config": "^3.1.0",
+    "dotenv": "^16.0.3",
+    "express": "^4.16.2",
+    "express-jwt": "^6.0.0",
+    "global-agent": "^2.1.12",
+    "got": "^11.8.5",
+    "history": "^4.9.0",
+    "immutable": "^3.8.2",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^3.5.7",
+    "mongoose": "^5.7.5",
+    "winston": "^3.2.1"
+  }
+}

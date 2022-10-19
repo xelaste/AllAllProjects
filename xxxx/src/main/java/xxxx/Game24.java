@@ -6,30 +6,30 @@ public class Game24 {
     private static int[][] cardPermutation = new int[24][4];
 
     static {
-        int raw = 0;
+        int row = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 4; k++) {
                     boolean samePriority = (i < 2 && j < 2 && k < 2) || (i > 1 && j > 1 && k > 1);
-                    operatorsPermutation[raw][0] = i;
-                    operatorsPermutation[raw][1] = j;
-                    operatorsPermutation[raw][2] = k;
-                    operatorsPermutation[raw][3] = samePriority ? 1 : 0;
-                    raw++;
+                    operatorsPermutation[row][0] = i;
+                    operatorsPermutation[row][1] = j;
+                    operatorsPermutation[row][2] = k;
+                    operatorsPermutation[row][3] = samePriority ? 1 : 0;
+                    row++;
                 }
             }
         }
-        raw = 0;
+        row = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 4; k++) {
                     for (int l = 0; l < 4; l++) {
                         if (i != j && i != l && i != k && j != k && j != l && k != l) {
-                            cardPermutation[raw][0] = i;
-                            cardPermutation[raw][1] = j;
-                            cardPermutation[raw][2] = k;
-                            cardPermutation[raw][3] = l;
-                            raw++;
+                            cardPermutation[row][0] = i;
+                            cardPermutation[row][1] = j;
+                            cardPermutation[row][2] = k;
+                            cardPermutation[row][3] = l;
+                            row++;
                         }
                     }
                 }
