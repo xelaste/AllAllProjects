@@ -19,5 +19,9 @@
 	"logger":
 	{
 		"severity":"debug"
+	},
+	"server":
+	{
+		"listenPort":3030
 	}
 }

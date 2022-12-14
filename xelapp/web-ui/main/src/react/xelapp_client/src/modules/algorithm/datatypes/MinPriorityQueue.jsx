@@ -74,32 +74,40 @@ function MinPriorityQueue(maxSize, comparator) {
     }
 
 
-    function greater(i, j) {
+    const greater = (i, j) => {
         return comparator(pq[i], pq[j]);
     }
-    function exch(i, j) {
+    const exch = (i, j) => {
         let swap = pq[i];
         pq[i] = pq[j];
         pq[j] = swap;
         index.set(pq[i], i);
         index.set(pq[j], j);
     }
-    function swim(k) {
-        while (k > 1 && greater(k / 2, k)) {
-            exch(k, k / 2);
-            k = k / 2;
+    const swim = (k) => {
+        while (k > 0 && greater(nodeParent(k), k)) {
+            let parent = nodeParent(k);
+            exch(k, parent);
+            k = parent;
         }
     }
-    let sink = (k)=>{
+    const sink = (k)=>{
         let n = this.size() - 1;
-        while (2 * k <= n) {
-            let j = 2 * k;
+        while ( leftChidIdx(k) <= n) {
+            let j = leftChidIdx(k);
             if (j < n && greater(j, j + 1)) j++;
             if (!greater(k, j)) break;
             exch(k, j);
             k = j;
         }
     }
-
+    const leftChidIdx = (parent) => 
+    {
+        return (2 * parent) + 1;
+    }
+    const nodeParent = (child) =>
+    {
+        return Math.floor((child - 1) / 2)
+    }
 }
 export default MinPriorityQueue;

@@ -1,5 +1,7 @@
 console.log("Set working directory to:    ", __dirname); 
 process.chdir(__dirname);
+process.env["NODE_CONFIG_DIR"] = "../resources/config/";
+const config = require('config')
 var express = require('express');
 var bodyParser = require('body-parser')
 const jwt = require('./jwt');
@@ -7,6 +9,7 @@ const Logger = require('./logger');
 const errorHandler = require('./error-handler');
 const logger = Logger.createLogger("server");
 var path = require('path');
+var cors = require('cors')
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -19,12 +22,12 @@ function logRequest(req, res, next)
     next();
 }
 app.use(logRequest);
-
 app.use(express.static('public'));
 app.use(express.static('dist'));
 
 app.use(jwt());
 app.use(errorHandler);
+app.use(cors());
 app.use('/players', require("./controllers/playerController"));
 
 
@@ -38,8 +41,8 @@ app.get('/*', function(req, res) {
       }
     })
   })
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || config.server.listenPort;
 app.listen(PORT, function () {
-    logger.info('Example app listening on port ' + PORT + '!');
+    logger.info('xela all app listening on port ' + PORT + '!');
 });
 

@@ -11,9 +11,9 @@ public class Game24 {
             for (int j = 0; j < 4; j++) {
                 for (int k = 0; k < 4; k++) {
                     boolean samePriority = (i < 2 && j < 2 && k < 2) || (i > 1 && j > 1 && k > 1);
-                    operatorsPermutation[row][0] = i;
-                    operatorsPermutation[row][1] = j;
-                    operatorsPermutation[row][2] = k;
+                    operatorsPermutation[row][0] = operators[i];
+                    operatorsPermutation[row][1] = operators[j];
+                    operatorsPermutation[row][2] = operators[k];
                     operatorsPermutation[row][3] = samePriority ? 1 : 0;
                     row++;
                 }
@@ -43,21 +43,13 @@ public class Game24 {
         for (int i = 0; i < operatorsPermutation.length; i++) {
             for (int j = 0; j < cardPermutation.length; j++) {
                 int[] cards = {x[cardPermutation[j][0]], x[cardPermutation[j][1]], x[cardPermutation[j][2]], x[cardPermutation[j][3]]};
-                char ops1 = operators[operatorsPermutation[i][0]];
-                char ops2 = operators[operatorsPermutation[i][1]];
-                char ops3 = operators[operatorsPermutation[i][2]];
-                char[] ops = {ops1, ops2, ops3};
-                boolean samePriority = operatorsPermutation[i][3] > 0;
+                int[] ops = {operatorsPermutation[i][0],operatorsPermutation[i][1],operatorsPermutation[i][2]};
                 for (int t = 0; t < 5; t++) {
                     try {
                         double val = calculate(t, cards, ops);
                         if (Math.abs(val - 24) < 0.00001) {
                             return true;
                         }
-                        if (samePriority) {
-                            break;
-                        }
-
                     } catch (Exception e) {
                         continue;
                     }
@@ -67,7 +59,7 @@ public class Game24 {
         return false;
     }
 
-    private float calculate(int templateId, int[] values, char[] ops) {
+    private float calculate(int templateId, int[] values, int[] ops) {
 
         switch (templateId) {
             case 0: // "(x1op1x2)op2(x3op3x4)"
@@ -105,7 +97,7 @@ public class Game24 {
         return 0;
     }
 
-    private float applyOperation(float a1, float a2, char operator) {
+    private float applyOperation(float a1, float a2, int operator) {
         switch (operator) {
             case '+':
                 return a1 + a2;

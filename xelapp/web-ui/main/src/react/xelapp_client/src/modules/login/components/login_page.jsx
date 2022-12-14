@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink as Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { playerActions } from '../actions/player';
+import AuthContext from '../../../store/auth-context';
 
 class LoginPage extends React.Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class LoginPage extends React.Component {
         const { username, password } = this.state;
         const { dispatch } = this.props;
         if (username && password) {
-            dispatch(playerActions.login(username, password,this.props.history));
+            dispatch(playerActions.login(username, password,this.props.navigate,this.context));
         }
     }
 
@@ -77,6 +78,7 @@ class LoginPage extends React.Component {
         );
     }
 }
+LoginPage.contextType = AuthContext;
 function mapStateToProps(state) {
     return {
         error:state.player.get('error'),

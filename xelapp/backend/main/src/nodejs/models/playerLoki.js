@@ -84,7 +84,10 @@ module.exports.login = async function (username,password)
     {
         const token = jwt.sign({ sub: player.id }, config.jwt.secret);
         logger.debug("login out ---<");
+        delete player.meta;
+        delete player.$loki;
         return {
+            password,
             ...player,
             token
         };

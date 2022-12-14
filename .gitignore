@@ -59,8 +59,8 @@ target/
 *.iws
 *.iml
 *.ipr
-.gradle/
-
+**/.gradle
+**/.vscode
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

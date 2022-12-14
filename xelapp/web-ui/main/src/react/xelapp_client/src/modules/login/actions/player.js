@@ -1,7 +1,6 @@
 import { playerConstants } from "../../../constants/playerConstants";
 import { playerService } from "../../services/player.services";
 
-
 export const playerActions = {
   login,
   logout,
@@ -93,13 +92,17 @@ function updatePlayerScore(playerName, score)
   function failure(error) { return { type: playerConstants.UPDATE_FAILURE, payload:error } }
 }
 
-function logout() 
+function logout(context) 
 {
   playerService.logout();
+  if (context)
+  {
+    context.logout();
+  }
   return { type: playerConstants.LOGOUT };
 }
 
-function login(username, password,history) {
+function login(username, password,navigate,authContext) {
   return dispatch => {
       dispatch(request({ username }));
 
@@ -107,7 +110,8 @@ function login(username, password,history) {
           .then(
               user => { 
                   dispatch(success(user));
-                  history.push("/");
+                  authContext.login(user.token);
+                  navigate("/");
               },
               error => {
                   dispatch(failure(error));

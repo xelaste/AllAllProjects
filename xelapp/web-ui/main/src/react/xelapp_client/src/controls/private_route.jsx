@@ -6,7 +6,7 @@ class PrivateRoute extends React.Component {
   render() {
     const authCtx = this.context
     const { component: Component, ...rest } = this.props
-    return authCtx.isLoggedIn ? (
+    return authCtx.isLoggedIn() ? (
       <Outlet />
     ) : (
       <Navigate to="/login" />

@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from './controls/Navbar';
 import Home from './modules/pages/Home';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import store from './store/redux-store';
 import Services from './modules/pages/Services';
 import Products from './modules/pages/Products';
@@ -12,10 +12,11 @@ import Consulting from './modules/pages/Consulting';
 import Dijkstra from './modules/algorithm/graph/impl/Dijkstra'
 import { Provider } from 'react-redux';
 import PrivateRoute from './controls/private_route';
+
 const SignUPComponent = () => 
 {
-  return <Provider store={store} ><SignUp /></Provider>;
-
+  const navigate = useNavigate();
+  return <Provider store={store} ><SignUp navigate={navigate}/></Provider>;
 }
 function App() {
   if (process.env.NODE_ENV === "production")
