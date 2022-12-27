@@ -218,7 +218,7 @@ export default function Dijkstra(props) {
             <div className="col">
               <label >Back Tracking</label>
               {
-                state.edgeTo ? Array.from(state.edgeTo.keys()).map((key) => {
+                state.edgeTo ? Array.from(state.edgeTo.keys()).sort().map((key) => {
                   return <>
                     <span className="m-1">{key}:{(state.edgeTo.get(key)).getSource().getId()}</span>
                   </>

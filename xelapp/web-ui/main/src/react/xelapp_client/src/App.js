@@ -34,6 +34,7 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/marketing' element={<Marketing />} />
           <Route path='/consulting' element={<Consulting />} />
+          <Route path='/games/bullsandcows' element={<ContactUs />} />
         </Route>
         <Route path='/login' element={<SignUPComponent/>} />
         <Route path='/register' element={<SignUPComponent/>} />

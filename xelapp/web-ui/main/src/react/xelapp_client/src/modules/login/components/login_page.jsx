@@ -10,7 +10,6 @@ class LoginPage extends React.Component {
 
         // reset login status
         this.props.dispatch(playerActions.logout());
-
         this.state = {
             username: '',
             password: '',
@@ -25,7 +24,13 @@ class LoginPage extends React.Component {
         const { name, value } = e.target;
         this.setState({ [name]: value });
     }
-
+    componentDidMount() 
+    {
+        if (this.context.isLoggedIn())
+        {
+            this.context.logout();
+        }    
+    }
     handleSubmit(e) {
         e.preventDefault();
 

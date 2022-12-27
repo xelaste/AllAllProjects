@@ -41,7 +41,7 @@ function AppNavbar() {
           <span className="navbar-toggler-icon" />
         </Link>
       </Navbar.Brand>
-      {authCtx.isLoggedIn && (<>
+      {authCtx.isLoggedIn() && (<>
       <Navbar.Toggle aria-controls="navbarScroll" />
       <Navbar.Collapse id="navbarScroll">
         <Nav
@@ -50,8 +50,12 @@ function AppNavbar() {
           navbarScroll
           variant="dark"
         >
-          <NavDropdown title="Games" id="navbarGames" bg="dark" variant="dark">
-            <NavDropdown.Item href="#action3">BullsAndCows</NavDropdown.Item>
+          <NavDropdown title="Games" id="navbarGames" bg="dark" menuVariant="dark">
+            <NavDropdown.Item href="#action3">
+              <Link to='/games/bullsandcows' className="text-decoration-none text-light" onClick={closeMobileMenu}>
+                BullsAndCows
+              </Link>
+            </NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Algorithms" id="navbarAlgorithms" menuVariant="dark">
