@@ -40,10 +40,10 @@ function register(player)
 }
 
 
-function getAll() {
+function getAll(authCtx) {
   return dispatch => {
     dispatch(request());
-    playerService.getAll()
+    playerService.getAll(authCtx)
       .then(
         players => dispatch(success(players)),
         error => dispatch(failure(error.toString()))

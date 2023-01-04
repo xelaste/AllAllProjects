@@ -12,11 +12,17 @@ import Consulting from './modules/pages/Consulting';
 import Dijkstra from './modules/algorithm/graph/impl/Dijkstra'
 import { Provider } from 'react-redux';
 import PrivateRoute from './controls/private_route';
+import BullsAndCows from './modules/games/bullsandcows/components/home'
 
 const SignUPComponent = () => 
 {
   const navigate = useNavigate();
   return <Provider store={store} ><SignUp navigate={navigate}/></Provider>;
+}
+const BullsAndCowsComponent = () => 
+{
+  const navigate = useNavigate();
+  return <Provider store={store} ><BullsAndCows navigate={navigate}/></Provider>;
 }
 function App() {
   if (process.env.NODE_ENV === "production")
@@ -34,7 +40,7 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/marketing' element={<Marketing />} />
           <Route path='/consulting' element={<Consulting />} />
-          <Route path='/games/bullsandcows' element={<ContactUs />} />
+          <Route path='/games/bullsandcows' element={<BullsAndCowsComponent/>} />
         </Route>
         <Route path='/login' element={<SignUPComponent/>} />
         <Route path='/register' element={<SignUPComponent/>} />

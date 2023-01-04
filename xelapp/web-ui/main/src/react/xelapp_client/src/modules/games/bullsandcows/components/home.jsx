@@ -12,12 +12,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { playerActions } from "../actions/player";
-import * as gameActions from "../actions/bullscowsgame";
+import { playerActions } from "../../../login/actions/player"
+import * as gameActions from "../../bullsandcows/actions/bullscowsgame";
 import { getFormValues, isPristine, isSubmitting, reset, submit } from 'redux-form';
 import Game from './game';
-import { generateSecretArray } from '../util/secretGenerator';
-
+import { generateSecretArray } from '../../../../util/secretGenerator';
+import AuthContext from '../../../../store/auth-context';
 
 function mapStateToProps(state) {
   return {
@@ -42,7 +42,7 @@ class Home extends React.Component {
     gamingNow: PropTypes.bool,
     error: PropTypes.string
   };
-
+  static contextType = AuthContext
   playersList() 
   {
     return <div className="w-75" >
@@ -68,8 +68,9 @@ class Home extends React.Component {
     dispatch(playerActions.updateCurrentPlayer(player));
   }
   componentDidMount() {
+    const authCtx = this.context
     const { dispatch } = this.props;
-    dispatch(playerActions.getAll());
+    dispatch(playerActions.getAll(authCtx));
   }
   handleSubmit(e) 
   {

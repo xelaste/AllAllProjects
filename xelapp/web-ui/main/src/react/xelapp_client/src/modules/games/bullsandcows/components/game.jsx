@@ -15,8 +15,9 @@ import { getFormValues, isPristine, isSubmitting, reset, submit } from 'redux-fo
 import PropTypes from 'prop-types';
 import GameForm from './game_form';
 import _ from 'underscore';
-import { generateSecretArray } from '../util/secretGenerator';
-import { playerActions } from './../actions/player';
+import store from "../../../../store/redux-store"
+import { generateSecretArray } from '../../../../util/secretGenerator';
+import { playerActions } from "../../../login/actions/player";
 
 function mapStateToProps(state) {
   return {
@@ -44,7 +45,7 @@ function withTimer(Component) {
 
     reset ()
     {
-      this.state = { ticks: 0, start: (new Date()).getTime(),period:this.state.period };
+      this.setState( { ticks: 0, start: (new Date()).getTime(),period:this.state.period });
     }
     componentDidMount() {
       this.reset();
@@ -58,9 +59,9 @@ function withTimer(Component) {
 
     tick = () => {
         let ticks = Math.floor(((new Date()).getTime() - this.state.start) / 1000)
-        if (ticks != this.state.ticks) {
+        if (ticks !== this.state.ticks) {
           this.setState(state => ({ ticks: ticks }));
-          if (this.state.ticks > 0 && this.state.ticks % this.state.period == 0) {
+          if (this.state.ticks > 0 && this.state.ticks % this.state.period === 0) {
             store.dispatch(gameActions.skip());
           }
       }
@@ -186,7 +187,7 @@ class Game extends React.Component {
       }
       <div className="panel fixed-bottom">
         <button className="btn btn-primary btn-sm col-md-1 ml-1"
-          type="button" disabled={this.vsComputer() || !this.props.values || this.props.values && !(parseInt(this.props.values.d1) && parseInt(this.props.values.d2) && parseInt(this.props.values.d3) && parseInt(this.props.values.d4))}
+          type="button" disabled={this.vsComputer() || (!this.props.values )|| (this.props.values && !(parseInt(this.props.values.d1) ) && parseInt(this.props.values.d2) && parseInt(this.props.values.d3) && parseInt(this.props.values.d4))}
           onClick={() => {
             let guess = [parseInt(this.props.values.d1), parseInt(this.props.values.d2), parseInt(this.props.values.d3), parseInt(this.props.values.d4)];
             if (_.isEqual(guess, this.props.secret)) {

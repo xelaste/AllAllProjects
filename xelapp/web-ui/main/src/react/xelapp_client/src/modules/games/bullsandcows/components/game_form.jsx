@@ -1,5 +1,5 @@
 import React from 'react';
-import {formValues,Field, reduxForm } from 'redux-form';
+import {Field, reduxForm } from 'redux-form';
 /*
 
 */
@@ -13,7 +13,7 @@ const GameForm = props => {
         {
             for (let j=0;j<prev.length;j++)    
             {
-                if (i!=j && curr[i] && prev[j] && curr[i] == prev[j])
+                if (i!==j && curr[i] && prev[j] && curr[i] === prev[j])
                 {
                     return "";
                 }
@@ -92,7 +92,7 @@ const GameForm = props => {
                         height: "40vh",
                         backgroundColor: "DeepPink" }}>
                         {
-                            props.heap.map((x,i)=><span>{i > 0 && i % 6==0 && <br/>}{x}&nbsp;</span> )                                 
+                            props.heap.map((x,i)=><span>{i > 0 && i % 6===0 && <br/>}{x}&nbsp;</span> )                                 
                         }
                     </div>   
                 }

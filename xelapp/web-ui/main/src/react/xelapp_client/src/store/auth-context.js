@@ -2,13 +2,6 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 let logoutTimer;
 
-const AuthContext = React.createContext({
-  token: '',
-  authHeader: {},
-  isLoggedIn: false,
-  login: (token) => {},
-  logout: () => {}
-});
 
 const calculateRemainingTime = (expirationTime) => {
   const currentTime = new Date().getTime();
@@ -19,24 +12,35 @@ const calculateRemainingTime = (expirationTime) => {
   return remainingDuration;
 };
 
-const retrieveStoredToken = () => {
-  let user =sessionStorage.getItem('player');
+export const retrieveStoredToken = () => {
+  let strUser = sessionStorage.getItem('player');
+  let user = strUser ? JSON.parse(strUser) : {};
   const storedToken = user && user.token ? user.token : '';
-  const storedAuthHeader = user && user.token ? {'Authorization': 'Bearer ' + user.token} : {}; 
-  const storedExpirationDate = localStorage.getItem('expirationTime');
+  const storedAuthHeader = ()=> {return user && user.token ? {'Authorization': 'Bearer ' + user.token} : {};};
+  const storedExpirationDate = sessionStorage.getItem('expirationTime');
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
   if (remainingTime <= 3600) {
-    localStorage.removeItem('player');
-    localStorage.removeItem('expirationTime');
+    sessionStorage.removeItem('player');
+    sessionStorage.removeItem('expirationTime');
     return null;
   }
   return {
     token: storedToken,
     authHeader:storedAuthHeader,
-    duration: remainingTime
+    duration: remainingTime,
+    isLoggedIn: () => {return !!storedToken}
   };
 };
+
+let storedValues = retrieveStoredToken();
+const AuthContext = React.createContext(
+  {
+    ...storedValues,
+    login: (token)=>{},
+    logout: ()=>{}
+  }
+);
 
 export const AuthContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
@@ -50,8 +54,8 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = useCallback(() => {
     setToken(null);
-    localStorage.removeItem('token');
-    localStorage.removeItem('expirationTime');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('expirationTime');
 
     if (logoutTimer) {
       clearTimeout(logoutTimer);
@@ -59,6 +63,7 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const isLoggedIn  = () => {return !!token}
+  const authHeader = () => {return retrieveStoredToken().authHeader}
   const loginHandler = (token, expirationTime) => {
     setToken(token);
     if (!expirationTime)
@@ -68,8 +73,9 @@ export const AuthContextProvider = (props) => {
       tomorrow.setDate(today.getDate() + 1)
       expirationTime = tomorrow.toISOString()
     }
-    localStorage.setItem('token', token);
-    localStorage.setItem('expirationTime', expirationTime);
+    sessionStorage.setItem('token', token);
+    sessionStorage.setItem('expirationTime', expirationTime);
+    sessionStorage.setItem('authHeader',retrieveStoredToken().authHeader);
     const remainingTime = calculateRemainingTime(expirationTime);
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
@@ -82,6 +88,7 @@ export const AuthContextProvider = (props) => {
 
   const contextValue = {
     token: token,
+    authHeader: authHeader,
     isLoggedIn: isLoggedIn,
     login: loginHandler,
     logout: logoutHandler,

@@ -5,7 +5,7 @@ import { AuthContextProvider } from './store/auth-context'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 <AuthContextProvider>
-  <App />
+  <App/>
 </AuthContextProvider>
 );
 

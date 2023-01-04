@@ -41,6 +41,7 @@ router.post('/authenticate/:username', function (req, res,next)
     res.set({ 'content-type': 'application/json;charset=utf-8' });
     playerService.login(req.body.username,req.body.password).then(player=>
         {
+            delete player.password
             logger.debug("**************************");
             logger.debug(player);
             logger.debug("**************************");

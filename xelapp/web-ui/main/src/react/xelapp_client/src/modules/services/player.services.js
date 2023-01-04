@@ -1,9 +1,8 @@
-import { useContext } from 'react';
-import AuthContext from '../../store/auth-context'
+import retrieveStoredToken from '../../store/auth-context'
 
 const AuthHeader = ()=>{
-    const authCtx = useContext(AuthContext);
-    return authCtx.authHeader;
+    const authCtx = retrieveStoredToken();
+    return authCtx.authHeader();
 }
 export const playerService = 
 {

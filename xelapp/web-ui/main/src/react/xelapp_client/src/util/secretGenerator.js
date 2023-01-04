@@ -17,7 +17,7 @@ export function generateSecretArray()
     secret = secret.map((n)=>{
         let idx = Math.floor(Math.random() * 10) % digits.length;
         let digit= digits[idx]; 
-        digits=digits.filter(x=>x!=digit);
+        digits=digits.filter(x=>x!==digit);
         return digit;
     });
     return secret;
