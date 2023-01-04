@@ -1,4 +1,4 @@
-import retrieveStoredToken from '../../store/auth-context'
+import {retrieveStoredToken} from '../../store/auth-context'
 
 const AuthHeader = ()=>{
     const authCtx = retrieveStoredToken();
