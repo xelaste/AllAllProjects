@@ -3,7 +3,7 @@ import Navbar from './controls/Navbar';
 import Home from './modules/pages/Home';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import store from './store/redux-store';
-import Services from './modules/pages/Services';
+import Games from './modules/pages/Games';
 import Products from './modules/pages/Products';
 import ContactUs from './modules/pages/ContactUs';
 import SignUp from './modules/pages/SignUp';
@@ -12,7 +12,6 @@ import Consulting from './modules/pages/Consulting';
 import Dijkstra from './modules/algorithm/graph/impl/Dijkstra'
 import { Provider } from 'react-redux';
 import PrivateRoute from './controls/private_route';
-import BullsAndCows from './modules/games/bullsandcows/components/home'
 
 const SignUPComponent = () => 
 {
@@ -22,7 +21,7 @@ const SignUPComponent = () =>
 const BullsAndCowsComponent = () => 
 {
   const navigate = useNavigate();
-  return <Provider store={store} ><BullsAndCows navigate={navigate}/></Provider>;
+  return <Provider store={store} ><Games navigate={navigate}/></Provider>;
 }
 function App() {
   if (process.env.NODE_ENV === "production")
