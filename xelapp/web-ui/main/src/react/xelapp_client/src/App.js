@@ -18,10 +18,10 @@ const SignUPComponent = () =>
   const navigate = useNavigate();
   return <Provider store={store} ><SignUp navigate={navigate}/></Provider>;
 }
-const BullsAndCowsComponent = () => 
+const GamesComponent = (props) => 
 {
   const navigate = useNavigate();
-  return <Provider store={store} ><Games navigate={navigate}/></Provider>;
+  return <Provider store={store} ><Games name={props.name} navigate={navigate}/></Provider>;
 }
 function App() {
   if (process.env.NODE_ENV === "production")
@@ -39,7 +39,7 @@ function App() {
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/marketing' element={<Marketing />} />
           <Route path='/consulting' element={<Consulting />} />
-          <Route path='/games/bullsandcows' element={<BullsAndCowsComponent/>} />
+          <Route path='/games/bullsandcows' element={<GamesComponent name="Bulls and Cows"/>} />
         </Route>
         <Route path='/login' element={<SignUPComponent/>} />
         <Route path='/register' element={<SignUPComponent/>} />
