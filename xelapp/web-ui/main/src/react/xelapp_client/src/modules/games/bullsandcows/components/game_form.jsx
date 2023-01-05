@@ -31,7 +31,7 @@ const GameForm = props => {
     }
     let showSecret = props.vsComputer ||  props.isWin || props.isLost
     return (
-        <div className="w-100">
+        <div className="w-100  text-dark">
             {showSecret && <h4 className="text-center">Secret: {props.secret}</h4>}
             {!showSecret && <h4 className="text-center">Enter Number</h4>}
             <form onSubmit={handleSubmit} className="form-horizontal">
@@ -88,7 +88,7 @@ const GameForm = props => {
                 }
                 {
                     props.vsComputer &&
-                    <div className="overflow-auto" style={{ 
+                    <div className="overflow-auto  text-dark" style={{ 
                         height: "40vh",
                         backgroundColor: "DeepPink" }}>
                         {
