@@ -141,7 +141,9 @@ class Game extends React.Component {
     this.props.dispatch(gameActions.newGame(generateSecretArray(),this.vsComputer()));
     this.props.dispatch(reset('gameForm'));
   }
-
+  componentWillUnmount() {
+    this.props.dispatch(gameActions.stopGame(this.props.currentPlayer));
+  }
   render() {
     return (<div className="panel h-100 p-0 m-0">
     < div className="row m-1">
@@ -185,8 +187,8 @@ class Game extends React.Component {
           <Clock subscribe={this.subscribeToTimer} ticks={0} period={this.vsComputer()?2:30}/>
         </div>
       }
-      <div className="panel fixed-bottom">
-        <button className="btn btn-primary btn-sm col-md-1 ml-1"
+      <div className="panel fixed-bottom p-4">
+        <button className="btn btn-primary btn-sm col-md-1 m-1"
           type="button" disabled={this.vsComputer() || (!this.props.values )|| (this.props.values && !(parseInt(this.props.values.d1) ) && parseInt(this.props.values.d2) && parseInt(this.props.values.d3) && parseInt(this.props.values.d4))}
           onClick={() => {
             let guess = [parseInt(this.props.values.d1), parseInt(this.props.values.d2), parseInt(this.props.values.d3), parseInt(this.props.values.d4)];
@@ -203,12 +205,12 @@ class Game extends React.Component {
           }>
           Check
       </button>
-        <button className="btn btn-primary btn-sm col-md-1 ml-1"
+        <button className="btn btn-primary btn-sm col-md-1 m-1"
           type="button"
           onClick={this.restart.bind(this)}>
           New
       </button>
-        <button className="btn btn-primary btn-sm col-md-1 ml-1"
+        <button className="btn btn-primary btn-sm col-md-1 m-1"
           type="button"
           onClick={() => this.props.dispatch(gameActions.stopGame(this.props.currentPlayer))}>
           Back

@@ -18,6 +18,7 @@ import { getFormValues, isPristine, isSubmitting, reset, submit } from 'redux-fo
 import Game from './game';
 import { generateSecretArray } from '../../../../util/secretGenerator';
 import AuthContext from '../../../../store/auth-context';
+import '../css/styles.css';
 
 function mapStateToProps(state) {
   return {
@@ -46,8 +47,8 @@ class Home extends React.Component {
   playersList() 
   {
     return <div className="w-75" >
-      <h4>List Of Players</h4>
-      <div style={{"height":"90%"}}className="w-100 overflow-auto" >
+      <h4 className="text-dark">List Of Players</h4>
+      <div style={{"height":"90%"}} className="w-100 overflow-auto" >
         <ul className="list-group">
           {this.props.players.map((item, idx) => {
             return <li key={idx} className="list-group-item d-flex justify-content-between mx-0">
@@ -87,24 +88,24 @@ class Home extends React.Component {
       return (
         <div>
           {this.props.error && <div className="mt-10 px-2 col-sm-6 alert alert-danger">{this.props.error}</div>}
-            <div className="h-50 px-0 ml-0 container">
+            <div className="h-75 px-0 ml-0 container">
               <div className="ml-1 row h-100  w-100">
                 {this.playersList()}
               </div>
-              <div className="ml-1 row">
-                <button className="btn btn-primary btn-sm col-md-2 ml-1"
+              <div className="row p-1 h-25 d-flex align-items-end">
+                <button className="btn btn-primary btn-sm col-md-2 m-1 h-25"
                   type="button" disabled={(this.props.pristine && !this.props.currentPlayer) || this.props.submiting}
                   onClick={() => { this.updateCurrentPlayer("");}}>
                   Clear Values
                 </button>
                 
-                <button className="btn col-md-2 ml-3 btn-primary"
+                <button className="btn col-md-2 m-1 btn-primary h-25"
                   type="button" disabled={!this.props.currentPlayer}
                   onClick={() => this.props.dispatch(gameActions.newGame(generateSecretArray()))}>
                   Play
                 </button>
                 
-                <button className="btn col-md-2 ml-3 btn-primary"
+                <button className="btn col-md-2 btn-primary m-1 h-25"
                   type="button"
                   onClick={() => this.props.dispatch(gameActions.newGame(generateSecretArray(), true))}>
                   Play Vs Computer
