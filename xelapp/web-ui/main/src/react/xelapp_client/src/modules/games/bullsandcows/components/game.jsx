@@ -11,7 +11,7 @@
 import React from 'react';
 import * as gameActions from "../actions/bullscowsgame";
 import { connect } from 'react-redux';
-import { getFormValues, isPristine, isSubmitting, reset, submit } from 'redux-form';
+import { getFormValues, reset } from 'redux-form';
 import PropTypes from 'prop-types';
 import GameForm from './game_form';
 import _ from 'underscore';

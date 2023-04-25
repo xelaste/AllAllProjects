@@ -2,7 +2,6 @@ import React from 'react';
 import {NavLink as Link, Route,Switch} from 'react-router-dom';
 import Home from './components/home';
 import Highscore from './components/highscore';
-
 export default class App extends React.Component {
   render() {
     const { match } = this.props;

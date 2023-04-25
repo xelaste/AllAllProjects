@@ -18,7 +18,7 @@ export default function Game(props) {
   return (
     <>
       <div className='home'>
-        <div className='container-fluid m-5'>
+        <div className='container-fluid'>
           <div className='row text-center'>
             <h3 className="display-4 text-primary">{props.name}</h3>
           </div>
