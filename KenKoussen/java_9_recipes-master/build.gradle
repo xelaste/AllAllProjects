@@ -1,0 +1,42 @@
+plugins {
+    id 'java-library'
+    id 'idea'
+    id 'eclipse'
+}
+
+ext.libs = [
+        gson: 'com.google.code.gson:gson:2.10.1',
+        hamcrest: 'org.hamcrest:hamcrest:2.2',
+        junit_api: 'org.junit.jupiter:junit-jupiter:5.9.3',
+]
+
+allprojects {
+    group 'com.kousenit'
+    version '1.0'
+
+    sourceCompatibility = javaVersion
+    targetCompatibility = javaVersion
+
+    repositories {
+        jcenter()
+    }
+}
+
+dependencies {
+    implementation libs.gson
+    testImplementation libs.junit_api
+    testImplementation libs.hamcrest
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+        ]
+        classpath = files()
+    }
+}

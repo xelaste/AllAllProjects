@@ -1,0 +1,25 @@
+plugins {
+    id 'java-library'
+    id 'application'
+}
+
+mainClassName = 'com.kousenit.clients.Main'
+
+dependencies {
+    implementation project(':server')
+    testImplementation libs.junit_api
+    testImplementation libs.hamcrest
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+        ]
+        classpath = files()
+    }
+}

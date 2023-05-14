@@ -1,0 +1,14 @@
+README.md
+bin
+build
+build.gradle
+client
+gradle
+gradle.properties
+gradlew
+gradlew.bat
+out
+output.txt
+server
+settings.gradle
+src

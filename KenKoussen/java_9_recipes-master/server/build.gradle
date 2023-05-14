@@ -1,0 +1,22 @@
+plugins {
+    id 'java-library'
+}
+
+dependencies {
+    implementation libs.gson
+    testImplementation libs.junit_api
+    testImplementation libs.hamcrest
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava {
+    doFirst {
+        options.compilerArgs = [
+                '--module-path', classpath.asPath,
+        ]
+        classpath = files()
+    }
+}
