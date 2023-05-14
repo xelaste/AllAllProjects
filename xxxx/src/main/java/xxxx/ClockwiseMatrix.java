@@ -26,8 +26,8 @@ public class ClockwiseMatrix {
         clockwiseMatrix.solution(matrix,matrix.length,matrix[0].length);
     }
     private ArrayList<Integer> solution(int[][] matrix,int r,int c) {
-        int width =c;
-        int height = r;
+        int width = matrix[0].length;
+        int height = matrix.length;
         int topY = 0 , topS = 0, topE= width - 1;
         int leftX= topE, leftS = topY + 1 , leftE= height -1;
         int downY= leftE, downS = topE - 1 , downE= topS;
@@ -43,10 +43,6 @@ public class ClockwiseMatrix {
                         System.out.print(matrix[topY][i] + " ");
                         result.add(matrix[topY][i]);
                         count++;
-                        if (count>=width*height)
-                        {
-                            break;
-                        }
                     }
                     topY++;
                     topS++;
@@ -58,10 +54,6 @@ public class ClockwiseMatrix {
                         System.out.print(matrix[j][leftX] + " ");
                         result.add(matrix[j][leftX]);
                         count++;
-                        if (count>=width*height)
-                        {
-                            break;
-                        }
                     }
                     leftX--;
                     leftS = topY + 1;
@@ -73,10 +65,6 @@ public class ClockwiseMatrix {
                         System.out.print(matrix[downY][i] + " ");
                         result.add(matrix[downY][i]);
                         count++;
-                        if (count>=width*height)
-                        {
-                            break;
-                        }
                     }
                     downY--;
                     downE++;
