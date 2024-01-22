@@ -89,7 +89,7 @@ export default function Dijkstra(props) {
   const [execution, setExecution] = useState(false);
 
   function init() {
-    let numberOfNodes = document.getElementById("numberOfNodes").value;
+   let numberOfNodes = document.getElementById("numberOfNodes").value;
     if (!numberOfNodes) {
       numberOfNodes = document.getElementById("numberOfNodes").placeholder;
       document.getElementById("numberOfNodes").value = numberOfNodes;

@@ -1,4 +1,4 @@
-const MinPriorityQueue = (maxSize, comparator) => {
+function MinPriorityQueue (maxSize, comparator) {
   const pq = [];
   const keys = new Map();
   const index = new Map();
