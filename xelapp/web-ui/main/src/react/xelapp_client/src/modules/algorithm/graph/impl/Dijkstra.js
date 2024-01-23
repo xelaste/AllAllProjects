@@ -248,7 +248,7 @@ export default function Dijkstra(props) {
             </form>
           </div>
         </div>
-        <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3">
+        <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3 h-50">
           <div className="card-header bg-primary">
             {execution ? (
               <h3 className="bg-secondary blinking">Running</h3>
@@ -256,7 +256,7 @@ export default function Dijkstra(props) {
               <h3 className="text-dark">Results</h3>
             )}
           </div>
-          <div className="card-body text-dark">
+          <div className="card-body text-dark overflow-auto">
             <div className="row row-eq-height align-items-end">
               <div className="col">
                 <label>Queue</label>
@@ -325,6 +325,7 @@ export default function Dijkstra(props) {
                 <div
                   id="algorithmContainer"
                   style={{ width: "100%", height: "80%" }}
+                  class="overflow-auto"
                 >
                   <GraphLogicalView
                     graph={graph}

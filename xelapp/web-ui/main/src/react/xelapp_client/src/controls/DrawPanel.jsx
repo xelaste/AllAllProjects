@@ -8,7 +8,7 @@ class DrawPanel extends React.Component {
 
     }
     handleResize() {
-        let containerId = this.props.conainerId ? this.props.conainerId : "algorithmContainer";
+        let containerId = this.props.containerId ? this.props.containerId : "algorithmContainer";
         let container = document.getElementById(containerId);
         let width = container ? container.offsetWidth + "px" : "501px";
         let height = container ? container.offsetHeight + "px" : "381px";

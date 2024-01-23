@@ -104,7 +104,7 @@ class GraphLogicalView extends React.Component {
 
     render() {
         return <>
-            <DrawPanel drawContent={this.drawGraph} handleContentResize={this.handleResize} conainerId="algorithmContainer" title={this.props.title}></DrawPanel>
+            <DrawPanel drawContent={this.drawGraph} handleContentResize={this.handleResize} containerId="algorithmContainer" title={this.props.title}></DrawPanel>
         </>
     }
     componentDidMount() {
