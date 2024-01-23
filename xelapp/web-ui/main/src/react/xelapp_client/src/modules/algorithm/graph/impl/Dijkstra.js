@@ -324,7 +324,7 @@ export default function Dijkstra(props) {
               {graph ? (
                 <div
                   id="algorithmContainer"
-                  style={{ width: "100%", height: "80%" }}
+                  style={{ width: "100%", height: "85%" }}
                   class="overflow-auto"
                 >
                   <GraphLogicalView

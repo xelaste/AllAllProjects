@@ -30,10 +30,10 @@ class DrawPanel extends React.Component {
         return context;
     }
     render() {
-        let containerId = this.props.conainerId ? this.props.conainerId : "algorithmContainer";
+        let containerId = this.props.containerId ? this.props.containerId : "algorithmContainer";
         let container = document.getElementById(containerId);
-        let width = container ? container.offsetWidth + "px" : "501px";
-        let height = container ? container.offsetHeight + "px" : "381px";
+        let width = container ? (container.offsetWidth  - 10)+ "px" : "501px";
+        let height = container ? (container.offsetHeight - 50)+ "px" : "381px";
         return <canvas id="c" width={width} height={height} className="border border-info border-3 bg-light"></canvas>
     }
     drawGrid() {
