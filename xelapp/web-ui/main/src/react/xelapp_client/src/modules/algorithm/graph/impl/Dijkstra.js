@@ -248,7 +248,7 @@ export default function Dijkstra(props) {
             </form>
           </div>
         </div>
-        <div className="card fs-6 mt-10 p-6 w-100 border-dark bg-info mb-3 h-50">
+        <div className="card fs-6 mt-4 p-3  w-100 border-dark bg-info mb-3 h-50">
           <div className="card-header bg-primary">
             {execution ? (
               <h3 className="bg-secondary blinking">Running</h3>
