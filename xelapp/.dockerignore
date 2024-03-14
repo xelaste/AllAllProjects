@@ -1,0 +1,6 @@
+backend/main/src/nodejs/node_modules
+backend/main/src/nodejs/package-lock.json
+web-ui/main/src/react/xelapp_client/node_modules
+web-ui/main/src/react/xelapp_client/package-lock.json
+web-ui/main/src/react/xelapp_client/build
+backend/main/src/nodejs/dist

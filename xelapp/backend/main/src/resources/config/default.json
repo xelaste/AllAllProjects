@@ -1,6 +1,6 @@
 {
 	"dbConfig": {
-		"dbtype":  "loki",
+		"dbtype":  "STITCH",
 		"stitch": {
 			"url": "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook",
 			"secret": "[qwerty123456]"

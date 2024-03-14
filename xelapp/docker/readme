@@ -1,0 +1,13 @@
+docker build
+docker build --rm -t xelaste/bullsandcows .
+docker run
+docker run --restart always --add-host genproxy:10.232.233.70 -e HTTP_PROXY=genproxy:8080 -e HTTPS_PROXY=genproxy:8080 -p 3000:3000 --name bullsandcows xelaste/bullsandcows
+
+docker admin shell 
+docker run -it --privileged --pid=host debian nsenter -t 1 -m -u -i sh
+
+heroku
+
+heroku ps:restart web --app=bullandcow
+heroku ps:restart web --app=bullandcow
+heroku logs --tail --app bullandcow
