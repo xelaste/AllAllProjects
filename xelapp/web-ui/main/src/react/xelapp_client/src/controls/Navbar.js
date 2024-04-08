@@ -74,7 +74,11 @@ function AppNavbar() {
                 </Dropdown.Menu>
               </div>
             </Dropdown>
-            <NavDropdown.Item href="#action4">Sorts</NavDropdown.Item>
+            <NavDropdown.Item href="/algoritms/sorts">
+              <Link to='/algoritms/sorts' className="text-decoration-none text-light" onClick={closeMobileMenu}>
+                Sorts
+              </Link>
+            </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action5">Text</NavDropdown.Item>
           </NavDropdown>

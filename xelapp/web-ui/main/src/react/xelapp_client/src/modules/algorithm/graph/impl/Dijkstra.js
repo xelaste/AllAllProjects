@@ -64,6 +64,7 @@ const shortPath = (G, s, props) => {
   };
   const asyncNextNodeCheck = () => {
     if (!pq.isEmpty()) {
+      props.setExecution(true);
       processNode();
     } else {
       props.setExecution(false);
@@ -248,7 +249,7 @@ export default function Dijkstra(props) {
             </form>
           </div>
         </div>
-        <div className="card fs-6 mt-4 p-3  w-100 border-dark bg-info mb-3 h-50">
+        <div style={{height:"38%"}} className="card fs-6 mt-4 p-3  w-100 border-dark bg-info mb-3 overflow-auto">
           <div className="card-header bg-primary">
             {execution ? (
               <h3 className="bg-secondary blinking">Running</h3>

@@ -10,6 +10,7 @@ import SignUp from './modules/pages/SignUp';
 import Marketing from './modules/pages/Marketing';
 import Consulting from './modules/pages/Consulting';
 import Dijkstra from './modules/algorithm/graph/impl/Dijkstra'
+import Sorts from './modules/algorithm/sort/impl/Sorts'
 import { Provider } from 'react-redux';
 import PrivateRoute from './controls/private_route';
 
@@ -35,6 +36,7 @@ function App() {
         <Route exact path='/' element={<PrivateRoute />}>
           <Route exact path='/' element={<Home />} />
           <Route path='/dijkstra' element={<Dijkstra />} />
+          <Route path='/algoritms/sorts' element={<Sorts />} />
           <Route path='/products' element={<Products />} />
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/marketing' element={<Marketing />} />

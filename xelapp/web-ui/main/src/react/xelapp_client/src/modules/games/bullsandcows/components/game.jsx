@@ -145,7 +145,7 @@ class Game extends React.Component {
     this.props.dispatch(gameActions.stopGame(this.props.currentPlayer));
   }
   render() {
-    return (<div className="panel h-100 p-0 m-0">
+    return (<div className="panel h-100 p-2 ml-3">
     < div className="row m-1">
         {!this.vsComputer() && <h4>Player: {this.props.currentPlayer}</h4>}
      </div> 

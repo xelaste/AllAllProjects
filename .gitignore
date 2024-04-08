@@ -61,6 +61,7 @@ target/
 *.ipr
 **/.gradle
 **/.vscode
+**/.gradle/*.*
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
