@@ -3,17 +3,86 @@ import "../../../../css/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SortLogicalView from "../view/SortLogicalView";
 import {content as defaultContent,shuffle} from '../util/ContentProvider';
+import {sleep} from '../../../../util/Sleep';
 export default function Sorts(props) {
     const [loaded, setLoaded] = useState(false);
     const [execution, setExecution] = useState(false);
-    const [selectedSort,setSelectedSort] = useState("Please Specify");
     const [state, setState] = useState({});
     let content=defaultContent;
+    async function bubbleSort()
+    {
+        setExecution (true);
+        let complexity = 0;
+        for (let i=0;i<content.length;i++)
+        {
+            complexity++;
+            for (let j=0;j<content.length - (i+1);j++)
+            {
+                complexity++;
+                if (content[j]>content[j+1])
+                {
+                    let tmp = content[j+1];
+                    content[j+1] = content[j];
+                    content[j] = tmp;
+                    complexity+=4;
+                    let newState = {
+                        ...state,
+                        content:content,
+                        complexity:complexity
+                    }
+                    setState(newState);
+                    await sleep(30);
+                }
+                else {
+                    complexity++;
+                }
+            }
+        }
+        setExecution (false);
+    }
+    async function insertSort()
+    {
+        setExecution (true);
+        let complexity=0;
+        for (let i=1;i<content.length;i++)
+        {
+            complexity++;
+            for (let j=i;j>0;j--)
+            {
+                complexity++;
+                if (content[j]<content[j-1])
+                {
+                    let tmp = content[j-1];
+                    content[j-1] = content[j];
+                    content[j] = tmp;
+                    complexity+=4;
+                    let newState = {
+                        ...state,
+                        content:content,
+                        complexity:complexity
+                    }
+                    setState(newState);
+                    await sleep(30);
+                }
+                else {
+                    complexity++
+                }
+            }
+        }
+        setExecution (false);
+    }
     function onSortSelect (e) 
     { 
-        setSelectedSort (e.target.value)
+        let newState = {
+            ...state,
+            content:content,
+            complexity:0,
+            selectedSort:e.target.value
+        }
+        setState(newState);
     } 
     function isValidSort() {
+      let selectedSort = state.selectedSort;
       return  selectedSort === "1" 
       ||
       selectedSort === "2"
@@ -23,10 +92,29 @@ export default function Sorts(props) {
       selectedSort === "4"
 
     }
+
+    function sort()
+    {
+        switch (state.selectedSort) { 
+          case "1":
+            bubbleSort();
+            break;
+          case "2":
+            insertSort();
+            break;
+          case "3":
+            
+            break;
+          case "4":
+            
+            break;  
+        }
+    }
+
     function sortName()
     {
         let sortName = "Please Specify";
-        switch (selectedSort) { 
+        switch (state.selectedSort) { 
           case "1":
             sortName = "Bubble Sort"
             break;
@@ -79,6 +167,7 @@ export default function Sorts(props) {
                                             shuffle(content);
                                             let newState = {
                                                 ...state,
+                                                complexity:0,
                                                 content:content
                                             }
                                             setState(newState);
@@ -91,8 +180,7 @@ export default function Sorts(props) {
                                         type="button"
                                         disabled={execution || !isValidSort()}
                                         style={{ width: "6em" }}
-
-
+                                        onClick={sort}
                                         className="btn btn-primary mt-2 mx-2"
                                     >
                                         Run
@@ -111,8 +199,14 @@ export default function Sorts(props) {
                             <div className="card-body text-dark overflow-auto">
                                 <div className="row row-eq-height align-items-end">
                                     <div className="col">
+                                        <label>Input size</label>
+                                        <span className="m-1">{content.length}</span>
+                                    </div>
+                                </div>
+                                <div className="row row-eq-height align-items-end">
+                                    <div className="col">
                                         <label>Complexity</label>
-                                        <span className="m-1">0</span>
+                                        <span className="m-1">{state.complexity}</span>
                                     </div>
                                 </div>
 
@@ -127,7 +221,7 @@ export default function Sorts(props) {
                             style={{ width: "100%", height: "80%" }}
                             class="overflow-auto"
                         >
-                            <SortLogicalView title={selectedSort} content={content}></SortLogicalView>
+                            <SortLogicalView title={state.selectedSort} content={content}></SortLogicalView>
                         </div>
                     </div>
                 </div>
