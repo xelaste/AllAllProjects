@@ -43,7 +43,7 @@ export default function Sorts(props) {
         let half2 = await mergeSort (halfIdx + 1 , to);
         let idx1=0
         let idx2=0
-        state.complexity+=3;
+        state.complexity+=5;
         for (let i=0;i<half1.length + half2.length;i++)
         {
             let idx = i + from;
@@ -66,7 +66,7 @@ export default function Sorts(props) {
                 idx1++;                        
             }
         
-            state.complexity+=5;
+            state.complexity+=6;
             let newState = {
                 ...state
             }
