@@ -22,7 +22,6 @@ function logRequest(req, res, next)
     next();
 }
 app.use(logRequest);
-app.use(express.static('public'));
 app.use(express.static('dist'));
 
 app.use(jwt());
@@ -34,7 +33,7 @@ app.use('/players', require("./controllers/playerController"));
 
 
 app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/index.html'), function(err) {
+    res.sendFile(path.join(__dirname, '/dist/index.html'), function(err) {
       if (err) {
         logger.error(JSON. stringify(err));
         res.status(500).send(JSON. stringify(err));
