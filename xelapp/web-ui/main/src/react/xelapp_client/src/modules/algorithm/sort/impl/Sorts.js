@@ -20,7 +20,7 @@ export default function Sorts(props) {
     {
         if (from===to)
         {
-            state.complexity+=2;
+            state.complexity++;
             let newState = {
                 ...state,
             }
@@ -66,7 +66,7 @@ export default function Sorts(props) {
                 idx1++;                        
             }
         
-            state.complexity+=6;
+            state.complexity+=5;
             let newState = {
                 ...state
             }
@@ -76,34 +76,38 @@ export default function Sorts(props) {
         return content.slice(from,to + 1);
     }
 
-    async function bubbleSort()
+    async function selectSort()
     {
         setExecution (true);
         let complexity = 0;
         for (let i=0;i<content.length;i++)
         {
-            complexity++;
-            for (let j=0;j<content.length - (i+1);j++)
+            complexity+=2;
+            let max = 0;
+            for (let j=0;j<content.length - i;j++)
             {
+               complexity+=2;
+               if (content[j] > content[max])
+               {
+                 max = j;
+                 complexity+=3;
+               }
+               else {
                 complexity++;
-                if (content[j]>content[j+1])
-                {
-                    let tmp = content[j+1];
-                    content[j+1] = content[j];
-                    content[j] = tmp;
-                    complexity+=4;
-                    let newState = {
-                        ...state,
-                        content:content,
-                        complexity:complexity
-                    }
-                    setState(newState);
-                    await sleep(30);
-                }
-                else {
-                    complexity++;
-                }
+               }
             }
+            let last = content.length - (i+1);
+            let tmp = content[last];
+            content[last] = content[max];
+            content[max] = tmp;
+            complexity+=4;
+            let newState = {
+                ...state,
+                content:content,
+                complexity:complexity
+            }
+            setState(newState);
+            await sleep(300);
         }
         setExecution (false);
     }
@@ -174,7 +178,7 @@ export default function Sorts(props) {
         setState(newState);
         switch (state.selectedSort) { 
           case "1":
-            bubbleSort();
+            selectSort();
             break;
           case "2":
             insertSort();
@@ -193,7 +197,7 @@ export default function Sorts(props) {
         let sortName = "Please Specify";
         switch (state.selectedSort) { 
           case "1":
-            sortName = "Bubble Sort"
+            sortName = "Selection Sort"
             break;
           case "2":
             sortName = "Insertion Sort"
@@ -229,8 +233,8 @@ export default function Sorts(props) {
                                     <label className="mb-1" htmlFor="sortTypesList">Sorting algorithms</label>
                                     <select defaultValue="Please Specify" disabled={execution} id="sortTypesList" onChange={onSortSelect} className="form-select form-label form-select-lg mb-3">
                                         <option value="Please Specify">Select Sort Algorithm</option>
-                                        <option value="1">Bubble Sort</option>
-                                        <option value="2">Insert Sort</option>
+                                        <option value="1">Selection Sort</option>
+                                        <option value="2">Insertion Sort</option>
                                         <option value="3">Merge Sort</option>
                                         <option value="4">Quick Sort</option>
                                     </select>
