@@ -10,6 +10,108 @@ export default function Sorts(props) {
     const [state, setState] = useState({});
     let content=defaultContent;
     
+    async function quickSortCall()
+    {
+        setExecution(true)
+        await quickSort( 0 , content.length - 1);
+        setExecution(false)
+    }
+
+    async function quickSort(from,to)
+    {
+        if (to-from===1)
+        {
+            if (content[to] < content[from]) {
+                let tmp = content[to];
+                content[to] = content[from]
+                content[from] = tmp;
+            }
+            state.complexity+=5;
+            let newState = {
+                ...state
+            }
+            setState(newState);
+            await sleep(30);           
+            return;
+        }
+        if (  to + 1 - from < 3 ) {
+            for (let i=from;i<=to;i++)
+            {
+                for (let j=i;j<to-i;j++)
+                {
+                    if (content[j]>content[j+1])
+                    {
+                        let tmp = content[j];
+                        content[j] = content[j+1];
+                        content[j+1] = tmp;
+                    }
+                    state.complexity+=5;
+                    let newState = {
+                        ...state
+                    }
+                    setState(newState);
+                    await sleep(30);                   
+                }
+            }       
+            return;
+        }
+        let pivot = Math.floor ((to+from)/2)
+        let i = from;
+        let j = to;
+        let pivotIdx=-1;
+        while (i<j && j>=0 && i<content.length) 
+        {
+            while (content[i]<pivot && i<content.length) {
+                i++;
+                state.complexity++;
+                let newState = {
+                    ...state
+                }
+                setState(newState);
+                await sleep(30);               
+            }
+            while (content[j]>=pivot && j > i ) {
+                if (content[j]===pivot)
+                {
+                    pivotIdx=j;
+                }
+                j--;
+                state.complexity+=3;
+                let newState = {
+                    ...state
+                }
+                setState(newState);
+                await sleep(30);               
+            }
+            if (i<j && content[i]>=pivot && content[j]<pivot)
+            {
+                let tmp = content[i];
+                content[i]=content[j]
+                content[j]=tmp
+            }
+            state.complexity+=6;
+            let newState = {
+                ...state
+            }
+            setState(newState);
+            await sleep(30);               
+        }
+        if ( pivotIdx >= 0 ) {
+          let tmp = content[pivotIdx];
+          content[pivotIdx] = content[i];
+          content[i] = tmp;
+        }
+        state.complexity+=5;
+        let newState = {
+            ...state
+        }
+        setState(newState);
+        await sleep(30);               
+
+        if (j>=0) await quickSort(from,j);
+        if (i<content.length) await quickSort(j+1,to);
+    }
+
     async function mergeSortCall()
     {
         setExecution(true)
@@ -187,7 +289,7 @@ export default function Sorts(props) {
             mergeSortCall();
             break;
           case "4":
-            
+            quickSortCall();
             break;  
         }
     }
