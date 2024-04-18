@@ -45,12 +45,12 @@ export default function Sorts(props) {
                         content[j] = content[j+1];
                         content[j+1] = tmp;
                     }
-                    state.complexity+=5;
+                    state.complexity+=7;
                     let newState = {
                         ...state
                     }
                     setState(newState);
-                    await sleep(30);                   
+                    await sleep(50);                   
                 }
             }       
             return;
