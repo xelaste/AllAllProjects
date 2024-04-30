@@ -1,4 +1,4 @@
-import React from 'react';
+import {React ,useEffect} from 'react';
 import Navbar from './controls/Navbar';
 import Home from './modules/pages/Home';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
@@ -25,6 +25,25 @@ const GamesComponent = (props) =>
   return <Provider store={store} ><Games name={props.name} navigate={navigate}/></Provider>;
 }
 function App() {
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      e.preventDefault();
+      const message =
+        'xxxAre you sure you want to leave? All provided data will be lost.';
+      e.returnValue = message;
+      return message;
+    };
+
+    if (1===1) {
+      window.addEventListener('beforeunload', handleBeforeUnload);
+    }
+
+    return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+    }
+
+  });
+  
   if (process.env.NODE_ENV === "production")
   {
     console.log = function no_console() {};

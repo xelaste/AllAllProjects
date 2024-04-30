@@ -74,9 +74,9 @@ function AppNavbar() {
                 </Dropdown.Menu>
               </div>
             </Dropdown>
-            <NavDropdown.Item href="/algoritms/sorts">
-              <Link to='/algoritms/sorts' className="text-decoration-none text-light" onClick={closeMobileMenu}>
-                Sorts
+            <NavDropdown.Item>
+              <Link to='/algorithms/sorts' className="text-decoration-none text-light" onClick={closeMobileMenu}>
+                SortsC
               </Link>
             </NavDropdown.Item>
             <NavDropdown.Divider />
