@@ -54,6 +54,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = useCallback(() => {
     setToken(null);
+    document.cookie = "authorization=";
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('expirationTime');
 
@@ -77,6 +78,7 @@ export const AuthContextProvider = (props) => {
     sessionStorage.setItem('expirationTime', expirationTime);
     sessionStorage.setItem('authHeader',retrieveStoredToken().authHeader);
     const remainingTime = calculateRemainingTime(expirationTime);
+    document.cookie = "authorization=Bearer " + token;
     logoutTimer = setTimeout(logoutHandler, remainingTime);
   };
 

@@ -25,18 +25,17 @@ const GamesComponent = (props) =>
   return <Provider store={store} ><Games name={props.name} navigate={navigate}/></Provider>;
 }
 function App() {
+
   useEffect(() => {
-    const handleBeforeUnload = (e) => {
+    function handleBeforeUnload (e) {
       e.preventDefault();
-      const message =
-        'xxxAre you sure you want to leave? All provided data will be lost.';
-      e.returnValue = message;
-      return message;
+      console.log ("unload event");
+      return true; //Webkit, Safari, Chrome etc.
     };
 
-    if (1===1) {
-      window.addEventListener('beforeunload', handleBeforeUnload);
-    }
+    
+      window.addEventListener("beforeunload",handleBeforeUnload);
+    
 
     return () => {
         window.removeEventListener('beforeunload', handleBeforeUnload);
@@ -55,7 +54,7 @@ function App() {
         <Route exact path='/' element={<PrivateRoute />}>
           <Route exact path='/' element={<Home />} />
           <Route path='/dijkstra' element={<Dijkstra />} />
-          <Route path='/algoritms/sorts' element={<Sorts />} />
+          <Route path='/algorithms/sorts' element={<Sorts />} />
           <Route path='/products' element={<Products />} />
           <Route path='/contact-us' element={<ContactUs />} />
           <Route path='/marketing' element={<Marketing />} />

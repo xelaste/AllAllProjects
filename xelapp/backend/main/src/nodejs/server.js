@@ -10,9 +10,11 @@ const errorHandler = require('./error-handler');
 const logger = Logger.createLogger("server");
 var path = require('path');
 var cors = require('cors')
+const cookieParser = require("cookie-parser");
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 function logRequest(req, res, next) 
 {

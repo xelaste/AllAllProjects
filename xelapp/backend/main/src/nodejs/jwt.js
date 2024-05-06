@@ -6,7 +6,8 @@ function jwt() {
     const algorithms=config.jwt.algorithms;
     return expressJwt({ secret:secret,
                         algorithms:algorithms, 
-                        isRevoked:isRevoked }).unless({
+                        isRevoked:isRevoked, 
+                        getToken:getToken}).unless({
         path: [
             // public routes that don't require authentication
             /\/login/,
@@ -16,7 +17,13 @@ function jwt() {
         ]
     });
 }
-
+function getToken (req) {
+    if (req.headers.authorization) {
+        return req.headers.authorization.replace("Bearer","").trim();
+    } else {
+        return req.cookies.authorization ? req.cookies.authorization.replace("Bearer","").trim():"";
+    }    
+}
 async function isRevoked(req, payload, done) {
    // const user = await userService.getById(payload.sub);
     // revoke token if user no longer exists
