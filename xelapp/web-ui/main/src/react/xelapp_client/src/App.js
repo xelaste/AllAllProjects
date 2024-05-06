@@ -24,25 +24,7 @@ const GamesComponent = (props) =>
   const navigate = useNavigate();
   return <Provider store={store} ><Games name={props.name} navigate={navigate}/></Provider>;
 }
-function App() {
-
-  useEffect(() => {
-    function handleBeforeUnload (e) {
-      e.preventDefault();
-      console.log ("unload event");
-      return true; //Webkit, Safari, Chrome etc.
-    };
-
-    
-      window.addEventListener("beforeunload",handleBeforeUnload);
-    
-
-    return () => {
-        window.removeEventListener('beforeunload', handleBeforeUnload);
-    }
-
-  });
-  
+function App() {  
   if (process.env.NODE_ENV === "production")
   {
     console.log = function no_console() {};
