@@ -36,10 +36,8 @@ function AppNavbar() {
 
   return <Navbar bg="dark" variant="dark" expand="lg">
     <Container fluid>
-      <Navbar.Brand href="#">
-        <Link to='/' className="text-decoration-none text-light" onClick={closeMobileMenu}>
-          <span className="navbar-toggler-icon" />
-        </Link>
+      <Navbar.Brand href="/" className="text-decoration-none text-light">
+        <span className="navbar-toggler-icon" />
       </Navbar.Brand>
       {authCtx.isLoggedIn() && (<>
       <Navbar.Toggle aria-controls="navbarScroll" />
@@ -51,11 +49,7 @@ function AppNavbar() {
           variant="dark"
         >
           <NavDropdown title="Games" id="navbarGames" bg="dark" menuVariant="dark">
-            <NavDropdown.Item href="#action3">
-              <Link to='/games/bullsandcows' className="text-decoration-none text-light" onClick={closeMobileMenu}>
-                BullsAndCows
-              </Link>
-            </NavDropdown.Item>
+            <NavDropdown.Item className="text-decoration-none text-light" href='/games/bullsandcows'> BullsAndCows </NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Algorithms" id="navbarAlgorithms" menuVariant="dark">
@@ -74,10 +68,8 @@ function AppNavbar() {
                 </Dropdown.Menu>
               </div>
             </Dropdown>
-            <NavDropdown.Item>
-              <Link to='/algorithms/sorts' className="text-decoration-none text-light" onClick={closeMobileMenu}>
-                Sorts
-              </Link>
+            <NavDropdown.Item className="text-decoration-none text-light" href='/algorithms/sorts'> 
+              Sorts
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action5">Text</NavDropdown.Item>
