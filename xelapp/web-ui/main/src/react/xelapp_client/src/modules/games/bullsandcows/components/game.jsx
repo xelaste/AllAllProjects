@@ -27,7 +27,7 @@ function mapStateToProps(state) {
     gamingNow: state.game.get('gamingNow'),
     results: [...state.game.get("results")],
     vsComputer: state.game.get("vsComputer"),
-    heap: state.game.get("heap"),
+    heap: [...state.game.get("heap")],
     values: getFormValues('gameForm')(state)
   }
 }

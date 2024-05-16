@@ -19,7 +19,6 @@ import Game from './game';
 import { generateSecretArray } from '../../../../util/secretGenerator';
 import AuthContext from '../../../../store/auth-context';
 import '../css/styles.css';
-import { NavLink as Link, Route, Switch } from 'react-router-dom';
 
 function mapStateToProps(state) {
   return {

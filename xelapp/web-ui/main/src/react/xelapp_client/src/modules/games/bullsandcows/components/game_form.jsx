@@ -92,7 +92,7 @@ const GameForm = props => {
                         height: "40vh",
                         backgroundColor: "DeepPink" }}>
                         {
-                            props.heap.map((x,i)=><span>{i > 0 && i % 6===0 && <br/>}{x}&nbsp;</span> )                                 
+                            props.heap.map((x,i)=><span key={'heap_itm_' + i}>{i > 0 && i % 6===0 && <br/>}{x}&nbsp;</span> )                                 
                         }
                     </div>   
                 }
