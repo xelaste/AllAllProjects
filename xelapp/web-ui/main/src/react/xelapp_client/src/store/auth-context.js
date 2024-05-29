@@ -54,7 +54,7 @@ export const AuthContextProvider = (props) => {
 
   const logoutHandler = useCallback(() => {
     setToken(null);
-    document.cookie = "authorization=";
+    document.cookie = "authorization=; expires=Thu, 01 Jan 1964 00:00:00 UTC; path=/;"
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('expirationTime');
 
