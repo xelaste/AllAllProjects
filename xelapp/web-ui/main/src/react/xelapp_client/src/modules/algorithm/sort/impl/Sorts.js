@@ -9,7 +9,12 @@ export default function Sorts(props) {
     const [execution, setExecution] = useState(false);
     const [state, setState] = useState({});
     let content=defaultContent;
-    
+    let swap = (i,j) =>
+    {
+        let tmp = content[i];
+        content[i] = content[j];
+        content[j] = tmp;
+    }
     async function quickSortCall()
     {
         setExecution(true)
@@ -22,9 +27,7 @@ export default function Sorts(props) {
         if (to-from===1)
         {
             if (content[to] < content[from]) {
-                let tmp = content[to];
-                content[to] = content[from]
-                content[from] = tmp;
+               swap(to,from);
             }
             state.complexity+=5;
             let newState = {
@@ -41,9 +44,7 @@ export default function Sorts(props) {
                 {
                     if (content[j]>content[j+1])
                     {
-                        let tmp = content[j];
-                        content[j] = content[j+1];
-                        content[j+1] = tmp;
+                        swap(j,j+1);
                     }
                     state.complexity+=7;
                     let newState = {
@@ -85,9 +86,7 @@ export default function Sorts(props) {
             }
             if (i<j && content[i]>=pivot && content[j]<pivot)
             {
-                let tmp = content[i];
-                content[i]=content[j]
-                content[j]=tmp
+                swap(i,j);
             }
             state.complexity+=6;
             let newState = {
@@ -97,9 +96,7 @@ export default function Sorts(props) {
             await sleep(30);               
         }
         if ( pivotIdx >= 0 ) {
-          let tmp = content[pivotIdx];
-          content[pivotIdx] = content[i];
-          content[i] = tmp;
+          swap (pivotIdx,i)  
         }
         state.complexity+=5;
         let newState = {
@@ -199,9 +196,7 @@ export default function Sorts(props) {
                }
             }
             let last = content.length - (i+1);
-            let tmp = content[last];
-            content[last] = content[max];
-            content[max] = tmp;
+            swap(last,max);
             complexity+=4;
             let newState = {
                 ...state,
@@ -225,9 +220,7 @@ export default function Sorts(props) {
                 complexity++;
                 if (content[j]<content[j-1])
                 {
-                    let tmp = content[j-1];
-                    content[j-1] = content[j];
-                    content[j] = tmp;
+                    swap(j-1,j);
                     complexity+=4;
                     let newState = {
                         ...state,
