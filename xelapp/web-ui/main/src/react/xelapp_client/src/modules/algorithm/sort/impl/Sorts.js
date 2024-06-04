@@ -405,7 +405,7 @@ export default function Sorts(props) {
                             style={{ width: "100%", height: "80%" }}
                             className="overflow-auto"
                         >
-                            <SortLogicalView title={state.selectedSort} content={content}></SortLogicalView>
+                            <SortLogicalView progress={state.progress} title={state.selectedSort} content={content}></SortLogicalView>
                         </div>
                     </div>
                 </div>
