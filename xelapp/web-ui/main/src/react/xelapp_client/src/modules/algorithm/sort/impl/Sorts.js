@@ -283,6 +283,7 @@ export default function Sorts(props) {
                     complexity+=4;
                     let newState = {
                         ...state,
+                        progress: {current:j-1},
                         content:content,
                         complexity:complexity
                     }
@@ -295,6 +296,13 @@ export default function Sorts(props) {
             }
         }
         setExecution (false);
+        let newState = {
+            ...state,
+            progress: {},
+            content:content,
+            complexity:complexity
+        }
+        setState(newState)
     }
     function onSortSelect (e) 
     { 
