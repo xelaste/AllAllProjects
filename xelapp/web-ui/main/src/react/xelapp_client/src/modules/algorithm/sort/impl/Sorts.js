@@ -31,7 +31,8 @@ export default function Sorts(props) {
             }
             state.complexity+=5;
             let newState = {
-                ...state
+                ...state,
+                progress: {}
             }
             setState(newState);
             await sleep(30);           
@@ -48,7 +49,8 @@ export default function Sorts(props) {
                     }
                     state.complexity+=7;
                     let newState = {
-                        ...state
+                        ...state,
+                        progress: {}
                     }
                     setState(newState);
                     await sleep(50);                   
@@ -60,16 +62,33 @@ export default function Sorts(props) {
         let i = from;
         let j = to;
         let pivotIdx=-1;
+        {
+            let newState = {
+                ...state,
+                progress: {
+                    left: i,
+                    right: j,
+                    max: pivotIdx
+                }
+            }
+            setState(newState);
+            await sleep(100);
+        }
         while (i<j && j>=0 && i<content.length) 
         {
             while (content[i]<pivot && i<content.length) {
                 i++;
                 state.complexity++;
                 let newState = {
-                    ...state
+                    ...state,
+                    progress: {
+                        left: i,
+                        right: j,
+                        max: pivotIdx
+                    }
                 }
                 setState(newState);
-                await sleep(30);               
+                await sleep(150);               
             }
             while (content[j]>=pivot && j > i ) {
                 if (content[j]===pivot)
@@ -79,10 +98,15 @@ export default function Sorts(props) {
                 j--;
                 state.complexity+=3;
                 let newState = {
-                    ...state
+                    ...state,
+                    progress: {
+                        left: i,
+                        right: j,
+                        max: pivotIdx
+                    }  
                 }
                 setState(newState);
-                await sleep(30);               
+                await sleep(150);               
             }
             if (i<j && content[i]>=pivot && content[j]<pivot)
             {
@@ -90,20 +114,31 @@ export default function Sorts(props) {
             }
             state.complexity+=6;
             let newState = {
-                ...state
+                ...state,
+                progress: {
+                    left: i,
+                    right: j,
+                    max: pivotIdx
+                }
             }
             setState(newState);
-            await sleep(30);               
+            await sleep(150);               
         }
         if ( pivotIdx >= 0 ) {
-          swap (pivotIdx,i)  
+          swap (pivotIdx,i)
+          pivotIdx=i;  
         }
         state.complexity+=5;
         let newState = {
-            ...state
+            ...state,
+            progress: {
+                left: i,
+                right: j,
+                max: pivotIdx
+            }
         }
         setState(newState);
-        await sleep(30);               
+        await sleep(300);               
 
         if (j>=0) await quickSort(from,j);
         if (i<content.length) await quickSort(j+1,to);
@@ -183,6 +218,18 @@ export default function Sorts(props) {
         {
             complexity+=2;
             let max = 0;
+            let newState = {
+                ...state,
+                progress: {
+                    max: max,
+                    current: 0
+                },
+                content: content,
+                complexity: complexity
+            }
+            setState(newState);
+            await sleep(300);
+
             for (let j=0;j<content.length - i;j++)
             {
                complexity+=2;
@@ -194,17 +241,29 @@ export default function Sorts(props) {
                else {
                 complexity++;
                }
+                newState = {
+                    ...state,
+                    progress: {
+                        max: max,
+                        current: j
+                    },
+                    content: content,
+                    complexity: complexity
+                }
+                setState(newState);
+                await sleep(30);
             }
             let last = content.length - (i+1);
             swap(last,max);
             complexity+=4;
-            let newState = {
+            newState = {
                 ...state,
+                progress: {},
                 content:content,
                 complexity:complexity
             }
             setState(newState);
-            await sleep(300);
+            await sleep(100);
         }
         setExecution (false);
     }
