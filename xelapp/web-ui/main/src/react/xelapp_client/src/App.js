@@ -1,4 +1,4 @@
-import {React ,useEffect} from 'react';
+import React, { useEffect } from 'react';
 import Navbar from './controls/Navbar';
 import Home from './modules/pages/Home';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';

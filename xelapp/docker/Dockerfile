@@ -1,6 +1,5 @@
-FROM node:20.11.1 as builder
-
-RUN npm install -g npm@latest
+FROM node:22.19.0 AS builder
+#RUN npm install -g npm@latest
 
 # Paths will be relative this WORKDIR.
 WORKDIR /usr/src/app
@@ -11,7 +10,7 @@ COPY backend ./backend
 
 WORKDIR web-ui/main/src/react/xelapp_client
 RUN pwd
-RUN npm --maxsockets 1 install
+RUN npm --maxsockets 1 ci
 # Build the app
 RUN npm run build
 WORKDIR /usr/src/app/web-ui/main/src/react/xelapp_client
@@ -19,11 +18,12 @@ RUN cp -R build /usr/src/app/backend/main/src/nodejs
 WORKDIR /usr/src/app/backend/main/src/nodejs
 RUN mv build dist
 
-FROM node:20.11.1
+FROM node:22.19.0
 COPY --from=builder ./usr/src/app/backend/main/src/nodejs/ ./usr/app/nodejs/
 COPY --from=builder ./usr/src/app/backend/main/src/resources/ ./usr/app/resources/
 WORKDIR /usr/app/nodejs
 RUN npm --maxsockets 1 install
+ENV NODE_ENV=production
 # Specify port app runs on
 EXPOSE 3030
 # Run the app

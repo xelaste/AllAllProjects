@@ -1,12 +1,12 @@
 {
 	"dbConfig": {
-		"dbtype":  "LOKI",
+		"dbtype":  "MONGO",
 		"stitch": {
 			"url": "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook",
 			"secret": "[qwerty123456]"
 		},
-		"mongo": {
-			"connectionString": "mongodb://localhost/bullscows"
+		"mongodb": {
+			"connectionString": "mongodb+srv://sa:sa@cluster0.n8lt8.gcp.mongodb.net/BullsAndCows"
 		},
 		"loki": {
 			"dbname":"quickstart.db"
@@ -19,5 +19,9 @@
 	"logger":
 	{
 		"severity":"debug"
+	},
+	"server":
+	{
+		"listenPort":3030
 	}
 }
