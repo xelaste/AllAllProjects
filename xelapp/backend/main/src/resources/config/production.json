@@ -6,7 +6,7 @@
 			"secret": "[qwerty123456]"
 		},
 		"mongodb": {
-			"connectionString": "mongodb+srv://sa:sa@cluster0.n8lt8.gcp.mongodb.net/BullsAndCows"
+			"connectionString": "mongodb+srv://process.env.MONGO_USERNAME:process.env.MONGO_PASSWORD@cluster0.n8lt8.gcp.mongodb.net/BullsAndCows"
 		},
 		"loki": {
 			"dbname":"quickstart.db"
