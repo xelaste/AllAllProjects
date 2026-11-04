@@ -14,7 +14,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { playerActions } from "../../../login/actions/player"
 import * as gameActions from "../../bullsandcows/actions/bullscowsgame";
-import { getFormValues, isPristine, isSubmitting } from 'redux-form';
 import Game from './game';
 import { generateSecretArray } from '../../../../util/secretGenerator';
 import AuthContext from '../../../../store/auth-context';
@@ -24,9 +23,6 @@ function mapStateToProps(state) {
   return {
     players: [...state.player.get('players')],
     currentPlayer: state.player.get('currentPlayer'),
-    values: getFormValues('homeForm')(state),
-    pristine: isPristine('homeForm')(state),
-    submitting: isSubmitting('homeForm')(state),
     error: state.player.get('error'),
     gamingNow: state.game.get('gamingNow')
   }

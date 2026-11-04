@@ -1,10 +1,11 @@
-import React from 'react';
-import {Field, reduxForm } from 'redux-form';
+import { useForm } from 'react-hook-form';
+
 /*
 
 */
-const GameForm = props => {
-    const { error, handleSubmit } = props;
+export const GameForm = props => {
+    const { error: error, handleSubmit: onFormSubmit } = props;
+    const { register, handleSubmit } = useForm({ mode: "onChange" });
     const digit = (value ,previousValue ,allValues ,previousAllValues) => 
     { 
         let prev = [previousAllValues.d1, previousAllValues.d2,previousAllValues.d3,previousAllValues.d4];
@@ -34,14 +35,14 @@ const GameForm = props => {
         <div className="w-100  text-dark">
             {showSecret && <h4 className="text-center">Secret: {props.secret}</h4>}
             {!showSecret && <h4 className="text-center">Enter Number</h4>}
-            <form onSubmit={handleSubmit} className="form-horizontal">
+            <form onSubmit={handleSubmit(onFormSubmit)} className="form-horizontal">
                 {error && <div className="mt-10 px-0 col-sm-6 alert alert-danger">{error}</div>}
                 {!showSecret &&
                 <div className="form-row w-100" style={{justifyContent:'center'}}>
-                    <span className="digitSpan mr-1">
-                        <Field
-                            name="d1"
-                            component="input"
+                    {[1, 2, 3, 4].map(i => (
+                    <span key={i} className="digitSpan mr-1">
+                        <input
+                            name={`d${i}`}
                             type="text"
                             maxLength="1"
                             className="form-control form-control-sm"
@@ -50,40 +51,7 @@ const GameForm = props => {
                             forwardRef="true"
                         />
                     </span>
-                    <span className="digitSpan mr-1">
-                        <Field
-                            name="d2"
-                            component="input"
-                            type="text"
-                            maxLength="1"
-                            className="form-control form-control-sm"
-                            normalize={digit}
-                            onChange={onChange}
-                        />
-                    </span>
-                    <span className="digitSpan mr-1">
-                        <Field
-                            name="d3"
-                            component="input"
-                            type="text"
-                            maxLength="1"
-                            className="form-control form-control-sm"
-                            normalize={digit}
-                            onChange={onChange}
-                        />
-                    </span>
-                    <span className="digitSpan mr-1">
-                        <Field
-                            name="d4"
-                            component="input"
-                            type="text"
-                            maxLength="1"
-                            pattern="[1-9]{1}"
-                            className="form-control form-control-sm"
-                            normalize={digit}
-                            onChange={onChange}
-                        />
-                    </span>
+                    ))}
                 </div>
                 }
                 {
@@ -100,6 +68,3 @@ const GameForm = props => {
         </div>
     );
 };
-export default reduxForm({
-    form: 'gameForm', // a unique identifier for this form
-})(GameForm);

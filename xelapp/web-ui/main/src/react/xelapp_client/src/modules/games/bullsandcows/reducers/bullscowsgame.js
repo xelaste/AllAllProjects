@@ -1,4 +1,4 @@
-import Immutable from 'immutable';
+import * as Immutable from 'immutable'; 
 import { symbols as gameSymbols } from '../actions/bullscowsgame';
 import AutoPlay from '../auto/autoplay'
 import {playerConstants} from "../../../../constants/playerConstants";

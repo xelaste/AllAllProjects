@@ -11,9 +11,8 @@
 import React from 'react';
 import * as gameActions from "../actions/bullscowsgame";
 import { connect } from 'react-redux';
-import { getFormValues, reset } from 'redux-form';
 import PropTypes from 'prop-types';
-import GameForm from './game_form';
+import {GameForm} from './game_form';
 import _ from 'underscore';
 import store from "../../../../store/redux-store"
 import { generateSecretArray } from '../../../../util/secretGenerator';
@@ -28,7 +27,6 @@ function mapStateToProps(state) {
     results: [...state.game.get("results")],
     vsComputer: state.game.get("vsComputer"),
     heap: [...state.game.get("heap")],
-    values: getFormValues('gameForm')(state)
   }
 }
 function withTimer(Component) {
