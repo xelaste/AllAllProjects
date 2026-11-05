@@ -86,7 +86,7 @@ function MinPriorityQueue (maxSize, comparator) {
   };
 
   const greater = (i, j) => {
-    return comparator(pq[i], pq[j]);
+    return comparator(keys.get(pq[i]), keys.get(pq[j])) >= 0;
   };
   const exch = (i, j) => {
     let swap = pq[i];

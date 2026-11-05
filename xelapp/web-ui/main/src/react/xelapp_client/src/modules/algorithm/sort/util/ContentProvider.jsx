@@ -3,7 +3,7 @@ export function shuffle(arr)
 {
     for (let i=0;i <content.length;i++)
     {
-        let idx =  Math.floor(Math.random() * i);
+        let idx =  Math.floor(Math.random() * (i+1) );
         let val = arr[idx];
         arr[idx]=arr[i];
         arr[i]=val;

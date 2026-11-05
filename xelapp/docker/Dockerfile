@@ -1,5 +1,5 @@
 FROM node:22.19.0 AS builder
-#RUN npm install -g npm@latest
+RUN npm install -g npm@latest
 
 # Paths will be relative this WORKDIR.
 WORKDIR /usr/src/app
@@ -23,6 +23,11 @@ COPY --from=builder ./usr/src/app/backend/main/src/nodejs/ ./usr/app/nodejs/
 COPY --from=builder ./usr/src/app/backend/main/src/resources/ ./usr/app/resources/
 WORKDIR /usr/app/nodejs
 RUN npm --maxsockets 1 install
+ARG MONGO_USERNAME
+ARG MONGO_PASSWORD
+
+ENV MONGO_USERNAME=${MONGO_USERNAME}
+ENV MONGO_PASSWORD=${MONGO_PASSWORD}
 ENV NODE_ENV=production
 # Specify port app runs on
 EXPOSE 3030

@@ -1,4 +1,5 @@
-const expressJwt = require('express-jwt');
+const {expressjwt:expressJwt} = require('express-jwt');
+
 const config = require('config');
 
 function jwt() {

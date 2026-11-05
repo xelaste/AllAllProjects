@@ -1,20 +1,26 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const Logger = require('../logger');
 const config = require('config');
 const logger = Logger.createLogger("playerMongo");
 
-mongoose.Promise = require('bluebird');
-mongoose.connect( config.dbConfig.mongodb.connectionString, { useMongoClient: true });
-// User Schema
-var PlayerSchema = mongoose.Schema({
+// Connect (Mongoose 6+: no options needed, native promises)
+mongoose.connect(config.get('dbConfig.mongodb.connectionString'))
+    .then(() => logger.info('Connected to MongoDB'))
+    .catch(err => {
+        logger.error('MongoDB connection error: ' + err.message);
+        process.exit(1);
+    });
+
+// Player Schema
+const PlayerSchema = new mongoose.Schema({
     loginname: {
         type: String,
         index: true
     },
     hash: {
-        type: String,
+        type: String
     },
     email: {
         type: String
@@ -28,70 +34,56 @@ var PlayerSchema = mongoose.Schema({
     profileimage: {
         type: String
     }
-
 });
 
-var player = module.exports = mongoose.model('Player', PlayerSchema);
+const player = module.exports = mongoose.model('Player', PlayerSchema);
 
-module.exports.createPlayer = async function (data) 
-{
-    let newPlayer = new player();
-    newPlayer.name=data.name;
-    newPlayer.score=data.score;
-    newPlayer.username=data.username,
-    newPlayer.profileImage='noimage.png';
-    if (data.password) {
-        newPlayer.hash = bcrypt.hashSync(data.password, 10);
-    }
-    if ( (await player.findOne({ name: data.name })) === null)
-    {
-        await newPlayer.save();
-        return await player.findOne({ name: newPlayer.name });
-    }   
-    else
-    {
+module.exports.createPlayer = async function (data) {
+    if (await player.findOne({ name: data.name }) !== null) {
         throw 'Player name "' + data.name + '" is already taken';
     }
-    
+
+    const newPlayer = new player({
+        name: data.name,
+        score: data.score,
+        loginname: data.username,       // schema field is "loginname"
+        profileimage: 'noimage.png'     // schema field is lowercase "profileimage"
+    });
+    if (data.password) {
+        newPlayer.hash = await bcrypt.hash(data.password, 10);
+    }
+
+    await newPlayer.save();
+    return newPlayer;
 };
 
-// Fetch All Classes
+// Fetch all players
 module.exports.getPlayers = async function (limit) {
-    let players = await player.find().limit(limit);
-    return players;
+    return await player.find().limit(limit);
 };
 
-// Fetch All Winners
-module.exports.getWinners = async function (limit) 
-{
-    let players = await player.find({ score: { $gt: 0 } }).sort( { score: -1 } ).limit(limit);
-    return players;
+// Fetch all winners
+module.exports.getWinners = async function (limit) {
+    return await player.find({ score: { $gt: 0 } }).sort({ score: -1 }).limit(limit);
 };
 
-module.exports.updatePlayer = async function (data) 
-{
-    await player.findOneAndUpdate(
+module.exports.updatePlayer = async function (data) {
+    return await player.findOneAndUpdate(
         { name: data.name },
-        {
-            $inc: { "score": data.score }
-        },
-        {save: true, upsert: true}
-    )
+        { $inc: { score: data.score } },
+        { new: true, upsert: true }
+    );
 };
 
-module.exports.login = async function (username,password) 
-{
+module.exports.login = async function (username, password) {
     logger.debug("login in -->");
-    return await player.findOne({ name: username }).then((response)=> {
-        if (response && bcrypt.compareSync(password, response.hash)) 
-        {
-            logger.debug(response);
-            const token = jwt.sign({ sub: response.id }, config.jwt.secret);
-            return {
-                ...response,
-                token
-            };
-        }
-        else return false;
-      })
+    const response = await player.findOne({ name: username });
+
+    if (response && response.hash && await bcrypt.compare(password, response.hash)) {
+        const { hash, ...user } = response.toObject();   // plain object, password hash excluded
+        logger.debug(user);
+        const token = jwt.sign({ sub: response.id }, config.get('jwt.secret'), { algorithm: 'HS256' });
+        return { ...user, token };
+    }
+    return false;
 };

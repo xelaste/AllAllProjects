@@ -111,7 +111,7 @@ export default function Dijkstra(props) {
       ...state,
       distTo: new Map(),
       edgeTo: new Map(),
-      pq: new MinPriorityQueue(graph.getVertices().keys().length),
+      pq: new MinPriorityQueue(graph.getVertices().size),
     };
     setState(newState);
   }
@@ -133,7 +133,7 @@ export default function Dijkstra(props) {
       ...state,
       distTo: new Map(),
       edgeTo: new Map(),
-      pq: new MinPriorityQueue(graph.getVertices().keys().length),
+      pq: new MinPriorityQueue(graph.getVertices().size),
     };
     setState(newState);
     shortPath(graph, "v" + startNode, {

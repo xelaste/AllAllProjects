@@ -22,7 +22,7 @@ function login(username,password)
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(player)
     };
-    return fetch(`${process.env.REACT_APP_API_URL}/players/authenticate/` + username , requestOptions)
+    return fetch(`${import.meta.env.VITE_API_URL}/players/authenticate/` + username , requestOptions)
     .then(handleResponse)
     .then(player => {
             sessionStorage.setItem('player', JSON.stringify(player));
@@ -44,7 +44,7 @@ function register(player) {
 
     };
 
-    return fetch(`${process.env.REACT_APP_API_URL}/players/register`, requestOptions).then(handleResponse);
+    return fetch(`${import.meta.env.VITE_API_URL}/players/register`, requestOptions).then(handleResponse);
 }
 
 
@@ -54,7 +54,7 @@ function update(player) {
         headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(player)
     };
-    return fetch(`${process.env.REACT_APP_API_URL}/players`, requestOptions).then(handleResponse);
+    return fetch(`${import.meta.env.VITE_API_URL}/players`, requestOptions).then(handleResponse);
 }
 
 
@@ -64,7 +64,7 @@ function getAll()
         method: 'GET',
         headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${process.env.REACT_APP_API_URL}/players`, requestOptions).then(handleResponse);
+    return fetch(`${import.meta.env.VITE_API_URL}/players`, requestOptions).then(handleResponse);
 }
 
 function getWinners() 
@@ -73,7 +73,7 @@ function getWinners()
         method: 'GET',
         headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${process.env.REACT_APP_API_URL}/players/winners`, requestOptions).then(handleResponse);
+    return fetch(`${import.meta.env.VITE_API_URL}/players/winners`, requestOptions).then(handleResponse);
 }
 // prefixed function name with underscore because delete is a reserved word in javascript
 function _delete(name) 
@@ -82,7 +82,7 @@ function _delete(name)
         method: 'DELETE',
         headers: { ...AuthHeader(), 'Content-Type': 'application/json' },
     };
-    return fetch(`${process.env.REACT_APP_API_URL}/players/${name}`, requestOptions).then(handleResponse);
+    return fetch(`${import.meta.env.VITE_API_URL}/players/${name}`, requestOptions).then(handleResponse);
 }
 function handleResponse(response) {
     return response.text().then(text => {

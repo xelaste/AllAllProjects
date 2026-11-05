@@ -38,7 +38,7 @@ export default function Sorts(props) {
             await sleep(30);           
             return;
         }
-        if (  to + 1 - from < 3 ) {
+        if (  to + 1 - from < 4 ) {
             for (let i=from;i<=to;i++)
             {
                 for (let j=i;j<to-i;j++)
@@ -58,9 +58,9 @@ export default function Sorts(props) {
             }       
             return;
         }
-        let pivot = Math.floor ((to+from)/2)
-        let i = from;
-        let j = to;
+		let pivotValue = Math.floor ((content[to]+content[from])/2);
+        let i = from - 1;
+        let j = to + 1;
         let pivotIdx=-1;
         {
             let newState = {
@@ -74,9 +74,9 @@ export default function Sorts(props) {
             setState(newState);
             await sleep(100);
         }
-        while (i<j && j>=0 && i<content.length) 
+        while (i<j && j>=0 && i<to) 
         {
-            while (content[i]<pivot && i<content.length) {
+            while (content[i]<pivotValue && i<to) {
                 i++;
                 state.complexity++;
                 let newState = {
@@ -90,8 +90,8 @@ export default function Sorts(props) {
                 setState(newState);
                 await sleep(150);               
             }
-            while (content[j]>=pivot && j > i ) {
-                if (content[j]===pivot)
+            while (content[j]>=pivotValue && j > i ) {	
+                if (content[j]===pivotValue)
                 {
                     pivotIdx=j;
                 }
@@ -108,7 +108,7 @@ export default function Sorts(props) {
                 setState(newState);
                 await sleep(150);               
             }
-            if (i<j && content[i]>=pivot && content[j]<pivot)
+            if (i<j && content[i]>=pivotValue && content[j]<pivotValue)
             {
                 swap(i,j);
             }
@@ -292,6 +292,7 @@ export default function Sorts(props) {
                 }
                 else {
                     complexity++
+					break;
                 }
             }
         }

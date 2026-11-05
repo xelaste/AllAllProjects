@@ -22,8 +22,9 @@ export default function generateRandomGraph(n, k, w, props) {
                 order++;
             }
         }
+		let tries = 0;
         if (order === 0) {
-            while (order<k/2) {
+            while (order<k/2 && tries++ < n * 10) {
                 let j = Math.ceil(Math.random() * (n - 1));
                 let adj = g.adj('v' + j)
                 if (i === j || (adj && adj.get('v' + i))) {
