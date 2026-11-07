@@ -36,8 +36,7 @@ export default function Sorts(props) {
             state.complexity+=5;
             let newState = {
                 ...state,
-                progress: {
-                    }
+                progress: { }
             }
             setState(newState);
             await sleep(30);           
