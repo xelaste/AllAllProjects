@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import  {useState, useEffect } from "react";
 import "../../../../css/App.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SortLogicalView from "../view/SortLogicalView";
@@ -24,6 +24,10 @@ export default function Sorts(props) {
 
     async function quickSort(from,to)
     {
+        if (to<=from) {
+            return;
+        }
+
         if (to-from===1)
         {
             if (content[to] < content[from]) {
@@ -32,36 +36,19 @@ export default function Sorts(props) {
             state.complexity+=5;
             let newState = {
                 ...state,
-                progress: {}
+                progress: {
+                    }
             }
             setState(newState);
             await sleep(30);           
             return;
         }
-        if (  to + 1 - from < 4 ) {
-            for (let i=from;i<=to;i++)
-            {
-                for (let j=i;j<to-i;j++)
-                {
-                    if (content[j]>content[j+1])
-                    {
-                        swap(j,j+1);
-                    }
-                    state.complexity+=7;
-                    let newState = {
-                        ...state,
-                        progress: {}
-                    }
-                    setState(newState);
-                    await sleep(50);                   
-                }
-            }       
-            return;
-        }
-		let pivotValue = Math.floor ((content[to]+content[from])/2);
-        let i = from - 1;
-        let j = to + 1;
-        let pivotIdx=-1;
+		let pivotIdx=(to + from) >> 1;
+        let pivotValue = content[pivotIdx];
+        swap (pivotIdx,to);
+        pivotIdx = to;
+        let i = from;
+        let j = to;
         {
             let newState = {
                 ...state,
@@ -74,9 +61,9 @@ export default function Sorts(props) {
             setState(newState);
             await sleep(100);
         }
-        while (i<j && j>=0 && i<to) 
+        while (true) 
         {
-            while (content[i]<pivotValue && i<to) {
+            while (i<j && content[i]<pivotValue ) {
                 i++;
                 state.complexity++;
                 let newState = {
@@ -90,11 +77,7 @@ export default function Sorts(props) {
                 setState(newState);
                 await sleep(150);               
             }
-            while (content[j]>=pivotValue && j > i ) {	
-                if (content[j]===pivotValue)
-                {
-                    pivotIdx=j;
-                }
+            while ( j>=i && content[j]>=pivotValue ) {	
                 j--;
                 state.complexity+=3;
                 let newState = {
@@ -108,10 +91,10 @@ export default function Sorts(props) {
                 setState(newState);
                 await sleep(150);               
             }
-            if (i<j && content[i]>=pivotValue && content[j]<pivotValue)
-            {
-                swap(i,j);
-            }
+            if (i>=j) {
+                break;
+            } 
+            swap(i,j);
             state.complexity+=6;
             let newState = {
                 ...state,
@@ -122,12 +105,10 @@ export default function Sorts(props) {
                 }
             }
             setState(newState);
-            await sleep(150);               
+            await sleep(150);  
         }
-        if ( pivotIdx >= 0 ) {
-          swap (pivotIdx,i)
-          pivotIdx=i;  
-        }
+        swap (pivotIdx,i)
+        pivotIdx=i;
         state.complexity+=5;
         let newState = {
             ...state,
@@ -138,10 +119,9 @@ export default function Sorts(props) {
             }
         }
         setState(newState);
-        await sleep(300);               
-
-        if (j>=0) await quickSort(from,j);
-        if (i<content.length) await quickSort(j+1,to);
+        await sleep(300);    
+        if (pivotIdx-1>from) await quickSort(from,pivotIdx-1);
+        if (pivotIdx+1<to) await quickSort(pivotIdx + 1,to);
     }
 
     async function mergeSortCall()
