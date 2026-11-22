@@ -22,6 +22,7 @@
 	},
 	"server":
 	{
-		"listenPort":3030
+		"listenPort":3030,
+                "allowedOrigin": "http://localhost:5173"   
 	}
 }

@@ -25,13 +25,13 @@ function getToken (req) {
         return req.cookies.authorization ? req.cookies.authorization.replace("Bearer","").trim():"";
     }    
 }
-async function isRevoked(req, payload, done) {
+async function isRevoked(req, payload ) {
    // const user = await userService.getById(payload.sub);
     // revoke token if user no longer exists
    // if (!user) {
     //    return done(null, true);
     //}
-    done();
+    return false;
 };
 
 module.exports = jwt;

@@ -6,31 +6,54 @@ import { useForm } from 'react-hook-form';
 export const GameForm = props => {
     const { error: error, handleSubmit: onFormSubmit } = props;
     const { register, handleSubmit } = useForm({ mode: "onChange" });
-    const digit = (value ,previousValue ,allValues ,previousAllValues) => 
+    
+    const validDigit = (input) => 
     { 
-        let prev = [previousAllValues.d1, previousAllValues.d2,previousAllValues.d3,previousAllValues.d4];
-        let curr = [allValues.d1, allValues.d2,allValues.d3,allValues.d4];
-        for (let i=0;i<curr.length;i++)
-        {
-            for (let j=0;j<prev.length;j++)    
-            {
-                if (i!==j && curr[i] && prev[j] && curr[i] === prev[j])
-                {
-                    return "";
-                }
+        let curr = [document.getElementsByName("d1")[0].value, 
+                    document.getElementsByName("d2")[0].value,
+                    document.getElementsByName("d3")[0].value,
+                    document.getElementsByName("d4")[0].value
+                ];
+
+        let newValue = input.value;
+        for (let i=0;i<curr.length;i++) {
+            if (input===document.getElementsByName("d" + (i + 1) )[0]) {
+                continue;
+            }
+            let value = document.getElementsByName("d" + (i + 1) )[0].value
+            if ("123456789".includes(newValue) && newValue.length>0 && newValue===value) {
+                input.value="";
+                return false;
             }
         }
-        return "123456789".includes(value)?value:""
+        return true;
     };
-    function onChange(event, newValue, previousValue, name)
+    function onChange(event)
     {
-        if ("123456789".includes(newValue) && newValue.length>0)
+        let newValue = event.target.value;
+        if ("123456789".includes(newValue) && newValue.length>0 && validDigit(event.target))
         {
-            let x = parseInt(name.substring(2, 1)) % 4 + 1;
+            let x = parseInt(event.target.name.substring(2, 1)) % 4 + 1;
             document.getElementsByName("d" + x)[0].focus();
         }
+        let curr = [ document.getElementsByName("d1")[0].value, 
+                     document.getElementsByName("d2")[0].value,
+                     document.getElementsByName("d3")[0].value,
+                     document.getElementsByName("d4")[0].value
+                ];
+
+        props.handleDigitsChanged(curr);
     }
     let showSecret = props.vsComputer ||  props.isWin || props.isLost
+    function reset () {
+        if (!props.vsComputer) {
+           document.getElementsByName("d1")[0].value="", 
+           document.getElementsByName("d2")[0].value="",
+           document.getElementsByName("d3")[0].value="",
+           document.getElementsByName("d4")[0].value=""
+        }
+    }
+    props.subscribeToGameForm (reset);
     return (
         <div className="w-100  text-dark">
             {showSecret && <h4 className="text-center">Secret: {props.secret}</h4>}
@@ -46,9 +69,7 @@ export const GameForm = props => {
                             type="text"
                             maxLength="1"
                             className="form-control form-control-sm"
-                            normalize={digit}
                             onChange={onChange}
-                            forwardRef="true"
                         />
                     </span>
                     ))}

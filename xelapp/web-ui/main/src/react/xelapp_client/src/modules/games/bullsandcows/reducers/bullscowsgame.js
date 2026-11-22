@@ -10,7 +10,9 @@ const initialState = Immutable.fromJS(
         heap: autoPlay.getInitialSet(),
         secret: [0, 0, 0, 0],
         vsComputer: false,
-        results: []
+        results: [],
+        userGuess:[],
+        digits:[]
     }
 );
 
@@ -70,6 +72,9 @@ function play(state, guess) {
     return state.set("results", results);
 }
 
+function guessChanged(state, action) {
+    return state.set("digits",action.payload.digits).set("canPlay", action.payload.valid);
+}
 export function reducer(state = initialState, action) {
     switch (action.type) {
         case playerConstants.LOGIN_REQUEST:
@@ -82,6 +87,9 @@ export function reducer(state = initialState, action) {
             return newGame(state, action.payload.secret, action.payload.vsSomputer);
         case gameSymbols.skip:
             return skip(state);
+        case gameSymbols.guess_changed:
+            return guessChanged(state, action);
+    
         default:
             return state;
     }

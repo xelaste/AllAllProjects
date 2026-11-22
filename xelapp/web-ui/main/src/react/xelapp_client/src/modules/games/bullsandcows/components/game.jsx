@@ -16,6 +16,7 @@ import {GameForm} from './game_form';
 import _ from 'underscore';
 import store from "../../../../store/redux-store"
 import { generateSecretArray } from '../../../../util/secretGenerator';
+import { guessChanged } from "../actions/bullscowsgame";
 import { playerActions } from "../../../login/actions/player";
 
 function mapStateToProps(state) {
@@ -27,6 +28,8 @@ function mapStateToProps(state) {
     results: [...state.game.get("results")],
     vsComputer: state.game.get("vsComputer"),
     heap: [...state.game.get("heap")],
+    canPlay: state.game.get("canPlay"),
+    digits: [...state.game.get("digits")]
   }
 }
 function withTimer(Component) {
@@ -97,15 +100,28 @@ class Game extends React.Component {
     error: PropTypes.string,
     results: PropTypes.array,
     vsComputer: PropTypes.bool,
-    heap: PropTypes.array
+    heap: PropTypes.array,
+    canPlay:  PropTypes.bool,
+    digits: PropTypes.array
   };
   constructor(props) 
   {
     super(props);
     this.subscribeToTimer = this.subscribeToTimer.bind(this);
+    this.subscribeToGameForm = this.subscribeToGameForm.bind(this); 
   }
 
   resetTimer=null;
+  resetGameForm=null
+
+  handleDigitsChanged = (digits) => {
+        const canPlay = digits.every(d => d !== '');
+        this.props.dispatch(guessChanged(digits,canPlay));
+    };
+
+  subscribeToGameForm (handler) {
+    this.resetGameForm=handler;
+  }  
 
   subscribeToTimer( handler )
   {
@@ -136,8 +152,10 @@ class Game extends React.Component {
     {
         this.resetTimer();
     } 
+    if(this.resetGameForm ) {
+       this.resetGameForm(); 
+    }
     this.props.dispatch(gameActions.newGame(generateSecretArray(),this.vsComputer()));
-    this.props.dispatch(reset('gameForm'));
   }
   componentWillUnmount() {
     this.props.dispatch(gameActions.stopGame(this.props.currentPlayer));
@@ -177,7 +195,7 @@ class Game extends React.Component {
         </div>
         </div>
         <div className="col-sm-4 ml-2" style={{ backgroundColor: "pink" ,height:"50vh"}}>
-          <GameForm isLost={this.isLost()} isWin={this.isWin()} vsComputer={this.vsComputer()} heap={this.props.heap} secret={this.props.secret} playerName={this.props.currentPlayer} />
+          <GameForm subscribeToGameForm={this.subscribeToGameForm} handleDigitsChanged={this.handleDigitsChanged} isLost={this.isLost()} isWin={this.isWin()} vsComputer={this.vsComputer()} heap={this.props.heap} secret={this.props.secret} playerName={this.props.currentPlayer} />
         </div>
       </div>
       {!this.isWin() && !this.isLost() &&
@@ -187,17 +205,13 @@ class Game extends React.Component {
       }
       <div className="panel fixed-bottom p-4">
         <button className="btn btn-primary btn-sm col-md-1 m-1"
-          type="button" disabled={this.vsComputer() || (!this.props.values )|| (this.props.values && !(parseInt(this.props.values.d1) ) && parseInt(this.props.values.d2) && parseInt(this.props.values.d3) && parseInt(this.props.values.d4))}
+          type="button" disabled={this.vsComputer() || !this.props.canPlay}
           onClick={() => {
-            let guess = [parseInt(this.props.values.d1), parseInt(this.props.values.d2), parseInt(this.props.values.d3), parseInt(this.props.values.d4)];
+            let guess = [parseInt(this.props.digits[0]), parseInt(this.props.digits[1]), parseInt(this.props.digits[2]), parseInt(this.props.digits[3])];
             if (_.isEqual(guess, this.props.secret)) {
               this.props.dispatch(playerActions.updatePlayerScore(this.props.currentPlayer, 10 - this.props.results.length));
             }
-            this.props.dispatch(gameActions.play([parseInt(this.props.values.d1), parseInt(this.props.values.d2), parseInt(this.props.values.d3), parseInt(this.props.values.d4)]))
-            this.props.values.d1="";
-            this.props.values.d2="";
-            this.props.values.d3="";
-            this.props.values.d4="";
+            this.props.dispatch(gameActions.play(guess))
             this.resetTimer ();
           }
           }>

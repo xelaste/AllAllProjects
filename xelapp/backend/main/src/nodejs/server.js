@@ -28,7 +28,14 @@ app.use(express.static('dist'));
 
 app.use(jwt());
 app.use(errorHandler);
-app.use(cors());
+
+logger.debug(config.server.allowedOrigin);
+if (config.server.allowedOrigin) {
+      app.use(cors({
+      origin: config.server.allowedOrigin
+  }));
+} 
+
 app.use('/players', require("./controllers/playerController"));
 
 

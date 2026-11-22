@@ -20,10 +20,10 @@ export const retrieveStoredToken = () => {
   const storedExpirationDate = sessionStorage.getItem('expirationTime');
   const remainingTime = calculateRemainingTime(storedExpirationDate);
 
-  if (remainingTime <= 3600) {
+  if (remainingTime <= 1000 ) {
     sessionStorage.removeItem('player');
     sessionStorage.removeItem('expirationTime');
-    return null;
+    return {};
   }
   return {
     token: storedToken,
@@ -56,6 +56,7 @@ export const AuthContextProvider = (props) => {
     setToken(null);
     document.cookie = "authorization=; expires=Thu, 01 Jan 1964 00:00:00 UTC; path=/;"
     sessionStorage.removeItem('token');
+    sessionStorage.removeItem('player');
     sessionStorage.removeItem('expirationTime');
 
     if (logoutTimer) {
@@ -64,7 +65,7 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   const isLoggedIn  = () => {return !!token}
-  const authHeader = () => {return retrieveStoredToken().authHeader}
+  const authHeader = () => {return retrieveStoredToken()?.authHeader}
   const loginHandler = (token, expirationTime) => {
     setToken(token);
     if (!expirationTime)
@@ -76,7 +77,6 @@ export const AuthContextProvider = (props) => {
     }
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('expirationTime', expirationTime);
-    sessionStorage.setItem('authHeader',retrieveStoredToken().authHeader);
     const remainingTime = calculateRemainingTime(expirationTime);
     document.cookie = "authorization=Bearer " + token;
     logoutTimer = setTimeout(logoutHandler, remainingTime);
@@ -84,7 +84,8 @@ export const AuthContextProvider = (props) => {
 
   useEffect(() => {
     if (tokenData) {
-      logoutTimer = setTimeout(logoutHandler, tokenData.duration);
+         clearTimeout(logoutTimer);
+         logoutTimer = setTimeout(logoutHandler, tokenData.duration);
     }
   }, [tokenData, logoutHandler]);
 

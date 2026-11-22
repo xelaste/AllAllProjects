@@ -22,7 +22,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { playerActions } from "../actions/player";
+import { playerActions } from "../../../login/actions/player";
 function mapStateToProps(state) 
 {
   return {

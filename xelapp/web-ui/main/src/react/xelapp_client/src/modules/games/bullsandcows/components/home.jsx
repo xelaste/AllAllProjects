@@ -18,6 +18,7 @@ import Game from './game';
 import { generateSecretArray } from '../../../../util/secretGenerator';
 import AuthContext from '../../../../store/auth-context';
 import '../css/styles.css';
+import Highscore from './highscore';
 
 function mapStateToProps(state) {
   return {
@@ -39,7 +40,10 @@ class Home extends React.Component {
     gamingNow: PropTypes.bool,
     error: PropTypes.string
   };
-  static contextType = AuthContext
+  static contextType = AuthContext;
+  state = {
+    winners: false
+  };
   playersList() {
     return <>
       <div className="w-75" >
@@ -60,6 +64,9 @@ class Home extends React.Component {
         </div>
       </div>
     </>
+  }
+  winners () {
+    return <Highscore></Highscore>
   }
   updateCurrentPlayer(player) {
     const { dispatch } = this.props;
@@ -89,28 +96,30 @@ class Home extends React.Component {
               <ul className="w-25 nav  nav-tabs nav-justified border-bottom-0" id="myTab0" role="tablist">
                 <li className="nav-item" role="presentation">
                   <button
-                    className="nav-link active"
-                    id="home-tab0"
+                    className={`nav-link ${!this.state.winners ? 'active' : ''}`}
+                    id="btnPlayers"
                     data-mdb-toggle="tab"
                     data-mdb-target="#home0"
                     type="button"
                     role="tab"
                     aria-controls="home"
-                    aria-selected="true"
+                    aria-selected={!this.state.winners}
+                    onClick={()=>{this.setState({winners:false})}}
                   >
                     Play
                   </button>
                 </li>
                 <li className="nav-item" role="presentation">
                   <button
-                    className="nav-link"
-                    id="profile-tab0"
+                    className={`nav-link ${this.state.winners ? 'active' : ''}`}
+                    id="btnWinners"
                     data-mdb-toggle="tab"
                     data-mdb-target="#profile0"
                     type="button"
                     role="tab"
                     aria-controls="profile"
-                    aria-selected="false"
+                    aria-selected={this.state.winners}
+                    onClick={()=>{this.setState({winners:true})}}
                   >
                     Winners
                   </button>
@@ -119,7 +128,7 @@ class Home extends React.Component {
             </div>
 
             <div className="h-75 px-0 ml-0">
-              {this.playersList()}
+              { this.state.winners ? this.winners() : this.playersList() }
             </div>
             <div className="row p-2 h-25 d-flex">
               <button className="btn btn-primary btn-sm col-md-2 m-1 h-25"

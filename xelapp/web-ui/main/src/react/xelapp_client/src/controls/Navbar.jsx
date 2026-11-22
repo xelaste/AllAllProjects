@@ -1,4 +1,4 @@
-import React, { useState , useContext } from 'react';
+import { useState , useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -9,30 +9,20 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import AuthContext from '../store/auth-context';
+import logoutIcon from '../images/log-out.svg';
+import { useNavigate } from 'react-router-dom';
 
 function AppNavbar() {
+  const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   const [click, setClick] = useState(false);
-  const [dropdown, setDropdown] = useState(false);
-
-  const handleClick = () => setClick(!click);
+  
   const closeMobileMenu = () => setClick(false);
 
-  const onMouseEnter = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(true);
-    }
-  };
-
-  const onMouseLeave = () => {
-    if (window.innerWidth < 960) {
-      setDropdown(false);
-    } else {
-      setDropdown(false);
-    }
-  };
+  const logout = () => {
+    authCtx.logout();
+    navigate('/login');
+  }
 
   return <Navbar bg="dark" variant="dark" expand="lg">
     <Container fluid>
@@ -87,6 +77,9 @@ function AppNavbar() {
           />
           <Button variant="outline-success">Search</Button>
         </Form>
+        <button type="button" className="me-2 btn btn-primary d-inline-flex align-items-center"  onClick={logout}>
+            <img  src={logoutIcon}      alt=""   />
+         </button>
       </Navbar.Collapse>
       </>)}
     </Container>

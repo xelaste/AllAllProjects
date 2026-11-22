@@ -4,7 +4,8 @@ export const symbols = {
   skip: '@@bullscowsgame/skip',
   win: '@@bullscowsgame/win',
   stop: '@@bullscowsgame/stop',
-  lose: '@@bullscowsgame/lose'
+  lose: '@@bullscowsgame/lose',
+  guess_changed: '@@bullscowsgame/guess_changed'
 };
 
 export function skip() 
@@ -12,6 +13,13 @@ export function skip()
   return {
     type: symbols.skip,
   };
+}
+
+export function guessChanged(guess, valid) {
+  return {
+    type: symbols.guess_changed,
+    payload: {digits: guess, valid: valid}
+  }
 }
 
 export function play(guess) {
