@@ -3,7 +3,7 @@ process.chdir(__dirname);
 process.env["NODE_CONFIG_DIR"] = "../resources/config/";
 const config = require('config')
 var express = require('express');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 const jwt = require('./jwt');
 const Logger = require('./logger');
 const errorHandler = require('./error-handler');

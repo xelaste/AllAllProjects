@@ -1,10 +1,6 @@
 {
 	"dbConfig": {
 		"dbtype":  "LOKI",
-		"stitch": {
-			"url": "https://webhooks.mongodb-stitch.com/api/client/v2.0/app/bullsandcows-pepdu/service/BullsAndCows/incoming_webhook",
-			"secret": "[qwerty123456]"
-		},
 		"mongo": {
 			"connectionString": "mongodb://localhost/bullscows"
 		},
@@ -13,7 +9,6 @@
 		}
 	},
 	"jwt":{
-		"secret": "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
 		"algorithms":["HS256"]
 	},
 	"logger":

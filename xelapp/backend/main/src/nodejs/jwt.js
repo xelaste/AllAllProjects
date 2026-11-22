@@ -3,7 +3,7 @@ const {expressjwt:expressJwt} = require('express-jwt');
 const config = require('config');
 
 function jwt() {
-    const secret = config.jwt.secret;
+    const secret = config.get("jwt.secret");
     const algorithms=config.jwt.algorithms;
     return expressJwt({ secret:secret,
                         algorithms:algorithms, 
